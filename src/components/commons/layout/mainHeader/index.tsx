@@ -7,9 +7,7 @@ const Wrapper = styled.div`
   left: 0;
   width: 100%;
   padding: 24px 0;
-  .fullNav {
-    display: none;
-  }
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transition: all 0.3s;

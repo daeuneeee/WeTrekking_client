@@ -14,8 +14,8 @@ const LoginUi = ({
         </S.LoginTitle>
         <S.LoginForm>
           <S.LoginInputContainer>
-            <S.LoginInputTitle>아이디</S.LoginInputTitle>
-            <Input01 type="text" placeholder="아이디를 입력해 주세요." />
+            <S.LoginInputTitle>이메일</S.LoginInputTitle>
+            <Input01 type="text" placeholder="이메일을 입력해 주세요." />
           </S.LoginInputContainer>
           <S.LoginInputContainer>
             <S.LoginInputTitle>비밀번호</S.LoginInputTitle>

@@ -13,8 +13,20 @@ const InputStyle01 = styled.input`
   outline: none;
 `;
 
-const Input01 = (props) => {
-  return <InputStyle01 type={props.type} placeholder={props.placeholder} />;
+interface IInputProps01 {
+  type: string;
+  placeholder: string;
+  maxLength: number;
+}
+
+const Input01 = (props: IInputProps01) => {
+  return (
+    <InputStyle01
+      type={props.type}
+      placeholder={props.placeholder}
+      maxLength={props.maxLength}
+    />
+  );
 };
 
 export default Input01;

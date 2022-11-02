@@ -18,7 +18,7 @@ export const RankingBox = styled.section`
 
 export const RankingTitle = styled.span`
   font-weight: 700;
-  font-size: 36px;
+  font-size: 3.6rem;
   color: #fff;
 `;
 
@@ -53,12 +53,12 @@ export const RankingInform = styled.div`
 export const RankingNickName = styled.span`
   color: #111;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.8rem;
 `;
 
 export const RankingEmail = styled.span`
   font-weight: 500;
-  font-size: 13px;
+  font-size: 1.3rem;
   color: #d6d6d6;
 `;
 
@@ -76,7 +76,7 @@ export const RankingNum = styled.p`
   text-align: center;
   padding-top: 5px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #fff;
 `;
 
@@ -98,7 +98,7 @@ export const Header = styled.header`
 
 export const Title = styled.span`
   font-weight: 700;
-  font-size: 32px;
+  font-size: 3.2rem;
   color: #111;
 `;
 
@@ -112,7 +112,7 @@ export const OrderBox = styled.ul`
 export const OrderList = styled.li`
   color: #111;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3rem;
   cursor: pointer;
 `;
 
@@ -147,7 +147,7 @@ export const Search = styled.input`
   border-radius: 2px;
   ::placeholder {
     font-weight: 400;
-    font-size: 13px;
+    font-size: 1.3rem;
     color: #666;
   }
 `;
@@ -196,7 +196,7 @@ export const ListImg = styled.div`
 
 export const ListNickName = styled.span`
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #111;
 `;
 
@@ -230,13 +230,13 @@ export const ListTitleBox = styled.div`
 
 export const ListTitle = styled.span`
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: #111;
 `;
 
 export const ListCreatedAt = styled.span`
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3rem;
   color: #999;
 `;
 
@@ -257,7 +257,7 @@ export const ListCrewsImg = styled.div`
 
 export const ListCrewsNum = styled.span`
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3rem;
   color: #333;
 `;
 
@@ -281,7 +281,7 @@ export const LocationImg = styled.div`
 
 export const Location = styled.span`
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3rem;
   color: #999;
 `;
 
@@ -320,7 +320,7 @@ export const MoreBtn = styled.button`
   width: 384px;
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1.6rem;
   padding: 16px 0;
   color: #999;
   background: #fff;

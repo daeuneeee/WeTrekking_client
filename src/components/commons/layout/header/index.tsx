@@ -31,7 +31,7 @@ const GnbMenu = styled.ul`
 
 const GnbList = styled.li`
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #111;
   cursor: pointer;
 `;
@@ -49,7 +49,7 @@ const LoginBtn = styled.button`
   background-color: transparent;
   border: 1px solid ${mainColor};
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 700;
   color: ${mainColor};
   cursor: pointer;

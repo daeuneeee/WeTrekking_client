@@ -25,7 +25,7 @@ export const EmailSelectBox = styled.select`
   border: 1px solid #d9d9d9;
   padding: 0 12px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #999;
   outline: none;
@@ -35,7 +35,7 @@ export const CheckBtn = styled.button`
   width: 100%;
   height: 52px;
   border: 1px solid ${mainColor};
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 700;
   color: ${mainColor};
   background: none;
@@ -65,7 +65,7 @@ export const GenderLabel = styled.label`
   align-items: center;
   width: 50%;
   height: 100%;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #999;
   cursor: pointer;
@@ -94,7 +94,7 @@ export const ProfileUploadBtn = styled.div`
 `;
 
 export const ProfileUploadText = styled.p`
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #666;
 `;
@@ -108,7 +108,7 @@ export const SubmitJoinBtn = styled.button`
   height: 72px;
   border: none;
   background-color: ${mainColor};
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #fff;
   cursor: pointer;
@@ -127,7 +127,7 @@ export const PhoneInput = styled.input`
   border: 1px solid #d9d9d9;
   padding: 0 12px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #999;
   outline: none;

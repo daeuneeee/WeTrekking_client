@@ -2,7 +2,11 @@ import { useRouter } from "next/router";
 import Header from "./header";
 import MainHeader from "./mainHeader";
 
-export default function Layout(props) {
+interface IProps {
+  children: JSX.Element;
+}
+
+export default function Layout(props: IProps) {
   const router = useRouter();
   const SHOW_BANNERS = ["/"];
   const HIDDEN_BANNERS = ["/"];

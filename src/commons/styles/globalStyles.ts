@@ -3,6 +3,27 @@ import { css } from "@emotion/react";
 // prettier-ignore
 export const globalStyles = css`
 
+@font-face {
+	font-family: pretendard;
+	font-weight: 400;
+	src: url("/fonts/Pretendard-Regular.woff");
+}
+@font-face {
+	font-family: pretendard;
+	font-weight: 500;
+	src: url("/fonts/Pretendard-Medium.woff");
+}
+@font-face {
+	font-family: pretendard;
+	font-weight: 600;
+	src: url("/fonts/Pretendard-Bold.woff");
+}
+@font-face {
+	font-family: pretendard;
+	font-weight: 700;
+	src: url("/fonts/Pretendard-ExtraBold.woff");
+}
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -28,6 +49,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 html,body{
+	font-family: pretendard;
 	font-size: 10px;
 }
 

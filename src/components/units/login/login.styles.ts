@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 export const Container = styled.section`
   width: 384px;
   margin: 0 auto;
-  padding-top: 240px;
+  padding-top: 140px;
 `;
 
 export const LoginTitle = styled.h2`
@@ -38,6 +38,10 @@ export const LoginInputTitle = styled.p`
   font-weight: 400;
   color: #999;
   margin-bottom: 4px;
+  span {
+    color: #bf0e0e;
+    margin-left: 2px;
+  }
 `;
 
 export const LoginSubList = styled.div`

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Footer from "./footer";
 import Header from "./header";
 import MainHeader from "./mainHeader";
 
@@ -15,6 +16,7 @@ export default function Layout(props) {
       {isShowBanner && <MainHeader />}
       {!isHiddenBanner && <Header />}
       {props.children}
+      <Footer />
     </>
   );
 }

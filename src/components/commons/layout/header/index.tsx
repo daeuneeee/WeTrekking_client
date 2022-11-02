@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   background-color: #fff;
 `;
 
-const LogoBox = styled.div`
+const LogoBox = styled.h1`
   cursor: pointer;
 `;
 

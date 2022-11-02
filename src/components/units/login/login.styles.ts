@@ -12,7 +12,7 @@ export const Container = styled.section`
 `;
 
 export const LoginTitle = styled.h2`
-  font-size: 42px;
+  font-size: 4.2rem;
   font-weight: 700;
   color: #2f4b2a;
   margin-bottom: 60px;
@@ -34,7 +34,7 @@ export const LoginInputContainer = styled.div`
 `;
 
 export const LoginInputTitle = styled.p`
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #999;
   margin-bottom: 4px;
@@ -58,14 +58,14 @@ export const RememberId = styled.label`
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #999;
   cursor: pointer;
 `;
 
 export const FindIdAndPw = styled.button`
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #999;
   border: none;
@@ -81,7 +81,7 @@ export const LoginSubmit = styled.button`
   border: none;
   border-radius: 4px;
   background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #fff;
   cursor: pointer;
@@ -102,7 +102,7 @@ export const SnsTitleLine = styled.div`
 `;
 
 export const SnsTitle = styled.h3`
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #999;
 `;
@@ -123,7 +123,7 @@ export const SnsLoginBtn = styled.button`
 `;
 
 export const JoinToMent = styled.p`
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #999;
   text-align: center;

@@ -17,7 +17,6 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-
 	border: 0;
 	font-size: 100%;
 	font: inherit;

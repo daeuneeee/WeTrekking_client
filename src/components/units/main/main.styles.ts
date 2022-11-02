@@ -40,7 +40,7 @@ export const MainTextBox = styled.div`
 `;
 
 export const MainText = styled.p`
-  font-size: 32px;
+  font-size: 3.2rem;
   font-weight: 400;
   color: #fff;
 `;
@@ -48,7 +48,7 @@ export const MainText = styled.p`
 export const CrewFindBtn = styled.button`
   width: 160px;
   height: 52px;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
   border: none;

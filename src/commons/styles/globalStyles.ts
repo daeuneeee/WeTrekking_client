@@ -26,9 +26,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 html,body{
 	font-size: 10px;
 }
+
 body {
 	line-height: 1;
 }

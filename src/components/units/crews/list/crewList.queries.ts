@@ -6,6 +6,8 @@ export const FETCH_CREW_BOARDS = gql`
       id
       title
       date
+      dateTime
+      peoples
     }
   }
 `;

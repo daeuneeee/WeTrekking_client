@@ -3,7 +3,7 @@ import * as S from "./crewList.styles";
 import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 
-const CrewListUi = () => {
+const CrewListUi = ({ data }) => {
   const { Option } = Select;
   const { RangePicker }: any = DatePicker;
 

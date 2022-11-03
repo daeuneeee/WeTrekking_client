@@ -5,7 +5,7 @@ import PickFalseSvg from "../../../commons/svg/pickFalse";
 
 const CrewListUi = () => {
   const { Option } = Select;
-  const { RangePicker } = DatePicker;
+  const { RangePicker }: any = DatePicker;
 
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);

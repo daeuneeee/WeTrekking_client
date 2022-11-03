@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mainColor } from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -33,7 +34,6 @@ export const Ranking = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
-  cursor: pointer;
 `;
 
 export const RankingImg = styled.div`
@@ -159,7 +159,6 @@ export const SearchBtn = styled.button`
   width: 60px;
   height: 32px;
   color: white;
-  padding-top: 3px;
   cursor: pointer;
 `;
 
@@ -327,4 +326,12 @@ export const MoreBtn = styled.button`
   border: 1px solid #999;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 103px;
+
+  :hover {
+    background: ${mainColor};
+    color: white;
+    border: 1px solid ${mainColor};
+    transition: all 0.3s;
+  }
 `;

@@ -18,6 +18,7 @@ const JoinUi = ({
   register,
   handleSubmit,
   onClickJoinSubmit,
+  formState,
 }: IJoinUiProps) => {
   return (
     <A.Wrapper>
@@ -44,12 +45,13 @@ const JoinUi = ({
               <S.EmailInputBox>
                 <S.EmailSelectBox>
                   <option value="">선택</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="daum.net">daum.net</option>
+                  <option value="@gmail.com">gmail.com</option>
+                  <option value="@naver.com">naver.com</option>
+                  <option value="@daum.net">daum.net</option>
                 </S.EmailSelectBox>
               </S.EmailInputBox>
             </S.JoinEmailBox>
+            <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <S.CheckBtn>중복확인</S.CheckBtn>
           <A.LoginInputContainer>
@@ -63,6 +65,7 @@ const JoinUi = ({
               name="password"
               register={register}
             />
+            <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -72,9 +75,11 @@ const JoinUi = ({
               type="password"
               placeholder="비밀번호를 다시 입력해 주세요."
               maxLength={20}
-              name="password"
+              name="password2"
               register={register}
             />
+            <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
+            <S.ErrorMsg>{formState.errors.password2?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -87,6 +92,7 @@ const JoinUi = ({
               name="name"
               register={register}
             />
+            <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -99,6 +105,7 @@ const JoinUi = ({
               name="nickname"
               register={register}
             />
+            <S.ErrorMsg>{formState.errors.nickname?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <S.CheckBtn>중복확인</S.CheckBtn>
           <A.LoginInputContainer>
@@ -151,6 +158,7 @@ const JoinUi = ({
                 name="gender"
                 id="male"
                 onChange={onChangeGenderCheck}
+                checked={isGenderCheck === "male"}
               />
               <S.GenderRadio
                 type="radio"
@@ -158,6 +166,7 @@ const JoinUi = ({
                 name="gender"
                 id="female"
                 onChange={onChangeGenderCheck}
+                checked={isGenderCheck === "female"}
               />
               <S.GenderLabel
                 htmlFor="male"
@@ -180,6 +189,7 @@ const JoinUi = ({
                 여성
               </S.GenderLabel>
             </S.GenderSelectBox>
+            <S.ErrorMsg>{formState.errors.gender?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>사진</A.LoginInputTitle>

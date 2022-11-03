@@ -14,6 +14,7 @@ export interface IJoinUiProps {
   register: any;
   handleSubmit: any;
   onClickJoinSubmit: (data: IJoinData) => void;
+  formState: any;
 }
 
 export interface IJoinData {

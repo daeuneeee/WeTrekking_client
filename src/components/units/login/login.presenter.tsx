@@ -5,6 +5,9 @@ const LoginUi = ({
   onChangeCheckBox,
   isCheck,
   onClickToJoin,
+  register,
+  handleSubmit,
+  onClickLogin,
 }: ILoginUiProps) => {
   return (
     <S.Wrapper>
@@ -12,14 +15,26 @@ const LoginUi = ({
         <S.LoginTitle>
           We Trekking<span>로그인</span>
         </S.LoginTitle>
-        <S.LoginForm>
+        <S.LoginForm onSubmit={handleSubmit(onClickLogin)}>
           <S.LoginInputContainer>
             <S.LoginInputTitle>이메일</S.LoginInputTitle>
-            <Input01 type="text" placeholder="이메일을 입력해 주세요." />
+            <Input01
+              type="text"
+              placeholder="이메일을 입력해 주세요."
+              maxLength={50}
+              name="email"
+              register={register}
+            />
           </S.LoginInputContainer>
           <S.LoginInputContainer>
             <S.LoginInputTitle>비밀번호</S.LoginInputTitle>
-            <Input01 type="text" placeholder="비밀번호를 입력해 주세요." />
+            <Input01
+              type="password"
+              placeholder="비밀번호를 입력해 주세요."
+              maxLength={16}
+              name="password"
+              register={register}
+            />
           </S.LoginInputContainer>
           <S.LoginSubList>
             <S.RememberIdBox>

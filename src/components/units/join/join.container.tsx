@@ -9,24 +9,28 @@ import JoinUi from "./join.presenter";
 import { CREATE_USER } from "./join.queries";
 import { IJoinData } from "./join.types";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const myyup = yup.object({
-  email: yup
-    .string()
-    .email("이메일 아이디를 @까지 정확하게 입력해주세요.")
-    .required("이메일은 필수 입력사항 입니다.."),
+const joinYup = yup.object({
+  email: yup.string().required("이메일은 필수 입력사항 입니다"),
   password: yup
     .string()
     .matches(
       /^[A-Za-z0-9]{8,16}$/,
       "영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요."
     )
-    .required("비밀번호는 필수 입력사항 입니다.."),
+    .required("비밀번호는 필수 입력사항 입니다"),
+  password2: yup
+    .string()
+
+    .oneOf([yup.ref("password"), null], "비밀번호가 서로 다릅니다."),
   name: yup.string().required("이름은 필수 입력사항 입니다.."),
+  nickname: yup.string().required("닉네임은 필수 입력사항 입니다."),
+  phone: yup.string().required("휴대전화는 필수 입력사항 입니다."),
 });
 
 const Join = () => {
-  const [isGenderCheck, setIsGenderCheck] = useState("");
+  const [isGenderCheck, setIsGenderCheck] = useState("male");
   const [phone01, setPhone01] = useState("");
   const [phone02, setPhone02] = useState("");
   const [phone03, setPhone03] = useState("");
@@ -41,7 +45,10 @@ const Join = () => {
     IMutationCreateUserArgs
   >(CREATE_USER);
 
-  const { register, handleSubmit, setValue, formState } = useForm();
+  const { register, handleSubmit, setValue, formState } = useForm({
+    resolver: yupResolver(joinYup),
+    mode: "onChange",
+  });
 
   const onChangePhoneInput01 = (event: ChangeEvent<HTMLSelectElement>) => {
     if (phoneInput01.current?.value.length === 3) {
@@ -78,7 +85,7 @@ const Join = () => {
   const onClickJoinSubmit = async (data: IJoinData) => {
     try {
       data.phone = `${phone01}-${phone02}-${phone03}`;
-      data.email = `${email01}@${email02}`;
+      data.email = `${email01}${email02}`;
       data.profile_img = "";
       await createUser({
         variables: {
@@ -108,6 +115,7 @@ const Join = () => {
       register={register}
       handleSubmit={handleSubmit}
       onClickJoinSubmit={onClickJoinSubmit}
+      formState={formState}
     />
   );
 };

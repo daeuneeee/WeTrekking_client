@@ -132,3 +132,10 @@ export const PhoneInput = styled.input`
   color: #999;
   outline: none;
 `;
+
+export const ErrorMsg = styled.p`
+  font-size: 13px;
+  font-weight: 500;
+  color: #f00;
+  margin-top: 10px;
+`;

@@ -22,7 +22,6 @@ const joinYup = yup.object({
     .required("비밀번호는 필수 입력사항 입니다"),
   password2: yup
     .string()
-
     .oneOf([yup.ref("password"), null], "비밀번호가 서로 다릅니다."),
   name: yup.string().required("이름은 필수 입력사항 입니다.."),
   nickname: yup.string().required("닉네임은 필수 입력사항 입니다."),
@@ -84,8 +83,9 @@ const Join = () => {
 
   const onClickJoinSubmit = async (data: IJoinData) => {
     try {
+      console.log(data);
       data.phone = `${phone01}-${phone02}-${phone03}`;
-      data.email = `${email01}${email02}`;
+      data.email = `${email01}@${email02}`;
       data.profile_img = "";
       await createUser({
         variables: {

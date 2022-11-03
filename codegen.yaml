@@ -1,4 +1,4 @@
-schema: https://wetrekking.kr/graphql
+schema: https://develop.wetrekking.kr/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:

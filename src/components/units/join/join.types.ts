@@ -8,4 +8,20 @@ export interface IJoinUiProps {
   phoneInput03: any;
   onChangePhoneInput01: (event: ChangeEvent<HTMLSelectElement>) => void;
   onChangePhoneInput02: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePhoneInput03: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeEmail01: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeEmail02: (event: ChangeEvent<HTMLInputElement>) => void;
+  register: any;
+  handleSubmit: any;
+  onClickJoinSubmit: (data: IJoinData) => void;
+}
+
+export interface IJoinData {
+  email: string;
+  password: string;
+  name: string;
+  nickname: string;
+  phone: string;
+  gender: string;
+  profile_img: string;
 }

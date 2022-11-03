@@ -12,11 +12,17 @@ const JoinUi = ({
   phoneInput03,
   onChangePhoneInput01,
   onChangePhoneInput02,
+  onChangePhoneInput03,
+  onChangeEmail01,
+  onChangeEmail02,
+  register,
+  handleSubmit,
+  onClickJoinSubmit,
 }: IJoinUiProps) => {
   return (
     <A.Wrapper>
       <A.Container>
-        <S.JoinForm>
+        <S.JoinForm onSubmit={handleSubmit(onClickJoinSubmit)}>
           <A.LoginTitle>
             We Trekking<span>회원가입</span>
           </A.LoginTitle>
@@ -30,13 +36,15 @@ const JoinUi = ({
                   type="text"
                   placeholder="이메일을 입력해 주세요."
                   maxLength={50}
+                  name="email"
+                  register={register}
                 />
               </S.EmailInputBox>
               <span>@</span>
               <S.EmailInputBox>
                 <S.EmailSelectBox>
                   <option value="">선택</option>
-                  <option value="google.com">google.com</option>
+                  <option value="gmail.com">gmail.com</option>
                   <option value="naver.com">naver.com</option>
                   <option value="daum.net">daum.net</option>
                 </S.EmailSelectBox>
@@ -52,6 +60,8 @@ const JoinUi = ({
               type="password"
               placeholder="비밀번호를 입력해 주세요."
               maxLength={20}
+              name="password"
+              register={register}
             />
           </A.LoginInputContainer>
           <A.LoginInputContainer>
@@ -62,6 +72,8 @@ const JoinUi = ({
               type="password"
               placeholder="비밀번호를 다시 입력해 주세요."
               maxLength={20}
+              name="password"
+              register={register}
             />
           </A.LoginInputContainer>
           <A.LoginInputContainer>
@@ -72,6 +84,8 @@ const JoinUi = ({
               type="text"
               placeholder="이름을 입력해 주세요."
               maxLength={51}
+              name="name"
+              register={register}
             />
           </A.LoginInputContainer>
           <A.LoginInputContainer>
@@ -82,6 +96,8 @@ const JoinUi = ({
               type="text"
               placeholder="닉네임을 입력해 주세요."
               maxLength={51}
+              name="nickname"
+              register={register}
             />
           </A.LoginInputContainer>
           <S.CheckBtn>중복확인</S.CheckBtn>
@@ -118,6 +134,7 @@ const JoinUi = ({
                   placeholder="****"
                   maxLength={4}
                   ref={phoneInput03}
+                  onChange={onChangePhoneInput03}
                 />
               </S.PhoneInputBox>
             </S.JoinPhoneBox>
@@ -130,14 +147,14 @@ const JoinUi = ({
             <S.GenderSelectBox>
               <S.GenderRadio
                 type="radio"
-                value="남성"
+                value="male"
                 name="gender"
                 id="male"
                 onChange={onChangeGenderCheck}
               />
               <S.GenderRadio
                 type="radio"
-                value="여성"
+                value="female"
                 name="gender"
                 id="female"
                 onChange={onChangeGenderCheck}

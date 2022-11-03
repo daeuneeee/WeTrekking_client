@@ -17,6 +17,8 @@ interface IInputProps01 {
   type: string;
   placeholder: string;
   maxLength: number;
+  name: string;
+  register: any;
 }
 
 const Input01 = (props: IInputProps01) => {
@@ -25,6 +27,7 @@ const Input01 = (props: IInputProps01) => {
       type={props.type}
       placeholder={props.placeholder}
       maxLength={props.maxLength}
+      {...props.register(props.name)}
     />
   );
 };

@@ -2,15 +2,15 @@ import { Select, DatePicker, Space } from "antd";
 import * as S from "./crewList.styles";
 import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
+import { ICrewListUiProps } from "./crewList.types";
 
-const CrewListUi = ({ data }) => {
+const CrewListUi = ({ data }: ICrewListUiProps) => {
   const { Option } = Select;
   const { RangePicker }: any = DatePicker;
 
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
-
   return (
     <>
       <S.Wrapper>
@@ -80,48 +80,52 @@ const CrewListUi = ({ data }) => {
             </S.SearchBox>
           </S.Header>
           <S.Body>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListContainer>
-                <S.ListThumbnail></S.ListThumbnail>
-                <S.ListBody>
-                  <S.ListTitleBox>
-                    <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                    <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                  </S.ListTitleBox>
-                  <S.ListCrewsBox>
-                    <S.ListCrewsImg></S.ListCrewsImg>
-                    <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                  </S.ListCrewsBox>
-                </S.ListBody>
-                <S.ListFooter>
-                  <S.ListLocationBox>
-                    <S.LocationImg>
-                      <img src="/images/crew/location.png" />
-                    </S.LocationImg>
-                    <S.Location>설악산</S.Location>
-                  </S.ListLocationBox>
-                  <S.ListTimeAndDayBox>
-                    <S.TimeImg>
-                      <img src="/images/crew/time.png" />
-                    </S.TimeImg>
-                    <S.Day>2022.11.24</S.Day>
-                    <S.TimePartition></S.TimePartition>
-                    <S.Time>14:00</S.Time>
-                  </S.ListTimeAndDayBox>
-                </S.ListFooter>
-              </S.ListContainer>
-            </S.ListBox>
+            {data?.fetchCrewBoardsTEST[0].map((listMap) => (
+              <S.ListBox key={listMap.id}>
+                <S.ListHeader>
+                  <S.ListInform>
+                    <S.ListImg></S.ListImg>
+                    <S.ListNickName>춘딩딩</S.ListNickName>
+                  </S.ListInform>
+                  <S.ListPick>
+                    <PickFalseSvg />
+                  </S.ListPick>
+                </S.ListHeader>
+                <S.ListContainer>
+                  <S.ListThumbnail></S.ListThumbnail>
+                  <S.ListBody>
+                    <S.ListTitleBox>
+                      <S.ListTitle>{listMap.title}</S.ListTitle>
+                      <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
+                    </S.ListTitleBox>
+                    <S.ListCrewsBox>
+                      <S.ListCrewsImg></S.ListCrewsImg>
+                      <S.ListCrewsNum>
+                        모집인원 3/{listMap.peoples}
+                      </S.ListCrewsNum>
+                    </S.ListCrewsBox>
+                  </S.ListBody>
+                  <S.ListFooter>
+                    <S.ListLocationBox>
+                      <S.LocationImg>
+                        <img src="/images/crew/location.png" />
+                      </S.LocationImg>
+                      <S.Location>설악산</S.Location>
+                    </S.ListLocationBox>
+                    <S.ListTimeAndDayBox>
+                      <S.TimeImg>
+                        <img src="/images/crew/time.png" />
+                      </S.TimeImg>
+                      <S.Day>{listMap.date}</S.Day>
+                      <S.TimePartition></S.TimePartition>
+                      <S.Time>{listMap.dateTime}</S.Time>
+                    </S.ListTimeAndDayBox>
+                  </S.ListFooter>
+                </S.ListContainer>
+              </S.ListBox>
+            ))}
             {/* 여기부터삭제2 */}
-            <S.ListBox>
+            {/* <S.ListBox>
               <S.ListHeader>
                 <S.ListInform>
                   <S.ListImg></S.ListImg>
@@ -386,7 +390,7 @@ const CrewListUi = ({ data }) => {
                   <S.Time>14:00</S.Time>
                 </S.ListTimeAndDayBox>
               </S.ListFooter>
-            </S.ListBox>
+            </S.ListBox> */}
             {/* 여기까지 삭제2 */}
           </S.Body>
           <S.Footer>

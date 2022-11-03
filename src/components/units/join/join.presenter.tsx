@@ -45,15 +45,15 @@ const JoinUi = ({
               <S.EmailInputBox>
                 <S.EmailSelectBox>
                   <option value="">선택</option>
-                  <option value="@gmail.com">gmail.com</option>
-                  <option value="@naver.com">naver.com</option>
-                  <option value="@daum.net">daum.net</option>
+                  <option value="gmail.com">gmail.com</option>
+                  <option value="naver.com">naver.com</option>
+                  <option value="daum.net">daum.net</option>
                 </S.EmailSelectBox>
               </S.EmailInputBox>
             </S.JoinEmailBox>
             <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.CheckBtn>중복확인</S.CheckBtn>
+          <S.CheckBtn type="button">중복확인</S.CheckBtn>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               비밀번호<span>*</span>
@@ -107,7 +107,7 @@ const JoinUi = ({
             />
             <S.ErrorMsg>{formState.errors.nickname?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.CheckBtn>중복확인</S.CheckBtn>
+          <S.CheckBtn type="button">중복확인</S.CheckBtn>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               휴대전화<span>*</span>
@@ -145,7 +145,7 @@ const JoinUi = ({
                 />
               </S.PhoneInputBox>
             </S.JoinPhoneBox>
-            <S.PhoneAuthBtn>인증번호 받기</S.PhoneAuthBtn>
+            <S.PhoneAuthBtn type="button">인증번호 받기</S.PhoneAuthBtn>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>

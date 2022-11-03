@@ -49,6 +49,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   // });
 
   const uploadLink = createUploadLink({
+
     uri: "https://wetrekking.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     // credentials: "include",

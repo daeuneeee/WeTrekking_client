@@ -20,15 +20,17 @@ export type Scalars = {
 };
 
 export type ICreateCrewBoardInput = {
-  address: Scalars["String"];
-  addressDetail: Scalars["String"];
-  date: Scalars["String"];
-  dateTime: Scalars["String"];
-  description: Scalars["String"];
-  dues: Scalars["Int"];
-  gender: Scalars["String"];
-  peoples: Scalars["Int"];
-  title: Scalars["String"];
+
+  address: Scalars['String'];
+  addressDetail: Scalars['String'];
+  date: Scalars['String'];
+  dateTime: Scalars['String'];
+  description: Scalars['String'];
+  dues: Scalars['Int'];
+  gender: Scalars['String'];
+  peoples: Scalars['Int'];
+  title: Scalars['String'];
+
 };
 
 export type ICreateUserInput = {
@@ -42,17 +44,19 @@ export type ICreateUserInput = {
 };
 
 export type ICrewBoard = {
-  __typename?: "CrewBoard";
-  address: Scalars["String"];
-  addressDetail: Scalars["String"];
-  date: Scalars["String"];
-  dateTime: Scalars["String"];
-  description: Scalars["String"];
-  dues: Scalars["Int"];
-  gender: Scalars["String"];
-  id: Scalars["String"];
-  peoples: Scalars["Int"];
-  title: Scalars["String"];
+
+  __typename?: 'CrewBoard';
+  address: Scalars['String'];
+  addressDetail: Scalars['String'];
+  date: Scalars['String'];
+  dateTime: Scalars['String'];
+  description: Scalars['String'];
+  dues: Scalars['Int'];
+  gender: Scalars['String'];
+  id: Scalars['String'];
+  peoples: Scalars['Int'];
+  title: Scalars['String'];
+
 };
 
 export type IImage = {
@@ -85,6 +89,11 @@ export type IMutationCreateCrewBoardArgs = {
 export type IMutationCreateCrewBoardTestArgs = {
   createCrewBoardInput: ICreateCrewBoardInput;
 };
+
+export type IMutationCreateCrewBoardTestArgs = {
+  createCrewBoardInput: ICreateCrewBoardInput;
+};
+
 
 export type IMutationCreateUserArgs = {
   createUserInput: ICreateUserInput;
@@ -141,15 +150,17 @@ export type IQueryFetchUserArgs = {
 };
 
 export type IUpdateCrewBoardInput = {
-  address?: InputMaybe<Scalars["String"]>;
-  addressDetail?: InputMaybe<Scalars["String"]>;
-  date?: InputMaybe<Scalars["String"]>;
-  dateTime?: InputMaybe<Scalars["String"]>;
-  description?: InputMaybe<Scalars["String"]>;
-  dues?: InputMaybe<Scalars["Int"]>;
-  gender?: InputMaybe<Scalars["String"]>;
-  peoples?: InputMaybe<Scalars["Int"]>;
-  title?: InputMaybe<Scalars["String"]>;
+
+  address?: InputMaybe<Scalars['String']>;
+  addressDetail?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  dateTime?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  dues?: InputMaybe<Scalars['Int']>;
+  gender?: InputMaybe<Scalars['String']>;
+  peoples?: InputMaybe<Scalars['Int']>;
+  title?: InputMaybe<Scalars['String']>;
+
 };
 
 export type IUpdateUserInput = {

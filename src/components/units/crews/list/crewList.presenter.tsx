@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 import { ICrewListUiProps } from "./crewList.types";
 
-const CrewListUi = ({ data }: ICrewListUiProps) => {
+const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
   const { Option } = Select;
   const { RangePicker }: any = DatePicker;
 
@@ -61,6 +61,17 @@ const CrewListUi = ({ data }: ICrewListUiProps) => {
               </S.OrderBox>
             </S.TitleBox>
             <S.SearchBox>
+              <button
+                style={{
+                  width: "60px",
+                  height: "32px",
+                  cursor: "pointer",
+                  border: "1px solid green",
+                }}
+                onClick={onClickToWrite}
+              >
+                글쓰기
+              </button>
               <Select
                 defaultValue="서울"
                 style={{ width: 120 }}
@@ -80,7 +91,7 @@ const CrewListUi = ({ data }: ICrewListUiProps) => {
             </S.SearchBox>
           </S.Header>
           <S.Body>
-            {data?.fetchCrewBoardsTEST[0].map((listMap) => (
+            {data?.fetchCrewBoardsTEST[0]?.map((listMap) => (
               <S.ListBox key={listMap.id}>
                 <S.ListHeader>
                   <S.ListInform>

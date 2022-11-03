@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.footer`
   width: 100%;
@@ -97,13 +98,23 @@ const FootLogoBox = styled.div`
 `;
 
 const Footer = () => {
+  const router = useRouter();
+
+  const onClickToCrews = () => {
+    void router.push("/crews");
+  };
+
+  const onClickToReview = () => {
+    void router.push("/reviews");
+  };
+
   return (
     <Wrapper>
       <FootMenuBox>
         <FootMenu>
-          <FootMenuList>게시글 리스트</FootMenuList>
+          <FootMenuList onClick={onClickToCrews}>게시글 리스트</FootMenuList>
           <FootMenuLine></FootMenuLine>
-          <FootMenuList>리뷰 리스트</FootMenuList>
+          <FootMenuList onClick={onClickToReview}>리뷰 리스트</FootMenuList>
         </FootMenu>
       </FootMenuBox>
       <Container>

@@ -4,7 +4,13 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 import ApolloSetting from "../src/components/apollo";
 import Layout from "../src/components/commons/layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps,
+}: {
+  Component: any;
+  pageProps: AppProps;
+}) {
   return (
     <>
       <Global styles={globalStyles} />

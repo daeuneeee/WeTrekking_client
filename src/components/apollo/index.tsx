@@ -14,7 +14,7 @@ const GLOBAL_STATE = new InMemoryCache();
 
 export default function ApolloSetting(props: IApolloSettingProps) {
   const uploadLink = createUploadLink({
-    uri: "http://34.64.102.157:3000/graphql",
+    uri: "https://develop.wetrekking.kr/graphql",
     // headers: { Authorization: `Bearer ${accessToken}` },
     // credentials: "include",
   });

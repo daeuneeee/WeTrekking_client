@@ -10,14 +10,14 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  DateTime: any;
   Upload: any;
 };
 
 export type ICreateCrewBoardInput = {
   address: Scalars['String'];
   addressDetail: Scalars['String'];
-  date: Scalars['DateTime'];
+  date: Scalars['String'];
+  dateTime: Scalars['String'];
   description: Scalars['String'];
   dues: Scalars['Int'];
   gender: Scalars['String'];
@@ -38,12 +38,13 @@ export type ICreateUserInput = {
 export type ICrewBoard = {
   __typename?: 'CrewBoard';
   address: Scalars['String'];
+  addressDetail: Scalars['String'];
   date: Scalars['String'];
+  dateTime: Scalars['String'];
   description: Scalars['String'];
   dues: Scalars['Int'];
   gender: Scalars['String'];
   id: Scalars['String'];
-  location: Scalars['String'];
   peoples: Scalars['Int'];
   title: Scalars['String'];
 };
@@ -60,6 +61,7 @@ export type IImage = {
 export type IMutation = {
   __typename?: 'Mutation';
   createCrewBoard: ICrewBoard;
+  createCrewBoardTEST: ICrewBoard;
   createUser: IUser;
   deleteCrewBoard: Scalars['String'];
   deleteUser: Scalars['Boolean'];
@@ -72,6 +74,11 @@ export type IMutation = {
 
 
 export type IMutationCreateCrewBoardArgs = {
+  createCrewBoardInput: ICreateCrewBoardInput;
+};
+
+
+export type IMutationCreateCrewBoardTestArgs = {
   createCrewBoardInput: ICreateCrewBoardInput;
 };
 
@@ -119,7 +126,7 @@ export type IQuery = {
   fetchCrewBoard: ICrewBoard;
   fetchCrewBoardImages: Array<IImage>;
   fetchCrewBoards: Array<ICrewBoard>;
-  fetchCrewBoardsSortNew: Array<ICrewBoard>;
+  fetchCrewBoardsTEST: Array<Array<ICrewBoard>>;
   fetchCrewBoardsWithDelete: Array<ICrewBoard>;
   fetchUser: IUser;
 };
@@ -142,7 +149,8 @@ export type IQueryFetchUserArgs = {
 export type IUpdateCrewBoardInput = {
   address?: InputMaybe<Scalars['String']>;
   addressDetail?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['String']>;
+  dateTime?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   dues?: InputMaybe<Scalars['Int']>;
   gender?: InputMaybe<Scalars['String']>;

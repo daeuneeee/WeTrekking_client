@@ -2,11 +2,14 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../store";
 import LoginUi from "./login.presenter";
 import { LOGIN } from "./login.queries";
 import { ILoginProps } from "./login.types";
 
 const Login = () => {
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   const [isCheck, setIsCheck] = useState(false);
 
   const router = useRouter();
@@ -28,9 +31,10 @@ const Login = () => {
 
   const onClickLogin = async (data: ILoginProps) => {
     try {
-      await login({
+      const result = await login({
         variables: data,
       });
+      setAccessToken(result.data.login);
       void router.push("/crews");
     } catch (error) {
       if (error instanceof Error) {

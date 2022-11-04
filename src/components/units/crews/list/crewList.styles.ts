@@ -159,6 +159,20 @@ export const SearchBtn = styled.button`
   width: 60px;
   height: 32px;
   color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+`;
+
+export const RegisterBtn = styled.button`
+  width: 98px;
+  height: 32px;
+  background: #fff;
+  border: 1px solid ${mainColor};
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: ${mainColor};
   cursor: pointer;
 `;
 

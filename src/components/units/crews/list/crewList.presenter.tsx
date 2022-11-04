@@ -61,17 +61,6 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               </S.OrderBox>
             </S.TitleBox>
             <S.SearchBox>
-              <button
-                style={{
-                  width: "60px",
-                  height: "32px",
-                  cursor: "pointer",
-                  border: "1px solid green",
-                }}
-                onClick={onClickToWrite}
-              >
-                글쓰기
-              </button>
               <Select
                 defaultValue="서울"
                 style={{ width: 120 }}
@@ -88,6 +77,7 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               <S.Partition></S.Partition>
               <S.Search placeholder="검색어를 입력해주세요" />
               <S.SearchBtn>검색</S.SearchBtn>
+              <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>
             </S.SearchBox>
           </S.Header>
           <S.Body>

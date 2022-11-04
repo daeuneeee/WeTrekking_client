@@ -13,8 +13,7 @@ const JoinUi = ({
   onChangePhoneInput01,
   onChangePhoneInput02,
   onChangePhoneInput03,
-  onChangeEmail01,
-  onChangeEmail02,
+
   register,
   handleSubmit,
   onClickJoinSubmit,
@@ -41,15 +40,7 @@ const JoinUi = ({
                   register={register}
                 />
               </S.EmailInputBox>
-              <span>@</span>
-              <S.EmailInputBox>
-                <S.EmailSelectBox>
-                  <option value="">선택</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="daum.net">daum.net</option>
-                </S.EmailSelectBox>
-              </S.EmailInputBox>
+  
             </S.JoinEmailBox>
             <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
@@ -75,11 +66,11 @@ const JoinUi = ({
               type="password"
               placeholder="비밀번호를 다시 입력해 주세요."
               maxLength={20}
-              name="password2"
+              name="passwordConfirm"
               register={register}
             />
             <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
-            <S.ErrorMsg>{formState.errors.password2?.message}</S.ErrorMsg>
+            <S.ErrorMsg>{formState.errors.passwordConfirm?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -159,6 +150,7 @@ const JoinUi = ({
                 id="male"
                 onChange={onChangeGenderCheck}
                 checked={isGenderCheck === "male"}
+                {...register("gender")}
               />
               <S.GenderRadio
                 type="radio"
@@ -167,6 +159,7 @@ const JoinUi = ({
                 id="female"
                 onChange={onChangeGenderCheck}
                 checked={isGenderCheck === "female"}
+                {...register("gender")}
               />
               <S.GenderLabel
                 htmlFor="male"

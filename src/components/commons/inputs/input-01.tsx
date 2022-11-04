@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
 
 const InputStyle01 = styled.input`
   display: block;

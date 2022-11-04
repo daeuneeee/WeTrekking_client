@@ -17,7 +17,7 @@ export const JoinPhoneBox = styled(JoinEmailBox)`
 `;
 
 export const EmailInputBox = styled.div`
-  width: 46.875%;
+  width: 100%;
 `;
 export const EmailSelectBox = styled.select`
   width: 100%;

@@ -9,7 +9,7 @@ import { createUploadLink } from "apollo-upload-client";
 import { onError } from "@apollo/client/link/error";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../store";
-import { getAccessToken } from "../../commons/utils/getAccessToken";
+// import { getAccessToken } from "../../commons/utils/getAccessToken";
 import { useEffect } from "react";
 
 interface IApolloSettingProps {
@@ -49,8 +49,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   // });
 
   const uploadLink = createUploadLink({
-
-    uri: "https://wetrekking.kr/graphql",
+    uri: "https://develop.wetrekking.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     // credentials: "include",
   });

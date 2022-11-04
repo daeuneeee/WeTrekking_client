@@ -30,11 +30,11 @@ export interface UseFormReturn<TFieldValues extends FieldValues = FieldValues> {
 }
 
 export interface ICrewWriteUiProps {
-  peoples: number;
+  // peoples: number;
   onChangeTime: (time: Moment | null, timeString: string) => void;
   onChangeDate: DatePickerProps["onChange"];
-  onChangePeoples: (event: number) => void;
-  register: UseFormRegister<FieldValues>;
-  handleSubmit: UseFormHandleSubmit<FieldValues> | any;
-  onClickRegister: (data: IFormData) => void;
+  // onChangePeoples: (event: number) => void;
+  // register: UseFormRegister<FieldValues>;
+  // handleSubmit: UseFormHandleSubmit<FieldValues> | any;
+  // onClickRegister: (data: IFormData) => void;
 }

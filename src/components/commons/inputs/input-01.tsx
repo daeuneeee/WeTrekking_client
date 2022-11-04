@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
+import { mainColor } from "../../../commons/styles/color";
 
 const InputStyle01 = styled.input`
   display: block;
@@ -10,7 +12,9 @@ const InputStyle01 = styled.input`
   font-size: 1.6rem;
   font-weight: 400;
   color: #999;
-  outline: none;
+  :focus {
+    outline-color: ${mainColor};
+  }
 `;
 
 interface IInputProps01 {

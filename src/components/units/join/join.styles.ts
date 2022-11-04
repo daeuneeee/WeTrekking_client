@@ -17,7 +17,7 @@ export const JoinPhoneBox = styled(JoinEmailBox)`
 `;
 
 export const EmailInputBox = styled.div`
-  width: 46.875%;
+  width: 100%;
 `;
 export const EmailSelectBox = styled.select`
   width: 100%;
@@ -117,7 +117,7 @@ export const SubmitJoinBtn = styled.button`
 `;
 
 export const GenderRadio = styled.input`
-  display: none;
+  /* display: none; */
 `;
 
 export const PhoneInput = styled.input`
@@ -130,7 +130,9 @@ export const PhoneInput = styled.input`
   font-size: 1.6rem;
   font-weight: 400;
   color: #999;
-  outline: none;
+  :focus {
+    outline-color: ${mainColor};
+  }
 `;
 
 export const ErrorMsg = styled.p`

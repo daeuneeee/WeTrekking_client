@@ -40,7 +40,6 @@ const JoinUi = ({
                   register={register}
                 />
               </S.EmailInputBox>
-  
             </S.JoinEmailBox>
             <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
@@ -150,7 +149,6 @@ const JoinUi = ({
                 id="male"
                 onChange={onChangeGenderCheck}
                 checked={isGenderCheck === "male"}
-                {...register("gender")}
               />
               <S.GenderRadio
                 type="radio"
@@ -159,7 +157,6 @@ const JoinUi = ({
                 id="female"
                 onChange={onChangeGenderCheck}
                 checked={isGenderCheck === "female"}
-                {...register("gender")}
               />
               <S.GenderLabel
                 htmlFor="male"

@@ -106,7 +106,7 @@ const SocialJoinUi = ({
               >
                 남성
               </S.GenderLabel>
-              <S.GenderLabel
+              <S.GenderLabel2
                 htmlFor="female"
                 style={{
                   backgroundColor:
@@ -115,7 +115,7 @@ const SocialJoinUi = ({
                 }}
               >
                 여성
-              </S.GenderLabel>
+              </S.GenderLabel2>
             </S.GenderSelectBox>
             <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>

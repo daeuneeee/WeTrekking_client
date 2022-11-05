@@ -167,7 +167,7 @@ const JoinUi = ({
               >
                 남성
               </S.GenderLabel>
-              <S.GenderLabel
+              <S.GenderLabel2
                 htmlFor="female"
                 style={{
                   backgroundColor:
@@ -176,7 +176,7 @@ const JoinUi = ({
                 }}
               >
                 여성
-              </S.GenderLabel>
+              </S.GenderLabel2>
             </S.GenderSelectBox>
             <S.ErrorMsg>{formState.errors.gender?.message}</S.ErrorMsg>
           </A.LoginInputContainer>

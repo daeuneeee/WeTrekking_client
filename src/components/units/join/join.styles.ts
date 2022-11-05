@@ -117,7 +117,7 @@ export const SubmitJoinBtn = styled.button`
 `;
 
 export const GenderRadio = styled.input`
-  /* display: none; */
+  display: none;
 `;
 
 export const PhoneInput = styled.input`

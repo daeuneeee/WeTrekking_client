@@ -56,8 +56,6 @@ export const GenderSelectBox = styled.div`
   width: 100%;
   height: 52px;
   display: flex;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
 `;
 export const GenderLabel = styled.label`
   display: flex;
@@ -68,10 +66,22 @@ export const GenderLabel = styled.label`
   font-size: 1.6rem;
   font-weight: 400;
   color: #999;
+  border-top: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   cursor: pointer;
-  &:first-of-type {
-    border-right: 1px solid #d9d9d9;
-  }
+`;
+
+export const GenderLabel2 = styled(GenderLabel)`
+  border-top: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 `;
 
 export const PhotoUploadBox = styled.label`

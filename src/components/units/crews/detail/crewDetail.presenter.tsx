@@ -1,4 +1,5 @@
 import PickTrueSvg from "../../../commons/svg/pickTrue";
+import CommentBox from "../../commentBox";
 import * as S from "./crewDetail.styles";
 
 const CrewDetailUi = () => {
@@ -252,6 +253,9 @@ const CrewDetailUi = () => {
           <S.ApplyBtn>참가</S.ApplyBtn>
         </S.Footer>
         <S.MiddleUnderLine></S.MiddleUnderLine>
+        <S.CommentContainer>
+          <CommentBox />
+        </S.CommentContainer>
       </S.Wrapper>
     </>
   );

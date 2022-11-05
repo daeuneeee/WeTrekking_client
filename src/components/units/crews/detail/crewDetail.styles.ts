@@ -99,6 +99,7 @@ export const PickBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Pick = styled.div`
@@ -189,7 +190,7 @@ export const DetailData = styled.span`
   color: #111;
 `;
 
-export const TrailBtn = styled.button``;
+// export const TrailBtn = styled.button``;
 
 export const DueBox = styled.div`
   display: flex;
@@ -394,14 +395,19 @@ export const ListBtn = styled.button`
   color: #fff;
   font-weight: 700;
   font-size: 1.8rem;
+  cursor: pointer;
 `;
 
 export const ApplyBtn = styled(ListBtn)`
   background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
 `;
 
-// export const InformBox = styled.div`
-// `
+export const CommentContainer = styled.div`
+  width: 1200px;
+  background: #fafafa;
+  margin: 40px auto 100px;
+  padding: 20px 24px;
+`;
 
 // export const InformBox = styled.div`
 // `

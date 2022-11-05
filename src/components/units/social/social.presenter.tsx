@@ -1,88 +1,27 @@
 import { mainColor } from "../../../commons/styles/color";
 import Input01 from "../../commons/inputs/input-01";
 import * as A from "../login/login.styles";
-import * as S from "./join.styles";
-import { IJoinUiProps } from "./join.types";
+import * as S from "../join/join.styles";
+import { ISocialJoinProps } from "./social.types";
 
-const JoinUi = ({
-  onChangeGenderCheck,
-  isGenderCheck,
+const SocialJoinUi = ({
   phoneInput01,
   phoneInput02,
   phoneInput03,
   onChangePhoneInput01,
   onChangePhoneInput02,
   onChangePhoneInput03,
+  onChangeGenderCheck,
+  isGenderCheck,
   register,
-  handleSubmit,
-  onClickJoinSubmit,
-  formState,
-}: IJoinUiProps) => {
+}: ISocialJoinProps) => {
   return (
     <A.Wrapper>
       <A.Container>
-        <S.JoinForm onSubmit={handleSubmit(onClickJoinSubmit)}>
+        <S.JoinForm>
           <A.LoginTitle>
-            We Trekking<span>회원가입</span>
+            We Trekking<span>추가정보 입력</span>
           </A.LoginTitle>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>
-              이메일<span>*</span>
-            </A.LoginInputTitle>
-            <S.JoinEmailBox>
-              <S.EmailInputBox>
-                <Input01
-                  type="text"
-                  placeholder="이메일을 입력해 주세요."
-                  maxLength={50}
-                  name="email"
-                  register={register}
-                />
-              </S.EmailInputBox>
-            </S.JoinEmailBox>
-            <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
-          <S.CheckBtn type="button">중복확인</S.CheckBtn>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>
-              비밀번호<span>*</span>
-            </A.LoginInputTitle>
-            <Input01
-              type="password"
-              placeholder="비밀번호를 입력해 주세요."
-              maxLength={20}
-              name="password"
-              register={register}
-            />
-            <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>
-              비밀번호 확인<span>*</span>
-            </A.LoginInputTitle>
-            <Input01
-              type="password"
-              placeholder="비밀번호를 다시 입력해 주세요."
-              maxLength={20}
-              name="passwordConfirm"
-              register={register}
-            />
-            <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
-            <S.ErrorMsg>{formState.errors.passwordConfirm?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>
-              이름<span>*</span>
-            </A.LoginInputTitle>
-            <Input01
-              type="text"
-              placeholder="이름을 입력해 주세요."
-              maxLength={51}
-              name="name"
-              register={register}
-            />
-            <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               닉네임<span>*</span>
@@ -94,7 +33,7 @@ const JoinUi = ({
               name="nickname"
               register={register}
             />
-            <S.ErrorMsg>{formState.errors.nickname?.message}</S.ErrorMsg>
+            <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>
           <S.CheckBtn type="button">중복확인</S.CheckBtn>
           <A.LoginInputContainer>
@@ -178,17 +117,7 @@ const JoinUi = ({
                 여성
               </S.GenderLabel>
             </S.GenderSelectBox>
-            <S.ErrorMsg>{formState.errors.gender?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>사진</A.LoginInputTitle>
-            <S.InputFile type="file" id="profilePhoto" />
-            <S.PhotoUploadBox htmlFor="profilePhoto">
-              <S.ProfileUploadBtn>
-                <img src="/images/join/photo-upload.png" alt="" />
-              </S.ProfileUploadBtn>
-              <S.ProfileUploadText>사진을 선택해 주세요</S.ProfileUploadText>
-            </S.PhotoUploadBox>
+            <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>
           <S.SubmitJoinBtn>회원가입</S.SubmitJoinBtn>
         </S.JoinForm>
@@ -197,4 +126,4 @@ const JoinUi = ({
   );
 };
 
-export default JoinUi;
+export default SocialJoinUi;

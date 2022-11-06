@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 import { ICrewListUiProps } from "./crewList.types";
 import { Avatar } from "@mui/material";
+import Link from "next/link";
 
 const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
   const { Option } = Select;
@@ -95,52 +96,58 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
           </S.Header>
           <S.Body>
             {data?.fetchCrewBoardsTEST[0]?.map((listMap) => (
-              <S.ListBox key={listMap.id}>
-                <S.ListHeader>
-                  <S.ListInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      sx={{ width: 32, height: 32 }}
-                    ></Avatar>
-                    <S.ListNickName>춘딩딩</S.ListNickName>
-                  </S.ListInform>
-                  <S.ListPick>
-                    <PickFalseSvg />
-                  </S.ListPick>
-                </S.ListHeader>
-                <S.ListContainer>
-                  <S.ListThumbnail></S.ListThumbnail>
-                  <S.ListBody>
-                    <S.ListTitleBox>
-                      <S.ListTitle>{listMap.title}</S.ListTitle>
-                      <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                    </S.ListTitleBox>
-                    <S.ListCrewsBox>
-                      <S.ListCrewsImg></S.ListCrewsImg>
-                      <S.ListCrewsNum>
-                        모집인원 3/{listMap.peoples}
-                      </S.ListCrewsNum>
-                    </S.ListCrewsBox>
-                  </S.ListBody>
-                  <S.ListFooter>
-                    <S.ListLocationBox>
-                      <S.LocationImg>
+              <Link href={`crews/${listMap.id}`} key={listMap.id}>
+                <S.ListBox>
+                  <S.ListHeader>
+                    <S.ListInform>
+                      <Avatar
+                        alt="Crew Image"
+                        src="/images/commons/profile-img.png"
+                        sx={{ width: 32, height: 32 }}
+                      ></Avatar>
+                      <S.ListNickName>춘딩딩</S.ListNickName>
+                    </S.ListInform>
+                    <S.ListPick>
+                      <PickFalseSvg />
+                    </S.ListPick>
+                  </S.ListHeader>
+                  <S.ListContainer>
+                    <S.ListThumbnail></S.ListThumbnail>
+                    <S.ListBody>
+                      <S.ListTitleBox>
+                        <S.ListTitle>{listMap.title}</S.ListTitle>
+                        <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
+                      </S.ListTitleBox>
+                      <S.ListCrewsBox>
+                        <S.ListCrewsImg></S.ListCrewsImg>
+                        <S.ListCrewsNum>
+                          모집인원 3/{listMap.peoples}
+                        </S.ListCrewsNum>
+                      </S.ListCrewsBox>
+                    </S.ListBody>
+                    <S.ListFooter>
+                      <S.ListLocationBox>
+                        {/* <S.LocationImg>
                         <img src="/images/crew/location.png" />
-                      </S.LocationImg>
-                      <S.Location>설악산</S.Location>
-                    </S.ListLocationBox>
-                    <S.ListTimeAndDayBox>
-                      <S.TimeImg>
+                      </S.LocationImg> */}
+                        <S.Location>설악산</S.Location>
+                      </S.ListLocationBox>
+                      <S.ListTimeAndDayBox>
+                        {/* <S.TimeImg>
                         <img src="/images/crew/time.png" />
-                      </S.TimeImg>
-                      <S.Day>{listMap.date}</S.Day>
-                      <S.TimePartition></S.TimePartition>
-                      <S.Time>{listMap.dateTime}</S.Time>
-                    </S.ListTimeAndDayBox>
-                  </S.ListFooter>
-                </S.ListContainer>
-              </S.ListBox>
+                      </S.TimeImg> */}
+                        <S.Day>{listMap.date}</S.Day>
+                        <S.TimePartition></S.TimePartition>
+                        <S.Time>
+                          {listMap.dateTime
+                            .replace("am", "AM")
+                            .replace("pm", "PM")}
+                        </S.Time>
+                      </S.ListTimeAndDayBox>
+                    </S.ListFooter>
+                  </S.ListContainer>
+                </S.ListBox>
+              </Link>
             ))}
           </S.Body>
           <S.Footer>

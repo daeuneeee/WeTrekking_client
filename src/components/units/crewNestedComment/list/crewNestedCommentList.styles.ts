@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  margin-top: 25px;
+  width: 1096px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
 
 export const Container = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -67,11 +67,8 @@ export const BtnDot = styled(Btn)`
   cursor: default;
 `;
 
-export const NestedCommentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
+// export const Container = styled.div`
+// `;
 
 // export const Container = styled.div`
 // `;

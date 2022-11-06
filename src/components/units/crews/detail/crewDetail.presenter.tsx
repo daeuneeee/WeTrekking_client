@@ -1,3 +1,4 @@
+import { Avatar } from "@mui/material";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentWrite from "../../crewComment/write";
 import * as S from "./crewDetail.styles";
@@ -99,7 +100,11 @@ const CrewDetailUi = () => {
             <S.CrewBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewPosition>방장</S.CrewPosition>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -114,7 +119,11 @@ const CrewDetailUi = () => {
               {/* 여기부터 맵돌리기 */}
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -129,7 +138,11 @@ const CrewDetailUi = () => {
               {/* 여기부터 삭제하기 */}
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -142,7 +155,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -155,7 +172,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -168,7 +189,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -181,7 +206,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -194,7 +223,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -207,7 +240,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -220,7 +257,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>
@@ -233,7 +274,11 @@ const CrewDetailUi = () => {
               </S.CrewInformBox>
               <S.CrewInformBox>
                 <S.CrewInform>
-                  <S.CrewImg></S.CrewImg>
+                  <Avatar
+                    alt="Crew Image"
+                    src="/images/commons/profile-img.png"
+                    sx={{ width: 50, height: 50 }}
+                  ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
                   </S.CrewPositionNickName>

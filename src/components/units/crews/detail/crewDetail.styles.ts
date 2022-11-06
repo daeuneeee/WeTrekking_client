@@ -341,13 +341,6 @@ export const CrewInform = styled.div`
   align-items: center;
 `;
 
-export const CrewImg = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 1px solid green;
-  border-radius: 100%; ;
-`;
-
 export const CrewPositionNickName = styled.div`
   display: flex;
   flex-direction: column;

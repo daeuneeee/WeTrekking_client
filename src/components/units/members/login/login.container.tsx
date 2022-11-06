@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../store";
+import { accessTokenState } from "../../../../store";
 import LoginUi from "./login.presenter";
 import { LOGIN } from "./login.queries";
 import { ILoginProps } from "./login.types";

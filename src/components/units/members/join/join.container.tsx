@@ -1,16 +1,17 @@
 import { useMutation } from "@apollo/client";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  IMutation,
-  IMutationCreateUserArgs,
-} from "../../../commons/types/generated/types";
+
 import JoinUi from "./join.presenter";
 import { CREATE_USER } from "./join.queries";
 import { IJoinData } from "./join.types";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import {
+  IMutation,
+  IMutationCreateUserArgs,
+} from "../../../../commons/types/generated/types";
 
 const joinYup = yup.object({
   email: yup

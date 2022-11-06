@@ -1,6 +1,6 @@
 import { mainColor } from "../../../commons/styles/color";
 import Input01 from "../../commons/inputs/input-01";
-import * as A from "../login/login.styles";
+import * as A from "../members/login/login.styles";
 import * as S from "../join/join.styles";
 import { ISocialJoinProps } from "./social.types";
 

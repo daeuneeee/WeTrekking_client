@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../store";
-import Input01 from "../../commons/inputs/input-01";
+import { accessTokenState } from "../../../../store";
+import Input01 from "../../../commons/inputs/input-01";
 import * as S from "./login.styles";
 import { ILoginUiProps } from "./login.types";
 const LoginUi = ({
@@ -49,7 +49,7 @@ const LoginUi = ({
 
               <S.RememberId htmlFor="rememberId">
                 <S.RememberIdCheckBox>
-                  {isCheck && <img src="/images/login/idCheck.png" alt="" />}
+                  {isCheck && <img src="/images/login/id-check.png" alt="" />}
                 </S.RememberIdCheckBox>
                 <span>아이디 기억하기</span>
               </S.RememberId>
@@ -65,13 +65,13 @@ const LoginUi = ({
         </S.SnsLoginTitleBox>
         <S.SnsLoginBtnBox>
           <S.SnsLoginBtn>
-            <img src="/images/login/googleLogin.png" />
+            <img src="/images/login/google-login.png" />
           </S.SnsLoginBtn>
           <S.SnsLoginBtn>
-            <img src="/images/login/kakaoLogin.png" />
+            <img src="/images/login/kakao-login.png" />
           </S.SnsLoginBtn>
           <S.SnsLoginBtn>
-            <img src="/images/login/naverLogin.png" />
+            <img src="/images/login/naver-login.png" />
           </S.SnsLoginBtn>
         </S.SnsLoginBtnBox>
         <S.JoinToMent>

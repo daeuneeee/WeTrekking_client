@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mainColor } from "../../../commons/styles/color";
+import { mainColor } from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
   width: 100%;

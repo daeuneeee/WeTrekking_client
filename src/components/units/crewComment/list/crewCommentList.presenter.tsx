@@ -1,5 +1,7 @@
 import * as S from "./crewCommentList.styles";
 import { Avatar } from "@mui/material";
+import CrewNestedCommentList from "../../crewNestedComment/list/crewNestedCommentList.container";
+import CrewNestedCommentWrite from "../../crewNestedComment/write";
 
 const CrewCommentListUi = () => {
   return (
@@ -38,6 +40,10 @@ const CrewCommentListUi = () => {
             </S.CommentInformBox>
           </S.CommentBox>
         </S.Container>
+        <S.NestedCommentBox>
+          <CrewNestedCommentList />
+          <CrewNestedCommentWrite />
+        </S.NestedCommentBox>
         {/* 여기부터 삭제 */}
         <S.Container>
           <Avatar

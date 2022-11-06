@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import CrewCommentList from "../list/crewCommentList.container";
 
-const CrewCommentWrite = () => {
+const CrewNestedCommentWrite = () => {
   return (
     <>
       <Wrapper>
@@ -14,16 +13,16 @@ const CrewCommentWrite = () => {
             <RegisterBtn>등록</RegisterBtn>
           </RegisterBox>
         </Container>
-        <CrewCommentList />
       </Wrapper>
     </>
   );
 };
 
-export default CrewCommentWrite;
+export default CrewNestedCommentWrite;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 1096px;
+  margin-top: 30px;
 `;
 
 const Container = styled.div`

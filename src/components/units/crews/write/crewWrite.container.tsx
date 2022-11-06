@@ -2,27 +2,34 @@ import { useState } from "react";
 import CrewWriteUi from "./crewWrite.presenter";
 import type { Moment } from "moment";
 import type { DatePickerProps } from "antd";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { CREATE_CREW_BOARD_T } from "./crewWrite.queries";
 
 const CrewWrite = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isClicked, setIsClicked] = useState("gender01");
+  const [isClicked, setIsClicked] = useState("남자만");
   const [people, setPeople] = useState(0);
-  const [, setDate] = useState("");
-  const [, setTime] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [address, setAddress] = useState("");
+  const [gender, setGender] = useState("");
+
+  const { register, handleSubmit } = useForm();
+
+  const [createCrewBoardTest] = useMutation(CREATE_CREW_BOARD_T);
 
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
     setDate(dateString);
   };
   const onChangeTime = (time: Moment | null, timeString: string) => {
-    console.log(time, timeString);
     setTime(timeString);
   };
 
   const onChangeRadio = (event) => {
-    console.log(event);
     if (event.target.checked) {
       setIsClicked(event.target.id);
+      setGender(event.target.id);
     }
   };
 
@@ -32,10 +39,22 @@ const CrewWrite = () => {
 
   const handleComplete = (address) => {
     onToggleModal();
+    setAddress(address.address);
   };
 
   const onChangePeople = (event: any) => {
     setPeople(event);
+  };
+
+  const onClickToRegister = async (data: IFormData) => {
+    data.date = date;
+    data.dateTime = time;
+    data.dues = Number(data.dues);
+    data.peoples = people;
+    data.address = address;
+    data.gender = gender;
+    console.log(data);
+    await createCrewBoardTest({ variables: { createCrewBoardInput: data } });
   };
 
   return (
@@ -49,6 +68,10 @@ const CrewWrite = () => {
       isClicked={isClicked}
       onChangePeople={onChangePeople}
       people={people}
+      register={register}
+      handleSubmit={handleSubmit}
+      onClickToRegister={onClickToRegister}
+      address={address}
     />
   );
 };

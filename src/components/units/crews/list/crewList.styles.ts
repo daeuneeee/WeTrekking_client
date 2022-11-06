@@ -273,15 +273,17 @@ export const ListLocationBox = styled.div`
   align-items: center;
 `;
 
-export const LocationImg = styled.div`
-  width: 16px;
-  height: 16px;
-`;
+// export const LocationImg = styled.div`
+//   width: 16px;
+//   height: 16px;
+// `;
 
 export const Location = styled.span`
   font-weight: 400;
   font-size: 1.3rem;
   color: #999;
+  padding-left: 15px;
+  background: url("/images/crew/location.png") no-repeat left center;
 `;
 
 export const ListTimeAndDayBox = styled.div`
@@ -291,12 +293,18 @@ export const ListTimeAndDayBox = styled.div`
   align-items: center;
 `;
 
-export const TimeImg = styled.div`
-  width: 16px;
-  height: 16px;
-`;
+// export const TimeImg = styled.div`
+//   width: 16px;
+//   height: 16px;
+// `;
 
-export const Day = styled(Location)``;
+export const Day = styled.span`
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #999;
+  padding-left: 19px;
+  background: url("/images/crew/time.png") no-repeat left center;
+`;
 
 export const TimePartition = styled.span`
   width: 1px;
@@ -304,7 +312,11 @@ export const TimePartition = styled.span`
   background: #d9d9d9;
 `;
 
-export const Time = styled(Location)``;
+export const Time = styled.span`
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #999;
+`;
 
 export const ListContainer = styled.div`
   cursor: pointer;

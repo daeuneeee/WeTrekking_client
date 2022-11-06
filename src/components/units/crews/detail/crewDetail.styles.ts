@@ -344,7 +344,7 @@ export const CrewInform = styled.div`
 export const CrewPositionNickName = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 5px;
 `;
 
 export const CrewPosition = styled.span`

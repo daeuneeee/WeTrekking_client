@@ -3,7 +3,7 @@ import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentWrite from "../../crewComment/write";
 import * as S from "./crewDetail.styles";
 
-const CrewDetailUi = () => {
+const CrewDetailUi = ({ data }) => {
   return (
     <>
       <S.Wrapper>
@@ -24,7 +24,7 @@ const CrewDetailUi = () => {
                     <S.LocationImg src="/images/detail/location.png" />
                     <S.Location>설악산</S.Location>
                   </S.LocationBox>
-                  <S.Title>설악산 같이 가실래요?</S.Title>
+                  <S.Title>{data?.fetchCrewBoard.title}</S.Title>
                 </S.LocationTitleBox>
                 <S.PickBox>
                   <S.Pick>
@@ -48,22 +48,26 @@ const CrewDetailUi = () => {
             <S.DetailInformBox>
               <S.DetailInform>
                 <S.DetailTitle>등산 날짜</S.DetailTitle>
-                <S.DetailData>2022-11-24</S.DetailData>
+                <S.DetailData>{data?.fetchCrewBoard.date}</S.DetailData>
               </S.DetailInform>
               <S.Line></S.Line>
               <S.DetailInform>
                 <S.DetailTitle>등산 시간</S.DetailTitle>
-                <S.DetailData>2:00 PM</S.DetailData>
+                <S.DetailData>
+                  {data?.fetchCrewBoard.dateTime
+                    .replace("am", "AM")
+                    .replace("pm", "PM")}
+                </S.DetailData>
               </S.DetailInform>
               <S.Line></S.Line>
               <S.DetailInform>
                 <S.DetailTitle>모집 성별</S.DetailTitle>
-                <S.DetailData>상관없음</S.DetailData>
+                <S.DetailData>{data?.fetchCrewBoard.gender}</S.DetailData>
               </S.DetailInform>
               <S.Line></S.Line>
               <S.DetailInform>
                 <S.DetailTitle>모집 인원</S.DetailTitle>
-                <S.DetailData>15명</S.DetailData>
+                <S.DetailData>{data?.fetchCrewBoard.peoples}명</S.DetailData>
               </S.DetailInform>
               {/* <S.Line></S.Line>
               <S.DetailInform>
@@ -72,7 +76,10 @@ const CrewDetailUi = () => {
             </S.DetailInformBox>
             <S.DueBox>
               <S.DueText>회비</S.DueText>
-              <S.DueData>10,000</S.DueData>
+              <S.DueData>{`${String(data?.fetchCrewBoard.dues).replace(
+                /(\d)(?=(?:\d{3})+(?!\d))/g,
+                "$1,"
+              )}`}</S.DueData>
               <S.DueWon>원</S.DueWon>
             </S.DueBox>
             <S.TextArea></S.TextArea>
@@ -84,8 +91,8 @@ const CrewDetailUi = () => {
             <S.BodyTitle>지도</S.BodyTitle>
             <S.Map></S.Map>
             <S.AddressBox>
-              <S.Address>경기도 고양시 덕양구 고양시청로10</S.Address>
-              <S.Address>호수공원</S.Address>
+              <S.Address>{data?.fetchCrewBoard.address}</S.Address>
+              <S.Address>{data?.fetchCrewBoard.addressDetail}</S.Address>
             </S.AddressBox>
           </S.MapBox>
           <S.ListBox>
@@ -93,7 +100,7 @@ const CrewDetailUi = () => {
               <S.BodyTitle>참가원 리스트</S.BodyTitle>
               <S.CrewListBox>
                 <S.CrewList>14</S.CrewList>
-                <S.CrewListAll>/15</S.CrewListAll>
+                <S.CrewListAll>/{data?.fetchCrewBoard.peoples}</S.CrewListAll>
                 <S.Img src="/images/detail/profile-detail.png" />
               </S.CrewListBox>
             </S.ListInform>

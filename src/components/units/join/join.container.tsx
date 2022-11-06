@@ -82,8 +82,6 @@ const Join = () => {
     }
   };
 
-  console.log(isGenderCheck);
-
   const onClickJoinSubmit = async (data: IJoinData) => {
     try {
       delete data.passwordConfirm;

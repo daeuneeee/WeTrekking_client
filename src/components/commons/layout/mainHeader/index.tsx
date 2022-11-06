@@ -1,6 +1,9 @@
+import { gql, useMutation } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
 import { mainColor } from "../../../../commons/styles/color";
+import { accessTokenState } from "../../../../store";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -27,6 +30,10 @@ const Wrapper = styled.div`
       border: 1px solid ${mainColor};
       color: ${mainColor};
       transition: all 0.3s;
+    }
+    .subBtn {
+      border: 1px solid ${mainColor};
+      color: ${mainColor};
     }
   }
 `;
@@ -66,6 +73,7 @@ const SnbMenu = styled.ul`
   display: flex;
   flex-direction: row;
   gap: 12px;
+  align-items: center;
 `;
 
 const SnbList = styled.li``;
@@ -86,9 +94,29 @@ const JoinBtn = styled(LoginBtn)`
   border: 1px solid ${mainColor};
   cursor: pointer;
 `;
+const UserPoint = styled.p`
+  font-size: 2rem;
+  font-weight: 400;
+  color: #111;
+  padding-right: 12px;
+  margin-bottom: 0;
+  span {
+    font-weight: 700;
+    color: ${mainColor};
+  }
+`;
+
+const LOGOUT = gql`
+  mutation logout {
+    logout
+  }
+`;
 
 const MainHeader = () => {
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+
   const router = useRouter();
+  const [logout] = useMutation(LOGOUT);
 
   const onClickToMain = () => {
     void router.push("/");
@@ -108,6 +136,22 @@ const MainHeader = () => {
 
   const onClickToJoin = () => {
     void router.push("/join");
+  };
+
+  const onClickToMypage = () => {
+    void router.push("/mypage");
+  };
+
+  const logoutUser = () => {
+    try {
+      setAccessToken("");
+      logout();
+      // alert("로그아웃 되었습니다.");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -136,13 +180,25 @@ const MainHeader = () => {
           </GnbMenu>
         </Navigation>
         <SnbMenu>
+          {accessToken && (
+            <SnbList>
+              <UserPoint>
+                포인트 <span>1,234P</span>
+              </UserPoint>
+            </SnbList>
+          )}
           <SnbList>
-            <LoginBtn className="loginBtn" onClick={onClickToLogin}>
-              로그인
+            <LoginBtn
+              className="subBtn"
+              onClick={accessToken ? logoutUser : onClickToLogin}
+            >
+              {accessToken ? "로그아웃" : "로그인"}
             </LoginBtn>
           </SnbList>
           <SnbList>
-            <JoinBtn onClick={onClickToJoin}>회원가입</JoinBtn>
+            <JoinBtn onClick={accessToken ? onClickToMypage : onClickToJoin}>
+              {accessToken ? "로그아웃" : "마이페이지"}
+            </JoinBtn>
           </SnbList>
         </SnbMenu>
       </Header>

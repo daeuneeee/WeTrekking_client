@@ -36,13 +36,6 @@ export const Ranking = styled.div`
   gap: 16px;
 `;
 
-export const RankingImg = styled.div`
-  width: 68px;
-  height: 68px;
-  border-radius: 100%;
-  border: 1px solid red;
-`;
-
 export const RankingInform = styled.div`
   display: flex;
   flex-direction: column;
@@ -198,13 +191,6 @@ export const ListInform = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 6px;
-`;
-
-export const ListImg = styled.div`
-  width: 32px;
-  height: 32px;
-  border: 1px solid blue;
-  border-radius: 100%;
 `;
 
 export const ListNickName = styled.span`

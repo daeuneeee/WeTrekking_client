@@ -22,7 +22,7 @@ const ChatUi = () => {
                 />
               </AvatarGroup>
               <S.ChatTitleAndUser>
-                <S.ChattingTitle>채팅 제목이 들어갑니다...</S.ChattingTitle>
+                <S.ChattingTitle>제목이 들어갑니다...</S.ChattingTitle>
                 <S.ChattingUser>
                   춘딩딩, 땅오, 참가자, 참가자 외 2명
                 </S.ChattingUser>

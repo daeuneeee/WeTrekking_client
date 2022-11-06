@@ -1,5 +1,5 @@
 import PickTrueSvg from "../../../commons/svg/pickTrue";
-import CommentBox from "../../commentBox";
+import CrewCommentWrite from "../../crewComment/write";
 import * as S from "./crewDetail.styles";
 
 const CrewDetailUi = () => {
@@ -254,7 +254,7 @@ const CrewDetailUi = () => {
         </S.Footer>
         <S.MiddleUnderLine></S.MiddleUnderLine>
         <S.CommentContainer>
-          <CommentBox />
+          <CrewCommentWrite />
         </S.CommentContainer>
       </S.Wrapper>
     </>

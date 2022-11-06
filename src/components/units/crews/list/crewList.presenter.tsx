@@ -3,6 +3,7 @@ import * as S from "./crewList.styles";
 import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 import { ICrewListUiProps } from "./crewList.types";
+import { Avatar } from "@mui/material";
 
 const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
   const { Option } = Select;
@@ -18,7 +19,11 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
           <S.RankingTitle>TOP 3</S.RankingTitle>
           <S.RankingContainer>
             <S.Ranking>
-              <S.RankingImg></S.RankingImg>
+              <Avatar
+                alt="Crew Image"
+                src="/images/commons/profile-img.png"
+                sx={{ width: 68, height: 68 }}
+              ></Avatar>
               <S.RankingInform>
                 <S.RankingNickName>춘딩딩</S.RankingNickName>
                 <S.RankingEmail>123@123.com</S.RankingEmail>
@@ -29,7 +34,11 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
             </S.Ranking>
             {/* 여기부터 삭제 */}
             <S.Ranking>
-              <S.RankingImg></S.RankingImg>
+              <Avatar
+                alt="Crew Image"
+                src="/images/commons/profile-img.png"
+                sx={{ width: 68, height: 68 }}
+              ></Avatar>
               <S.RankingInform>
                 <S.RankingNickName>땅오</S.RankingNickName>
                 <S.RankingEmail>456@123.com</S.RankingEmail>
@@ -39,7 +48,11 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               </S.RankingNumBox>
             </S.Ranking>
             <S.Ranking>
-              <S.RankingImg></S.RankingImg>
+              <Avatar
+                alt="Crew Image"
+                src="/images/commons/profile-img.png"
+                sx={{ width: 68, height: 68 }}
+              ></Avatar>
               <S.RankingInform>
                 <S.RankingNickName>짱구</S.RankingNickName>
                 <S.RankingEmail>789@123.com</S.RankingEmail>
@@ -72,7 +85,7 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               </Select>
               <S.Partition></S.Partition>
               <Space direction="vertical" size={12}>
-                <RangePicker />
+                <RangePicker placeholder={["시작 날짜", "끝 날짜"]} />
               </Space>
               <S.Partition></S.Partition>
               <S.Search placeholder="검색어를 입력해주세요" />
@@ -85,7 +98,11 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               <S.ListBox key={listMap.id}>
                 <S.ListHeader>
                   <S.ListInform>
-                    <S.ListImg></S.ListImg>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      sx={{ width: 32, height: 32 }}
+                    ></Avatar>
                     <S.ListNickName>춘딩딩</S.ListNickName>
                   </S.ListInform>
                   <S.ListPick>
@@ -125,274 +142,6 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
                 </S.ListContainer>
               </S.ListBox>
             ))}
-            {/* 여기부터삭제2 */}
-            {/* <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox>
-            <S.ListBox>
-              <S.ListHeader>
-                <S.ListInform>
-                  <S.ListImg></S.ListImg>
-                  <S.ListNickName>춘딩딩</S.ListNickName>
-                </S.ListInform>
-                <S.ListPick>
-                  <PickFalseSvg />
-                </S.ListPick>
-              </S.ListHeader>
-              <S.ListThumbnail></S.ListThumbnail>
-              <S.ListBody>
-                <S.ListTitleBox>
-                  <S.ListTitle>설악산 같이 가실래요?</S.ListTitle>
-                  <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                </S.ListTitleBox>
-                <S.ListCrewsBox>
-                  <S.ListCrewsImg></S.ListCrewsImg>
-                  <S.ListCrewsNum>모집인원 3/4</S.ListCrewsNum>
-                </S.ListCrewsBox>
-              </S.ListBody>
-              <S.ListFooter>
-                <S.ListLocationBox>
-                  <S.LocationImg>
-                    <img src="/images/crew/location.png" />
-                  </S.LocationImg>
-                  <S.Location>설악산</S.Location>
-                </S.ListLocationBox>
-                <S.ListTimeAndDayBox>
-                  <S.TimeImg>
-                    <img src="/images/crew/time.png" />
-                  </S.TimeImg>
-                  <S.Day>2022.11.24</S.Day>
-                  <S.TimePartition></S.TimePartition>
-                  <S.Time>14:00</S.Time>
-                </S.ListTimeAndDayBox>
-              </S.ListFooter>
-            </S.ListBox> */}
-            {/* 여기까지 삭제2 */}
           </S.Body>
           <S.Footer>
             <S.MoreBtn>더보기</S.MoreBtn>

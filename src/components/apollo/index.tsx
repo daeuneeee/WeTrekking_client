@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../store";
 // import { getAccessToken } from "../../commons/utils/getAccessToken";
 import { useEffect } from "react";
+import { getAccessToken } from "../../commons/utils/getAccessToken";
 
 interface IApolloSettingProps {
   children: JSX.Element;
@@ -21,41 +22,43 @@ const GLOBAL_STATE = new InMemoryCache();
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
-  // useEffect(() => {
-  //   void getAccessToken().then((newAccessToken) => {
-  //     setAccessToken(newAccessToken);
-  //   });
-  // }, []);
+  console.log(accessToken);
 
-  // const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-  //   if (graphQLErrors) {
-  //     for (const err of graphQLErrors) {
-  //       if (err.extensions.code === "UNAUTHENTICATED") {
-  //         return fromPromise(
-  //           getAccessToken().then((newAccessToken) => {
-  //             setAccessToken(newAccessToken);
+  useEffect(() => {
+    void getAccessToken().then((newAccessToken) => {
+      setAccessToken(newAccessToken);
+    });
+  }, []);
 
-  //             operation.setContext({
-  //               headers: {
-  //                 ...operation.getContext().headers,
-  //                 Authorization: `Bearer ${newAccessToken}`,
-  //               },
-  //             });
-  //           })
-  //         ).flatMap(() => forward(operation));
-  //       }
-  //     }
-  //   }
-  // });
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          return fromPromise(
+            getAccessToken().then((newAccessToken) => {
+              setAccessToken(newAccessToken);
+
+              operation.setContext({
+                headers: {
+                  ...operation.getContext().headers,
+                  Authorization: `Bearer ${newAccessToken}`,
+                },
+              });
+            })
+          ).flatMap(() => forward(operation));
+        }
+      }
+    }
+  });
 
   const uploadLink = createUploadLink({
     uri: "https://develop.wetrekking.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
-    // credentials: "include",
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink]),
+    link: ApolloLink.from([errorLink, uploadLink]),
     cache: GLOBAL_STATE,
   });
 

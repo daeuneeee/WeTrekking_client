@@ -8,6 +8,8 @@ import { mainColor } from "../../../../commons/styles/color";
 const CrewWriteUi = ({
   onChangeTime,
   onChangeDate,
+  register,
+  handleSubmit,
   isOpen,
   handleComplete,
   onToggleModal,
@@ -15,9 +17,11 @@ const CrewWriteUi = ({
   isClicked,
   people,
   onChangePeople,
+  onClickToRegister,
+  address,
 }: ICrewWriteUiProps) => {
   return (
-    <>
+    <form onSubmit={handleSubmit(onClickToRegister)}>
       <S.Wrapper>
         <S.Header>
           <S.Title>크루 등록하기</S.Title>
@@ -45,7 +49,7 @@ const CrewWriteUi = ({
         <S.Body>
           <S.InputBox>
             <S.Label>제목</S.Label>
-            <S.Input />
+            <S.Input {...register("title")} />
           </S.InputBox>
           <S.InputBox>
             <S.Label>산</S.Label>
@@ -70,16 +74,16 @@ const CrewWriteUi = ({
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 장소</S.Label>
-            <S.Input readOnly />
+            <S.Input readOnly defaultValue={address} />
             <S.AddressBox>
-              <S.AddressDetail />
+              <S.AddressDetail {...register("addressDetail")} />
               <S.AddressBtn type="button" onClick={onToggleModal}>
                 주소찾기
               </S.AddressBtn>
               {isOpen && (
                 <Modal
                   title="주소검색"
-                  visible={isOpen}
+                  open={isOpen}
                   onCancel={onToggleModal}
                   footer={null}
                 >
@@ -90,58 +94,58 @@ const CrewWriteUi = ({
           </S.InputBox>
           <S.InputBox>
             <S.Label>회비</S.Label>
-            <S.Input />
+            <S.Input {...register("dues")} />
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 성별</S.Label>
             <S.GenderBox>
-              {isClicked === "gender01" ? (
+              {isClicked === "남자만" ? (
                 <S.Gender01
-                  htmlFor="gender01"
+                  htmlFor="남자만"
                   style={{ backgroundColor: `${mainColor}`, color: "#fff" }}
                 >
                   남자만
                 </S.Gender01>
               ) : (
-                <S.Gender01 htmlFor="gender01">남자만</S.Gender01>
+                <S.Gender01 htmlFor="남자만">남자만</S.Gender01>
               )}
-              {isClicked === "gender02" ? (
+              {isClicked === "여자만" ? (
                 <S.Gender02
-                  htmlFor="gender02"
+                  htmlFor="여자만"
                   style={{ backgroundColor: `${mainColor}`, color: "#fff" }}
                 >
                   여자만
                 </S.Gender02>
               ) : (
-                <S.Gender02 htmlFor="gender02">여자만</S.Gender02>
+                <S.Gender02 htmlFor="여자만">여자만</S.Gender02>
               )}
-              {isClicked === "gender03" ? (
+              {isClicked === "상관없음" ? (
                 <S.Gender03
-                  htmlFor="gender03"
+                  htmlFor="상관없음"
                   style={{ backgroundColor: `${mainColor}`, color: "#fff" }}
                 >
                   상관없음
                 </S.Gender03>
               ) : (
-                <S.Gender03 htmlFor="gender03">상관없음</S.Gender03>
+                <S.Gender03 htmlFor="상관없음">상관없음</S.Gender03>
               )}
               <S.RadioInput
                 type="radio"
                 name="gender"
-                id="gender01"
+                id="남자만"
                 onChange={onChangeRadio}
-                checked={isClicked === "gender01"}
+                checked={isClicked === "남자만"}
               />
               <S.RadioInput
                 type="radio"
                 name="gender"
-                id="gender02"
+                id="여자만"
                 onChange={onChangeRadio}
               />
               <S.RadioInput
                 type="radio"
                 name="gender"
-                id="gender03"
+                id="상관없음"
                 onChange={onChangeRadio}
               />
             </S.GenderBox>
@@ -160,7 +164,7 @@ const CrewWriteUi = ({
           </S.InputBox>
           <S.InputBox>
             <S.Label>상세 내용</S.Label>
-            <S.TextArea />
+            <S.TextArea {...register("description")} />
           </S.InputBox>
         </S.Body>
         <S.Footer>
@@ -168,7 +172,7 @@ const CrewWriteUi = ({
           <S.RegisterBtn>등록</S.RegisterBtn>
         </S.Footer>
       </S.Wrapper>
-    </>
+    </form>
   );
 };
 

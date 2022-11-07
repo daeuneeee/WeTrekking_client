@@ -1,9 +1,11 @@
 import { Avatar, AvatarGroup } from "@mui/material";
+import MyPageNav from "../navigation";
 import * as S from "./myinfo.styles";
 
 const MyInfoUi = () => {
   return (
     <S.Wrapper>
+      <MyPageNav page="내 정보" />
       <S.ProfileWrapper>
         <S.ProfileBox>
           <S.ProfileBody>

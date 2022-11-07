@@ -27,8 +27,8 @@ export const SubImgBox = styled.div`
 `;
 
 export const SubImg = styled.div`
-  width: 180px;
-  height: 160px;
+  width: 32%;
+  padding-bottom: 32%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
 `;

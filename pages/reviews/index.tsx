@@ -80,5 +80,7 @@ const Wrapper = styled.div`
 `;
 
 const ReviewWrapper = styled.div`
-  width: 35%;
+  width: 75%;
+  height: 100vh;
+  overflow-y: scroll;
 `;

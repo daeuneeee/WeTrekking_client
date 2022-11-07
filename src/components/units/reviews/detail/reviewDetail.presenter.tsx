@@ -2,6 +2,8 @@ import { Avatar } from "@mui/material";
 import * as S from "./reviewDetail.styles";
 import { Rate } from "antd";
 import "antd/dist/antd.css";
+import ReviewCommentList from "../../reviewComment/list/reviewCommentList.container";
+import ReviewCommentWrite from "../../reviewComment/write";
 
 const ReviewDetailUi = () => {
   return (
@@ -38,7 +40,10 @@ const ReviewDetailUi = () => {
           안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕
         </S.Review>
         <S.UnderLine></S.UnderLine>
-        <S.CommentContainer></S.CommentContainer>
+        <S.CommentContainer>
+          <ReviewCommentWrite />
+          <ReviewCommentList />
+        </S.CommentContainer>
       </S.Wrapper>
     </>
   );

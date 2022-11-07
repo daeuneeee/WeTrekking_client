@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
-import { mobile } from "../../../../commons/styles/media";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -140,15 +140,20 @@ export const JoinToMent = styled.p`
 `;
 
 export const RememberIdCheckBox = styled.div`
-  width: 16px;
-  height: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
   /* background-color: ${mainColor}; */
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid ${mainColor};
   position: relative;
+  @media ${mobile} {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
   img {
+    width: 100%;
     position: absolute;
-    top: -1px;
-    left: -1px;
+    top: 0;
+    left: 0;
   }
 `;

@@ -1,7 +1,7 @@
 import * as S from "./reviewWrite.styles";
 import "antd/dist/antd.css";
 
-const CrewReviewWriteUi = ({ onChangeRate, rate }) => {
+const CrewReviewWriteUi = () => {
   return (
     <>
       <S.Wrapper>
@@ -33,8 +33,7 @@ const CrewReviewWriteUi = ({ onChangeRate, rate }) => {
           <S.InputBox>
             <S.Label>별점</S.Label>
             <S.StarBox>
-              <S.Star allowHalf defaultValue={5} onChange={onChangeRate} />
-              <S.Rating>{rate}/5</S.Rating>
+              <S.Star allowHalf defaultValue={5} />
             </S.StarBox>
           </S.InputBox>
         </S.Container>

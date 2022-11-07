@@ -1,9 +1,14 @@
 import * as S from "./reviewWrite.styles";
 import "antd/dist/antd.css";
 
-const CrewReviewWriteUi = () => {
+const CrewReviewWriteUi = ({
+  register,
+  handleSubmit,
+  onChangeRate,
+  onClickRegister,
+}) => {
   return (
-    <>
+    <form onSubmit={handleSubmit(onClickRegister)}>
       <S.Wrapper>
         <S.Container>
           <S.Title>리뷰쓰기</S.Title>
@@ -28,25 +33,31 @@ const CrewReviewWriteUi = () => {
           </S.ImgBox>
           <S.InputBox>
             <S.Label>제목</S.Label>
-            <S.Input placeholder="제목을 입력해주세요." />
+            <S.Input
+              placeholder="제목을 입력해주세요."
+              {...register("title")}
+            />
           </S.InputBox>
           <S.InputBox>
             <S.Label>별점</S.Label>
             <S.StarBox>
-              <S.Star allowHalf defaultValue={5} />
+              <S.Star allowHalf defaultValue={5} onChange={onChangeRate} />
             </S.StarBox>
           </S.InputBox>
         </S.Container>
         <S.InputBox>
           <S.Label>내용</S.Label>
-          <S.TextArea placeholder="내용을 입력해주세요." />
+          <S.TextArea
+            placeholder="내용을 입력해주세요."
+            {...register("review")}
+          />
         </S.InputBox>
         <S.BtnBox>
           <S.CancelBtn>취소</S.CancelBtn>
           <S.RegisterBtn>등록</S.RegisterBtn>
         </S.BtnBox>
       </S.Wrapper>
-    </>
+    </form>
   );
 };
 

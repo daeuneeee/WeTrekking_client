@@ -8,7 +8,7 @@ const mypageMenu = [
   { name: "정보수정", router: "/mypage" },
   { name: "찜 리스트", router: "/mypage/pickedlist" },
   { name: "신청 리스트", router: "/mypage/applylist" },
-  { name: "올린내역", router: "/mypage" },
+  { name: "올린내역", router: "/mypage/uploadlist" },
   { name: "충전내역", router: "/mypage" },
   { name: "사용내역", router: "/mypage" },
 ];
@@ -25,6 +25,7 @@ const MyPageUl = styled.ul`
   justify-content: center;
   gap: 7rem;
   align-items: center;
+  margin-bottom: 0;
 `;
 
 const MyPageLi = styled.li`

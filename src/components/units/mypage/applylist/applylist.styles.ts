@@ -20,6 +20,7 @@ export const TitleUl = styled.ul`
   padding: 3.6rem 0;
   border-top: 2px solid #111;
   border-bottom: 2px solid #d9d9d9;
+  margin-bottom: 0;
 `;
 
 export const ListLiNum = styled.li`
@@ -55,6 +56,7 @@ export const ListLiSign = styled.li`
   font-weight: 500;
   color: #111;
   text-align: center;
+  position: relative;
 `;
 export const ListLiCancle = styled.li`
   width: 8%;
@@ -69,6 +71,7 @@ export const ContentUl = styled.ul`
   align-items: center;
   padding: 2.4rem 0;
   border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 0;
 `;
 export const SignBtn = styled.div`
   width: 80px;
@@ -104,6 +107,26 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+
+  .ant-pagination-prev:hover {
+    button {
+      border-color: ${mainColor};
+      color: green;
+    }
+  }
+  .ant-pagination-next:hover {
+    button {
+      border-color: ${mainColor};
+      color: green;
+    }
+  }
+  .ant-pagination-item:hover {
+    border-color: ${mainColor};
+    a {
+      color: green;
+    }
+  }
+
   .ant-pagination-item-active {
     border-color: ${mainColor};
     a {

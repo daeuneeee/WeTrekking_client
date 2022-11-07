@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { tablet } from "../../../../commons/styles/media";
 
 const Wrapper = styled.footer`
   width: 100%;
@@ -8,6 +9,7 @@ const Wrapper = styled.footer`
 `;
 
 const FootMenuBox = styled.div`
+  width: 100%;
   border-bottom: 1px solid #d9d9d9;
   padding: 16px 0;
 `;
@@ -19,6 +21,9 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 45px 0;
+  @media ${tablet} {
+    width: 90%;
+  }
 `;
 
 const FootMenu = styled.ul`

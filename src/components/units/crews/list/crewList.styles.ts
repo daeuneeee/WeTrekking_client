@@ -7,14 +7,13 @@ export const Wrapper = styled.div`
 
 export const RankingBox = styled.section`
   width: 100%;
-  padding: 68px 0;
+  margin: 0 auto 77px;
   display: flex;
   flex-direction: column;
   background-image: url(/images/main/top3-bg.png);
   background-size: cover;
   align-items: center;
   gap: 24px;
-  margin-bottom: 77px;
 `;
 
 export const RankingTitle = styled.span`

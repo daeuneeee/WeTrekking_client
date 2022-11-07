@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 import { mainColor } from "../../../../commons/styles/color";
 
 const mypageMenu = [
   { name: "내 정보", router: "/mypage" },
   { name: "정보수정", router: "/mypage" },
   { name: "찜 리스트", router: "/mypage/pickedlist" },
-  { name: "신청 리스트", router: "/mypage" },
+  { name: "신청 리스트", router: "/mypage/applylist" },
   { name: "올린내역", router: "/mypage" },
   { name: "충전내역", router: "/mypage" },
   { name: "사용내역", router: "/mypage" },
@@ -42,7 +43,7 @@ interface IPageProps {
 const MyPageNav = ({ page }: IPageProps) => {
   const router = useRouter();
 
-  const onClickToPage = (event) => {
+  const onClickToPage = (event: MouseEvent<HTMLLIElement>) => {
     void router.push(`${event.target.id}`);
   };
 

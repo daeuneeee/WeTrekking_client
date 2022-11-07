@@ -36,6 +36,7 @@ export const MainImgBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const MainImg = styled.img`
@@ -46,7 +47,7 @@ export const MainImg = styled.img`
 export const SubImgBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between; ;
+  justify-content: space-between;
 `;
 
 export const SubImg = styled.div`
@@ -58,6 +59,8 @@ export const SubImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
   img {
     width: 40%;
   }
@@ -114,7 +117,7 @@ export const StarBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 3px;
   margin-bottom: 40px;
 `;

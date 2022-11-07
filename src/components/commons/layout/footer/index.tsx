@@ -11,7 +11,7 @@ const Wrapper = styled.footer`
 const FootMenuBox = styled.div`
   width: 100%;
   border-bottom: 1px solid #d9d9d9;
-  padding: 16px 0;
+  padding: 1.6rem 0;
 `;
 
 const Container = styled.div`
@@ -20,9 +20,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 45px 0;
+  padding: 4.5rem 0;
   @media ${tablet} {
     width: 90%;
+    flex-direction: column;
   }
 `;
 
@@ -47,13 +48,21 @@ const FootMenuLine = styled.div`
   background-color: #d9d9d9;
 `;
 
-const FootLeft = styled.div``;
+const FootLeft = styled.div`
+  @media ${tablet} {
+    text-align: center;
+    margin-bottom: 4.2rem;
+  }
+`;
 
 const CompanyTitle = styled.h4`
   font-size: 1.3rem;
   font-weight: 400;
   color: #333;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
+  @media ${tablet} {
+    text-align: center;
+  }
 `;
 
 const FootCallBox = styled.div`
@@ -79,7 +88,7 @@ const FootCenter = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 1.2rem;
 `;
 
 const FootCenterText = styled.p`
@@ -91,12 +100,21 @@ const FootCenterText = styled.p`
 
 const FootAddFaxEmailBox = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 1.2rem;
+  @media ${tablet} {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 
-const FootRight = styled.div``;
+const FootRight = styled.div`
+  @media ${tablet} {
+    display: none;
+  }
+`;
 
 const FootLogoBox = styled.div`
+  width: 160px;
   img {
     width: 100%;
   }

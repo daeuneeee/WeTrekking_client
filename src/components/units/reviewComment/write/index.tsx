@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const CrewCommentWrite = () => {
+const ReviewCommentWrite = () => {
   return (
     <>
       <Wrapper>
@@ -18,7 +18,7 @@ const CrewCommentWrite = () => {
   );
 };
 
-export default CrewCommentWrite;
+export default ReviewCommentWrite;
 
 const Wrapper = styled.div`
   width: 100%;

@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
+import CrewCommentList from "../../crewComment/list/crewCommentList.container";
 import CrewCommentWrite from "../../crewComment/write";
 import * as S from "./crewDetail.styles";
 
@@ -307,6 +308,7 @@ const CrewDetailUi = ({ data }) => {
         <S.MiddleUnderLine></S.MiddleUnderLine>
         <S.CommentContainer>
           <CrewCommentWrite />
+          <CrewCommentList />
         </S.CommentContainer>
       </S.Wrapper>
     </>

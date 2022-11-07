@@ -1,7 +1,7 @@
 import PickedList from "../../../src/components/units/mypage/pickedlist/picked.container";
 
-const SteamListPage = () => {
+const PickedListPage = () => {
   return <PickedList />;
 };
 
-export default SteamListPage;
+export default PickedListPage;

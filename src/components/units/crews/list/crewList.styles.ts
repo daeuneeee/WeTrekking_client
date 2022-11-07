@@ -14,6 +14,7 @@ export const RankingBox = styled.section`
   background-size: cover;
   align-items: center;
   gap: 24px;
+  padding: 68px 0;
 `;
 
 export const RankingTitle = styled.span`

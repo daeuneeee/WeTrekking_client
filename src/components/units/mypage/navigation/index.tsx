@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import { mainColor } from "../../../../commons/styles/color";
 
 const mypageMenu = [
-  "내 정보",
-  "찜 리스트",
-  "신청 리스트",
-  "올린내역",
-  "충전내역",
-  "사용내역",
-  "정보수정",
+  { name: "내 정보", router: "/mypage" },
+  { name: "정보수정", router: "/mypage" },
+  { name: "찜 리스트", router: "/mypage/pickedlist" },
+  { name: "신청 리스트", router: "/mypage" },
+  { name: "올린내역", router: "/mypage" },
+  { name: "충전내역", router: "/mypage" },
+  { name: "사용내역", router: "/mypage" },
 ];
 
 const Wrapper = styled.div`
@@ -39,6 +40,12 @@ interface IPageProps {
 }
 
 const MyPageNav = ({ page }: IPageProps) => {
+  const router = useRouter();
+
+  const onClickToPage = (event) => {
+    void router.push(`${event.target.id}`);
+  };
+
   return (
     <Wrapper>
       <MyPageUl>
@@ -46,11 +53,13 @@ const MyPageNav = ({ page }: IPageProps) => {
           return (
             <MyPageLi
               style={{
-                borderBottom: page === el ? `4px solid ${mainColor}` : "",
-                color: page === el ? `${mainColor}` : "",
+                borderBottom: page === el.name ? `4px solid ${mainColor}` : "",
+                color: page === el.name ? `${mainColor}` : "",
               }}
+              id={el.router}
+              onClick={onClickToPage}
             >
-              {el}
+              {el.name}
             </MyPageLi>
           );
         })}

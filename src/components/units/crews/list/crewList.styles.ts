@@ -28,7 +28,6 @@ export const Ranking = styled.div`
   width: 384px;
   padding: 16px 12px;
   background: #fff;
-  border: 1px solid #d9d9d9;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   display: flex;
@@ -67,7 +66,6 @@ export const RankingNumBox = styled.div`
 
 export const RankingNum = styled.p`
   text-align: center;
-  padding-top: 5px;
   font-weight: 700;
   font-size: 1.6rem;
   color: #fff;
@@ -245,14 +243,18 @@ export const ListCrewsBox = styled.div`
   gap: 4px;
   align-items: center;
   margin-bottom: 12px;
+  .css-sxh3gq-MuiAvatar-root-MuiAvatarGroup-avatar {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
-export const ListCrewsImg = styled.div`
-  border: 1px solid blue;
-  border-radius: 100%;
-  width: 24px;
-  height: 24px;
-`;
+// export const ListCrewsImg = styled.div`
+//   border: 1px solid blue;
+//   border-radius: 100%;
+//   width: 24px;
+//   height: 24px;
+// `;
 
 export const ListCrewsNum = styled.span`
   font-weight: 400;

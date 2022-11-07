@@ -10,7 +10,7 @@ const mypageMenu = [
   { name: "신청 리스트", router: "/mypage/applylist" },
   { name: "올린내역", router: "/mypage/uploadlist" },
   { name: "충전내역", router: "/mypage/chargelist" },
-  { name: "사용내역", router: "/mypage" },
+  { name: "사용내역", router: "/mypage/uselist" },
 ];
 
 const Wrapper = styled.div`

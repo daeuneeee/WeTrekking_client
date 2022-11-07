@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
+import { mobile } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -9,13 +10,16 @@ export const Container = styled.section`
   width: 384px;
   margin: 0 auto;
   padding-top: 140px;
+  @media ${mobile} {
+    width: 90%;
+  }
 `;
 
 export const LoginTitle = styled.h2`
   font-size: 4.2rem;
   font-weight: 700;
   color: #2f4b2a;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
   span {
     display: block;
     margin: 12px 0 0 7px;
@@ -25,12 +29,12 @@ export const LoginTitle = styled.h2`
 
 export const LoginForm = styled.form`
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 export const LoginInputContainer = styled.div`
   width: 100%;
-  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
 `;
 
 export const LoginInputTitle = styled.p`
@@ -49,7 +53,7 @@ export const LoginSubList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 `;
 
 export const RememberIdBox = styled.div``;
@@ -77,7 +81,7 @@ export const FindIdAndPw = styled.button`
 export const LoginSubmit = styled.button`
   display: block;
   width: 100%;
-  height: 64px;
+  height: 6.4rem;
   border: none;
   border-radius: 4px;
   background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
@@ -92,7 +96,7 @@ export const SnsLoginTitleBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
 `;
 
 export const SnsTitleLine = styled.div`
@@ -110,8 +114,8 @@ export const SnsTitle = styled.h3`
 export const SnsLoginBtnBox = styled.div`
   display: flex;
   justify-content: center;
-  gap: 25px;
-  margin-bottom: 140px;
+  gap: 2.5rem;
+  margin-bottom: 14rem;
 `;
 
 export const SnsLoginBtn = styled.button`
@@ -127,7 +131,7 @@ export const JoinToMent = styled.p`
   font-weight: 400;
   color: #999;
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 8rem;
   span {
     color: #111;
     text-decoration: underline;

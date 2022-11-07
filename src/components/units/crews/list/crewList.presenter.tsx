@@ -86,7 +86,7 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               </Select>
               <S.Partition></S.Partition>
               <Space direction="vertical" size={12}>
-                <RangePicker placeholder={["시작 날짜", "끝 날짜"]} />
+                <RangePicker placeholder={["검색 시작 날짜", "검색 끝 날짜"]} />
               </Space>
               <S.Partition></S.Partition>
               <S.Search placeholder="검색어를 입력해주세요" />

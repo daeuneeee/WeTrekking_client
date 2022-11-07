@@ -3,7 +3,7 @@ import * as S from "./crewList.styles";
 import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 import { ICrewListUiProps } from "./crewList.types";
-import { Avatar } from "@mui/material";
+import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
 
 const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
@@ -119,7 +119,34 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
                         <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
                       </S.ListTitleBox>
                       <S.ListCrewsBox>
-                        <S.ListCrewsImg></S.ListCrewsImg>
+                        {/* <S.ListCrewsImg></S.ListCrewsImg> */}
+                        <AvatarGroup max={4}>
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            sx={{ width: 24, height: 24 }}
+                          />
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            sx={{ width: 24, height: 24 }}
+                          />
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            sx={{ width: 24, height: 24 }}
+                          />
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            sx={{ width: 24, height: 24 }}
+                          />
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            sx={{ width: 24, height: 24 }}
+                          />
+                        </AvatarGroup>
                         <S.ListCrewsNum>
                           모집인원 3/{listMap.peoples}
                         </S.ListCrewsNum>

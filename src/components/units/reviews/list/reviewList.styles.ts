@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mainColor } from "../../../../commons/styles/color";
+import { mainColor, subColor } from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -86,6 +86,13 @@ export const Write = styled.span`
 export const Title = styled.a`
   :hover {
     color: ${mainColor};
+  }
+  &.on {
+    font-weight: 500;
+    color: #fff;
+    background-color: ${subColor};
+    padding: 0 10px;
+    border-radius: 20px;
   }
 `;
 

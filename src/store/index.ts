@@ -9,3 +9,8 @@ export const isOpenSideBarState = atom({
   key: "isOpenSideBarState",
   default: false,
 });
+
+export const reviewIdState = atom({
+  key: "reviewIdState",
+  default: "",
+});

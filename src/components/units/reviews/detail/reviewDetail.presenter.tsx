@@ -5,10 +5,13 @@ import "antd/dist/antd.css";
 import ReviewCommentList from "../../reviewComment/list/reviewCommentList.container";
 import ReviewCommentWrite from "../../reviewComment/write";
 
-const ReviewDetailUi = () => {
+const ReviewDetailUi = ({ data, onClickX }) => {
   return (
     <>
       <S.Wrapper>
+        <S.XBox>
+          <S.XBtn onClick={onClickX}></S.XBtn>
+        </S.XBox>
         <S.ImgBox>
           <S.MainImg></S.MainImg>
           <S.SubImgBox>
@@ -32,13 +35,11 @@ const ReviewDetailUi = () => {
           </S.WriteProfile>
           <S.Location>설악산</S.Location>
           <S.RatingBox>
-            <Rate disabled defaultValue={2} />
+            <Rate disabled value={Number(data?.fetchReviewBoard.star)} />
           </S.RatingBox>
         </S.InformBox>
         <S.UnderLine></S.UnderLine>
-        <S.Review>
-          안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕
-        </S.Review>
+        <S.Review>{data?.fetchReviewBoard.review}</S.Review>
         <S.UnderLine></S.UnderLine>
         <S.CommentContainer>
           <ReviewCommentWrite />

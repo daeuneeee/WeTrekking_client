@@ -1,7 +1,7 @@
 import { Pagination } from "antd";
 import * as S from "./reviewList.styles";
 
-const ReviewListUi = ({ data, onClickList }) => {
+const ReviewListUi = ({ data, onClickList, reviewId }) => {
   return (
     <S.Wrapper>
       <S.Container>
@@ -17,8 +17,14 @@ const ReviewListUi = ({ data, onClickList }) => {
             <S.ContentUl key={ReviewsMap.id}>
               <S.ListLiNum>{Number(index) + 1}</S.ListLiNum>
               <S.ListLiMountain>백두산</S.ListLiMountain>
-              <S.ListLiTitle onClick={onClickList}>
-                <S.Title>{ReviewsMap.title}</S.Title>
+              <S.ListLiTitle>
+                <S.Title
+                  onClick={onClickList}
+                  id={ReviewsMap.id}
+                  className={reviewId === ReviewsMap.id ? "on" : ""}
+                >
+                  {ReviewsMap.title}
+                </S.Title>
               </S.ListLiTitle>
               <S.ListLiWrite>
                 <S.Write>춘딩딩</S.Write>

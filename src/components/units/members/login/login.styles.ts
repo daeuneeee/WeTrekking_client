@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 export const Container = styled.section`
   width: 384px;
   margin: 0 auto;
-  padding-top: 140px;
+  padding-top: 14rem;
   @media ${mobile} {
     width: 90%;
   }

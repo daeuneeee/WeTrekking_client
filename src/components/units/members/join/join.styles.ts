@@ -13,7 +13,7 @@ export const JoinEmailBox = styled.div`
 `;
 
 export const JoinPhoneBox = styled(JoinEmailBox)`
-  margin-bottom: 26px;
+  margin-bottom: 2.6rem;
 `;
 
 export const EmailInputBox = styled.div`
@@ -21,7 +21,7 @@ export const EmailInputBox = styled.div`
 `;
 export const EmailSelectBox = styled.select`
   width: 100%;
-  height: 52px;
+  height: 5.2rem;
   border: 1px solid #d9d9d9;
   padding: 0 12px;
   border-radius: 4px;
@@ -33,14 +33,14 @@ export const EmailSelectBox = styled.select`
 
 export const CheckBtn = styled.button`
   width: 100%;
-  height: 52px;
+  height: 5.2rem;
   border: 1px solid ${mainColor};
   font-size: 1.6rem;
   font-weight: 700;
   color: ${mainColor};
   background: none;
   cursor: pointer;
-  margin: -10px 0 30px;
+  margin: -1rem 0 3rem;
   border-radius: 4px;
 `;
 
@@ -87,20 +87,23 @@ export const GenderLabel2 = styled(GenderLabel)`
 export const PhotoUploadBox = styled.label`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
   cursor: pointer;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 `;
 
 export const ProfileUploadBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 68px;
-  height: 68px;
+  width: 6.8rem;
+  height: 6.8rem;
   border-radius: 50%;
   border: 1px solid #d9d9d9;
   background-color: #f6f6f6;
+  img {
+    width: 2.4rem;
+  }
 `;
 
 export const ProfileUploadText = styled.p`
@@ -115,7 +118,7 @@ export const InputFile = styled.input`
 
 export const SubmitJoinBtn = styled.button`
   width: 100%;
-  height: 72px;
+  height: 7.2rem;
   border: none;
   background-color: ${mainColor};
   font-size: 1.8rem;
@@ -123,7 +126,7 @@ export const SubmitJoinBtn = styled.button`
   color: #fff;
   cursor: pointer;
   border-radius: 4px;
-  margin-bottom: 100px;
+  margin-bottom: 10rem;
 `;
 
 export const GenderRadio = styled.input`
@@ -133,7 +136,7 @@ export const GenderRadio = styled.input`
 export const PhoneInput = styled.input`
   display: block;
   width: 100%;
-  height: 52px;
+  height: 5.2rem;
   border: 1px solid #d9d9d9;
   padding: 0 12px;
   border-radius: 4px;

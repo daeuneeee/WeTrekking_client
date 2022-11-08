@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   width: 792px;
   margin: 80px auto 100px;
+  min-height: calc(100vh - 611px);
 `;
 
 export const ChargeContainer = styled.section`

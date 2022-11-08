@@ -217,7 +217,7 @@ const Header = () => {
     try {
       logout();
       setAccessToken("");
-      // alert("로그아웃 되었습니다.");
+      alert("로그아웃 되었습니다.");
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);

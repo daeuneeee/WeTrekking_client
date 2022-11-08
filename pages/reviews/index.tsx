@@ -1,41 +1,18 @@
-import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import ReviewDetailPage from "./[reviewId]";
-
-const FETCH_REVIEWS = gql`
-  query fetchReviewBoards {
-    fetchReviewBoards {
-      id
-      title
-      review
-      star
-      like
-    }
-  }
-`;
+import { useRecoilState } from "recoil";
+import ReviewDetail from "../../src/components/units/reviews/detail/reviewDetail.container";
+import ReviewList from "../../src/components/units/reviews/list/reviewList.container";
+import { isOpenSideBarState } from "../../src/store";
 
 const ReviewListPage = () => {
-  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
-
-  const { data } = useQuery(FETCH_REVIEWS);
-  console.log(data);
-  const onClickHello = () => {
-    setIsOpenSideBar((prev) => !prev);
-  };
+  const [isOpenSideBar] = useRecoilState(isOpenSideBarState);
 
   return (
     <Wrapper>
-      {data?.fetchReviewBoards.map((ReviewsMap) => (
-        <Container onClick={onClickHello} key={ReviewsMap.id}>
-          <div>제목: {ReviewsMap.title}</div>
-          <div>내용: {ReviewsMap.review}</div>
-        </Container>
-      ))}
+      <ReviewList />
       {isOpenSideBar && (
         <ReviewWrapper>
-          <ReviewDetailPage />
+          <ReviewDetail />
         </ReviewWrapper>
       )}
     </Wrapper>
@@ -55,9 +32,4 @@ const ReviewWrapper = styled.div`
   width: 75%;
   height: 100vh;
   overflow-y: scroll;
-`;
-
-const Container = styled.div`
-  width: 100px;
-  height: 100px;
 `;

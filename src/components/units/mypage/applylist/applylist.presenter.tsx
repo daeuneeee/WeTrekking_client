@@ -10,14 +10,14 @@ const ApplyListUi = () => {
       <S.Container>
         <S.ApplyListContainer>
           <S.TitleUl>
-            <S.ListLiNum>No.</S.ListLiNum>
+            <S.ListLiNum className="mobile">No.</S.ListLiNum>
             <S.ListLiMountain>산 이름</S.ListLiMountain>
             <S.ListLiTitle>제목</S.ListLiTitle>
             <S.ListLiSign>상태</S.ListLiSign>
             <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
           <S.ContentUl>
-            <S.ListLiNum>1</S.ListLiNum>
+            <S.ListLiNum className="mobile">1</S.ListLiNum>
             <S.ListLiMountain>백두산</S.ListLiMountain>
             <S.ListLiTitle>
               <a>백두산 가실분 구합니다.</a>

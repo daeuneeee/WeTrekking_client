@@ -141,7 +141,9 @@ export const Date = styled(Space)`
 `;
 
 export const Time = styled(TimePicker)`
-  border-radius: 4px;
+  &.ant-picker {
+    border-radius: 4px;
+  }
   height: 52px;
   width: 285px;
   &.ant-picker-focused {

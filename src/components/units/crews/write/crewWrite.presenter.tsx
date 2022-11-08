@@ -19,6 +19,7 @@ const CrewWriteUi = ({
   onChangePeople,
   onClickToRegister,
   address,
+  disabledDate,
 }: ICrewWriteUiProps) => {
   return (
     <form onSubmit={handleSubmit(onClickToRegister)}>
@@ -60,6 +61,7 @@ const CrewWriteUi = ({
             <S.DateBox>
               <S.Date direction="vertical">
                 <DatePicker
+                  disabledDate={disabledDate}
                   onChange={onChangeDate}
                   placeholder="등록 날짜를 선택해주세요."
                 />

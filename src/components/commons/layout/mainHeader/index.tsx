@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  padding: 24px 0;
+  padding: 2.4rem 0;
   z-index: 9999;
 
   @media (min-width: 1200px) {

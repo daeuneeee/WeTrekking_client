@@ -10,6 +10,7 @@ const LoginUi = ({
   register,
   handleSubmit,
   onClickLogin,
+  onClickToFindId,
 }: ILoginUiProps) => {
   return (
     <S.Wrapper>
@@ -54,7 +55,9 @@ const LoginUi = ({
                 <span>아이디 기억하기</span>
               </S.RememberId>
             </S.RememberIdBox>
-            <S.FindIdAndPw type="button">아이디 / 비밀번호 찾기</S.FindIdAndPw>
+            <S.FindIdAndPw type="button" onClick={onClickToFindId}>
+              아이디 / 비밀번호 찾기
+            </S.FindIdAndPw>
           </S.LoginSubList>
           <S.LoginSubmit>로그인</S.LoginSubmit>
         </S.LoginForm>

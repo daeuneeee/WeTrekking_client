@@ -29,12 +29,18 @@ const Login = () => {
     void router.push("/join");
   };
 
+  const onClickToFindId = () => {
+    void router.push("/findid");
+  };
+
   const onClickLogin = async (data: ILoginProps) => {
     try {
+      console.log(data);
       const result = await login({
         variables: data,
       });
       setAccessToken(result.data.login);
+      alert("로그인 성공");
       void router.push("/crews");
     } catch (error) {
       if (error instanceof Error) {
@@ -51,6 +57,7 @@ const Login = () => {
       register={register}
       handleSubmit={handleSubmit}
       onClickLogin={onClickLogin}
+      onClickToFindId={onClickToFindId}
     />
   );
 };

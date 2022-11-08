@@ -7,6 +7,7 @@ export interface ILoginUiProps {
   register: any;
   handleSubmit: any;
   onClickLogin: (data: ILoginProps) => void;
+  onClickToFindId: () => void;
 }
 
 export interface ILoginProps {

@@ -1,6 +1,7 @@
 import * as S from "./main.styles";
+import { IMainUi } from "./main.types";
 
-const MainUi = () => {
+const MainUi = ({ onClickToCrewList }: IMainUi) => {
   return (
     <S.Wrapper>
       <S.Container
@@ -33,7 +34,9 @@ const MainUi = () => {
       >
         <S.MainTextBox>
           <img src="/images/main/main-text.png" alt="" />
-          <S.CrewFindBtn>크루 만나러가기</S.CrewFindBtn>
+          <S.CrewFindBtn onClick={onClickToCrewList}>
+            크루 만나러가기
+          </S.CrewFindBtn>
         </S.MainTextBox>
       </S.Container>
     </S.Wrapper>

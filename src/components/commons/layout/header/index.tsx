@@ -149,6 +149,7 @@ const MLoginBtn = styled.button`
   font-weight: 700;
   color: ${mainColor};
   background: none;
+  cursor: pointer;
 `;
 
 const MJoinBtn = styled(MLoginBtn)`
@@ -169,6 +170,7 @@ const MMenuList = styled.li`
   font-size: 2.4rem;
   font-weight: 700;
   color: #111;
+  cursor: pointer;
 `;
 
 const LOGOUT = gql`
@@ -190,18 +192,22 @@ const Header = () => {
 
   const onClickToCrews = () => {
     void router.push("/crews");
+    setIsActive(false);
   };
 
   const onClickToReview = () => {
     void router.push("/reviews");
+    setIsActive(false);
   };
 
   const onClickToLogin = () => {
     void router.push("/login");
+    setIsActive(false);
   };
 
   const onClickToJoin = () => {
     void router.push("/join");
+    setIsActive(false);
   };
 
   const onClickToMypage = () => {
@@ -270,12 +276,12 @@ const Header = () => {
       {isActive && (
         <MMenuContainer>
           <MSubMenuBox>
-            <MLoginBtn>로그인</MLoginBtn>
-            <MJoinBtn>회원가입</MJoinBtn>
+            <MLoginBtn onClick={onClickToLogin}>로그인</MLoginBtn>
+            <MJoinBtn onClick={onClickToJoin}>회원가입</MJoinBtn>
           </MSubMenuBox>
           <MMenu>
-            <MMenuList>게시글 리스트</MMenuList>
-            <MMenuList>리뷰 리스트</MMenuList>
+            <MMenuList onClick={onClickToCrews}>게시글 리스트</MMenuList>
+            <MMenuList onClick={onClickToReview}>리뷰 리스트</MMenuList>
           </MMenu>
         </MMenuContainer>
       )}

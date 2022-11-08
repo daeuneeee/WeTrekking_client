@@ -58,7 +58,7 @@ export const ListLiSign = styled.li`
   text-align: center;
   position: relative;
 `;
-export const ListLiCancle = styled.li`
+export const ListLiCancel = styled.li`
   width: 8%;
   font-size: 1.6rem;
   font-weight: 500;
@@ -85,7 +85,7 @@ export const SignBtn = styled.div`
   margin: 0 auto;
 `;
 
-export const CancleBtn = styled.button`
+export const CancelBtn = styled.button`
   width: 96px;
   padding: 0.9rem 0;
   border: none;
@@ -94,12 +94,12 @@ export const CancleBtn = styled.button`
   cursor: pointer;
 `;
 
-export const CancleMent = styled.span`
+export const CancelMent = styled.span`
   font-size: 1.6rem;
   font-weight: 400;
   color: #fff;
   padding-left: 17px;
-  background: url("/images/mypage/cancle.png") no-repeat left center;
+  background: url("/images/mypage/Cancel.png") no-repeat left center;
 `;
 
 export const PaginationContainer = styled.div`

@@ -95,7 +95,7 @@ export const UserBtnBox = styled.div`
   gap: 12px;
 `;
 
-export const UserCancleBtn = styled.button`
+export const UserCancelBtn = styled.button`
   border: none;
   background: none;
   outline: none;
@@ -105,11 +105,11 @@ export const UserCancleBtn = styled.button`
   color: #999;
 `;
 
-export const UserOkBtn = styled(UserCancleBtn)`
+export const UserOkBtn = styled(UserCancelBtn)`
   color: ${mainColor};
 `;
 
-export const ModalCancleBtn = styled.button`
+export const ModalCancelBtn = styled.button`
   display: block;
   margin: 25px auto 0;
   width: 65px;

@@ -14,7 +14,7 @@ const ApplyListUi = () => {
             <S.ListLiMountain>산 이름</S.ListLiMountain>
             <S.ListLiTitle>제목</S.ListLiTitle>
             <S.ListLiSign>상태</S.ListLiSign>
-            <S.ListLiCancle>취소</S.ListLiCancle>
+            <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
           <S.ContentUl>
             <S.ListLiNum>1</S.ListLiNum>
@@ -25,11 +25,11 @@ const ApplyListUi = () => {
             <S.ListLiSign>
               <S.SignBtn>승인</S.SignBtn>
             </S.ListLiSign>
-            <S.ListLiCancle>
-              <S.CancleBtn>
-                <S.CancleMent>취소하기</S.CancleMent>
-              </S.CancleBtn>
-            </S.ListLiCancle>
+            <S.ListLiCancel>
+              <S.CancelBtn>
+                <S.CancelMent>취소하기</S.CancelMent>
+              </S.CancelBtn>
+            </S.ListLiCancel>
           </S.ContentUl>
         </S.ApplyListContainer>
         <S.PaginationContainer>

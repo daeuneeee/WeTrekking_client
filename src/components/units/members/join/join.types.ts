@@ -13,15 +13,20 @@ export interface IJoinUiProps {
   handleSubmit: any;
   onClickJoinSubmit: (data: IJoinData) => void;
   formState: any;
+  isUpdate: boolean;
 }
 
 export interface IJoinData {
   email: string;
   password: string;
-  passwordConfirm?: string
+  passwordConfirm?: string;
   name: string;
   nickname: string;
   phone: string;
   gender: string;
   profile_img: string;
+}
+
+export interface IJoinProps {
+  isUpdate: boolean;
 }

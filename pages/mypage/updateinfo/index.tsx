@@ -1,7 +1,7 @@
-import Join from "../../../src/components/units/members/join/join.container";
+import UpdateInfoUi from "../../../src/components/units/mypage/updateinfo";
 
 const UpdateInfoPage = () => {
-  return <Join />;
+  return <UpdateInfoUi isUpdate={true} />;
 };
 
 export default UpdateInfoPage;

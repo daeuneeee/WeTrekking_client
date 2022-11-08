@@ -1,6 +1,9 @@
 import MyPageNav from "../navigation";
 import * as S from "../chargelist/chargelist.styles";
 import * as A from "./uselist.styles";
+import * as D from "../applylist/applylist.styles";
+import { Pagination } from "antd";
+import "antd/dist/antd.css";
 
 const UseListUi = () => {
   return (
@@ -19,6 +22,9 @@ const UseListUi = () => {
             <S.ListLiSign>2,0000P</S.ListLiSign>
           </S.ContentUl>
         </S.ChargeContainer>
+        <D.PaginationContainer>
+          <Pagination defaultCurrent={1} total={50} />
+        </D.PaginationContainer>
       </S.Container>
     </S.Wrapper>
   );

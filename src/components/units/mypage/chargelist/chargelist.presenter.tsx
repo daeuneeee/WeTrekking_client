@@ -1,5 +1,7 @@
 import MyPageNav from "../navigation";
 import * as S from "./chargelist.styles";
+import * as A from "../applylist/applylist.styles";
+import { Pagination } from "antd";
 
 const ChargeListUi = () => {
   return (
@@ -38,6 +40,9 @@ const ChargeListUi = () => {
             </S.ListLiSign>
           </S.ContentUl>
         </S.ChargeContainer>
+        <A.PaginationContainer>
+          <Pagination defaultCurrent={1} total={50} />
+        </A.PaginationContainer>
       </S.Container>
     </S.Wrapper>
   );

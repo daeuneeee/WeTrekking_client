@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
   const { Option } = Select;
-  const { RangePicker }: any = DatePicker;
+  // const { RangePicker }: any = DatePicker;
 
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -23,7 +23,7 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               <Avatar
                 alt="Crew Image"
                 src="/images/commons/profile-img.png"
-                sx={{ width: 68, height: 68 }}
+                className="avatar"
               ></Avatar>
               <S.RankingInform>
                 <S.RankingNickName>춘딩딩</S.RankingNickName>
@@ -38,7 +38,7 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               <Avatar
                 alt="Crew Image"
                 src="/images/commons/profile-img.png"
-                sx={{ width: 68, height: 68 }}
+                className="avatar"
               ></Avatar>
               <S.RankingInform>
                 <S.RankingNickName>땅오</S.RankingNickName>
@@ -52,7 +52,7 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               <Avatar
                 alt="Crew Image"
                 src="/images/commons/profile-img.png"
-                sx={{ width: 68, height: 68 }}
+                className="avatar"
               ></Avatar>
               <S.RankingInform>
                 <S.RankingNickName>짱구</S.RankingNickName>
@@ -75,23 +75,27 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
               </S.OrderBox>
             </S.TitleBox>
             <S.SearchBox>
-              <Select
-                defaultValue="서울"
-                style={{ width: 120 }}
-                onChange={handleChange}
-              >
-                <Option value="서울">서울</Option>
-                <Option value="경기도">경기도</Option>
-                <Option value="인천">인천</Option>
-              </Select>
-              <S.Partition></S.Partition>
-              <Space direction="vertical" size={12}>
-                <RangePicker placeholder={["검색 시작 날짜", "검색 끝 날짜"]} />
-              </Space>
+              <S.SelectDateBox>
+                <S.SelectAntD
+                  defaultValue="서울"
+                  // style={{ width: 120 }}
+                  onChange={handleChange}
+                >
+                  <Option value="서울">서울</Option>
+                  <Option value="경기도">경기도</Option>
+                  <Option value="인천">인천</Option>
+                </S.SelectAntD>
+                <S.Partition></S.Partition>
+                <Space direction="vertical">
+                  <S.DateAntD placeholder={["시작 날짜", "끝 날짜"]} />
+                </Space>
+              </S.SelectDateBox>
               <S.Partition></S.Partition>
               <S.Search placeholder="검색어를 입력해주세요" />
-              <S.SearchBtn>검색</S.SearchBtn>
-              <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>
+              <S.SearchBtnBox>
+                <S.SearchBtn>검색</S.SearchBtn>
+                <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>
+              </S.SearchBtnBox>
             </S.SearchBox>
           </S.Header>
           <S.Body>

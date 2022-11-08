@@ -88,11 +88,9 @@ export const Title = styled.a`
     color: ${mainColor};
   }
   &.on {
-    font-weight: 500;
-    color: #fff;
-    background-color: ${subColor};
-    padding: 0 10px;
-    border-radius: 20px;
+    color: ${subColor};
+    font-weight: 700;
+    text-decoration: underline;
   }
 `;
 

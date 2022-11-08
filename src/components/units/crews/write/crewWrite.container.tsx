@@ -5,6 +5,8 @@ import type { DatePickerProps } from "antd";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { CREATE_CREW_BOARD_T } from "./crewWrite.queries";
+import moment from "moment";
+import { RangePickerProps } from "antd/lib/date-picker";
 
 const CrewWrite = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +48,10 @@ const CrewWrite = () => {
     setPeople(event);
   };
 
+  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
+    return current && current < moment().endOf("day");
+  };
+
   const onClickToRegister = async (data: IFormData) => {
     data.date = date;
     data.dateTime = time;
@@ -72,6 +78,7 @@ const CrewWrite = () => {
       handleSubmit={handleSubmit}
       onClickToRegister={onClickToRegister}
       address={address}
+      disabledDate={disabledDate}
     />
   );
 };

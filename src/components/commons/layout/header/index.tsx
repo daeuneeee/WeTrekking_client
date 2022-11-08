@@ -9,13 +9,12 @@ import { accessTokenState } from "../../../../store";
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 24px 0;
+  padding: 2.4rem 0;
   z-index: 9999;
   background-color: #fff;
   @media ${tablet} {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
+    position: sticky;
+    left: 0;
   }
 `;
 

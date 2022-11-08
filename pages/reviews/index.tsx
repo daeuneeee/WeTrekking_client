@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import ReviewDetail from "../../src/components/units/reviews/detail/reviewDetail.container";
 import ReviewList from "../../src/components/units/reviews/list/reviewList.container";
-import { isOpenSideBarState } from "../../src/store";
+import { isOpenSideBarState, reviewIdState } from "../../src/store";
 
 const ReviewListPage = () => {
   const [isOpenSideBar] = useRecoilState(isOpenSideBarState);

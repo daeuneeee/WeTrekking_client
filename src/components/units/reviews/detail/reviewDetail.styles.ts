@@ -6,6 +6,21 @@ export const Wrapper = styled.div`
   margin: 40px auto;
 `;
 
+export const XBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2%;
+`;
+
+export const XBtn = styled.div`
+  width: 30px;
+  height: 30px;
+  background: url("/images/commons/menu-off.png") no-repeat center center;
+  background-size: 3rem;
+  cursor: pointer;
+`;
+
 export const ImgBox = styled.div`
   display: flex;
   flex-direction: column;

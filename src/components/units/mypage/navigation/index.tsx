@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import { mainColor } from "../../../../commons/styles/color";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 const mypageMenu = [
   { name: "내 정보", router: "/mypage" },
@@ -18,21 +19,28 @@ const Wrapper = styled.div`
   border-top: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
   background-color: #fff;
+  overflow-x: auto;
 `;
 
 const MyPageUl = styled.ul`
+  width: 920px;
   display: flex;
-  justify-content: center;
-  gap: 7rem;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0;
+  margin: 0 auto;
+  @media ${mobile} {
+    width: 500px;
+    padding: 0 30px;
+    overflow-x: auto;
+  }
 `;
 
 const MyPageLi = styled.li`
+  display: block;
   font-size: 1.8rem;
   font-weight: 700;
   color: #999;
-  padding: 40px 0;
+  padding: 4rem 0;
   box-sizing: content-box;
   cursor: pointer;
 `;

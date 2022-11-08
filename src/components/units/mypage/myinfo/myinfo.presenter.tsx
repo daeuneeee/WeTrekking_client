@@ -9,11 +9,7 @@ const MyInfoUi = () => {
       <S.ProfileWrapper>
         <S.ProfileBox>
           <S.ProfileBody>
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 120, height: 120 }}
-            />
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             <S.ProfileName>유저 이름</S.ProfileName>
             <S.ProfileEmail>cjt3591@gmail.com</S.ProfileEmail>
             <S.GenderPhoneBox>
@@ -32,12 +28,11 @@ const MyInfoUi = () => {
           </S.ProfilePointBox>
         </S.ProfileBox>
       </S.ProfileWrapper>
-      <S.BannerContainer
-        style={{ backgroundImage: `url(/images/mypage/banner01.png)` }}
-      >
+      <S.BannerContainer>
         <S.BannerContents>
           <S.BannerMent>
-            지금 포인트를 충전하고 <span>다양한 크루를 만나보세요!</span>
+            지금 포인트를 충전하고 <br className="mobile" />{" "}
+            <span>다양한 크루를 만나보세요!</span>
           </S.BannerMent>
           <S.GoPoint>포인트 충전하기 &gt; </S.GoPoint>
         </S.BannerContents>
@@ -55,26 +50,30 @@ const MyInfoUi = () => {
               </S.ListMountainDate>
               <S.ListWriterT>모집자</S.ListWriterT>
               <S.ListWriterInfoBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{ width: 50, height: 50 }}
-                />
-                <S.ListWriterInfo>
-                  <S.ListWriterName>깜장이</S.ListWriterName>
-                  <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                </S.ListWriterInfo>
+                <S.ListWriterInfoContainer>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <S.ListWriterInfo>
+                    <S.ListWriterName>깜장이</S.ListWriterName>
+                    <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
+                  </S.ListWriterInfo>
+                </S.ListWriterInfoContainer>
+                <AvatarGroup max={6} spacing={"small"}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
+                  />
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
               </S.ListWriterInfoBox>
-              <AvatarGroup max={6} spacing={"small"}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
-                />
-              </AvatarGroup>
             </S.MyMListInfoBox>
           </S.MyMListBox>
           <S.MyMListBox>
@@ -87,26 +86,30 @@ const MyInfoUi = () => {
               </S.ListMountainDate>
               <S.ListWriterT>모집자</S.ListWriterT>
               <S.ListWriterInfoBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{ width: 50, height: 50 }}
-                />
-                <S.ListWriterInfo>
-                  <S.ListWriterName>깜장이</S.ListWriterName>
-                  <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                </S.ListWriterInfo>
+                <S.ListWriterInfoContainer>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <S.ListWriterInfo>
+                    <S.ListWriterName>깜장이</S.ListWriterName>
+                    <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
+                  </S.ListWriterInfo>
+                </S.ListWriterInfoContainer>
+                <AvatarGroup max={6} spacing={"small"}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
+                  />
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
               </S.ListWriterInfoBox>
-              <AvatarGroup max={6} spacing={"small"}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
-                />
-              </AvatarGroup>
             </S.MyMListInfoBox>
           </S.MyMListBox>
           <S.MyMListBox>
@@ -119,26 +122,30 @@ const MyInfoUi = () => {
               </S.ListMountainDate>
               <S.ListWriterT>모집자</S.ListWriterT>
               <S.ListWriterInfoBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{ width: 50, height: 50 }}
-                />
-                <S.ListWriterInfo>
-                  <S.ListWriterName>깜장이</S.ListWriterName>
-                  <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                </S.ListWriterInfo>
+                <S.ListWriterInfoContainer>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <S.ListWriterInfo>
+                    <S.ListWriterName>깜장이</S.ListWriterName>
+                    <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
+                  </S.ListWriterInfo>
+                </S.ListWriterInfoContainer>
+                <AvatarGroup max={6} spacing={"small"}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
+                  />
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
               </S.ListWriterInfoBox>
-              <AvatarGroup max={6} spacing={"small"}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
-                />
-              </AvatarGroup>
             </S.MyMListInfoBox>
           </S.MyMListBox>
           <S.MyMListBox>
@@ -151,26 +158,30 @@ const MyInfoUi = () => {
               </S.ListMountainDate>
               <S.ListWriterT>모집자</S.ListWriterT>
               <S.ListWriterInfoBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{ width: 50, height: 50 }}
-                />
-                <S.ListWriterInfo>
-                  <S.ListWriterName>깜장이</S.ListWriterName>
-                  <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                </S.ListWriterInfo>
+                <S.ListWriterInfoContainer>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <S.ListWriterInfo>
+                    <S.ListWriterName>깜장이</S.ListWriterName>
+                    <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
+                  </S.ListWriterInfo>
+                </S.ListWriterInfoContainer>
+                <AvatarGroup max={6} spacing={"small"}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
+                  />
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
               </S.ListWriterInfoBox>
-              <AvatarGroup max={6} spacing={"small"}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
-                />
-              </AvatarGroup>
             </S.MyMListInfoBox>
           </S.MyMListBox>
           <S.MyMListBox>
@@ -183,26 +194,30 @@ const MyInfoUi = () => {
               </S.ListMountainDate>
               <S.ListWriterT>모집자</S.ListWriterT>
               <S.ListWriterInfoBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{ width: 50, height: 50 }}
-                />
-                <S.ListWriterInfo>
-                  <S.ListWriterName>깜장이</S.ListWriterName>
-                  <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                </S.ListWriterInfo>
+                <S.ListWriterInfoContainer>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <S.ListWriterInfo>
+                    <S.ListWriterName>깜장이</S.ListWriterName>
+                    <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
+                  </S.ListWriterInfo>
+                </S.ListWriterInfoContainer>
+                <AvatarGroup max={6} spacing={"small"}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
+                  />
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
               </S.ListWriterInfoBox>
-              <AvatarGroup max={6} spacing={"small"}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
-                />
-              </AvatarGroup>
             </S.MyMListInfoBox>
           </S.MyMListBox>
           <S.MyMListBox>
@@ -215,26 +230,30 @@ const MyInfoUi = () => {
               </S.ListMountainDate>
               <S.ListWriterT>모집자</S.ListWriterT>
               <S.ListWriterInfoBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{ width: 50, height: 50 }}
-                />
-                <S.ListWriterInfo>
-                  <S.ListWriterName>깜장이</S.ListWriterName>
-                  <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                </S.ListWriterInfo>
+                <S.ListWriterInfoContainer>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <S.ListWriterInfo>
+                    <S.ListWriterName>깜장이</S.ListWriterName>
+                    <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
+                  </S.ListWriterInfo>
+                </S.ListWriterInfoContainer>
+                <AvatarGroup max={6} spacing={"small"}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
+                  />
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
               </S.ListWriterInfoBox>
-              <AvatarGroup max={6} spacing={"small"}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
-                />
-              </AvatarGroup>
             </S.MyMListInfoBox>
           </S.MyMListBox>
         </S.MyMListContainer>

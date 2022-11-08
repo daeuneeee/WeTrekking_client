@@ -13,9 +13,8 @@ const Wrapper = styled.div`
   z-index: 9999;
   background-color: #fff;
   @media ${tablet} {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
+    position: sticky;
+    left: 0;
   }
 `;
 

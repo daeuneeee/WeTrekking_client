@@ -23,6 +23,7 @@ interface IInputProps01 {
   maxLength: number;
   name: string;
   register: any;
+  isUpdate: boolean;
 }
 
 const Input01 = (props: IInputProps01) => {
@@ -32,6 +33,7 @@ const Input01 = (props: IInputProps01) => {
       placeholder={props.placeholder}
       maxLength={props.maxLength}
       {...props.register(props.name)}
+      disabled={props.isUpdate ? true : false}
     />
   );
 };

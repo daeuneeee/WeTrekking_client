@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import JoinUi from "./join.presenter";
 import { CREATE_USER } from "./join.queries";
-import { IJoinData } from "./join.types";
+import { IJoinData, IJoinProps } from "./join.types";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
@@ -32,7 +32,7 @@ const joinYup = yup.object({
   nickname: yup.string().required("닉네임은 필수 입력사항 입니다."),
 });
 
-const Join = () => {
+const Join = ({ isUpdate }: IJoinProps) => {
   const [isGenderCheck, setIsGenderCheck] = useState("male");
   const [phone01, setPhone01] = useState("");
   const [phone02, setPhone02] = useState("");
@@ -53,7 +53,7 @@ const Join = () => {
   >(CREATE_USER);
 
   const { register, handleSubmit, setValue, formState } = useForm({
-    resolver: yupResolver(joinYup),
+    resolver: isUpdate ? undefined : yupResolver(joinYup),
     mode: "onChange",
   });
 
@@ -117,6 +117,7 @@ const Join = () => {
       handleSubmit={handleSubmit}
       onClickJoinSubmit={onClickJoinSubmit}
       formState={formState}
+      isUpdate={isUpdate}
     />
   );
 };

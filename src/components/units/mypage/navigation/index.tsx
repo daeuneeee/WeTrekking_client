@@ -5,7 +5,7 @@ import { mainColor } from "../../../../commons/styles/color";
 
 const mypageMenu = [
   { name: "내 정보", router: "/mypage" },
-  { name: "정보수정", router: "/mypage" },
+  { name: "정보수정", router: "/mypage/updateinfo" },
   { name: "찜 리스트", router: "/mypage/pickedlist" },
   { name: "신청 리스트", router: "/mypage/applylist" },
   { name: "올린내역", router: "/mypage/uploadlist" },

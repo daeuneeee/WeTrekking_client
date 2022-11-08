@@ -17,17 +17,19 @@ const JoinUi = ({
   handleSubmit,
   onClickJoinSubmit,
   formState,
+  isUpdate,
 }: IJoinUiProps) => {
   return (
     <A.Wrapper>
       <A.Container>
         <S.JoinForm onSubmit={handleSubmit(onClickJoinSubmit)}>
           <A.LoginTitle>
-            We Trekking<span>회원가입</span>
+            We Trekking
+            <span>{isUpdate ? "정보수정" : "회원가입"}</span>
           </A.LoginTitle>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              이메일<span>*</span>
+              이메일 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <S.JoinEmailBox>
               <S.EmailInputBox>
@@ -37,15 +39,17 @@ const JoinUi = ({
                   maxLength={50}
                   name="email"
                   register={register}
+                  isUpdate={isUpdate}
                 />
               </S.EmailInputBox>
             </S.JoinEmailBox>
             <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.CheckBtn type="button">중복확인</S.CheckBtn>
+          {isUpdate ? null : <S.CheckBtn type="button">중복확인</S.CheckBtn>}
+
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              비밀번호<span>*</span>
+              비밀번호 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <Input01
               type="password"
@@ -53,12 +57,13 @@ const JoinUi = ({
               maxLength={20}
               name="password"
               register={register}
+              isUpdate={false}
             />
             <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              비밀번호 확인<span>*</span>
+              비밀번호 확인 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <Input01
               type="password"
@@ -66,13 +71,14 @@ const JoinUi = ({
               maxLength={20}
               name="passwordConfirm"
               register={register}
+              isUpdate={false}
             />
             <S.ErrorMsg>{formState.errors.password?.message}</S.ErrorMsg>
             <S.ErrorMsg>{formState.errors.passwordConfirm?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              이름<span>*</span>
+              이름 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <Input01
               type="text"
@@ -80,12 +86,13 @@ const JoinUi = ({
               maxLength={51}
               name="name"
               register={register}
+              isUpdate={isUpdate}
             />
             <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              닉네임<span>*</span>
+              닉네임 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <Input01
               type="text"
@@ -93,13 +100,14 @@ const JoinUi = ({
               maxLength={51}
               name="nickname"
               register={register}
+              isUpdate={false}
             />
             <S.ErrorMsg>{formState.errors.nickname?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <S.CheckBtn type="button">중복확인</S.CheckBtn>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              휴대전화<span>*</span>
+              휴대전화 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <S.JoinPhoneBox>
               <S.PhoneInputBox>
@@ -136,50 +144,53 @@ const JoinUi = ({
             </S.JoinPhoneBox>
             <S.PhoneAuthBtn type="button">인증번호 받기</S.PhoneAuthBtn>
           </A.LoginInputContainer>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>
-              성별<span>*</span>
-            </A.LoginInputTitle>
-            <S.GenderSelectBox>
-              <S.GenderRadio
-                type="radio"
-                value="male"
-                name="gender"
-                id="male"
-                onChange={onChangeGenderCheck}
-                checked={isGenderCheck === "male"}
-              />
-              <S.GenderRadio
-                type="radio"
-                value="female"
-                name="gender"
-                id="female"
-                onChange={onChangeGenderCheck}
-                checked={isGenderCheck === "female"}
-              />
-              <S.GenderLabel
-                htmlFor="male"
-                style={{
-                  backgroundColor:
-                    isGenderCheck === "male" ? mainColor : "#fff",
-                  color: isGenderCheck === "male" ? "#fff" : "#999",
-                }}
-              >
-                남성
-              </S.GenderLabel>
-              <S.GenderLabel2
-                htmlFor="female"
-                style={{
-                  backgroundColor:
-                    isGenderCheck === "female" ? mainColor : "#fff",
-                  color: isGenderCheck === "female" ? "#fff" : "#999",
-                }}
-              >
-                여성
-              </S.GenderLabel2>
-            </S.GenderSelectBox>
-            <S.ErrorMsg>{formState.errors.gender?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
+          {isUpdate ? null : (
+            <A.LoginInputContainer>
+              <A.LoginInputTitle>
+                성별<span>*</span>
+              </A.LoginInputTitle>
+              <S.GenderSelectBox>
+                <S.GenderRadio
+                  type="radio"
+                  value="male"
+                  name="gender"
+                  id="male"
+                  onChange={onChangeGenderCheck}
+                  checked={isGenderCheck === "male"}
+                />
+                <S.GenderRadio
+                  type="radio"
+                  value="female"
+                  name="gender"
+                  id="female"
+                  onChange={onChangeGenderCheck}
+                  checked={isGenderCheck === "female"}
+                />
+                <S.GenderLabel
+                  htmlFor="male"
+                  style={{
+                    backgroundColor:
+                      isGenderCheck === "male" ? mainColor : "#fff",
+                    color: isGenderCheck === "male" ? "#fff" : "#999",
+                  }}
+                >
+                  남성
+                </S.GenderLabel>
+                <S.GenderLabel2
+                  htmlFor="female"
+                  style={{
+                    backgroundColor:
+                      isGenderCheck === "female" ? mainColor : "#fff",
+                    color: isGenderCheck === "female" ? "#fff" : "#999",
+                  }}
+                >
+                  여성
+                </S.GenderLabel2>
+              </S.GenderSelectBox>
+              <S.ErrorMsg>{formState.errors.gender?.message}</S.ErrorMsg>
+            </A.LoginInputContainer>
+          )}
+
           <A.LoginInputContainer>
             <A.LoginInputTitle>사진</A.LoginInputTitle>
             <S.InputFile type="file" id="profilePhoto" />
@@ -190,7 +201,9 @@ const JoinUi = ({
               <S.ProfileUploadText>사진을 선택해 주세요</S.ProfileUploadText>
             </S.PhotoUploadBox>
           </A.LoginInputContainer>
-          <S.SubmitJoinBtn>회원가입</S.SubmitJoinBtn>
+          <S.SubmitJoinBtn>
+            {isUpdate ? "수정하기" : "회원가입"}
+          </S.SubmitJoinBtn>
         </S.JoinForm>
       </A.Container>
     </A.Wrapper>

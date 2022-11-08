@@ -22,7 +22,6 @@ const JoinUi = ({
   return (
     <A.Wrapper>
       <A.Container>
-        0
         <S.JoinForm onSubmit={handleSubmit(onClickJoinSubmit)}>
           <A.LoginTitle>
             We Trekking

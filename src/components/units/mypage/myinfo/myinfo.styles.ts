@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ export const ProfileWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 0;
+  padding: 8rem 0;
   background-color: #fafafa;
 `;
 
@@ -18,29 +19,36 @@ export const ProfileBox = styled.div`
   width: 384px;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
+  @media ${mobile} {
+    width: 90%;
+  }
 `;
 
 export const ProfileBody = styled.div`
   width: 100%;
-  padding: 32px 0 40px;
+  padding: 3.2rem 0 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #d9d9d9;
+  .css-2s90m6-MuiAvatar-root {
+    width: 12rem;
+    height: 12rem;
+  }
 `;
 
 export const ProfileName = styled.p`
   font-size: 2.8rem;
   font-weight: 700;
   color: #111;
-  margin: 24px 0 10px;
+  margin: 2.4rem 0 1rem;
 `;
 
 export const ProfileEmail = styled.p`
   font-size: 1.3rem;
   font-weight: 500;
   color: #d6d6d6;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 export const GenderPhoneBox = styled.div`
@@ -89,14 +97,19 @@ export const ProfilePoint = styled.p`
 
 export const BannerContainer = styled.div`
   width: 100%;
-  padding: 85px 0;
+  padding: 8.5rem 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 8rem;
+  background-image: url("/images/mypage/banner01.png");
+  @media ${tablet} {
+    background-image: url("/images/mypage/m-banner01.png");
+    background-size: cover;
+  }
 `;
 
 export const BannerContents = styled.div``;
@@ -109,6 +122,14 @@ export const BannerMent = styled.p`
   margin-bottom: 14px;
   span {
     font-weight: 700;
+  }
+  @media (min-width: 1200px) {
+    .mobile {
+      display: none;
+    }
+  }
+  @media ${tablet} {
+    line-height: 1.5;
   }
 `;
 
@@ -126,21 +147,24 @@ export const GoPoint = styled.button`
 
 export const InfoContainer = styled.div`
   width: 1200px;
-  margin: 0 auto 100px;
+  margin: 0 auto 10rem;
+  @media ${tablet} {
+    width: 90%;
+  }
 `;
 
 export const MyMListTitle = styled.h2`
   font-size: 3.2rem;
   font-weight: 700;
   color: #111;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 `;
 
 export const MyMListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 60px 2%;
-  margin-bottom: 100px;
+  gap: 6rem 2%;
+  margin-bottom: 10rem;
 `;
 
 export const MyMListBox = styled.div`
@@ -150,6 +174,14 @@ export const MyMListBox = styled.div`
   gap: 4.44%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
+  @media ${tablet} {
+    flex-direction: column;
+    padding: 2.4rem;
+    gap: 2.4rem;
+  }
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const MyMListThum = styled.div`
@@ -157,10 +189,17 @@ export const MyMListThum = styled.div`
   height: 100%;
   background-color: gray;
   border-radius: 4px;
+  @media ${tablet} {
+    width: 100%;
+    padding-bottom: 90%;
+  }
 `;
 
 export const MyMListInfoBox = styled.div`
   padding: 17px 0;
+  @media ${tablet} {
+    padding: 0;
+  }
 `;
 
 export const ListTitle = styled.h3`
@@ -174,18 +213,20 @@ export const ListMountainName = styled.p`
   font-size: 1.6rem;
   font-weight: 400;
   color: #666;
-  padding: 4px 0 0 26px;
+  padding: 0.4rem 0 0 2.6rem;
   background: url("/images/mypage/gps-icon.png") no-repeat left center;
-  margin-bottom: 12px;
+  background-size: 2.4rem;
+  margin-bottom: 1.2rem;
 `;
 
 export const ListMountainDate = styled.p`
   font-size: 1.6rem;
   font-weight: 400;
   color: #666;
-  padding: 5px 0 5px 26px;
+  padding: 0.5rem 0 0.5rem 2.6rem;
   background: url("/images/mypage/clock-icon.png") no-repeat left center;
-  margin-bottom: 16px;
+  background-size: 2.4rem;
+  margin-bottom: 1.6rem;
   span {
     font-size: 1.2rem;
     color: #d9d9d9;
@@ -201,9 +242,38 @@ export const ListWriterT = styled.h5`
 
 export const ListWriterInfoBox = styled.div`
   display: flex;
+  flex-direction: column;
+  @media ${tablet} {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+    .MuiAvatarGroup-avatar {
+      width: 24px;
+      height: 24px;
+      :not(:last-of-type) {
+        margin-left: -1.2rem !important;
+      }
+    }
+  }
+  @media ${mobile} {
+    .MuiAvatarGroup-avatar {
+      width: 16px;
+      height: 16px;
+    }
+  }
+`;
+export const ListWriterInfoContainer = styled.div`
+  display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  @media ${tablet} {
+    margin-bottom: 0;
+    .MuiAvatar-circular {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
 `;
 
 export const ListWriterInfo = styled.div``;

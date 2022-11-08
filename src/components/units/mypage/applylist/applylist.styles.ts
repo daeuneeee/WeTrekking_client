@@ -47,7 +47,7 @@ export const ListLiMountain = styled.li`
   color: #111;
   text-align: center;
   @media ${mobile} {
-    width: 10%;
+    width: 11%;
   }
 `;
 export const ListLiTitle = styled.li`

@@ -119,11 +119,17 @@ export const SnsLoginBtnBox = styled.div`
 `;
 
 export const SnsLoginBtn = styled.button`
+  width: 4.8rem;
+  height: 4.8rem;
   display: block;
   border: none;
   background: none;
   outline: none;
   cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const JoinToMent = styled.p`

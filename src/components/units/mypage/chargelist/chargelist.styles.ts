@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -6,8 +7,14 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 792px;
-  margin: 80px auto 100px;
+  margin: 8rem auto 10rem;
   min-height: calc(100vh - 611px);
+  @media ${tablet} {
+    width: 90%;
+    .mobile {
+      display: none;
+    }
+  }
 `;
 
 export const ChargeContainer = styled.section`
@@ -43,6 +50,9 @@ export const ListLiDate = styled.li`
   font-weight: 400;
   color: #111;
   text-align: center;
+  @media ${mobile} {
+    width: 20%;
+  }
 `;
 export const ListLiChargePoint = styled.li`
   width: 55%;
@@ -56,6 +66,12 @@ export const ListLiChargePoint = styled.li`
   a {
     color: #111;
   }
+  @media ${tablet} {
+    width: 72%;
+  }
+  @media ${mobile} {
+    width: 60%;
+  }
 `;
 export const ListLiSign = styled.li`
   width: 10.41%;
@@ -64,10 +80,13 @@ export const ListLiSign = styled.li`
   color: #111;
   text-align: center;
   position: relative;
+  @media ${mobile} {
+    width: 15%;
+  }
 `;
 
 export const RefundBtn = styled.button`
-  width: 80px;
+  width: 100%;
   padding: 0.9rem 0;
   border-radius: 4px;
   background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);

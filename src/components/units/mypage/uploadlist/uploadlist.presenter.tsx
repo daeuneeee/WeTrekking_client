@@ -10,7 +10,7 @@ const UploadListUi = () => {
       <S.Container>
         <S.ApplyListContainer>
           <S.TitleUl>
-            <S.ListLiNum>No.</S.ListLiNum>
+            <S.ListLiNum className="mobile">No.</S.ListLiNum>
             <S.ListLiMountain>산 이름</S.ListLiMountain>
             <S.ListLiTitle>제목</S.ListLiTitle>
             <S.ListLiSign>신청자</S.ListLiSign>

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
+import { tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -11,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const UserViewBtn = styled.button`
-  width: 96px;
+  width: 90%;
   padding: 0.8rem 0;
   border: 1px solid ${mainColor};
   background-color: ${mainColor};
@@ -30,10 +31,20 @@ export const UserModal = styled.div`
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 24px 0;
+  padding: 2.4rem 0;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   background-color: #fff;
+  z-index: 9999;
+  @media ${tablet} {
+    width: 100%;
+    height: 100vh;
+    transform: none;
+    position: fixed;
+    top: unset;
+    bottom: 0;
+    left: 0;
+  }
 `;
 
 export const ModalTitle = styled.h4`
@@ -51,7 +62,7 @@ export const UserModalContainer = styled.div``;
 
 export const UserListContainer = styled.div`
   width: 100%;
-  height: 260px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;

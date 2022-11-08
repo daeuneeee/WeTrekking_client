@@ -12,7 +12,7 @@ const UList = () => {
 
   return (
     <S.ContentUl>
-      <S.ListLiNum>1</S.ListLiNum>
+      <S.ListLiNum className="mobile">1</S.ListLiNum>
       <S.ListLiMountain>백두산</S.ListLiMountain>
       <S.ListLiTitle>
         <a>백두산 가실분 구합니다.</a>

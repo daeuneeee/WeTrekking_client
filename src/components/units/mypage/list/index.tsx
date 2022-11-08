@@ -39,7 +39,7 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
@@ -56,7 +56,7 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
@@ -73,7 +73,7 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
@@ -90,7 +90,7 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
@@ -107,7 +107,7 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
@@ -124,7 +124,7 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
@@ -141,23 +141,23 @@ const UList = () => {
                     </A.UserProfileInfo>
                   </A.UserProfileInfoBox>
                   <A.UserBtnBox>
-                    <A.UserCancleBtn>거절</A.UserCancleBtn>
+                    <A.UserCancelBtn>거절</A.UserCancelBtn>
                     <A.UserOkBtn>수락</A.UserOkBtn>
                   </A.UserBtnBox>
                 </A.UserListBox>
               </A.UserListContainer>
-              <A.ModalCancleBtn onClick={onClickUserActive}>
+              <A.ModalCancelBtn onClick={onClickUserActive}>
                 닫기
-              </A.ModalCancleBtn>
+              </A.ModalCancelBtn>
             </A.UserModalContainer>
           </A.UserModal>
         )}
       </S.ListLiSign>
-      <S.ListLiCancle>
-        <S.CancleBtn>
-          <S.CancleMent>취소하기</S.CancleMent>
-        </S.CancleBtn>
-      </S.ListLiCancle>
+      <S.ListLiCancel>
+        <S.CancelBtn>
+          <S.CancelMent>취소하기</S.CancelMent>
+        </S.CancelBtn>
+      </S.ListLiCancel>
     </S.ContentUl>
   );
 };

@@ -1,6 +1,5 @@
 import MyPageNav from "../navigation";
 import * as S from "../applylist/applylist.styles";
-import { Pagination } from "antd";
 import "antd/dist/antd.css";
 import UList from "../list";
 
@@ -15,7 +14,7 @@ const UploadListUi = () => {
             <S.ListLiMountain>산 이름</S.ListLiMountain>
             <S.ListLiTitle>제목</S.ListLiTitle>
             <S.ListLiSign>신청자</S.ListLiSign>
-            <S.ListLiCancle>취소</S.ListLiCancle>
+            <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
           <UList />
         </S.ApplyListContainer>

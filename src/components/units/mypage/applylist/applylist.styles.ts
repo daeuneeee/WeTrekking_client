@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -7,8 +8,16 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1200px;
-  margin: 80px auto 100px;
+  margin: 8rem auto 10rem;
   min-height: calc(100vh - 611px);
+  @media ${tablet} {
+    width: 90%;
+  }
+  @media ${mobile} {
+    .mobile {
+      display: none;
+    }
+  }
 `;
 
 export const ApplyListContainer = styled.section`
@@ -37,6 +46,9 @@ export const ListLiMountain = styled.li`
   font-weight: 400;
   color: #111;
   text-align: center;
+  @media ${mobile} {
+    width: 10%;
+  }
 `;
 export const ListLiTitle = styled.li`
   width: 58.33%;
@@ -50,21 +62,30 @@ export const ListLiTitle = styled.li`
   a {
     color: #111;
   }
+  @media ${mobile} {
+    width: 50%;
+  }
 `;
 export const ListLiSign = styled.li`
-  width: 10.41%;
+  width: 12%;
   font-size: 1.6rem;
   font-weight: 500;
   color: #111;
   text-align: center;
   position: relative;
+  @media ${mobile} {
+    width: 20%;
+  }
 `;
 export const ListLiCancel = styled.li`
-  width: 8%;
+  width: 10%;
   font-size: 1.6rem;
   font-weight: 500;
   color: #111;
   text-align: center;
+  @media ${mobile} {
+    width: 17%;
+  }
 `;
 export const ContentUl = styled.ul`
   width: 100%;
@@ -75,11 +96,11 @@ export const ContentUl = styled.ul`
   margin-bottom: 0;
 `;
 export const SignBtn = styled.div`
-  width: 80px;
+  width: 70%;
   padding: 0.8rem 0;
   border: 1px solid ${mainColor};
   border-radius: 4px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: ${mainColor};
   text-align: center;
@@ -87,7 +108,7 @@ export const SignBtn = styled.div`
 `;
 
 export const CancelBtn = styled.button`
-  width: 96px;
+  width: 100%;
   padding: 0.9rem 0;
   border: none;
   background-color: #bf0e0e;
@@ -96,11 +117,18 @@ export const CancelBtn = styled.button`
 `;
 
 export const CancelMent = styled.span`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: #fff;
-  padding-left: 17px;
+  padding-left: 2rem;
   background: url("/images/mypage/Cancel.png") no-repeat left center;
+  background-size: 16px;
+  @media (max-width: 920px) {
+    font-size: 1.2rem;
+  }
+  @media ${mobile} {
+    background-size: 10px;
+  }
 `;
 
 export const PaginationContainer = styled.div`
@@ -132,6 +160,38 @@ export const PaginationContainer = styled.div`
     border-color: ${mainColor};
     a {
       color: green;
+    }
+  }
+  @media ${mobile} {
+    .ant-pagination {
+      font-size: 1.4rem;
+    }
+    .ant-pagination-item {
+      min-width: 3.2rem;
+      width: 3.2rem;
+      height: 3.2rem;
+      line-height: 3rem;
+      margin-right: 0.8rem;
+      a {
+        padding: 0 0.3rem;
+      }
+    }
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link {
+      font-size: 1.4rem;
+      span {
+        display: block;
+        margin-top: -1px;
+      }
+    }
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-jump-prev,
+    .ant-pagination-jump-next {
+      min-width: 3.2rem;
+      height: 3.2rem;
+
+      line-height: 3.2rem;
     }
   }
 `;

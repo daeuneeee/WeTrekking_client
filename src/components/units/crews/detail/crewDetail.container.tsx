@@ -16,7 +16,6 @@ const CrewDetail = () => {
   >(FETCH_CREW_BOARD, {
     variables: { crewBoardId: String(router.query.crewId) },
   });
-  console.log(data);
 
   return <CrewDetailUi data={data} />;
 };

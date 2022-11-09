@@ -27,11 +27,16 @@ const CrewDetailUi = ({ data }) => {
                   </S.LocationBox>
                   <S.Title>{data?.fetchCrewBoard.title}</S.Title>
                 </S.LocationTitleBox>
-                <S.PickBox>
-                  <S.Pick>
-                    <PickTrueSvg />
-                  </S.Pick>
-                </S.PickBox>
+                <S.PickChatContainer>
+                  <S.PickChatBox>
+                    <S.ChatBox></S.ChatBox>
+                  </S.PickChatBox>
+                  <S.PickChatBox>
+                    <S.PickBox>
+                      <PickTrueSvg />
+                    </S.PickBox>
+                  </S.PickChatBox>
+                </S.PickChatContainer>
               </S.LocationPickBox>
               <S.ProfileBox>
                 <S.ProfileImg></S.ProfileImg>
@@ -83,7 +88,7 @@ const CrewDetailUi = ({ data }) => {
               )}`}</S.DueData>
               <S.DueWon>원</S.DueWon>
             </S.DueBox>
-            <S.TextArea></S.TextArea>
+            <S.Description>{data?.fetchCrewBoard.description}</S.Description>
           </S.InformBox>
         </S.Header>
         <S.MiddleUnderLine></S.MiddleUnderLine>
@@ -97,6 +102,7 @@ const CrewDetailUi = ({ data }) => {
             </S.AddressBox>
           </S.MapBox>
           <S.ListBox>
+            <S.ResponsiveUnderLine></S.ResponsiveUnderLine>
             <S.ListInform>
               <S.BodyTitle>참가원 리스트</S.BodyTitle>
               <S.CrewListBox>
@@ -111,7 +117,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewPosition>방장</S.CrewPosition>
@@ -130,7 +136,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -149,7 +155,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -166,7 +172,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -183,7 +189,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -200,7 +206,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -217,7 +223,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -234,7 +240,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -251,7 +257,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -268,7 +274,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>
@@ -285,7 +291,7 @@ const CrewDetailUi = ({ data }) => {
                   <Avatar
                     alt="Crew Image"
                     src="/images/commons/profile-img.png"
-                    sx={{ width: 50, height: 50 }}
+                    className="avatar"
                   ></Avatar>
                   <S.CrewPositionNickName>
                     <S.CrewNickName>춘딩딩</S.CrewNickName>

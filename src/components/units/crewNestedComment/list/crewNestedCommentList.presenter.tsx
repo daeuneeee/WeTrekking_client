@@ -9,6 +9,7 @@ const CrewNestedCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>등산러</S.NickName>
@@ -38,6 +39,7 @@ const CrewNestedCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>등산러</S.NickName>
@@ -66,6 +68,7 @@ const CrewNestedCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>등산러</S.NickName>

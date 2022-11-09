@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mobile } from "../../../../commons/styles/media";
 
 const CrewNestedCommentWrite = () => {
   return (
@@ -21,16 +22,15 @@ const CrewNestedCommentWrite = () => {
 export default CrewNestedCommentWrite;
 
 const Wrapper = styled.div`
-  width: 1096px;
-  margin-top: 30px;
+  width: 95%;
+  margin-top: 3rem;
 `;
 
 const Container = styled.div`
   width: 100%;
-  height: 140px;
   background: #fff;
   border: 1px solid #d9d9d9;
-  padding: 16px 24px;
+  padding: 1.6rem 2.4rem;
   border-radius: 4px;
 `;
 
@@ -44,14 +44,14 @@ const Crew = styled.span`
 
 const Contents = styled.textarea`
   width: 100%;
-  height: 50px;
   border: none;
   resize: none;
-  margin-top: 12px;
+  margin-top: 1.2rem;
   font-weight: 400;
   font-size: 1.3rem;
   color: #999;
   margin-bottom: 5px;
+  padding-bottom: 3%;
   outline: none;
   ::placeholder {
     color: #999;

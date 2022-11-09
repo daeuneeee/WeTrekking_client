@@ -1,62 +1,101 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 78px 0 124px;
-  border: 1px solid orange;
+  padding: 7.8rem 0 12.4rem;
+  @media ${mobile} {
+    width: 90%;
+    margin: 0 auto 6rem;
+  }
+  @media ${tablet} {
+    width: 90%;
+    margin: 0 auto 6rem;
+  }
 `;
 
 export const Header = styled.section`
   width: 1200px;
   display: flex;
   flex-direction: row;
-  margin: 0 auto 60px;
+  margin: 0 auto 6rem;
   justify-content: space-between;
+  @media ${mobile} {
+    width: 100%;
+    flex-direction: column;
+  }
+  @media ${tablet} {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 export const ImgBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1.6rem;
+  width: 49%;
+  justify-content: space-between;
+  @media ${tablet} {
+    width: 100%;
+    gap: 4.5rem;
+  }
+  @media ${mobile} {
+    width: 100%;
+    gap: 4rem;
+  }
+  @media (max-width: 500px) {
+    gap: 3.5rem;
+  }
 `;
 
 export const InformBox = styled.div`
-  width: 564px;
+  width: 49%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media ${tablet} {
+    width: 100%;
+  }
+  @media ${mobile} {
+    width: 100%;
+  }
+  @media (max-width: 500px) {
+  }
 `;
 
 export const MainImg = styled.div`
-  width: 588px;
-  height: 400px;
+  width: 100%;
+  /* height: 400px; */
+  padding-bottom: 58%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
 `;
 
 export const SubImgBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
 export const SubImg = styled.div`
-  width: 180px;
-  height: 160px;
+  width: 30%;
+  /* height: 160px; */
+  padding-bottom: 30%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
 `;
 
 export const LocationToProfile = styled.div`
   width: 100%;
-  margin-top: 22px;
+  margin-top: 2.2rem;
 `;
 
 export const LocationPickBox = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
 `;
 
@@ -69,12 +108,12 @@ export const LocationBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2px;
-  margin-bottom: 15px; ;
+  gap: 0.2rem;
+  margin-bottom: 1.5rem; ;
 `;
 
 export const LocationImg = styled.img`
-  width: 24px;
+  width: 2.4rem;
 `;
 
 export const Location = styled.span`
@@ -87,12 +126,18 @@ export const Title = styled.span`
   font-weight: 500;
   font-size: 3.2rem;
   color: #111;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
 `;
 
-export const PickBox = styled.div`
-  width: 48px;
-  height: 48px;
+export const PickChatContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+`;
+
+export const PickChatBox = styled.div`
+  width: 4.8rem;
+  height: 4.8rem;
   background: #ffffff;
   border: 1px solid #d9d9d9;
   border-radius: 100%;
@@ -102,22 +147,31 @@ export const PickBox = styled.div`
   cursor: pointer;
 `;
 
-export const Pick = styled.div`
-  width: 24px;
-  height: 24px;
+export const PickBox = styled.div`
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+`;
+
+export const ChatBox = styled(PickBox)`
+  width: 2.4rem;
+  height: 2.4rem;
+  background: url(/images/detail/chat.png) center center;
+  background-size: cover;
 `;
 export const ProfileBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 1.6rem;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 export const ProfileImg = styled.div`
-  width: 68px;
-  height: 68px;
+  width: 6.8rem;
+  height: 6.8rem;
   border: 1px solid #d9d9d9;
   border-radius: 100%;
 `;
@@ -125,6 +179,7 @@ export const ProfileImg = styled.div`
 export const ProfileInform = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
 
 export const NickName = styled.span`
@@ -136,7 +191,7 @@ export const NickName = styled.span`
 export const AgeGenderBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  gap: 0.3rem;
 `;
 
 export const AgeGender = styled.span`
@@ -146,10 +201,10 @@ export const AgeGender = styled.span`
 `;
 
 export const UnderLine = styled.div`
-  width: 564px;
+  width: 100%;
   height: 1px;
   background: #d9d9d9;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 export const DetailInformBox = styled.div`
@@ -163,9 +218,9 @@ export const DetailInform = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 1.2rem;
   /* border-right: 1px solid #d9d9d9; */
-  padding: 21px 20px;
+  padding: 2.1rem 2rem;
   /* :last-child {
     border-right: none;
   } */
@@ -195,7 +250,7 @@ export const DueBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin: 40px 0 24px;
+  margin: 4rem 0 2.4rem;
   align-items: center;
 `;
 
@@ -203,49 +258,84 @@ export const DueText = styled.span`
   font-weight: 400;
   font-size: 1.8rem;
   color: #999;
-  margin-right: 12px;
-  padding-top: 5px;
+  margin-right: 1.2rem;
+  padding-top: 0.5rem;
 `;
 
 export const DueData = styled.span`
   font-weight: 500;
   font-size: 3.2rem;
   color: ${mainColor};
-  margin-right: 4px; ;
+  margin-right: 0.4rem; ;
 `;
 
 export const DueWon = styled.span`
   font-weight: 400;
   font-size: 1.8rem;
   color: ${mainColor};
-  padding-top: 5px;
+  padding-top: 0.5rem;
 `;
 
-export const TextArea = styled.textarea`
+export const Description = styled.div`
   width: 100%;
-  height: 160px;
+  /* height: 160px; */
   border: 1px solid #d9d9d9;
   resize: none;
   overflow-y: scroll;
-  padding: 16px;
+  padding: 1.6rem 1.6rem 20% 1.6rem;
+  font-weight: 400;
+  font-size: 1.6rem;
 `;
 
 export const MiddleUnderLine = styled.div`
-  width: 100%;
+  width: 1200px;
   height: 1px;
   background: #d9d9d9;
+  margin: 2rem auto;
+  @media ${tablet} {
+    width: 100%;
+  }
+  @media ${mobile} {
+    width: 100%;
+  }
+`;
+
+export const ResponsiveUnderLine = styled(MiddleUnderLine)`
+  display: none;
+  @media ${tablet} {
+    display: block;
+  }
+  @media ${mobile} {
+    display: block;
+  }
 `;
 
 export const Body = styled.section`
   width: 1200px;
   display: flex;
   flex-direction: row;
-  margin: 40px auto 68px;
+  margin: 4rem auto 6.8rem;
   justify-content: space-between;
+  @media ${mobile} {
+    width: 100%;
+    flex-direction: column;
+  }
+  @media ${tablet} {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 export const MapBox = styled.div`
   width: 792px;
+  @media ${mobile} {
+    width: 100%;
+    flex-direction: column;
+  }
+  @media ${tablet} {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 export const BodyTitle = styled.p`
@@ -256,17 +346,18 @@ export const BodyTitle = styled.p`
 
 export const Map = styled.div`
   width: 100%;
-  height: 434px;
+  /* height: 434px; */
+  padding-bottom: 59%;
   border-radius: 8px;
   border: 1px solid green;
-  margin-bottom: 19px;
-  margin-top: 24px;
+  margin-bottom: 1.9rem;
+  margin-top: 2.4rem;
 `;
 
 export const AddressBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.2rem;
 `;
 
 export const Address = styled.span`
@@ -276,7 +367,13 @@ export const Address = styled.span`
 `;
 
 export const ListBox = styled.div`
-  width: 360px;
+  width: 30%;
+  @media ${mobile} {
+    width: 100%;
+  }
+  @media ${tablet} {
+    width: 100%;
+  }
 `;
 
 export const ListInform = styled.div`
@@ -289,7 +386,7 @@ export const CrewListBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2px;
+  gap: 0.2rem;
 `;
 
 export const CrewList = styled.span`
@@ -303,7 +400,7 @@ export const CrewListAll = styled(CrewList)`
 `;
 
 export const Img = styled.img`
-  width: 24px;
+  width: 2.4rem;
 `;
 
 export const CrewBox = styled.div`
@@ -311,7 +408,7 @@ export const CrewBox = styled.div`
   background: #fafafa;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
-  margin-top: 24px;
+  margin-top: 2.4rem;
   overflow-y: scroll;
   padding: 4.44% 3.33%;
   display: flex;
@@ -328,7 +425,7 @@ export const CrewInformBox = styled.div`
   background: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
-  padding: 12px;
+  padding: 1.2rem;
   justify-content: space-between;
   align-items: center;
 `;
@@ -338,17 +435,21 @@ export const CrewInform = styled.div`
   flex-direction: row;
   gap: 10px;
   align-items: center;
+  .avatar {
+    width: 5rem;
+    height: 5rem;
+  }
 `;
 
 export const CrewPositionNickName = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
 `;
 
 export const CrewPosition = styled.span`
   font-weight: 500;
   color: ${mainColor};
+  font-size: 1.4rem;
 `;
 
 export const CrewNickName = styled.span`
@@ -360,7 +461,7 @@ export const CrewNickName = styled.span`
 export const CrewAgeGenderBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  gap: 0.3rem;
 `;
 
 export const CrewAgeGender = styled.span`
@@ -373,14 +474,20 @@ export const Footer = styled.div`
   width: 1200px;
   display: flex;
   flex-direction: row;
-  gap: 24px;
-  margin: 0 auto 96px;
+  gap: 2.4rem;
+  margin: 0 auto 9.6rem;
   justify-content: center;
+  @media ${mobile} {
+    width: 100%;
+  }
+  @media ${tablet} {
+    width: 100%;
+  }
 `;
 
 export const ListBtn = styled.button`
   width: 282px;
-  height: 64px;
+  height: 6.4rem;
   background: #999999;
   border-radius: 4px;
   border: none;
@@ -397,8 +504,14 @@ export const ApplyBtn = styled(ListBtn)`
 export const CommentContainer = styled.div`
   width: 1200px;
   background: #fafafa;
-  margin: 40px auto 100px;
-  padding: 20px 24px;
+  margin: 4rem auto 10rem;
+  padding: 2rem 2.4rem;
+  @media ${mobile} {
+    width: 100%;
+  }
+  @media ${tablet} {
+    width: 100%;
+  }
 `;
 
 // export const InformBox = styled.div`

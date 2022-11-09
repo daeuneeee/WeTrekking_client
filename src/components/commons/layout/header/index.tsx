@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
-import { IQuery, IUser } from "../../../../commons/types/generated/types";
+import { IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState, userInfo } from "../../../../store";
 
 const Wrapper = styled.div`
@@ -286,7 +286,14 @@ const Header = () => {
               </SnbList>
               <SnbList>
                 <UserPoint>
-                  포인트 <span>{userDatas?.fetchUser.point}P</span>
+                  포인트{" "}
+                  <span>
+                    {String(userDatas?.fetchUser.point).replaceAll(
+                      /(\d)(?=(?:\d{3})+(?!\d))/g,
+                      "$1,"
+                    )}
+                    P
+                  </span>
                 </UserPoint>
               </SnbList>
             </>

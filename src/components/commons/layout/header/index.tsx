@@ -1,11 +1,12 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
-import { accessTokenState } from "../../../../store";
+import { IQuery, IUser } from "../../../../commons/types/generated/types";
+import { accessTokenState, userInfo } from "../../../../store";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -179,12 +180,41 @@ const LOGOUT = gql`
   }
 `;
 
+const FETCH_USER = gql`
+  query fetchUser {
+    fetchUser {
+      id
+      email
+      name
+      nickname
+      # birth
+      phone
+      gender
+      profile_img
+      point
+    }
+  }
+`;
+
+// export const FETCH;
+
 const Header = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [userDatas, setUserDatas] =
+    useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isActive, setIsActive] = useState(false);
+
   const router = useRouter();
 
   const [logout] = useMutation(LOGOUT);
+  const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  useEffect(() => {
+    if (data === undefined) return;
+    setUserDatas(data);
+  }, [data]);
+
+  console.log(userDatas);
 
   const onClickToMain = () => {
     void router.push("/");
@@ -218,9 +248,9 @@ const Header = () => {
     setIsActive((prev) => !prev);
   };
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
     try {
-      logout();
+      await logout();
       setAccessToken("");
       alert("로그아웃 되었습니다.");
     } catch (error) {
@@ -248,11 +278,18 @@ const Header = () => {
         </Navigation>
         <SnbMenu>
           {accessToken && (
-            <SnbList>
-              <UserPoint>
-                포인트 <span>1,234P</span>
-              </UserPoint>
-            </SnbList>
+            <>
+              <SnbList>
+                <UserPoint>
+                  <span>{userDatas?.fetchUser.nickname}</span> 님
+                </UserPoint>
+              </SnbList>
+              <SnbList>
+                <UserPoint>
+                  포인트 <span>{userDatas?.fetchUser.point}P</span>
+                </UserPoint>
+              </SnbList>
+            </>
           )}
           <SnbList>
             <LoginBtn onClick={accessToken ? logoutUser : onClickToLogin}>

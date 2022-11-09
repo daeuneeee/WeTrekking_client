@@ -11,6 +11,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -49,6 +50,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -82,6 +84,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -115,6 +118,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -148,6 +152,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -181,6 +186,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -214,6 +220,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -247,6 +254,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -280,6 +288,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>
@@ -313,6 +322,7 @@ const CrewCommentListUi = () => {
           <Avatar
             alt="Crew Image"
             src="/images/commons/profile-img.png"
+            className="avatar"
           ></Avatar>
           <S.CommentBox>
             <S.NickName>춘딩딩</S.NickName>

@@ -26,10 +26,9 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 140px;
   background: #fff;
   border: 1px solid #d9d9d9;
-  padding: 16px 24px;
+  padding: 1.6rem 2.4rem;
   border-radius: 4px;
 `;
 
@@ -43,15 +42,15 @@ const Crew = styled.span`
 
 const Contents = styled.textarea`
   width: 100%;
-  height: 50px;
   border: none;
   resize: none;
-  margin-top: 12px;
+  margin-top: 1.2rem;
   font-weight: 400;
   font-size: 1.3rem;
   color: #999;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   outline: none;
+  padding-bottom: 3%;
   ::placeholder {
     color: #999;
   }

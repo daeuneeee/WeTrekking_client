@@ -1,4 +1,4 @@
-import { Select, DatePicker, Space } from "antd";
+import { Select, DatePicker } from "antd";
 import styled from "@emotion/styled";
 import { mainColor, subColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";

@@ -18,6 +18,19 @@ const JoinUi = ({
   onClickJoinSubmit,
   formState,
   isUpdate,
+  isCheckNumActive,
+  onClickSendToPhone,
+  onClickCheckTokenToPhone,
+  onChangePhoneToken,
+  onChangeUserProfile,
+  userProfile,
+  onClickCheckEmail,
+  onClickCheckNickname,
+  onChangeEmail,
+  onChangeNickname,
+  isEmailCheck,
+  isNicknameCheck,
+  isPhoneNumCheck,
 }: IJoinUiProps) => {
   return (
     <A.Wrapper>
@@ -33,19 +46,26 @@ const JoinUi = ({
             </A.LoginInputTitle>
             <S.JoinEmailBox>
               <S.EmailInputBox>
-                <Input01
+                <S.DefaultInput
                   type="text"
                   placeholder="이메일을 입력해 주세요."
                   maxLength={50}
                   name="email"
-                  register={register}
-                  isUpdate={isUpdate}
+                  onChange={onChangeEmail}
                 />
               </S.EmailInputBox>
             </S.JoinEmailBox>
             <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
-          {isUpdate ? null : <S.CheckBtn type="button">중복확인</S.CheckBtn>}
+          {isUpdate ? null : (
+            <S.CheckBtn
+              type="button"
+              onClick={onClickCheckEmail}
+              disabled={isEmailCheck || false}
+            >
+              중복확인
+            </S.CheckBtn>
+          )}
 
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -92,19 +112,38 @@ const JoinUi = ({
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
-              닉네임 {isUpdate ? <span></span> : <span>*</span>}
+              생년월일 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
             <Input01
+              type="text"
+              placeholder="생년월일을 입력해 주세요. (ex: 970101)"
+              maxLength={6}
+              name="birth"
+              register={register}
+              isUpdate={isUpdate}
+            />
+            <S.ErrorMsg>{formState.errors.birth?.message}</S.ErrorMsg>
+          </A.LoginInputContainer>
+          <A.LoginInputContainer>
+            <A.LoginInputTitle>
+              닉네임 {isUpdate ? <span></span> : <span>*</span>}
+            </A.LoginInputTitle>
+            <S.DefaultInput
               type="text"
               placeholder="닉네임을 입력해 주세요."
               maxLength={51}
               name="nickname"
-              register={register}
-              isUpdate={false}
+              onChange={onChangeNickname}
             />
             <S.ErrorMsg>{formState.errors.nickname?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.CheckBtn type="button">중복확인</S.CheckBtn>
+          <S.CheckBtn
+            type="button"
+            onClick={onClickCheckNickname}
+            disabled={isNicknameCheck || false}
+          >
+            중복확인
+          </S.CheckBtn>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               휴대전화 {isUpdate ? <span></span> : <span>*</span>}
@@ -142,8 +181,31 @@ const JoinUi = ({
                 />
               </S.PhoneInputBox>
             </S.JoinPhoneBox>
-            <S.PhoneAuthBtn type="button">인증번호 받기</S.PhoneAuthBtn>
+            <S.PhoneAuthBtn type="button" onClick={onClickSendToPhone}>
+              인증번호 받기
+            </S.PhoneAuthBtn>
           </A.LoginInputContainer>
+          {isCheckNumActive && (
+            <A.LoginInputContainer>
+              <A.LoginInputTitle>
+                인증번호 확인 {isUpdate ? <span></span> : <span>*</span>}
+              </A.LoginInputTitle>
+              <S.DefaultInput
+                type="text"
+                placeholder="인증번호를 입력해 주세요."
+                maxLength={6}
+                onChange={onChangePhoneToken}
+              />
+              <S.ErrorMsg>{formState.errors.checkNum?.message}</S.ErrorMsg>
+              <S.CheckNumBtn
+                type="button"
+                onClick={onClickCheckTokenToPhone}
+                disabled={isPhoneNumCheck || false}
+              >
+                인증번호 확인
+              </S.CheckNumBtn>
+            </A.LoginInputContainer>
+          )}
           {isUpdate ? null : (
             <A.LoginInputContainer>
               <A.LoginInputTitle>
@@ -193,10 +255,18 @@ const JoinUi = ({
 
           <A.LoginInputContainer>
             <A.LoginInputTitle>사진</A.LoginInputTitle>
-            <S.InputFile type="file" id="profilePhoto" />
+            <S.InputFile
+              type="file"
+              id="profilePhoto"
+              onChange={onChangeUserProfile}
+            />
             <S.PhotoUploadBox htmlFor="profilePhoto">
               <S.ProfileUploadBtn>
-                <img src="/images/join/photo-upload.png" alt="" />
+                {userProfile ? (
+                  <img src={userProfile.replaceAll(" ", "%20")} alt="asd" />
+                ) : (
+                  <img src="/images/join/photo-upload.png" alt="" />
+                )}
               </S.ProfileUploadBtn>
               <S.ProfileUploadText>사진을 선택해 주세요</S.ProfileUploadText>
             </S.PhotoUploadBox>

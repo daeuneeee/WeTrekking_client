@@ -6,16 +6,200 @@ const ChatUi = () => {
     <S.Wrapper>
       <S.Container>
         <S.ChatContainer>
-          <S.ChatFList>
+          <S.ChatFList className="mobile">
             <S.ChatFListTitle>참가중인 크루원</S.ChatFListTitle>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
+            <S.AttendCrewBox>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className="avatar"
+              />
+              <S.AttendCrewInfoContainer>
+                <S.InfoLeft>
+                  <S.InfoMyRank>me</S.InfoMyRank>
+                  <S.InfoMyName>땅오</S.InfoMyName>
+                </S.InfoLeft>
+                <S.InfoAgeName>26 · 남성</S.InfoAgeName>
+              </S.AttendCrewInfoContainer>
+            </S.AttendCrewBox>
           </S.ChatFList>
           <S.ChatView>
             <S.ChatViewHead>
               <AvatarGroup max={3}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/static/images/avatar/1.jpg"
+                  className="groupAvatar"
+                />
+                <Avatar
+                  alt="Travis Howard"
+                  src="/static/images/avatar/2.jpg"
+                  className="groupAvatar"
+                />
+                <Avatar
+                  alt="Cindy Baker"
+                  src="/static/images/avatar/3.jpg"
+                  className="groupAvatar"
+                />
+                <Avatar
+                  alt="Agnes Walker"
+                  src="/static/images/avatar/4.jpg"
+                  className="groupAvatar"
+                />
                 <Avatar
                   alt="Trevor Henderson"
                   src="/static/images/avatar/5.jpg"
@@ -34,20 +218,7 @@ const ChatUi = () => {
                   <Avatar
                     alt="Remy Sharp"
                     src="/static/images/avatar/1.jpg"
-                    sx={{ width: 56, height: 56 }}
-                  />
-                  <S.ChatMsgContainer>
-                    <S.GroupChatMsgBox>안녕하세요 ㅎㅎ</S.GroupChatMsgBox>
-                    <S.ChatMstTime>8:00 PM</S.ChatMstTime>
-                  </S.ChatMsgContainer>
-                </S.ProfileChatBox>
-              </S.ChatGroup>
-              <S.ChatGroup>
-                <S.ProfileChatBox>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{ width: 56, height: 56 }}
+                    className="chatAvatar"
                   />
                   <S.ChatMsgContainer>
                     <S.GroupChatMsgBox>안녕하세요 ㅎㅎ</S.GroupChatMsgBox>
@@ -60,7 +231,7 @@ const ChatUi = () => {
                   <Avatar
                     alt="Remy Sharp"
                     src="/static/images/avatar/1.jpg"
-                    sx={{ width: 56, height: 56 }}
+                    className="chatAvatar"
                   />
                   <S.MyChatMsgContainer>
                     <S.MyGroupChatMsgBox>

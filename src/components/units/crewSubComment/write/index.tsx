@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 
-const CrewCommentWrite = () => {
+const CrewSubCommentWrite = () => {
   return (
     <>
       <Wrapper>
         <Container>
-          {/* <CrewBox> */}
           <Crew>춘딩딩</Crew>
-          {/* </CrewBox> */}
           <Contents placeholder="내용을 입력해주세요"></Contents>
           <RegisterBox>
             <RegisterBtn>등록</RegisterBtn>
@@ -18,10 +16,11 @@ const CrewCommentWrite = () => {
   );
 };
 
-export default CrewCommentWrite;
+export default CrewSubCommentWrite;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 95%;
+  margin-top: 3rem;
 `;
 
 const Container = styled.div`
@@ -31,8 +30,6 @@ const Container = styled.div`
   padding: 1.6rem 2.4rem;
   border-radius: 4px;
 `;
-
-// const CrewBox = styled.div``;
 
 const Crew = styled.span`
   font-weight: 500;
@@ -48,9 +45,9 @@ const Contents = styled.textarea`
   font-weight: 400;
   font-size: 1.3rem;
   color: #999;
-  margin-bottom: 0.5rem;
-  outline: none;
+  margin-bottom: 5px;
   padding-bottom: 3%;
+  outline: none;
   ::placeholder {
     color: #999;
   }

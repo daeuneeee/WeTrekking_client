@@ -3,12 +3,20 @@ import { useRouter } from "next/router";
 import {
   IQuery,
   IQueryFetchCrewBoardArgs,
+  IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import CrewDetailUi from "./crewDetail.presenter";
-import { FETCH_CREW_BOARD } from "./crewDetail.queries";
+import { FETCH_CREW_BOARD, FETCH_CREW_COMMENTS } from "./crewDetail.queries";
 
 const CrewDetail = () => {
   const router = useRouter();
+
+  const { data: comments, fetchMore } = useQuery<
+    Pick<IQuery, "fetchCrewComments">,
+    IQueryFetchCrewCommentsArgs
+  >(FETCH_CREW_COMMENTS, {
+    variables: { boardId: String(router.query.crewId) },
+  });
 
   const { data } = useQuery<
     Pick<IQuery, "fetchCrewBoard">,
@@ -17,7 +25,31 @@ const CrewDetail = () => {
     variables: { crewBoardId: String(router.query.crewId) },
   });
 
-  return <CrewDetailUi data={data} />;
+  const onLoadMore = async () => {
+    if (!comments) return;
+    await fetchMore({
+      variables: {
+        page: Math.ceil(comments.fetchCrewComments.length / 10) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchCrewComments === undefined) {
+          return {
+            fetchCrewComments: [...prev.fetchCrewComments],
+          };
+        }
+        return {
+          fetchCrewComments: [
+            ...prev.fetchCrewComments,
+            ...fetchMoreResult.fetchCrewComments,
+          ],
+        };
+      },
+    });
+  };
+
+  return (
+    <CrewDetailUi data={data} comments={comments} onLoadMore={onLoadMore} />
+  );
 };
 
 export default CrewDetail;

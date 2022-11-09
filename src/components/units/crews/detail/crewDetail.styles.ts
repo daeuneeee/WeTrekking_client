@@ -4,7 +4,7 @@ import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 7.8rem 0 12.4rem;
+  padding: 7.8rem 0;
   @media ${mobile} {
     width: 90%;
     margin: 0 auto 6rem;
@@ -414,7 +414,7 @@ export const CrewBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 539px;
+  max-height: 53.9rem;
 `;
 
 export const CrewInformBox = styled.div`
@@ -444,6 +444,7 @@ export const CrewInform = styled.div`
 export const CrewPositionNickName = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.3rem;
 `;
 
 export const CrewPosition = styled.span`

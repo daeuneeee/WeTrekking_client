@@ -304,7 +304,14 @@ const MainHeader = () => {
               </SnbList>
               <SnbList>
                 <UserPoint>
-                  포인트 <span>{userDatas?.fetchUser.point}P</span>
+                  포인트{" "}
+                  <span>
+                    {String(userDatas?.fetchUser.point).replaceAll(
+                      /(\d)(?=(?:\d{3})+(?!\d))/g,
+                      "$1,"
+                    )}
+                    P
+                  </span>
                 </UserPoint>
               </SnbList>
             </>

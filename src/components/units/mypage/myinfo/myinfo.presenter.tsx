@@ -1,8 +1,9 @@
 import { Avatar, AvatarGroup } from "@mui/material";
 import MyPageNav from "../navigation";
 import * as S from "./myinfo.styles";
+import { IMyInfoUiProps } from "./myinfo.types";
 
-const MyInfoUi = () => {
+const MyInfoUi = ({ userDatas }: IMyInfoUiProps) => {
   return (
     <S.Wrapper>
       <MyPageNav page="내 정보" />
@@ -10,28 +11,35 @@ const MyInfoUi = () => {
         <S.ProfileBox>
           <S.ProfileBody>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            <S.ProfileName>유저 이름</S.ProfileName>
-            <S.ProfileEmail>cjt3591@gmail.com</S.ProfileEmail>
+            <S.ProfileName>{userDatas?.fetchUser.name}</S.ProfileName>
+            <S.ProfileEmail>{userDatas?.fetchUser.email}</S.ProfileEmail>
             <S.GenderPhoneBox>
               <S.UserGenderPhoneText>
-                성별 <span>남성</span>
+                성별{" "}
+                <span>
+                  {userDatas?.fetchUser.gender === "male" ? "남성" : "여성"}
+                </span>
               </S.UserGenderPhoneText>
               <S.GenderPhoneLine></S.GenderPhoneLine>
               <S.UserGenderPhoneText>
-                phone <span>010. 9774. 3591</span>
+                phone <span>{userDatas?.fetchUser.phone}</span>
               </S.UserGenderPhoneText>
             </S.GenderPhoneBox>
           </S.ProfileBody>
           <S.ProfilePointBox>
             <S.ProfilePointTitle>Point</S.ProfilePointTitle>
-            <S.ProfilePoint>1,234P</S.ProfilePoint>
+            <S.ProfilePoint>
+              {String(userDatas?.fetchUser.point).replaceAll(
+                /(\d)(?=(?:\d{3})+(?!\d))/g,
+                "$1,"
+              )}
+            </S.ProfilePoint>
           </S.ProfilePointBox>
         </S.ProfileBox>
       </S.ProfileWrapper>
       <S.BannerContainer>
         <S.BannerContents>
           <S.BannerMent>
-            지금 포인트를 충전하고 <br className="mobile" />{" "}
             <span>다양한 크루를 만나보세요!</span>
           </S.BannerMent>
           <S.GoPoint>포인트 충전하기 &gt; </S.GoPoint>

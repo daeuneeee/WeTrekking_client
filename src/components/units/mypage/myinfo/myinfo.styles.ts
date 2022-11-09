@@ -53,7 +53,7 @@ export const ProfileEmail = styled.p`
 
 export const GenderPhoneBox = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 0.8rem;
   align-items: center;
 `;
 
@@ -69,16 +69,16 @@ export const UserGenderPhoneText = styled.p`
 
 export const GenderPhoneLine = styled.div`
   width: 1px;
-  height: 8px;
+  height: 0.8rem;
   background-color: #d9d9d9;
 `;
 
 export const ProfilePointBox = styled.div`
   width: 100%;
-  padding: 12px 0 16px;
+  padding: 1.2rem 0 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.8rem;
   justify-content: center;
   align-items: center;
 `;
@@ -119,7 +119,7 @@ export const BannerMent = styled.p`
   font-weight: 400;
   color: #111;
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 1.4rem;
   span {
     font-weight: 700;
   }
@@ -169,7 +169,7 @@ export const MyMListContainer = styled.div`
 
 export const MyMListBox = styled.div`
   width: 49%;
-  padding: 24px;
+  padding: 2.4rem;
   display: flex;
   gap: 4.44%;
   border: 1px solid #d9d9d9;
@@ -196,7 +196,7 @@ export const MyMListThum = styled.div`
 `;
 
 export const MyMListInfoBox = styled.div`
-  padding: 17px 0;
+  padding: 1.7rem 0;
   @media ${tablet} {
     padding: 0;
   }
@@ -206,7 +206,7 @@ export const ListTitle = styled.h3`
   font-size: 1.8rem;
   font-weight: 500;
   color: #111;
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
 `;
 
 export const ListMountainName = styled.p`
@@ -237,7 +237,7 @@ export const ListWriterT = styled.h5`
   font-size: 1.3rem;
   font-weight: 400;
   color: #999;
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
 `;
 
 export const ListWriterInfoBox = styled.div`
@@ -282,7 +282,7 @@ export const ListWriterName = styled.p`
   font-size: 1.8rem;
   font-weight: 500;
   color: #111;
-  margin-bottom: 6px;
+  margin-bottom: 0.6rem;
 `;
 
 export const ListWriterAgeGender = styled.p`

@@ -14,6 +14,19 @@ export interface IJoinUiProps {
   onClickJoinSubmit: (data: IJoinData) => void;
   formState: any;
   isUpdate: boolean;
+  isCheckNumActive: boolean;
+  onClickSendToPhone: () => void;
+  onClickCheckTokenToPhone: () => void;
+  onChangePhoneToken: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeUserProfile: (event: ChangeEvent<HTMLInputElement>) => void;
+  userProfile: string;
+  onClickCheckEmail: () => void;
+  onClickCheckNickname: () => void;
+  onChangeEmail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeNickname: (event: ChangeEvent<HTMLInputElement>) => void;
+  isEmailCheck: boolean;
+  isNicknameCheck: boolean;
+  isPhoneNumCheck: boolean;
 }
 
 export interface IJoinData {

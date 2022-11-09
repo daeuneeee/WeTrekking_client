@@ -42,6 +42,14 @@ export const CheckBtn = styled.button`
   cursor: pointer;
   margin: -1rem 0 3rem;
   border-radius: 4px;
+  :disabled {
+    background-color: #eee;
+    opacity: 0.7;
+  }
+`;
+
+export const CheckNumBtn = styled(CheckBtn)`
+  margin-top: 1rem;
 `;
 
 export const PhoneInputBox = styled.div`
@@ -100,7 +108,9 @@ export const ProfileUploadBtn = styled.div`
   height: 6.8rem;
   border-radius: 50%;
   border: 1px solid #d9d9d9;
+  background-size: contain;
   background-color: #f6f6f6;
+  background-position: center;
   img {
     width: 2.4rem;
   }
@@ -153,4 +163,19 @@ export const ErrorMsg = styled.p`
   font-weight: 500;
   color: #f00;
   margin-top: 10px;
+`;
+
+export const DefaultInput = styled.input`
+  display: block;
+  width: 100%;
+  height: 5.2rem;
+  border: 1px solid #d9d9d9;
+  padding: 0 1.2rem;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #999;
+  :focus {
+    outline-color: ${mainColor};
+  }
 `;

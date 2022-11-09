@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { ChangeEvent } from "react";
 import { mainColor } from "../../../commons/styles/color";
 
 const InputStyle01 = styled.input`
@@ -33,7 +32,7 @@ const Input01 = (props: IInputProps01) => {
       placeholder={props.placeholder}
       maxLength={props.maxLength}
       {...props.register(props.name)}
-      disabled={props.isUpdate ? true : false}
+      disabled={props.isUpdate || false}
     />
   );
 };

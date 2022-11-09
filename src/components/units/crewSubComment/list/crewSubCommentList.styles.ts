@@ -14,8 +14,8 @@ export const Container = styled.section`
   flex-direction: row;
   gap: 1.2rem;
   .avatar {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
   }
 `;
 

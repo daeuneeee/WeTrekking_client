@@ -1,10 +1,11 @@
 import { Avatar } from "@mui/material";
+import InfiniteScroll from "react-infinite-scroller";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentList from "../../crewComment/list/crewCommentList.container";
-import CrewCommentWrite from "../../crewComment/write";
+import CrewCommentWrite from "../../crewComment/write/crewCommentWrite.container";
 import * as S from "./crewDetail.styles";
 
-const CrewDetailUi = ({ data }) => {
+const CrewDetailUi = ({ data, comments, onLoadMore }) => {
   return (
     <>
       <S.Wrapper>
@@ -104,7 +105,7 @@ const CrewDetailUi = ({ data }) => {
           <S.ListBox>
             <S.ResponsiveUnderLine></S.ResponsiveUnderLine>
             <S.ListInform>
-              <S.BodyTitle>참가원 리스트</S.BodyTitle>
+              <S.BodyTitle>참가자 리스트</S.BodyTitle>
               <S.CrewListBox>
                 <S.CrewList>14</S.CrewList>
                 <S.CrewListAll>/{data?.fetchCrewBoard.peoples}</S.CrewListAll>
@@ -314,7 +315,20 @@ const CrewDetailUi = ({ data }) => {
         <S.MiddleUnderLine></S.MiddleUnderLine>
         <S.CommentContainer>
           <CrewCommentWrite />
-          <CrewCommentList />
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={onLoadMore}
+            hasMore={true || false}
+          >
+            {comments?.fetchCrewComments.map((commentsMap) => {
+              return (
+                <CrewCommentList
+                  commentsMap={commentsMap}
+                  key={commentsMap.id}
+                />
+              );
+            })}
+          </InfiniteScroll>
         </S.CommentContainer>
       </S.Wrapper>
     </>

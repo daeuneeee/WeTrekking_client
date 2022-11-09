@@ -16,3 +16,28 @@ export const FETCH_CREW_BOARD = gql`
     }
   }
 `;
+
+export const FETCH_CREW_COMMENTS = gql`
+  query fetchCrewComments($boardId: String!, $page: Int) {
+    fetchCrewComments(boardId: $boardId, page: $page) {
+      id
+      comment
+      createdAt
+      # user {
+      #   id
+      #   nickname
+      #   profile_img
+      # }
+      # subCrewComment {
+      #   id
+      #   comment
+      # createdAt
+      # user {
+      #   id
+      #   nickname
+      #   profile_img
+      # }
+      # }
+    }
+  }
+`;

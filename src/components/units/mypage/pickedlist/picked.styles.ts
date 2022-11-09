@@ -40,4 +40,7 @@ export const MoreBtn = styled.button`
     border: 1px solid ${mainColor};
     transition: all 0.3s;
   }
+  @media ${tablet} {
+    width: 100%;
+  }
 `;

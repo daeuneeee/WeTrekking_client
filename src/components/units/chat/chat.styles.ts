@@ -108,7 +108,7 @@ export const ChatViewFoot = styled.div`
 `;
 
 export const ChatForm = styled.form`
-  width: 90%;
+  width: 100%;
   border: 1px solid ${mainColor};
   padding: 2.2rem 3rem;
   border-radius: 10px;
@@ -116,6 +116,7 @@ export const ChatForm = styled.form`
   justify-content: space-between;
   align-items: center;
   @media ${tablet} {
+    width: 90%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

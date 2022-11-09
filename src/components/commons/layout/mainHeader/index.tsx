@@ -5,7 +5,8 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
-import { accessTokenState } from "../../../../store";
+import { IQuery } from "../../../../commons/types/generated/types";
+import { accessTokenState, userInfo } from "../../../../store";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -212,6 +213,7 @@ const LOGOUT = gql`
 
 const MainHeader = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isActive, setIsActive] = useState(false);
 
   const router = useRouter();
@@ -249,10 +251,10 @@ const MainHeader = () => {
     setIsActive((prev) => !prev);
   };
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
     try {
       setAccessToken("");
-      logout();
+      await logout();
       alert("로그아웃 되었습니다.");
     } catch (error) {
       if (error instanceof Error) {
@@ -294,11 +296,18 @@ const MainHeader = () => {
         </Navigation>
         <SnbMenu>
           {accessToken && (
-            <SnbList>
-              <UserPoint>
-                포인트 <span>1,234P</span>
-              </UserPoint>
-            </SnbList>
+            <>
+              <SnbList>
+                <UserPoint>
+                  <span>{userDatas?.fetchUser.nickname}</span> 님
+                </UserPoint>
+              </SnbList>
+              <SnbList>
+                <UserPoint>
+                  포인트 <span>{userDatas?.fetchUser.point}P</span>
+                </UserPoint>
+              </SnbList>
+            </>
           )}
           <SnbList>
             <LoginBtn

@@ -1,8 +1,20 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_CREW_BOARDS = gql`
-  query fetchCrewBoardsTEST {
-    fetchCrewBoardsTEST {
+export const FETCH_CREW_BOARDS_LATEST = gql`
+  query fetchCrewBoardsLatestFirst {
+    fetchCrewBoardsLatestFirst {
+      id
+      title
+      date
+      dateTime
+      peoples
+    }
+  }
+`;
+
+export const FETCH_CREW_BOARDS_DEADLINE = gql`
+  query fetchCrewBoardsDeadlineFirst {
+    fetchCrewBoardsDeadlineFirst {
       id
       title
       date

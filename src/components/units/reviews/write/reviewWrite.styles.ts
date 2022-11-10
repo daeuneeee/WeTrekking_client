@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
 import { subColor } from "../../../../commons/styles/color";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 588px;
@@ -22,13 +23,15 @@ export const Title = styled.p`
 export const ImgBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 60px;
+  gap: 1.2rem;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
-export const MainImgBox = styled.div`
+export const MainImgBox = styled.label`
   width: 384px;
-  height: 316px;
+  padding: 28% 0;
   background: #fafafa;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
@@ -37,20 +40,23 @@ export const MainImgBox = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  @media ${tablet} {
+    width: 100%;
+  }
 `;
 
 export const MainImg = styled.img`
   width: 12.5%;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 `;
 
 export const SubImgBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-between; ;
 `;
 
-export const SubImg = styled.div`
+export const SubImg = styled.label`
   width: 120px;
   height: 100px;
   background: #fafafa;
@@ -64,8 +70,12 @@ export const SubImg = styled.div`
   img {
     width: 40%;
   }
+  @media ${tablet} {
+    width: 32%;
+    height: auto;
+    padding: 8% 0;
+  }
 `;
-
 export const MainText = styled.p`
   font-weight: 700;
   font-size: 1.6rem;
@@ -166,4 +176,8 @@ export const CancelBtn = styled.button`
 `;
 export const RegisterBtn = styled(CancelBtn)`
   background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
+`;
+
+export const DefaultFileInput = styled.input`
+  display: none;
 `;

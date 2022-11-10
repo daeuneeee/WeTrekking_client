@@ -179,7 +179,6 @@ export const ProfileImg = styled.div`
 export const ProfileInform = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 `;
 
 export const NickName = styled.span`

@@ -48,6 +48,7 @@ export const MainImgBox = styled.label`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   @media ${tablet} {
     width: 100%;
   }
@@ -73,6 +74,8 @@ export const SubImg = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
   img {
     width: 40%;
   }
@@ -156,7 +159,8 @@ export const DateBox = styled.div`
 
 export const Date = styled(Space)`
   .ant-picker-focused {
-    border-color: ${subColor};
+    border-color: transparent;
+
     box-shadow: 0 0 0 2px ${subColor};
   }
   .ant-picker-input > input {
@@ -180,17 +184,18 @@ export const Date = styled(Space)`
 export const Time = styled(TimePicker)`
   &.ant-picker {
     border-radius: 4px;
+    :hover {
+      border-color: #d9d9d9;
+    }
   }
   width: 285px;
   padding: 1.65rem 1.2rem;
 
   &.ant-picker-focused {
-    border-color: ${subColor};
+    border-color: transparent;
     box-shadow: 0 0 0 2px ${subColor};
   }
-  :hover {
-    border-color: #d9d9d9;
-  }
+
   @media ${mobile} {
     width: 100%;
   }
@@ -379,6 +384,7 @@ export const CancelBtn = styled.button`
   font-size: 1.8rem;
   color: #fff;
   border-radius: 4px;
+  cursor: pointer;
   @media ${mobile} {
     width: 49%;
   }
@@ -393,6 +399,7 @@ export const RegisterBtn = styled.button`
   font-size: 1.8rem;
   color: #fff;
   border-radius: 4px;
+  cursor: pointer;
   @media ${mobile} {
     width: 49%;
   }

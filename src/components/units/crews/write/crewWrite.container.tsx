@@ -1,12 +1,13 @@
 import { useState } from "react";
 import CrewWriteUi from "./crewWrite.presenter";
 import type { Moment } from "moment";
-import type { DatePickerProps } from "antd";
+import { DatePickerProps, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { CREATE_CREW_BOARD_T } from "./crewWrite.queries";
 import moment from "moment";
 import { RangePickerProps } from "antd/lib/date-picker";
+import { useRouter } from "next/router";
 
 const CrewWrite = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,7 @@ const CrewWrite = () => {
   const [time, setTime] = useState("");
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
+  const router = useRouter();
 
   const { register, handleSubmit } = useForm();
 
@@ -52,15 +54,23 @@ const CrewWrite = () => {
     return current && current < moment().endOf("day");
   };
 
-  const onClickToRegister = async (data: IFormData) => {
-    data.date = date;
-    data.dateTime = time;
-    data.dues = Number(data.dues);
-    data.peoples = people;
-    data.address = address;
-    data.gender = gender;
-    console.log(data);
-    await createCrewBoardTest({ variables: { createCrewBoardInput: data } });
+  const onClickRegister = async (data: IFormData) => {
+    try {
+      data.date = date;
+      data.dateTime = time;
+      data.dues = Number(data.dues);
+      data.peoples = people;
+      data.address = address;
+      data.gender = gender;
+      console.log(data);
+      await createCrewBoardTest({
+        variables: { createCrewBoardInput: data },
+        update(cache) {
+          cache.modify({ fields: { fetchCrewBoardsTEST: () => {} } });
+        },
+      });
+      await router.push(`/crews`);
+    } catch (error) {}
   };
 
   return (
@@ -76,7 +86,7 @@ const CrewWrite = () => {
       people={people}
       register={register}
       handleSubmit={handleSubmit}
-      onClickToRegister={onClickToRegister}
+      onClickRegister={onClickRegister}
       address={address}
       disabledDate={disabledDate}
     />

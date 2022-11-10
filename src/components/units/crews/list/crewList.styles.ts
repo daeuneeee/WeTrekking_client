@@ -137,6 +137,10 @@ export const OrderList = styled.li`
   font-weight: 400;
   font-size: 1.3rem;
   cursor: pointer;
+  &.active {
+    font-weight: 700;
+    color: ${mainColor};
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -169,6 +173,16 @@ export const SelectDateBox = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 400px;
+  .ant-picker {
+    :hover {
+      border-color: #d9d9d9;
+      box-shadow: none;
+    }
+  }
+  .ant-picker-focused {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px ${subColor};
+  }
   .ant-picker-input > input {
     ::placeholder {
       font-size: 1.4rem;
@@ -188,15 +202,17 @@ export const SelectDateBox = styled.div`
 export const SearchBtnBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 1%;
+  gap: 5%;
   align-items: center;
   width: 14%;
   justify-content: flex-end;
   @media ${mobile} {
     width: 100%;
+    gap: 1%;
   }
   @media ${tablet} {
     width: 100%;
+    gap: 1%;
   }
 `;
 

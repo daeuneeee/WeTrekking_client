@@ -178,16 +178,20 @@ const Join = ({ isUpdate }: IJoinProps) => {
   const [checkNickname] = useMutation(CHECK_NICKNAME);
 
   const onClickCheckNickname = async () => {
-    const { data } = await checkNickname({
-      variables: {
-        nickname,
-      },
-    });
-    if (data.checkNickName === "true") {
-      alert("사용가능한 닉네임입니다.");
-      setIsNicknameCheck(true);
+    if (nickname) {
+      const { data } = await checkNickname({
+        variables: {
+          nickname,
+        },
+      });
+      if (data.checkNickName === "true") {
+        alert("사용가능한 닉네임입니다.");
+        setIsNicknameCheck(true);
+      } else {
+        alert("사용중인 닉네임 입니다.");
+      }
     } else {
-      alert("사용중인 닉네임 입니다.");
+      alert("닉네임을 입력해 주세요.");
     }
   };
 

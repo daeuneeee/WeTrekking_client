@@ -31,11 +31,19 @@ const JoinUi = ({
   isEmailCheck,
   isNicknameCheck,
   isPhoneNumCheck,
+  userDatas,
+  onClickUpdateUser,
 }: IJoinUiProps) => {
   return (
     <A.Wrapper>
       <A.Container>
-        <S.JoinForm onSubmit={handleSubmit(onClickJoinSubmit)}>
+        <S.JoinForm
+          onSubmit={
+            isUpdate
+              ? handleSubmit(onClickUpdateUser)
+              : handleSubmit(onClickJoinSubmit)
+          }
+        >
           <A.LoginTitle>
             We Trekking
             <span>{isUpdate ? "정보수정" : "회원가입"}</span>
@@ -52,6 +60,10 @@ const JoinUi = ({
                   maxLength={50}
                   name="email"
                   onChange={onChangeEmail}
+                  disabled={isUpdate || false}
+                  defaultValue={
+                    isUpdate ? userDatas?.fetchUser.email : undefined
+                  }
                 />
               </S.EmailInputBox>
             </S.JoinEmailBox>
@@ -100,13 +112,14 @@ const JoinUi = ({
             <A.LoginInputTitle>
               이름 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
-            <Input01
+            <S.DefaultInput
               type="text"
               placeholder="이름을 입력해 주세요."
               maxLength={51}
               name="name"
-              register={register}
-              isUpdate={isUpdate}
+              {...register("name")}
+              disabled={isUpdate || false}
+              defaultValue={isUpdate ? userDatas?.fetchUser.name : undefined}
             />
             <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
@@ -114,13 +127,14 @@ const JoinUi = ({
             <A.LoginInputTitle>
               생년월일 {isUpdate ? <span></span> : <span>*</span>}
             </A.LoginInputTitle>
-            <Input01
+            <S.DefaultInput
               type="text"
               placeholder="생년월일을 입력해 주세요. (ex: 970101)"
               maxLength={6}
               name="birth"
-              register={register}
-              isUpdate={isUpdate}
+              {...register("birth")}
+              disabled={isUpdate || false}
+              defaultValue={isUpdate ? userDatas?.fetchUser.birth : undefined}
             />
             <S.ErrorMsg>{formState.errors.birth?.message}</S.ErrorMsg>
           </A.LoginInputContainer>

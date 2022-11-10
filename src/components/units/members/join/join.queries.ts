@@ -44,3 +44,11 @@ export const UPLOAD_FILE_FOR_USER_PROFILE = gql`
     uploadFileForUserProfile(file: $file)
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation updateUser($email: String!, $updateUserInput: UpdateUserInput!) {
+    updateUser(email: $email, updateUserInput: $updateUserInput) {
+      id
+    }
+  }
+`;

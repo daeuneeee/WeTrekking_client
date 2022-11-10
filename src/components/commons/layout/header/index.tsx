@@ -269,10 +269,10 @@ const Header = () => {
         <Navigation>
           <GnbMenu>
             <GnbList className="gnbList" onClick={onClickToCrews}>
-              게시글 리스트
+              크루 모집/신청
             </GnbList>
             <GnbList className="gnbList" onClick={onClickToReview}>
-              리뷰 리스트
+              리뷰
             </GnbList>
           </GnbMenu>
         </Navigation>
@@ -324,8 +324,8 @@ const Header = () => {
             <MJoinBtn onClick={onClickToJoin}>회원가입</MJoinBtn>
           </MSubMenuBox>
           <MMenu>
-            <MMenuList onClick={onClickToCrews}>게시글 리스트</MMenuList>
-            <MMenuList onClick={onClickToReview}>리뷰 리스트</MMenuList>
+            <MMenuList onClick={onClickToCrews}>크루 모집/신청</MMenuList>
+            <MMenuList onClick={onClickToReview}>리뷰</MMenuList>
           </MMenu>
         </MMenuContainer>
       )}

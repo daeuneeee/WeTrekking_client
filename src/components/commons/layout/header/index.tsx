@@ -214,8 +214,6 @@ const Header = () => {
     setUserDatas(data);
   }, [data]);
 
-  console.log(userDatas);
-
   const onClickToMain = () => {
     void router.push("/");
   };

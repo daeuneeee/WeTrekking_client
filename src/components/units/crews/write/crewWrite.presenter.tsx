@@ -17,12 +17,12 @@ const CrewWriteUi = ({
   isClicked,
   people,
   onChangePeople,
-  onClickToRegister,
+  onClickRegister,
   address,
   disabledDate,
 }: ICrewWriteUiProps) => {
   return (
-    <form onSubmit={handleSubmit(onClickToRegister)}>
+    <form onSubmit={handleSubmit(onClickRegister)}>
       <S.Wrapper>
         <S.Header>
           <S.Title>크루 등록하기</S.Title>

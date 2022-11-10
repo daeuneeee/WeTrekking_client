@@ -13,20 +13,24 @@ const CrewReviewWriteUi = ({
         <S.Container>
           <S.Title>리뷰쓰기</S.Title>
           <S.ImgBox>
-            <S.MainImgBox>
+            <S.DefaultFileInput type="file" id="file01" />
+            <S.DefaultFileInput type="file" id="file02" />
+            <S.DefaultFileInput type="file" id="file03" />
+            <S.DefaultFileInput type="file" id="file04" />
+            <S.MainImgBox htmlFor="file01">
               <S.MainImg src="/images/write/camera.png" />
               <S.MainText>사진을 등록 해주세요.</S.MainText>
               <S.SubText>사진은 최대 4장까지 등록 가능합니다.</S.SubText>
               <S.SubText>여기 보이는 사진이 썸네일이 됩니다.</S.SubText>
             </S.MainImgBox>
             <S.SubImgBox>
-              <S.SubImg>
+              <S.SubImg htmlFor="file02">
                 <img src="/images/write/camera.png" />
               </S.SubImg>
-              <S.SubImg>
+              <S.SubImg htmlFor="file03">
                 <img src="/images/write/camera.png" />
               </S.SubImg>
-              <S.SubImg>
+              <S.SubImg htmlFor="file04">
                 <img src="/images/write/camera.png" />
               </S.SubImg>
             </S.SubImgBox>

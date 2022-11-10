@@ -1,4 +1,4 @@
-import { Select, DatePicker, Space } from "antd";
+import { Select, Space } from "antd";
 import * as S from "./crewList.styles";
 import "antd/dist/antd.css";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
@@ -6,7 +6,14 @@ import { ICrewListUiProps } from "./crewList.types";
 import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
 
-const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
+const CrewListUi = ({
+  data,
+  onClickToWrite,
+  sort,
+  deadLine,
+  onClickLatest,
+  onClickDeadLine,
+}: ICrewListUiProps) => {
   const { Option } = Select;
   // const { RangePicker }: any = DatePicker;
 
@@ -70,8 +77,18 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
             <S.TitleBox>
               <S.Title>크루 리스트</S.Title>
               <S.OrderBox>
-                <S.OrderList>· 최신순 보기</S.OrderList>
-                <S.OrderList>· 마감순 보기</S.OrderList>
+                <S.OrderList
+                  onClick={onClickLatest}
+                  className={sort ? "active" : ""}
+                >
+                  · 최신순 보기
+                </S.OrderList>
+                <S.OrderList
+                  onClick={onClickDeadLine}
+                  className={sort ? "" : "active"}
+                >
+                  · 마감순 보기
+                </S.OrderList>
               </S.OrderBox>
             </S.TitleBox>
             <S.SearchBox>
@@ -99,87 +116,169 @@ const CrewListUi = ({ data, onClickToWrite }: ICrewListUiProps) => {
             </S.SearchBox>
           </S.Header>
           <S.Body>
-            {data?.fetchCrewBoardsTEST[0]?.map((listMap) => (
-              <Link href={`crews/${listMap.id}`} key={listMap.id}>
-                <S.ListBox>
-                  <S.ListHeader>
-                    <S.ListInform>
-                      <Avatar
-                        alt="Crew Image"
-                        src="/images/commons/profile-img.png"
-                        sx={{ width: 32, height: 32 }}
-                      ></Avatar>
-                      <S.ListNickName>춘딩딩</S.ListNickName>
-                    </S.ListInform>
-                    <S.ListPick>
-                      <PickFalseSvg />
-                    </S.ListPick>
-                  </S.ListHeader>
-                  <S.ListContainer>
-                    <S.ListThumbnail></S.ListThumbnail>
-                    <S.ListBody>
-                      <S.ListTitleBox>
-                        <S.ListTitle>{listMap.title}</S.ListTitle>
-                        <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
-                      </S.ListTitleBox>
-                      <S.ListCrewsBox>
-                        {/* <S.ListCrewsImg></S.ListCrewsImg> */}
-                        <AvatarGroup max={4}>
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                        </AvatarGroup>
-                        <S.ListCrewsNum>
-                          모집인원 3/{listMap.peoples}
-                        </S.ListCrewsNum>
-                      </S.ListCrewsBox>
-                    </S.ListBody>
-                    <S.ListFooter>
-                      <S.ListLocationBox>
-                        {/* <S.LocationImg>
+            {sort
+              ? data?.fetchCrewBoardsLatestFirst[0]?.map((listMap) => (
+                  <S.ListBox key={listMap.id}>
+                    <S.ListHeader>
+                      <S.ListInform>
+                        <Avatar
+                          alt="Crew Image"
+                          src="/images/commons/profile-img.png"
+                          sx={{ width: 32, height: 32 }}
+                        ></Avatar>
+                        <S.ListNickName>춘딩딩</S.ListNickName>
+                      </S.ListInform>
+                      <S.ListPick>
+                        <PickFalseSvg />
+                      </S.ListPick>
+                    </S.ListHeader>
+                    <Link href={`crews/${listMap.id}`}>
+                      <S.ListContainer>
+                        <S.ListThumbnail></S.ListThumbnail>
+                        <S.ListBody>
+                          <S.ListTitleBox>
+                            <S.ListTitle>{listMap.title}</S.ListTitle>
+                            <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
+                          </S.ListTitleBox>
+                          <S.ListCrewsBox>
+                            {/* <S.ListCrewsImg></S.ListCrewsImg> */}
+                            <AvatarGroup max={4}>
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                            </AvatarGroup>
+                            <S.ListCrewsNum>
+                              모집인원 3/{listMap.peoples}
+                            </S.ListCrewsNum>
+                          </S.ListCrewsBox>
+                        </S.ListBody>
+                        <S.ListFooter>
+                          <S.ListLocationBox>
+                            {/* <S.LocationImg>
                         <img src="/images/crew/location.png" />
                       </S.LocationImg> */}
-                        <S.Location>설악산</S.Location>
-                      </S.ListLocationBox>
-                      <S.ListTimeAndDayBox>
-                        {/* <S.TimeImg>
+                            <S.Location>설악산</S.Location>
+                          </S.ListLocationBox>
+                          <S.ListTimeAndDayBox>
+                            {/* <S.TimeImg>
                         <img src="/images/crew/time.png" />
                       </S.TimeImg> */}
-                        <S.Day>{listMap.date}</S.Day>
-                        <S.TimePartition></S.TimePartition>
-                        <S.Time>
-                          {listMap.dateTime
-                            .replace("am", "AM")
-                            .replace("pm", "PM")}
-                        </S.Time>
-                      </S.ListTimeAndDayBox>
-                    </S.ListFooter>
-                  </S.ListContainer>
-                </S.ListBox>
-              </Link>
-            ))}
+                            <S.Day>{listMap.date}</S.Day>
+                            <S.TimePartition></S.TimePartition>
+                            <S.Time>
+                              {listMap.dateTime
+                                .replace("am", "AM")
+                                .replace("pm", "PM")}
+                            </S.Time>
+                          </S.ListTimeAndDayBox>
+                        </S.ListFooter>
+                      </S.ListContainer>
+                    </Link>
+                  </S.ListBox>
+                ))
+              : deadLine?.fetchCrewBoardsDeadlineFirst[0]?.map((listMap) => (
+                  <S.ListBox key={listMap.id}>
+                    <S.ListHeader>
+                      <S.ListInform>
+                        <Avatar
+                          alt="Crew Image"
+                          src="/images/commons/profile-img.png"
+                          sx={{ width: 32, height: 32 }}
+                        ></Avatar>
+                        <S.ListNickName>춘딩딩</S.ListNickName>
+                      </S.ListInform>
+                      <S.ListPick>
+                        <PickFalseSvg />
+                      </S.ListPick>
+                    </S.ListHeader>
+                    <Link href={`crews/${listMap.id}`}>
+                      <S.ListContainer>
+                        <S.ListThumbnail></S.ListThumbnail>
+                        <S.ListBody>
+                          <S.ListTitleBox>
+                            <S.ListTitle>{listMap.title}</S.ListTitle>
+                            <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
+                          </S.ListTitleBox>
+                          <S.ListCrewsBox>
+                            {/* <S.ListCrewsImg></S.ListCrewsImg> */}
+                            <AvatarGroup max={4}>
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                              <Avatar
+                                alt="Remy Sharp"
+                                src="/static/images/avatar/1.jpg"
+                                sx={{ width: 24, height: 24 }}
+                              />
+                            </AvatarGroup>
+                            <S.ListCrewsNum>
+                              모집인원 3/{listMap.peoples}
+                            </S.ListCrewsNum>
+                          </S.ListCrewsBox>
+                        </S.ListBody>
+                        <S.ListFooter>
+                          <S.ListLocationBox>
+                            {/* <S.LocationImg>
+                        <img src="/images/crew/location.png" />
+                      </S.LocationImg> */}
+                            <S.Location>설악산</S.Location>
+                          </S.ListLocationBox>
+                          <S.ListTimeAndDayBox>
+                            {/* <S.TimeImg>
+                        <img src="/images/crew/time.png" />
+                      </S.TimeImg> */}
+                            <S.Day>{listMap.date}</S.Day>
+                            <S.TimePartition></S.TimePartition>
+                            <S.Time>
+                              {listMap.dateTime
+                                .replace("am", "AM")
+                                .replace("pm", "PM")}
+                            </S.Time>
+                          </S.ListTimeAndDayBox>
+                        </S.ListFooter>
+                      </S.ListContainer>
+                    </Link>
+                  </S.ListBox>
+                ))}
           </S.Body>
           <S.Footer>
             <S.MoreBtn>더보기</S.MoreBtn>

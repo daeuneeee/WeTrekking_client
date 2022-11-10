@@ -46,3 +46,10 @@ export interface IJoinData {
 export interface IJoinProps {
   isUpdate: boolean;
 }
+
+export interface IMyUserInput {
+  password?: string;
+  nickname?: string;
+  phone?: string;
+  profile_img?: string;
+}

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
+import { IMutation } from "../../../../commons/types/generated/types";
 import { accessTokenState } from "../../../../store";
 import LoginUi from "./login.presenter";
 import { LOGIN } from "./login.queries";
@@ -14,7 +15,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const [login] = useMutation(LOGIN);
+  const [login] = useMutation<Pick<IMutation, "login">>(LOGIN);
   const { register, handleSubmit } = useForm();
 
   const onChangeCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +40,7 @@ const Login = () => {
       const result = await login({
         variables: data,
       });
-      setAccessToken(result.data.login);
+      setAccessToken(String(result.data?.login));
       alert("로그인 성공");
       void router.push("/crews");
     } catch (error) {

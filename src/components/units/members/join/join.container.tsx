@@ -12,7 +12,7 @@ import {
   CHECK_NICKNAME,
   UPDATE_USER,
 } from "./join.queries";
-import { IJoinData, IJoinProps } from "./join.types";
+import { IJoinData, IJoinProps, IMyUserInput } from "./join.types";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
@@ -131,7 +131,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
     setIsNicknameCheck(false);
   };
 
-  const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
+  const [sendTokenToPhone] =
+    useMutation<Pick<IMutation, "sendTokenToPhone">>(SEND_TOKEN_TO_PHONE);
 
   const onClickSendToPhone = async () => {
     try {
@@ -149,7 +150,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
     }
   };
 
-  const [CheckTokenPhone] = useMutation(CHECK_TOKEN_PHONE);
+  const [CheckTokenPhone] =
+    useMutation<Pick<IMutation, "checkTokenPhone">>(CHECK_TOKEN_PHONE);
 
   const onClickCheckTokenToPhone = async () => {
     try {
@@ -159,8 +161,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
           phoneToken,
         },
       });
-      console.log(result);
-      alert(result.data.checkTokenPhone);
+      alert(result.data?.checkTokenPhone);
       setIsPhoneNumCheck(true);
     } catch (error) {
       if (error instanceof Error) {
@@ -174,7 +175,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
     setIsPhoneNumCheck(false);
   };
 
-  const [checkEmail] = useMutation(CHECK_EMAIL);
+  const [checkEmail] = useMutation<Pick<IMutation, "checkEmail">>(CHECK_EMAIL);
 
   const onClickCheckEmail = async () => {
     console.log(getValues("email"));
@@ -184,10 +185,10 @@ const Join = ({ isUpdate }: IJoinProps) => {
       },
     });
     if (email.includes("@") && email.includes(".")) {
-      if (data.checkEmail === "true") {
+      if (data?.checkEmail === "true") {
         alert("사용가능한 이메일 입니다.");
         setIsEmailCheck(true);
-      } else if (data.checkEmail === "false") {
+      } else if (data?.checkEmail === "false") {
         alert("이미 사용중인 이메일 입니다.");
       }
     } else {
@@ -195,7 +196,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
     }
   };
 
-  const [checkNickname] = useMutation(CHECK_NICKNAME);
+  const [checkNickname] =
+    useMutation<Pick<IMutation, "checkNickName">>(CHECK_NICKNAME);
 
   const onClickCheckNickname = async () => {
     if (nickname) {
@@ -204,7 +206,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
           nickname,
         },
       });
-      if (data.checkNickName === "true") {
+      if (data?.checkNickName === "true") {
         alert("사용가능한 닉네임입니다.");
         setIsNicknameCheck(true);
       } else {
@@ -215,7 +217,9 @@ const Join = ({ isUpdate }: IJoinProps) => {
     }
   };
 
-  const [uploadUserProfile] = useMutation(UPLOAD_FILE_FOR_USER_PROFILE);
+  const [uploadUserProfile] = useMutation<
+    Pick<IMutation, "uploadFileForUserProfile">
+  >(UPLOAD_FILE_FOR_USER_PROFILE);
 
   const onChangeUserProfile = async (event: ChangeEvent<HTMLInputElement>) => {
     setFile(event.target.files?.[0]);
@@ -224,7 +228,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
         file: event.target.files?.[0],
       },
     });
-    setUserProfile(data.uploadFileForUserProfile);
+    setUserProfile(String(data?.uploadFileForUserProfile));
   };
 
   const onClickJoinSubmit = async (data: IJoinData) => {
@@ -254,11 +258,11 @@ const Join = ({ isUpdate }: IJoinProps) => {
     }
   };
 
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [updateUser] = useMutation<Pick<IMutation, "updateUser">>(UPDATE_USER);
 
   const onClickUpdateUser = async (data: IJoinData) => {
     try {
-      const myUserInput = {};
+      const myUserInput: IMyUserInput = {};
       if (data.password) {
         myUserInput.password = data.password;
       }

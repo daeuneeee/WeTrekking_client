@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IJoinUiProps {
   onChangeGenderCheck: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -27,6 +28,8 @@ export interface IJoinUiProps {
   isEmailCheck: boolean;
   isNicknameCheck: boolean;
   isPhoneNumCheck: boolean;
+  userDatas: Pick<IQuery, "fetchUser">;
+  onClickUpdateUser: (data: IJoinData) => void;
 }
 
 export interface IJoinData {

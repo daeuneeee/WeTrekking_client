@@ -10,6 +10,7 @@ import {
   SEND_TOKEN_TO_PHONE,
   UPLOAD_FILE_FOR_USER_PROFILE,
   CHECK_NICKNAME,
+  UPDATE_USER,
 } from "./join.queries";
 import { IJoinData, IJoinProps } from "./join.types";
 import * as yup from "yup";
@@ -18,7 +19,10 @@ import { useRouter } from "next/router";
 import {
   IMutation,
   IMutationCreateUserArgs,
+  IQuery,
 } from "../../../../commons/types/generated/types";
+import { userInfo } from "../../../../store";
+import { useRecoilState } from "recoil";
 
 const joinYup = yup.object({
   birth: yup.string().required("생년월일은 필수 입력사항 입니다"),
@@ -36,12 +40,26 @@ const joinYup = yup.object({
   name: yup.string().required("이름은 필수 입력사항 입니다.."),
 });
 
+const updateInfoYup = yup.object({
+  password: yup
+    .string()
+    .matches(
+      /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,16}$/,
+      "영문+숫자&특수문자 조합 8~16자리의 비밀번호를 입력해주세요."
+    )
+    .required("비밀번호는 필수 입력사항 입니다"),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "비밀번호가 서로 다릅니다."),
+});
+
 const Join = ({ isUpdate }: IJoinProps) => {
   const { register, handleSubmit, setValue, getValues, formState } = useForm({
-    resolver: isUpdate ? undefined : yupResolver(joinYup),
+    resolver: isUpdate ? yupResolver(updateInfoYup) : yupResolver(joinYup),
     mode: "onChange",
   });
 
+  const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isGenderCheck, setIsGenderCheck] = useState("male");
   const [userProfile, setUserProfile] = useState("");
   const [file, setFile] = useState<File | undefined>(undefined);
@@ -62,7 +80,9 @@ const Join = ({ isUpdate }: IJoinProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    setValue("gender", isGenderCheck);
+    if (!isUpdate) {
+      setValue("gender", isGenderCheck);
+    }
   }, []);
 
   const [createUser] = useMutation<
@@ -209,7 +229,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
 
   const onClickJoinSubmit = async (data: IJoinData) => {
     try {
-      console.log(data);
       if (!isEmailCheck) {
         alert("이메일 중복확인을 해주세요.");
       } else if (!isNicknameCheck) {
@@ -218,7 +237,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
         alert("휴대폰 인증을 해주세요.");
       } else {
         delete data.passwordConfirm;
-        console.log(data);
         data.phone = `${phone01}${phone02}${phone03}`;
         data.profile_img = "";
         await createUser({
@@ -232,6 +250,51 @@ const Join = ({ isUpdate }: IJoinProps) => {
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
+      }
+    }
+  };
+
+  const [updateUser] = useMutation(UPDATE_USER);
+
+  const onClickUpdateUser = async (data: IJoinData) => {
+    try {
+      const myUserInput = {};
+      if (data.password) {
+        myUserInput.password = data.password;
+      }
+      if (nickname) {
+        myUserInput.nickname = nickname;
+      }
+      if (phone01 && phone02 && phone03) {
+        myUserInput.phone = `${phone01}${phone02}${phone03}`;
+      }
+      if (data.profile_img) {
+        myUserInput.profile_img = data.profile_img;
+      }
+
+      if (nickname && !isNicknameCheck) {
+        alert("닉네임 중복확인을 해주세요.");
+      } else if (phone01 && phone02 && phone03 && !isPhoneNumCheck) {
+        alert("휴대폰 인증을 해주세요.");
+      } else {
+        console.log(myUserInput);
+        await updateUser({
+          variables: {
+            email: userDatas?.fetchUser.email,
+            updateUserInput: myUserInput,
+          },
+          update(cache) {
+            cache.modify({
+              fields: () => {},
+            });
+          },
+        });
+      }
+      alert("정보수정이 완료 되었습니다.");
+      void router.push("/crews");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
       }
     }
   };
@@ -264,6 +327,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
       isEmailCheck={isEmailCheck}
       isNicknameCheck={isNicknameCheck}
       isPhoneNumCheck={isPhoneNumCheck}
+      userDatas={userDatas}
+      onClickUpdateUser={onClickUpdateUser}
     />
   );
 };

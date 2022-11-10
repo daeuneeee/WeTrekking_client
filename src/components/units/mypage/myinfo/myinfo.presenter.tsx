@@ -33,6 +33,7 @@ const MyInfoUi = ({ userDatas }: IMyInfoUiProps) => {
                 /(\d)(?=(?:\d{3})+(?!\d))/g,
                 "$1,"
               )}
+              P
             </S.ProfilePoint>
           </S.ProfilePointBox>
         </S.ProfileBox>

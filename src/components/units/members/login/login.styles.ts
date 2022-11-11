@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
 
@@ -118,7 +119,7 @@ export const SnsLoginBtnBox = styled.div`
   margin-bottom: 14rem;
 `;
 
-export const SnsLoginBtn = styled.button`
+export const SnsLoginBtn = styled(Link)`
   width: 4.8rem;
   height: 4.8rem;
   display: block;

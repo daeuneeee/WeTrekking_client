@@ -67,13 +67,13 @@ const LoginUi = ({
           <S.SnsTitleLine></S.SnsTitleLine>
         </S.SnsLoginTitleBox>
         <S.SnsLoginBtnBox>
-          <S.SnsLoginBtn>
+          <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/google">
             <img src="/images/login/google-login.png" />
           </S.SnsLoginBtn>
-          <S.SnsLoginBtn>
+          <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/kakao">
             <img src="/images/login/kakao-login.png" />
           </S.SnsLoginBtn>
-          <S.SnsLoginBtn>
+          <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/naver">
             <img src="/images/login/naver-login.png" />
           </S.SnsLoginBtn>
         </S.SnsLoginBtnBox>

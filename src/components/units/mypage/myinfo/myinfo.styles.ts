@@ -87,12 +87,14 @@ export const ProfilePointTitle = styled.h4`
   font-size: 1.6rem;
   font-weight: 400;
   color: #999;
+  margin-bottom: 0;
 `;
 
 export const ProfilePoint = styled.p`
   font-size: 2.4rem;
   font-weight: 700;
   color: ${mainColor};
+  margin-bottom: 0;
 `;
 
 export const BannerContainer = styled.div`
@@ -289,4 +291,15 @@ export const ListWriterAgeGender = styled.p`
   font-size: 1.3rem;
   font-weight: 400;
   color: #999;
+`;
+
+export const PointChargeBtn = styled.button`
+  width: 5rem;
+  height: 3rem;
+  background-color: ${mainColor};
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
 `;

@@ -1,10 +1,11 @@
-import styled from "@emotion/styled";
+import { gql } from "@apollo/client";
 
-export const Wrapper = styled.div`
-  width: 100%;
-`;
-
-export const Container = styled.div`
-  width: 1200px;
-  margin: 80px auto 100px;
+export const FETCH_CREW_USER_LIST = gql`
+  query fetchCrewUserList {
+    fetchCrewUserList {
+      id
+      status
+      crewBoard
+    }
+  }
 `;

@@ -13,6 +13,12 @@ export const FETCH_CREW_BOARD = gql`
       gender
       dues
       peoples
+      user {
+        id
+        nickname
+        gender
+        birth
+      }
     }
   }
 `;
@@ -23,21 +29,20 @@ export const FETCH_CREW_COMMENTS = gql`
       id
       comment
       createdAt
-      # user {
-      #   id
-      #   nickname
-      #   profile_img
-      # }
-      # subCrewComment {
-      #   id
-      #   comment
-      # createdAt
-      # user {
-      #   id
-      #   nickname
-      #   profile_img
-      # }
-      # }
+      user {
+        id
+        nickname
+        profile_img
+      }
+    }
+  }
+`;
+
+export const FETCH_BOARD_IMAGE = gql`
+  query fetchBoardImage($crewBoardId: String!) {
+    fetchBoardImage(crewBoardId: $crewBoardId) {
+      id
+      imgUrl
     }
   }
 `;

@@ -8,6 +8,8 @@ import {
   UseFormSetValue,
   UseFormTrigger,
 } from "react-hook-form";
+import { ChangeEvent } from "react";
+import { RangePickerProps } from "antd/lib/date-picker";
 
 export interface IFormData {
   title: string;
@@ -19,6 +21,7 @@ export interface IFormData {
   description: string;
   gender: string;
   peoples: number;
+  thumbnail: string;
 }
 
 export interface UseFormReturn<TFieldValues extends FieldValues = FieldValues> {
@@ -30,11 +33,22 @@ export interface UseFormReturn<TFieldValues extends FieldValues = FieldValues> {
 }
 
 export interface ICrewWriteUiProps {
-  // peoples: number;
   onChangeTime: (time: Moment | null, timeString: string) => void;
   onChangeDate: DatePickerProps["onChange"];
-  // onChangePeoples: (event: number) => void;
-  // register: UseFormRegister<FieldValues>;
-  // handleSubmit: UseFormHandleSubmit<FieldValues> | any;
-  // onClickRegister: (data: IFormData) => void;
+  register: UseFormRegister<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<FieldValues> | any;
+  onClickRegister: (data: IFormData) => void;
+  isOpen: boolean;
+  handleComplete: any;
+  onToggleModal: () => void;
+  onChangeRadio: (event: ChangeEvent<HTMLInputElement>) => void;
+  isClicked: string;
+  people: number;
+  onChangePeople: (event: number) => void;
+  address: string;
+  disabledDate: RangePickerProps["disabledDate"];
+  onChangeFile: (
+    index: number
+  ) => (event: ChangeEvent<HTMLInputElement>) => void;
+  imageUrls: string[];
 }

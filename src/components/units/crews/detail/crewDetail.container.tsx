@@ -2,11 +2,16 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
   IQuery,
+  IQueryFetchBoardImageArgs,
   IQueryFetchCrewBoardArgs,
   IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import CrewDetailUi from "./crewDetail.presenter";
-import { FETCH_CREW_BOARD, FETCH_CREW_COMMENTS } from "./crewDetail.queries";
+import {
+  FETCH_BOARD_IMAGE,
+  FETCH_CREW_BOARD,
+  FETCH_CREW_COMMENTS,
+} from "./crewDetail.queries";
 
 const CrewDetail = () => {
   const router = useRouter();
@@ -22,6 +27,13 @@ const CrewDetail = () => {
     Pick<IQuery, "fetchCrewBoard">,
     IQueryFetchCrewBoardArgs
   >(FETCH_CREW_BOARD, {
+    variables: { crewBoardId: String(router.query.crewId) },
+  });
+
+  const { data: crewImg } = useQuery<
+    Pick<IQuery, "fetchBoardImage">,
+    IQueryFetchBoardImageArgs
+  >(FETCH_BOARD_IMAGE, {
     variables: { crewBoardId: String(router.query.crewId) },
   });
 
@@ -48,7 +60,12 @@ const CrewDetail = () => {
   };
 
   return (
-    <CrewDetailUi data={data} comments={comments} onLoadMore={onLoadMore} />
+    <CrewDetailUi
+      data={data}
+      comments={comments}
+      onLoadMore={onLoadMore}
+      crewImg={crewImg}
+    />
   );
 };
 

@@ -1,17 +1,21 @@
 import { gql } from "@apollo/client";
 
-export const CREATE_CREW_BOARD_T = gql`
-  mutation createCrewBoardTEST($createCrewBoardInput: CreateCrewBoardInput!) {
-    createCrewBoardTEST(createCrewBoardInput: $createCrewBoardInput) {
+export const CREATE_CREW_BOARD = gql`
+  mutation createCrewBoard(
+    $createCrewBoardInput: CreateCrewBoardInput!
+    $imgURL: [String!]!
+  ) {
+    createCrewBoard(
+      createCrewBoardInput: $createCrewBoardInput
+      imgURL: $imgURL
+    ) {
       id
-      title
-      description
-      date
-      address
-      addressDetail
-      gender
-      dues
-      peoples
     }
+  }
+`;
+
+export const UPLOAD_FILES_CREW = gql`
+  mutation uploadFilesForCrewBoard($files: [Upload!]!) {
+    uploadFilesForCrewBoard(files: $files)
   }
 `;

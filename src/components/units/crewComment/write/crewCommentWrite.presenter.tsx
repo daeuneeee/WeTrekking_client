@@ -1,14 +1,14 @@
 import * as S from "./crewCommentWrite.styles";
 
-const CrewCommentWriteUi = ({ onChangeComment, onClickRegister }) => {
+const CrewCommentWriteUi = ({ onChangeComment, onClickRegister, comment }) => {
   return (
     <>
       <S.Wrapper>
         <S.Container>
-          <S.Crew>춘딩딩</S.Crew>
           <S.Contents
             placeholder="내용을 입력해주세요"
             onChange={onChangeComment}
+            value={comment}
             id="clear"
           ></S.Contents>
           <S.RegisterBox>

@@ -1,41 +1,15 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
   IMutation,
   IMutationCreateCrewCommentArgs,
-  IQuery,
-  IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { FETCH_CREW_COMMENTS } from "../../crews/detail/crewDetail.queries";
 import CrewCommentWriteUi from "./crewCommentWrite.presenter";
 import "antd/dist/antd.css";
-
-const CREATE_CREW_COMMENT = gql`
-  mutation createCrewComment($createCrewCommentInput: CreateCrewCommentInput!) {
-    createCrewComment(createCrewCommentInput: $createCrewCommentInput) {
-      id
-      comment
-      createdAt
-      # user{
-      #   id
-      #   nickname
-      #   profile_img
-      # }
-      # subCrewComment{
-      #   id
-      #   comment
-      #   createdAt
-      #   user{
-      #     id
-      #     nickname
-      #     profile_img
-      #   }
-      # }
-    }
-  }
-`;
+import { CREATE_CREW_COMMENT } from "./crewCommentWrite.queries";
 
 const CrewCommentWrite = () => {
   const router = useRouter();
@@ -54,7 +28,6 @@ const CrewCommentWrite = () => {
     if (comment === "") {
       Modal.error({ content: "내용을 입력해주세요." });
     }
-
     if (comment) {
       await createCrewComment({
         variables: {
@@ -71,13 +44,14 @@ const CrewCommentWrite = () => {
         ],
       });
     }
-    document.getElementById("clear").value = "";
+    setComment("");
   };
 
   return (
     <CrewCommentWriteUi
       onClickRegister={onClickRegister}
       onChangeComment={onChangeComment}
+      comment={comment}
     />
   );
 };

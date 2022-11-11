@@ -44,14 +44,17 @@ export const MainImgBox = styled.label`
   background: #fafafa;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   @media ${tablet} {
     width: 100%;
   }
+`;
+
+export const MainImgHidden = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MainImg = styled.img`

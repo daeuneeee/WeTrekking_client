@@ -2,8 +2,19 @@ import * as S from "./crewCommentList.styles";
 import { Avatar } from "@mui/material";
 import CrewSubCommentList from "../../crewSubComment/list/crewSubCommentList.container";
 import CrewSubCommentWrite from "../../crewSubComment/write";
+import { getDate, getTime } from "../../../../commons/utils/getDate";
+import ConfirmModal from "../../../commons/modals/confirmModal";
 
-const CrewCommentListUi = ({ commentsMap, data }) => {
+const CrewCommentListUi = ({
+  commentsMap,
+  data,
+  onClickComment,
+  isOpen,
+  onClickShowModal,
+  isModalOpen,
+  onClickModalConfirm,
+  onClickCancelModal,
+}) => {
   return (
     <>
       <S.Wrapper>
@@ -14,18 +25,22 @@ const CrewCommentListUi = ({ commentsMap, data }) => {
             className="avatar"
           ></Avatar>
           <S.CommentBox>
-            <S.NickName>춘딩딩</S.NickName>
-            <S.Comment>{commentsMap.comment}</S.Comment>
+            <S.NickName>{commentsMap?.user.nickname}</S.NickName>
+            <S.Comment>{commentsMap?.comment}</S.Comment>
             <S.CommentInformBox>
               <S.DateBox>
-                <S.Date>{commentsMap.createdAt.slice(0, 10)}</S.Date>
+                <S.Date>{getDate(commentsMap?.createdAt)}</S.Date>
                 <S.Date>|</S.Date>
-                <S.Date>{commentsMap.createdAt}</S.Date>
+                <S.Date>{getTime(commentsMap?.createdAt)}</S.Date>
               </S.DateBox>
               <S.BtnBox>
-                <S.Btn>댓글 달기</S.Btn>
+                <S.Btn onClick={onClickComment}>댓글 달기</S.Btn>
                 <S.BtnDot>·</S.BtnDot>
-                <S.Btn>삭제</S.Btn>
+                <S.Btn>수정</S.Btn>
+                <S.BtnDot>·</S.BtnDot>
+                <S.Btn id={commentsMap.id} onClick={onClickShowModal}>
+                  삭제
+                </S.Btn>
               </S.BtnBox>
             </S.CommentInformBox>
           </S.CommentBox>
@@ -40,8 +55,14 @@ const CrewCommentListUi = ({ commentsMap, data }) => {
               />
             );
           })}
-          <CrewSubCommentWrite />
+          {isOpen && <CrewSubCommentWrite />}
         </S.NestedCommentBox>
+        <ConfirmModal
+          onOk={onClickModalConfirm}
+          onCancel={onClickCancelModal}
+          contents="삭제하시겠습니까?"
+          open={isModalOpen}
+        />
       </S.Wrapper>
     </>
   );

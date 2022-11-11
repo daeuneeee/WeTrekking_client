@@ -416,7 +416,7 @@ export const Location = styled.span`
 export const ListTimeAndDayBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 2px;
+  gap: 0.5rem;
   align-items: center;
 `;
 

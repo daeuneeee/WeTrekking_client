@@ -11,7 +11,6 @@ import {
   UPLOAD_FILE_FOR_USER_PROFILE,
   CHECK_NICKNAME,
   UPDATE_USER,
-  UPLOAD_FILE_FOR_USER_PROFILE2,
 } from "./join.queries";
 import { IJoinData, IJoinProps, IMyUserInput } from "./join.types";
 import * as yup from "yup";
@@ -56,14 +55,14 @@ const updateInfoYup = yup.object({
 
 const Join = ({ isUpdate }: IJoinProps) => {
   const { register, handleSubmit, setValue, getValues, formState } = useForm({
-    // resolver: isUpdate ? yupResolver(updateInfoYup) : yupResolver(joinYup),
+    resolver: isUpdate ? yupResolver(updateInfoYup) : yupResolver(joinYup),
     mode: "onChange",
   });
 
   const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isGenderCheck, setIsGenderCheck] = useState("male");
   const [imgUrl, setImgUrl] = useState("");
-  const [fileData, setFile] = useState<File | undefined>();
+  const [file, setFile] = useState<File | undefined>();
   const [isEmailCheck, setIsEmailCheck] = useState(false);
   const [isNicknameCheck, setIsNicknameCheck] = useState(false);
   const [isPhoneNumCheck, setIsPhoneNumCheck] = useState(false);
@@ -137,11 +136,12 @@ const Join = ({ isUpdate }: IJoinProps) => {
 
   const onClickSendToPhone = async () => {
     try {
-      await sendTokenToPhone({
+      const phoneData = await sendTokenToPhone({
         variables: {
           phone: `${phone01}${phone02}${phone03}`,
         },
       });
+      console.log(phoneData);
       alert("인증번호가 전송되었습니다.");
       setIsCheckNumActive(true);
     } catch (error) {
@@ -223,17 +223,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
   >(UPLOAD_FILE_FOR_USER_PROFILE);
 
   const onChangeUserProfile = async (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
     const file = event.target.files?.[0];
     setFile(file);
-
-    const result = await uploadUserProfile({
-      variables: {
-        file: file,
-      },
-    });
-
-    console.log(result);
 
     const fileReader = new FileReader();
     if (file === undefined) return;
@@ -245,27 +236,34 @@ const Join = ({ isUpdate }: IJoinProps) => {
       }
     };
   };
-  console.log(fileData);
   const onClickJoinSubmit = async (data: IJoinData) => {
     try {
-      // if (!isEmailCheck) {
-      //   alert("이메일 중복확인을 해주세요.");
-      // } else if (!isNicknameCheck) {
-      //   alert("닉네임 중복확인을 해주세요.");
-      // } else if (!isPhoneNumCheck) {
-      //   alert("휴대폰 인증을 해주세요.");
-      // } else {
-      //   delete data.passwordConfirm;
-      //   data.phone = `${phone01}${phone02}${phone03}`;
-      //   data.profile_img = "";
-      //   await createUser({
-      //     variables: {
-      //       createUserInput: data,
-      //     },
-      //   });
-      //   alert("회원가입 성공");
-      //   void router.push("/");
-      // }
+      const result = await uploadUserProfile({
+        variables: {
+          file: file,
+        },
+      });
+
+      const fileUrl = result.data?.uploadFileForUserProfile;
+
+      if (!isEmailCheck) {
+        alert("이메일 중복확인을 해주세요.");
+      } else if (!isNicknameCheck) {
+        alert("닉네임 중복확인을 해주세요.");
+      } else if (!isPhoneNumCheck) {
+        alert("휴대폰 인증을 해주세요.");
+      } else {
+        delete data.passwordConfirm;
+        data.phone = `${phone01}${phone02}${phone03}`;
+        data.profile_img = String(fileUrl);
+        await createUser({
+          variables: {
+            createUserInput: data,
+          },
+        });
+        alert("회원가입 성공");
+        void router.push("/");
+      }
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -275,8 +273,17 @@ const Join = ({ isUpdate }: IJoinProps) => {
 
   const [updateUser] = useMutation<Pick<IMutation, "updateUser">>(UPDATE_USER);
 
+  console.log(userDatas?.fetchUser.email);
   const onClickUpdateUser = async (data: IJoinData) => {
     try {
+      const result = await uploadUserProfile({
+        variables: {
+          file: file,
+        },
+      });
+
+      const fileUrl = result.data?.uploadFileForUserProfile;
+
       const myUserInput: IMyUserInput = {};
       if (data.password) {
         myUserInput.password = data.password;
@@ -287,8 +294,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
       if (phone01 && phone02 && phone03) {
         myUserInput.phone = `${phone01}${phone02}${phone03}`;
       }
-      if (data.profile_img) {
-        myUserInput.profile_img = data.profile_img;
+      if (fileUrl) {
+        myUserInput.profile_img = fileUrl;
       }
 
       if (nickname && !isNicknameCheck) {
@@ -298,7 +305,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
       } else {
         await updateUser({
           variables: {
-            email: userDatas?.fetchUser.email,
+            userId: userDatas?.fetchUser.email,
             updateUserInput: myUserInput,
           },
           update(cache) {

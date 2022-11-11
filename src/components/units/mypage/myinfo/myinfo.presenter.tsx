@@ -11,7 +11,13 @@ const MyInfoUi = ({ userDatas, onClickPointModal }: IMyInfoUiProps) => {
       <S.ProfileWrapper>
         <S.ProfileBox>
           <S.ProfileBody>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar
+              alt="Remy Sharp"
+              src={`https://storage.googleapis.com/${String(
+                userDatas?.fetchUser.profile_img
+              )}`}
+              className="AvatarImg"
+            />
             <S.ProfileName>{userDatas?.fetchUser.name}</S.ProfileName>
             <S.ProfileEmail>{userDatas?.fetchUser.email}</S.ProfileEmail>
             <S.GenderPhoneBox>

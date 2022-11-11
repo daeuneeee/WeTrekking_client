@@ -29,18 +29,20 @@ const CREATE_POINT_PAYMENT = gql`
   }
 `;
 
+declare const window: typeof globalThis & {
+  IMP: any;
+};
+
 const PointBox = () => {
   const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isOpen, setIsOpen] = useRecoilState<boolean>(isPointModalToggleState);
   const [point, setPoint] = useState("");
 
-  console.log(point);
-
   const onClickModalToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const onChangePoint = (value) => {
+  const onChangePoint = (value: any) => {
     setPoint(value);
   };
 
@@ -58,7 +60,7 @@ const PointBox = () => {
         pay_method: "card",
         // merchant_uid: "ORD20180131-0000011",
         name: `${point} 포인트 충전`,
-        amount: 100,
+        amount: point,
         buyer_email: userDatas?.fetchUser.email,
         buyer_name: userDatas?.fetchUser.name,
         buyer_tel: userDatas?.fetchUser.phone,
@@ -79,6 +81,7 @@ const PointBox = () => {
               });
             },
           });
+          alert("포인트 충전이 완료되었습니다.");
         } else {
           // 결제 실패 시 로직,
           alert("충전이 실패했습니다. 다시 시도해주세요.");
@@ -110,7 +113,7 @@ const PointBox = () => {
       >
         <PointContainer>
           <Select
-            defaultValue="1000"
+            defaultValue="충전금액을 선택해주세요."
             allowClear
             options={[
               {

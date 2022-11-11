@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
+import { tablet } from "../../src/commons/styles/media";
 import ReviewDetail from "../../src/components/units/reviews/detail/reviewDetail.container";
 import ReviewList from "../../src/components/units/reviews/list/reviewList.container";
-import { isOpenSideBarState, reviewIdState } from "../../src/store";
+import { isOpenSideBarState } from "../../src/store";
 
 const ReviewListPage = () => {
   const [isOpenSideBar] = useRecoilState(isOpenSideBarState);
@@ -32,4 +33,12 @@ const ReviewWrapper = styled.div`
   width: 75%;
   height: 100vh;
   overflow-y: scroll;
+  @media ${tablet} {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+    background-color: #fff;
+  }
 `;

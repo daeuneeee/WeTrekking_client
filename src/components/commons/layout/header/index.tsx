@@ -11,7 +11,7 @@ import { accessTokenState, userInfo } from "../../../../store";
 const Wrapper = styled.div`
   width: 100%;
   padding: 2.4rem 0;
-  z-index: 9999;
+  z-index: 9998;
   background-color: #fff;
   @media ${tablet} {
     position: sticky;
@@ -38,7 +38,7 @@ const Headers = styled.header`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 9999;
+  z-index: 9998;
   @media (max-width: 1599px) {
     width: 90%;
   }

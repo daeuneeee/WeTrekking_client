@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { tablet } from "./media";
 
 // prettier-ignore
 export const globalStyles = css`
@@ -24,7 +25,37 @@ export const globalStyles = css`
 	src: url("/fonts/Pretendard-ExtraBold.woff");
 }
 
-
+.ant-modal-wrap {
+    z-index: 9999 !important;
+	.ant-modal-title {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+}
+p{
+		font-size: 1.6rem;
+		margin-bottom: 0;
+	}
+	.ant-btn {
+    line-height: 1.5715;
+    height: 32px;
+    padding: 0.2rem 1.5rem;
+    font-size: 1.4rem;
+    border-radius: 2px;
+	@media ${tablet}{
+		height: 25px;
+	}
+}
+.ant-modal-close-x {
+    width: 5.4rem;
+    height: 5.4rem;
+    font-size: 16px;
+    line-height: 54px;
+    text-align: center;
+ @media ${tablet}{
+    line-height: 34px;
+ }
+}
+  }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

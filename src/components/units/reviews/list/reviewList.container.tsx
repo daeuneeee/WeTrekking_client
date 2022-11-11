@@ -7,7 +7,7 @@ import ReviewListUi from "./reviewList.presenter";
 import { FETCH_REVIEWS } from "./reviewList.queries";
 
 const ReviewList = () => {
-  const [, setIsOpenSideBar] = useRecoilState(isOpenSideBarState);
+  const [isOpenSideBar, setIsOpenSideBar] = useRecoilState(isOpenSideBarState);
   const [reviewId, setReviewId] = useRecoilState(reviewIdState);
 
   const onClickList = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -18,7 +18,12 @@ const ReviewList = () => {
   const { data } = useQuery<Pick<IQuery, "fetchReviewBoards">>(FETCH_REVIEWS);
 
   return (
-    <ReviewListUi data={data} onClickList={onClickList} reviewId={reviewId} />
+    <ReviewListUi
+      data={data}
+      onClickList={onClickList}
+      reviewId={reviewId}
+      isOpenSideBar={isOpenSideBar}
+    />
   );
 };
 

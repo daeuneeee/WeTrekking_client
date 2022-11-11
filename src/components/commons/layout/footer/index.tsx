@@ -135,9 +135,9 @@ const Footer = () => {
     <Wrapper>
       <FootMenuBox>
         <FootMenu>
-          <FootMenuList onClick={onClickToCrews}>게시글 리스트</FootMenuList>
+          <FootMenuList onClick={onClickToCrews}>크루 모집/신청</FootMenuList>
           <FootMenuLine></FootMenuLine>
-          <FootMenuList onClick={onClickToReview}>리뷰 리스트</FootMenuList>
+          <FootMenuList onClick={onClickToReview}>리뷰</FootMenuList>
         </FootMenu>
       </FootMenuBox>
       <Container>

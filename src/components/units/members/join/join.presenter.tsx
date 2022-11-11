@@ -23,7 +23,6 @@ const JoinUi = ({
   onClickCheckTokenToPhone,
   onChangePhoneToken,
   onChangeUserProfile,
-  userProfile,
   onClickCheckEmail,
   onClickCheckNickname,
   onChangeEmail,
@@ -33,6 +32,7 @@ const JoinUi = ({
   isPhoneNumCheck,
   userDatas,
   onClickUpdateUser,
+  imgUrl,
 }: IJoinUiProps) => {
   return (
     <A.Wrapper>
@@ -275,9 +275,11 @@ const JoinUi = ({
               onChange={onChangeUserProfile}
             />
             <S.PhotoUploadBox htmlFor="profilePhoto">
-              <S.ProfileUploadBtn>
-                {userProfile ? (
-                  <img src={userProfile.replaceAll(" ", "%20")} alt="asd" />
+              <S.ProfileUploadBtn
+                style={{ backgroundImage: `url(${String(imgUrl)})` }}
+              >
+                {imgUrl ? (
+                  <img />
                 ) : (
                   <img src="/images/join/photo-upload.png" alt="" />
                 )}

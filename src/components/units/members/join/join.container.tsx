@@ -11,6 +11,7 @@ import {
   UPLOAD_FILE_FOR_USER_PROFILE,
   CHECK_NICKNAME,
   UPDATE_USER,
+  UPLOAD_FILE_FOR_USER_PROFILE2,
 } from "./join.queries";
 import { IJoinData, IJoinProps, IMyUserInput } from "./join.types";
 import * as yup from "yup";
@@ -55,14 +56,14 @@ const updateInfoYup = yup.object({
 
 const Join = ({ isUpdate }: IJoinProps) => {
   const { register, handleSubmit, setValue, getValues, formState } = useForm({
-    resolver: isUpdate ? yupResolver(updateInfoYup) : yupResolver(joinYup),
+    // resolver: isUpdate ? yupResolver(updateInfoYup) : yupResolver(joinYup),
     mode: "onChange",
   });
 
   const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isGenderCheck, setIsGenderCheck] = useState("male");
-  const [userProfile, setUserProfile] = useState("");
-  const [file, setFile] = useState<File | undefined>(undefined);
+  const [imgUrl, setImgUrl] = useState("");
+  const [fileData, setFile] = useState<File | undefined>();
   const [isEmailCheck, setIsEmailCheck] = useState(false);
   const [isNicknameCheck, setIsNicknameCheck] = useState(false);
   const [isPhoneNumCheck, setIsPhoneNumCheck] = useState(false);
@@ -222,35 +223,49 @@ const Join = ({ isUpdate }: IJoinProps) => {
   >(UPLOAD_FILE_FOR_USER_PROFILE);
 
   const onChangeUserProfile = async (event: ChangeEvent<HTMLInputElement>) => {
-    setFile(event.target.files?.[0]);
-    const { data } = await uploadUserProfile({
+    console.log(event);
+    const file = event.target.files?.[0];
+    setFile(file);
+
+    const result = await uploadUserProfile({
       variables: {
-        file: event.target.files?.[0],
+        file: file,
       },
     });
-    setUserProfile(String(data?.uploadFileForUserProfile));
-  };
 
+    console.log(result);
+
+    const fileReader = new FileReader();
+    if (file === undefined) return;
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (value) => {
+      console.log(value);
+      if (typeof value.target?.result === "string") {
+        setImgUrl(value.target.result);
+      }
+    };
+  };
+  console.log(fileData);
   const onClickJoinSubmit = async (data: IJoinData) => {
     try {
-      if (!isEmailCheck) {
-        alert("이메일 중복확인을 해주세요.");
-      } else if (!isNicknameCheck) {
-        alert("닉네임 중복확인을 해주세요.");
-      } else if (!isPhoneNumCheck) {
-        alert("휴대폰 인증을 해주세요.");
-      } else {
-        delete data.passwordConfirm;
-        data.phone = `${phone01}${phone02}${phone03}`;
-        data.profile_img = "";
-        await createUser({
-          variables: {
-            createUserInput: data,
-          },
-        });
-        alert("회원가입 성공");
-        void router.push("/");
-      }
+      // if (!isEmailCheck) {
+      //   alert("이메일 중복확인을 해주세요.");
+      // } else if (!isNicknameCheck) {
+      //   alert("닉네임 중복확인을 해주세요.");
+      // } else if (!isPhoneNumCheck) {
+      //   alert("휴대폰 인증을 해주세요.");
+      // } else {
+      //   delete data.passwordConfirm;
+      //   data.phone = `${phone01}${phone02}${phone03}`;
+      //   data.profile_img = "";
+      //   await createUser({
+      //     variables: {
+      //       createUserInput: data,
+      //     },
+      //   });
+      //   alert("회원가입 성공");
+      //   void router.push("/");
+      // }
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -281,7 +296,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
       } else if (phone01 && phone02 && phone03 && !isPhoneNumCheck) {
         alert("휴대폰 인증을 해주세요.");
       } else {
-        console.log(myUserInput);
         await updateUser({
           variables: {
             email: userDatas?.fetchUser.email,
@@ -323,7 +337,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
       onClickCheckTokenToPhone={onClickCheckTokenToPhone}
       onChangePhoneToken={onChangePhoneToken}
       onChangeUserProfile={onChangeUserProfile}
-      userProfile={userProfile}
       onClickCheckEmail={onClickCheckEmail}
       onClickCheckNickname={onClickCheckNickname}
       onChangeEmail={onChangeEmail}
@@ -333,6 +346,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
       isPhoneNumCheck={isPhoneNumCheck}
       userDatas={userDatas}
       onClickUpdateUser={onClickUpdateUser}
+      imgUrl={imgUrl}
     />
   );
 };

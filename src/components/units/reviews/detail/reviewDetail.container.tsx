@@ -23,15 +23,40 @@ const ReviewDetail = () => {
     setIsOpenSideBar(false);
   };
 
-  const { data: reviewComments } = useQuery(FETCH_REVIEW_COMMENTS, {
+  const { data: reviewComments, fetchMore } = useQuery(FETCH_REVIEW_COMMENTS, {
     variables: { reviewBoardId: reviewId },
   });
 
+  const onLoadMore = async () => {
+    console.log("Dd");
+    if (!reviewComments) return;
+    await fetchMore({
+      variables: {
+        page: Math.ceil(reviewComments.fetchReviewComments.length / 9) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchReviewComments === undefined) {
+          return {
+            fetchReviewComments: [...prev.fetchReviewComments],
+          };
+        }
+        return {
+          fetchReviewComments: [
+            ...prev.fetchReviewComments,
+            ...fetchMoreResult.fetchReviewComments,
+          ],
+        };
+      },
+    });
+  };
+
+  console.log(reviewComments);
   return (
     <ReviewDetailUi
       data={data}
       onClickX={onClickX}
       reviewComments={reviewComments}
+      onLoadMore={onLoadMore}
     />
   );
 };

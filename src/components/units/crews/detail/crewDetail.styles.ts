@@ -280,7 +280,7 @@ export const Description = styled.div`
   /* height: 160px; */
   border: 1px solid #d9d9d9;
   resize: none;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 1.6rem 1.6rem 20% 1.6rem;
   font-weight: 400;
   font-size: 1.6rem;
@@ -408,7 +408,7 @@ export const CrewBox = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   margin-top: 2.4rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 4.44% 3.33%;
   display: flex;
   flex-direction: column;

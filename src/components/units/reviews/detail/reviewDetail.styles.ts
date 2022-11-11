@@ -118,6 +118,12 @@ export const CommentContainer = styled.div`
   padding: 20px 24px;
 `;
 
+export const ScrollBox = styled.div`
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+`;
+
 // export const WriterInformBox = styled.div`
 
 // `

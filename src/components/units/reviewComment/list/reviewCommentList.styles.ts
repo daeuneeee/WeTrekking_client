@@ -1,18 +1,19 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
+import { tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin-top: 25px;
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 3rem;
 `;
 
 export const Container = styled.section`
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 1.2rem;
 `;
 
 export const CommentBox = styled.div`
@@ -23,12 +24,12 @@ export const NickName = styled.p`
   color: #111;
   font-weight: 500;
   font-size: 1.3rem;
-  padding-top: 4px;
-  margin-bottom: 10px;
+  padding-top: 0.4rem;
+  margin-bottom: 1rem;
 `;
 
 export const Comment = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 400;
   font-size: 1.3rem;
   line-height: 1.4;
@@ -36,7 +37,7 @@ export const Comment = styled.div`
 
 export const DateBox = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 0.4rem;
 `;
 
 export const Date = styled.span`
@@ -71,24 +72,27 @@ export const EditDeleteDot = styled.span`
 
 export const EditContainer = styled.div`
   width: 100%;
-  height: 140px;
+  height: 12rem;
   background: #fff;
   border: 1px solid #d9d9d9;
-  padding: 16px 24px;
+  padding: 1.6rem 2.4rem;
   border-radius: 4px;
   margin-top: 2rem;
+  @media ${tablet} {
+    padding: 0.16rem 2.4rem;
+  }
 `;
 
 export const EditContents = styled.textarea`
   width: 100%;
-  height: 50px;
+  height: 5rem;
   border: none;
   resize: none;
-  margin-top: 12px;
+  margin-top: 1.2rem;
   font-weight: 400;
   font-size: 1.3rem;
   color: #999;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   outline: none;
   ::placeholder {
     color: #999;

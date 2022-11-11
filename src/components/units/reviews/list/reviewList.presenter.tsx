@@ -2,15 +2,22 @@ import { Pagination } from "antd";
 import * as S from "./reviewList.styles";
 import { IReviewListUiProps } from "./reviewList.types";
 
-const ReviewListUi = ({ data, onClickList, reviewId }: IReviewListUiProps) => {
+const ReviewListUi = ({
+  data,
+  onClickList,
+  reviewId,
+  isOpenSideBar,
+}: IReviewListUiProps) => {
   return (
-    <S.Wrapper>
-      <S.Container>
+    <S.Wrapper style={{ width: isOpenSideBar ? "97vw" : "100%" }}>
+      <S.Container style={{ width: isOpenSideBar ? "100%" : "1200px" }}>
         <S.ReviewListContainer>
           <S.TitleUl>
             <S.ListLiNum>No.</S.ListLiNum>
             <S.ListLiMountain>산 이름</S.ListLiMountain>
-            <S.ListLiTitle>제목</S.ListLiTitle>
+            <S.ListLiTitle style={{ width: isOpenSideBar ? "53%" : "58.33%" }}>
+              제목
+            </S.ListLiTitle>
             <S.ListLiWrite>작성자</S.ListLiWrite>
             <S.ListLiCreatedAt>작성일</S.ListLiCreatedAt>
           </S.TitleUl>
@@ -18,7 +25,9 @@ const ReviewListUi = ({ data, onClickList, reviewId }: IReviewListUiProps) => {
             <S.ContentUl key={ReviewsMap.id}>
               <S.ListLiNum>{Number(index) + 1}</S.ListLiNum>
               <S.ListLiMountain>백두산</S.ListLiMountain>
-              <S.ListLiTitle>
+              <S.ListLiTitle
+                style={{ width: isOpenSideBar ? "53%" : "58.33%" }}
+              >
                 <S.Title
                   onClick={onClickList}
                   id={ReviewsMap.id}

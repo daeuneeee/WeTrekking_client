@@ -1,5 +1,3 @@
-import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../store";
 import Input01 from "../../../commons/inputs/input-01";
 import * as S from "./login.styles";
 import { ILoginUiProps } from "./login.types";

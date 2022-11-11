@@ -1,9 +1,14 @@
 import styled from "@emotion/styled";
+import { tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 90%;
   background: #fff;
   margin: 40px auto;
+  @media ${tablet} {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export const XBox = styled.div`
@@ -24,8 +29,8 @@ export const XBtn = styled.div`
 export const ImgBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 1.6rem;
+  margin-bottom: 2.4rem;
 `;
 
 export const MainImg = styled.div`
@@ -33,6 +38,10 @@ export const MainImg = styled.div`
   height: 400px;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
+  @media ${tablet} {
+    height: auto;
+    padding-bottom: 80%;
+  }
 `;
 
 export const SubImgBox = styled.div`
@@ -52,27 +61,34 @@ export const UnderLine = styled.div`
   width: 100%;
   height: 1px;
   background: #d9d9d9;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 export const InformBox = styled.div`
   width: 81%;
-  margin: 0 auto 24px;
+  margin: 0 auto 2.4rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media ${tablet} {
+    flex-direction: column;
+  }
 `;
 
 export const WriteProfile = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 1.6rem;
   align-items: center;
+  .MuiAvatar-root {
+    width: 6.8rem;
+    height: 6.8rem;
+  }
 `;
 
 export const Location = styled.span`
-  padding: 5px 0 4px 23px;
+  padding: 0.5rem 0 0.4rem 2.3rem;
   background: url("/images/review/location.png") no-repeat left center;
   background-size: 2.4rem;
   font-weight: 400;
@@ -96,7 +112,7 @@ export const NickName = styled.span`
 export const AgeGenderBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  gap: 0.3rem;
 `;
 
 export const AgeGender = styled.span`
@@ -107,15 +123,18 @@ export const AgeGender = styled.span`
 
 export const Review = styled.div`
   width: 100%;
-  padding: 12px;
-  margin-bottom: 24px;
+  padding: 1.2rem;
+  margin-bottom: 2.4rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #111;
 `;
 
 export const CommentContainer = styled.div`
   width: 100%;
   background: #fafafa;
-  margin: 40px auto 100px;
-  padding: 20px 24px;
+  margin: 4rem auto 10rem;
+  padding: 2rem 2.4rem;
 `;
 
 export const ScrollBox = styled.div`

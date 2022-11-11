@@ -11,3 +11,9 @@ export const CREATE_REVIEW = gql`
     }
   }
 `;
+
+export const UPLOAD_FILES_REVIEW = gql`
+  mutation uploadFilesForReviewBoard($files: [Upload!]!) {
+    uploadFilesForReviewBoard(files: $files)
+  }
+`;

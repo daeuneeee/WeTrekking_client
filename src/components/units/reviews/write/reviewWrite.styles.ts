@@ -24,6 +24,7 @@ export const ImgBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  margin-bottom: 3rem;
   @media ${mobile} {
     width: 100%;
   }
@@ -35,14 +36,16 @@ export const MainImgBox = styled.label`
   background: #fafafa;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   @media ${tablet} {
     width: 100%;
   }
+`;
+export const MainImgHidden = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MainImg = styled.img`
@@ -105,9 +108,8 @@ export const Input = styled.input`
   color: #111;
   font-weight: 400;
   font-size: 1.6rem;
-  margin-bottom: 24px;
   outline-color: ${subColor};
-
+  margin-bottom: 0.2rem;
   ::placeholder {
     color: #999;
   }
@@ -117,6 +119,7 @@ export const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-bottom: 2.4rem;
 `;
 
 export const Star = styled(Rate)`
@@ -146,7 +149,7 @@ export const TextArea = styled.textarea`
   border-radius: 4px;
   padding: 12px;
   resize: none;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   font-weight: 400;
   font-size: 1.6rem;
   color: #111;
@@ -160,7 +163,7 @@ export const BtnBox = styled.div`
   display: flex;
   flex-direction: row;
   gap: 4%;
-  margin-bottom: 104px;
+  margin: 4rem 0 10.4rem;
 `;
 
 export const CancelBtn = styled.button`
@@ -180,4 +183,10 @@ export const RegisterBtn = styled(CancelBtn)`
 
 export const DefaultFileInput = styled.input`
   display: none;
+`;
+
+export const Error = styled.span`
+  color: red;
+  font-size: 1.3rem;
+  font-weight: 500;
 `;

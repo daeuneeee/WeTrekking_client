@@ -1,9 +1,10 @@
 import { Avatar, AvatarGroup } from "@mui/material";
+import PointBox from "../../../commons/pointCharge";
 import MyPageNav from "../navigation";
 import * as S from "./myinfo.styles";
 import { IMyInfoUiProps } from "./myinfo.types";
 
-const MyInfoUi = ({ userDatas }: IMyInfoUiProps) => {
+const MyInfoUi = ({ userDatas, onClickPointModal }: IMyInfoUiProps) => {
   return (
     <S.Wrapper>
       <MyPageNav page="내 정보" />
@@ -35,6 +36,9 @@ const MyInfoUi = ({ userDatas }: IMyInfoUiProps) => {
               )}
               P
             </S.ProfilePoint>
+            <S.PointChargeBtn onClick={onClickPointModal}>
+              충전
+            </S.PointChargeBtn>
           </S.ProfilePointBox>
         </S.ProfileBox>
       </S.ProfileWrapper>
@@ -43,7 +47,9 @@ const MyInfoUi = ({ userDatas }: IMyInfoUiProps) => {
           <S.BannerMent>
             <span>다양한 크루를 만나보세요!</span>
           </S.BannerMent>
-          <S.GoPoint>포인트 충전하기 &gt; </S.GoPoint>
+          <S.GoPoint onClick={onClickPointModal}>
+            포인트 충전하기 &gt;{" "}
+          </S.GoPoint>
         </S.BannerContents>
       </S.BannerContainer>
       <S.InfoContainer>
@@ -267,6 +273,7 @@ const MyInfoUi = ({ userDatas }: IMyInfoUiProps) => {
           </S.MyMListBox>
         </S.MyMListContainer>
       </S.InfoContainer>
+      <PointBox />
     </S.Wrapper>
   );
 };

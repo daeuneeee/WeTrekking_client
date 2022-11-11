@@ -20,7 +20,6 @@ export interface IJoinUiProps {
   onClickCheckTokenToPhone: () => void;
   onChangePhoneToken: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeUserProfile: (event: ChangeEvent<HTMLInputElement>) => void;
-  userProfile: string;
   onClickCheckEmail: () => void;
   onClickCheckNickname: () => void;
   onChangeEmail: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -30,6 +29,7 @@ export interface IJoinUiProps {
   isPhoneNumCheck: boolean;
   userDatas: Pick<IQuery, "fetchUser">;
   onClickUpdateUser: (data: IJoinData) => void;
+  imgUrl: string;
 }
 
 export interface IJoinData {

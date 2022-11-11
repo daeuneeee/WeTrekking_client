@@ -57,22 +57,26 @@ export type ICrewBoard = {
   __typename?: 'CrewBoard';
   address: Scalars['String'];
   addressDetail: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   date: Scalars['String'];
   dateTime: Scalars['String'];
   description: Scalars['String'];
   dues: Scalars['Int'];
   gender: Scalars['String'];
   id: Scalars['String'];
+  mountain: IMountain;
   peoples: Scalars['Int'];
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: IUser;
 };
 
 export type ICrewBoardImage = {
   __typename?: 'CrewBoardImage';
-  crewBoardId: ICrewBoard;
+  crewBoard: ICrewBoard;
   id: Scalars['String'];
+  imgUrl: Scalars['String'];
   isMain: Scalars['Boolean'];
-  url: Scalars['String'];
 };
 
 export type ICrewComment = {
@@ -102,8 +106,16 @@ export type IDib = {
   user: IUser;
 };
 
+export type IMountain = {
+  __typename?: 'Mountain';
+  address: Scalars['String'];
+  id: Scalars['Int'];
+  mountain: Scalars['String'];
+};
+
 export type IMutation = {
   __typename?: 'Mutation';
+  acceptCrew: ICrewUserList;
   cancelPointPayment: IPointPayment;
   checkEmail: Scalars['String'];
   checkNickName: Scalars['String'];
@@ -119,15 +131,20 @@ export type IMutation = {
   createReviewBoard: IReviewBoard;
   createReviewComment: IReviewComment;
   createUser: IUser;
-  deleteCrewBoard: Scalars['String'];
+  deleteCrewBoard: Scalars['Boolean'];
   deleteCrewComment: Scalars['Boolean'];
   deleteCrewSubComment: Scalars['Boolean'];
   deleteCrewUserList: Scalars['String'];
   deleteDib: Scalars['String'];
   deleteReviewComment: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
+  findUserEmail: Scalars['String'];
+  findUserPassword: Scalars['String'];
+  finishCrew: ICrewUserList;
+  likeReviewBoard: Scalars['String'];
   login: Scalars['String'];
   logout: Scalars['String'];
+  rejectCrew: ICrewUserList;
   restoreAccessToken: Scalars['String'];
   sendTokenToPhone: Scalars['String'];
   socialUpdateUser: IUser;
@@ -138,10 +155,16 @@ export type IMutation = {
   updateReviewBoard: IReviewBoard;
   updateReviewComment: IReviewComment;
   updateUser: IUser;
-  uploadCrewBoaredImage: Array<ICrewBoardImage>;
+  uploadCrewBoardImage: Array<ICrewBoardImage>;
   uploadFileForUserProfile: Scalars['String'];
   uploadFilesForCrewBoard: Array<Scalars['String']>;
   uploadFilesForReviewBoard: Array<Scalars['String']>;
+  uploadReviewBoaredImage: Array<IReviewBoardImage>;
+};
+
+
+export type IMutationAcceptCrewArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -168,6 +191,7 @@ export type IMutationCheckTokenPhoneArgs = {
 
 export type IMutationCreateCrewBoardArgs = {
   createCrewBoardInput: ICreateCrewBoardInput;
+  imgURL: Array<Scalars['String']>;
 };
 
 
@@ -204,6 +228,7 @@ export type IMutationCreatePointPaymentArgs = {
 
 export type IMutationCreateReviewBoardArgs = {
   createReviewBoardInput: ICreateReviewBoardInput;
+  imgURL: Array<Scalars['String']>;
 };
 
 
@@ -249,13 +274,43 @@ export type IMutationDeleteReviewCommentArgs = {
 
 
 export type IMutationDeleteUserArgs = {
+  userId: Scalars['String'];
+};
+
+
+export type IMutationFindUserEmailArgs = {
+  name: Scalars['String'];
+  phone: Scalars['String'];
+  phoneToken: Scalars['String'];
+};
+
+
+export type IMutationFindUserPasswordArgs = {
   email: Scalars['String'];
+  name: Scalars['String'];
+  phone: Scalars['String'];
+  phoneToken: Scalars['String'];
+};
+
+
+export type IMutationFinishCrewArgs = {
+  id: Scalars['String'];
+};
+
+
+export type IMutationLikeReviewBoardArgs = {
+  reviewBoardId: Scalars['String'];
 };
 
 
 export type IMutationLoginArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+
+export type IMutationRejectCrewArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -305,12 +360,12 @@ export type IMutationUpdateReviewCommentArgs = {
 
 
 export type IMutationUpdateUserArgs = {
-  email: Scalars['String'];
   updateUserInput: IUpdateUserInput;
+  userId: Scalars['String'];
 };
 
 
-export type IMutationUploadCrewBoaredImageArgs = {
+export type IMutationUploadCrewBoardImageArgs = {
   crewBoardId: Scalars['String'];
   imgURL: Array<Scalars['String']>;
 };
@@ -328,6 +383,12 @@ export type IMutationUploadFilesForCrewBoardArgs = {
 
 export type IMutationUploadFilesForReviewBoardArgs = {
   files: Array<Scalars['Upload']>;
+};
+
+
+export type IMutationUploadReviewBoaredImageArgs = {
+  imgURL: Array<Scalars['String']>;
+  reviewBoardId: Scalars['String'];
 };
 
 export enum IPoint_Payment_Status_Enum {
@@ -350,23 +411,25 @@ export type IQuery = {
   fetchAllCrewBoardImages: Array<ICrewBoardImage>;
   fetchAllCrewBoards: Array<ICrewBoard>;
   fetchAllCrewBoardsWithDelete: Array<ICrewBoard>;
+  fetchAllReviewBoardImages: Array<IReviewBoardImage>;
   fetchBoardImage: Array<ICrewBoardImage>;
   fetchCrewBoard: ICrewBoard;
   fetchCrewBoardsByDate: Array<Array<ICrewBoard>>;
   fetchCrewBoardsDeadlineFirst: Array<Array<ICrewBoard>>;
   fetchCrewBoardsLatestFirst: Array<Array<ICrewBoard>>;
   fetchCrewBoardsTEST: Array<Array<ICrewBoard>>;
-  fetchCrewComment: Array<ICrewComment>;
   fetchCrewComments: Array<ICrewComment>;
   fetchCrewSubComments: Array<ICrewComment>;
   fetchCrewUserList: Array<ICrewUserList>;
   fetchDibs: Array<IDib>;
   fetchReviewBoard: IReviewBoard;
+  fetchReviewBoardImage: Array<IReviewBoardImage>;
   fetchReviewBoards: Array<IReviewBoard>;
   fetchReviewComments: Array<IReviewComment>;
   fetchUser: IUser;
-  findUserEmail: Scalars['String'];
-  findUserPassword: Scalars['String'];
+  fetchUserCrewComments: Array<ICrewComment>;
+  fetchUserCrewSubComments: Array<ICrewComment>;
+  fetchVisitList: Array<ICrewUserList>;
 };
 
 
@@ -386,11 +449,6 @@ export type IQueryFetchCrewBoardsByDateArgs = {
 };
 
 
-export type IQueryFetchCrewCommentArgs = {
-  userId: Scalars['String'];
-};
-
-
 export type IQueryFetchCrewCommentsArgs = {
   boardId: Scalars['String'];
   page?: InputMaybe<Scalars['Int']>;
@@ -398,7 +456,6 @@ export type IQueryFetchCrewCommentsArgs = {
 
 
 export type IQueryFetchCrewSubCommentsArgs = {
-  boardId: Scalars['String'];
   commentId: Scalars['String'];
   page?: InputMaybe<Scalars['Int']>;
 };
@@ -409,29 +466,26 @@ export type IQueryFetchReviewBoardArgs = {
 };
 
 
+export type IQueryFetchReviewBoardImageArgs = {
+  reviewBoardId: Scalars['String'];
+};
+
+
 export type IQueryFetchReviewCommentsArgs = {
   page?: InputMaybe<Scalars['Int']>;
   reviewBoardId: Scalars['String'];
 };
 
 
-export type IQueryFetchUserArgs = {
-  email: Scalars['String'];
+export type IQueryFetchUserCrewCommentsArgs = {
+  boardId: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 
-export type IQueryFindUserEmailArgs = {
-  name: Scalars['String'];
-  phone: Scalars['String'];
-  phoneToken: Scalars['String'];
-};
-
-
-export type IQueryFindUserPasswordArgs = {
-  email: Scalars['String'];
-  name: Scalars['String'];
-  phone: Scalars['String'];
-  phoneToken: Scalars['String'];
+export type IQueryFetchUserCrewSubCommentsArgs = {
+  boardId: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 export type IReviewBoard = {
@@ -444,10 +498,22 @@ export type IReviewBoard = {
   title: Scalars['String'];
 };
 
+export type IReviewBoardImage = {
+  __typename?: 'ReviewBoardImage';
+  id: Scalars['String'];
+  isMain: Scalars['Boolean'];
+  reviewBoardId: IReviewBoard;
+  url: Scalars['String'];
+};
+
 export type IReviewComment = {
   __typename?: 'ReviewComment';
+  createdAt: Scalars['DateTime'];
+  deletedAt: Scalars['DateTime'];
   id: Scalars['String'];
+  reviewBoard: IReviewBoard;
   reviewComment: Scalars['String'];
+  user: IUser;
 };
 
 export type IUpdateCrewBoardInput = {

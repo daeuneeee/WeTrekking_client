@@ -19,3 +19,7 @@ export const userInfo = atom<Pick<IQuery, "fetchUser">>({
   key: "userInfo",
   default: undefined,
 });
+export const isPointModalToggleState = atom<boolean>({
+  key: "isPointModalToggleState",
+  default: undefined,
+});

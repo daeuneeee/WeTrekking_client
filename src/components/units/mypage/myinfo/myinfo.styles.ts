@@ -172,29 +172,30 @@ export const MyMListContainer = styled.div`
 `;
 
 export const MyMListBox = styled.div`
+  position: relative;
   width: 49%;
-  padding: 2.4rem;
-  display: flex;
-  gap: 4.44%;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  @media ${tablet} {
-    flex-direction: column;
-    padding: 2.4rem;
-    gap: 2.4rem;
-  }
-  @media ${mobile} {
-    width: 100%;
+  height: 100%;
+  &:hover {
+    .reviewBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .reviewBg {
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+    }
   }
 `;
 
 export const MyMListThum = styled.div`
   width: 47.77%;
-  height: 100%;
+  height: 309px;
   background-color: gray;
   border-radius: 4px;
   @media ${tablet} {
     width: 100%;
+    height: auto;
     padding-bottom: 90%;
   }
 `;
@@ -305,4 +306,40 @@ export const PointChargeBtn = styled.button`
   font-weight: 500;
   color: #fff;
   cursor: pointer;
+`;
+
+export const ReviewWriteBtn = styled.button`
+  width: 12rem;
+  height: 4.5rem;
+  border: none;
+  background-color: ${mainColor};
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #fff;
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+`;
+
+export const ReviewBg = styled.div`
+  position: relative;
+  padding: 2.4rem;
+  display: flex;
+  gap: 4.44%;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+
+  @media ${tablet} {
+    flex-direction: column;
+    padding: 2.4rem;
+    gap: 2.4rem;
+  }
+  @media ${mobile} {
+    width: 100%;
+  }
 `;

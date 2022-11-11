@@ -44,15 +44,10 @@ export const UPLOAD_FILE_FOR_USER_PROFILE = gql`
     uploadFileForUserProfile(file: $file)
   }
 `;
-export const UPLOAD_FILE_FOR_USER_PROFILE2 = gql`
-  mutation uploadFilesForReviewBoard($files: [Upload!]!) {
-    uploadFilesForReviewBoard(files: $files)
-  }
-`;
 
 export const UPDATE_USER = gql`
-  mutation updateUser($email: String!, $updateUserInput: UpdateUserInput!) {
-    updateUser(email: $email, updateUserInput: $updateUserInput) {
+  mutation updateUser($userId: String!, $updateUserInput: UpdateUserInput!) {
+    updateUser(userId: $userId, updateUserInput: $updateUserInput) {
       id
     }
   }

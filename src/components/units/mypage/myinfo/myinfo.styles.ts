@@ -31,9 +31,10 @@ export const ProfileBody = styled.div`
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #d9d9d9;
-  .css-2s90m6-MuiAvatar-root {
+  .AvatarImg {
     width: 12rem;
     height: 12rem;
+    border: 1px solid ${mainColor};
   }
 `;
 
@@ -61,6 +62,7 @@ export const UserGenderPhoneText = styled.p`
   font-size: 1.3rem;
   font-weight: 400;
   color: #999;
+  margin-bottom: 0;
   span {
     font-size: 500;
     color: #111;
@@ -291,6 +293,7 @@ export const ListWriterAgeGender = styled.p`
   font-size: 1.3rem;
   font-weight: 400;
   color: #999;
+  margin-bottom: 0;
 `;
 
 export const PointChargeBtn = styled.button`

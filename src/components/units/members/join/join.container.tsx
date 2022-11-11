@@ -273,7 +273,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
 
   const [updateUser] = useMutation<Pick<IMutation, "updateUser">>(UPDATE_USER);
 
-  console.log(userDatas?.fetchUser.email);
   const onClickUpdateUser = async (data: IJoinData) => {
     try {
       const result = await uploadUserProfile({
@@ -283,6 +282,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
       });
 
       const fileUrl = result.data?.uploadFileForUserProfile;
+
+      console.log(fileUrl);
 
       const myUserInput: IMyUserInput = {};
       if (data.password) {
@@ -305,7 +306,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
       } else {
         await updateUser({
           variables: {
-            userId: userDatas?.fetchUser.email,
+            email: userDatas?.fetchUser.email,
             updateUserInput: myUserInput,
           },
           update(cache) {

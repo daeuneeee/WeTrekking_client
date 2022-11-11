@@ -24,6 +24,19 @@ const SocialJoinUi = ({
           </A.LoginTitle>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
+              이름 <span>*</span>
+            </A.LoginInputTitle>
+            <S.DefaultInput
+              type="text"
+              placeholder="이름을 입력해 주세요."
+              maxLength={51}
+              name="name"
+              {...register("name")}
+            />
+            {/* <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg> */}
+          </A.LoginInputContainer>
+          <A.LoginInputContainer>
+            <A.LoginInputTitle>
               닉네임<span>*</span>
             </A.LoginInputTitle>
             <Input01
@@ -36,6 +49,19 @@ const SocialJoinUi = ({
             <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>
           <S.CheckBtn type="button">중복확인</S.CheckBtn>
+          <A.LoginInputContainer>
+            <A.LoginInputTitle>
+              생년월일<span>*</span>
+            </A.LoginInputTitle>
+            <S.DefaultInput
+              type="text"
+              placeholder="생년월일을 입력해 주세요. (ex: 970101)"
+              maxLength={6}
+              name="birth"
+              {...register("birth")}
+            />
+            {/* <S.ErrorMsg>{formState.errors.birth?.message}</S.ErrorMsg> */}
+          </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               휴대전화<span>*</span>
@@ -119,7 +145,7 @@ const SocialJoinUi = ({
             </S.GenderSelectBox>
             <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.SubmitJoinBtn>회원가입</S.SubmitJoinBtn>
+          <S.SubmitJoinBtn>확인</S.SubmitJoinBtn>
         </S.JoinForm>
       </A.Container>
     </A.Wrapper>

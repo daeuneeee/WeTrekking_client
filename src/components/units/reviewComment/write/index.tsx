@@ -1,6 +1,52 @@
+import { gql, useMutation } from "@apollo/client";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { reviewIdState } from "../../../../store";
+import { FETCH_REVIEW_COMMENTS } from "../../reviews/detail/reviewDetail.queries";
+
+const CREATE_REVIEW_COMMENT = gql`
+  mutation createReviewComment(
+    $reviewBoardId: String!
+    $reviewComment: String!
+  ) {
+    createReviewComment(
+      reviewBoardId: $reviewBoardId
+      reviewComment: $reviewComment
+    ) {
+      id
+      reviewComment
+    }
+  }
+`;
 
 const ReviewCommentWrite = () => {
+  // const router = useRouter();
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewId] = useRecoilState(reviewIdState);
+
+  const [createReviewComment] = useMutation(CREATE_REVIEW_COMMENT);
+
+  const onChangeComment = (event) => {
+    setReviewComment(event.target.value);
+  };
+
+  const onClickRegister = async () => {
+    try {
+      await createReviewComment({
+        variables: { reviewBoardId: reviewId, reviewComment },
+        refetchQueries: [
+          {
+            query: FETCH_REVIEW_COMMENTS,
+            variables: { reviewBoardId: reviewId },
+          },
+        ],
+      });
+      document.getElementById("clear").value = "";
+    } catch (error) {}
+  };
+
   return (
     <>
       <Wrapper>
@@ -8,9 +54,13 @@ const ReviewCommentWrite = () => {
           {/* <CrewBox> */}
           <Crew>춘딩딩</Crew>
           {/* </CrewBox> */}
-          <Contents placeholder="내용을 입력해주세요"></Contents>
+          <Contents
+            placeholder="내용을 입력해주세요"
+            onChange={onChangeComment}
+            id="clear"
+          ></Contents>
           <RegisterBox>
-            <RegisterBtn>등록</RegisterBtn>
+            <RegisterBtn onClick={onClickRegister}>등록</RegisterBtn>
           </RegisterBox>
         </Container>
       </Wrapper>

@@ -1,7 +1,8 @@
 import { Pagination } from "antd";
 import * as S from "./reviewList.styles";
+import { IReviewListUiProps } from "./reviewList.types";
 
-const ReviewListUi = ({ data, onClickList, reviewId }) => {
+const ReviewListUi = ({ data, onClickList, reviewId }: IReviewListUiProps) => {
   return (
     <S.Wrapper>
       <S.Container>

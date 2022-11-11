@@ -1,7 +1,7 @@
 import ReviewCommentListUi from "./reviewCommentList.presenter";
 
-const ReviewCommentList = () => {
-  return <ReviewCommentListUi />;
+const ReviewCommentList = ({ reviewCommentsMap }) => {
+  return <ReviewCommentListUi reviewCommentsMap={reviewCommentsMap} />;
 };
 
 export default ReviewCommentList;

@@ -4,8 +4,13 @@ import { Rate } from "antd";
 import "antd/dist/antd.css";
 import ReviewCommentList from "../../reviewComment/list/reviewCommentList.container";
 import ReviewCommentWrite from "../../reviewComment/write";
+import { IReviewDetailUiProps } from "./reviewDetail.types";
 
-const ReviewDetailUi = ({ data, onClickX }) => {
+const ReviewDetailUi = ({
+  data,
+  onClickX,
+  reviewComments,
+}: IReviewDetailUiProps) => {
   return (
     <>
       <S.Wrapper>
@@ -43,7 +48,14 @@ const ReviewDetailUi = ({ data, onClickX }) => {
         <S.UnderLine></S.UnderLine>
         <S.CommentContainer>
           <ReviewCommentWrite />
-          <ReviewCommentList />
+          {reviewComments?.fetchReviewComments?.map((reviewCommentsMap) => {
+            return (
+              <ReviewCommentList
+                reviewCommentsMap={reviewCommentsMap}
+                key={reviewCommentsMap.id}
+              />
+            );
+          })}
         </S.CommentContainer>
       </S.Wrapper>
     </>

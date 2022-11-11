@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import {
   IQuery,
   IQueryFetchReviewBoardArgs,
+  IQueryFetchReviewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSideBarState, reviewIdState } from "../../../../store";
 import ReviewDetailUi from "./reviewDetail.presenter";
@@ -23,12 +24,14 @@ const ReviewDetail = () => {
     setIsOpenSideBar(false);
   };
 
-  const { data: reviewComments, fetchMore } = useQuery(FETCH_REVIEW_COMMENTS, {
+  const { data: reviewComments, fetchMore } = useQuery<
+    Pick<IQuery, "fetchReviewComments">,
+    IQueryFetchReviewCommentsArgs
+  >(FETCH_REVIEW_COMMENTS, {
     variables: { reviewBoardId: reviewId },
   });
 
   const onLoadMore = async () => {
-    console.log("Dd");
     if (!reviewComments) return;
     await fetchMore({
       variables: {

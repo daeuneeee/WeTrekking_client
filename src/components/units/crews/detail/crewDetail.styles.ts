@@ -68,7 +68,7 @@ export const InformBox = styled.div`
 export const MainImg = styled.div`
   width: 100%;
   /* height: 400px; */
-  padding-bottom: 58%;
+  padding-bottom: 71%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
 `;
@@ -356,7 +356,6 @@ export const Map = styled.div`
 export const AddressBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
 `;
 
 export const Address = styled.span`

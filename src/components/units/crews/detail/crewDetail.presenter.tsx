@@ -4,18 +4,52 @@ import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentList from "../../crewComment/list/crewCommentList.container";
 import CrewCommentWrite from "../../crewComment/write/crewCommentWrite.container";
 import * as S from "./crewDetail.styles";
+import { ICrewDetailUiProps } from "./crewDetail.types";
 
-const CrewDetailUi = ({ data, comments, onLoadMore }) => {
+const CrewDetailUi = ({
+  data,
+  comments,
+  onLoadMore,
+  crewImg,
+}: ICrewDetailUiProps) => {
   return (
     <>
       <S.Wrapper>
         <S.Header>
           <S.ImgBox>
-            <S.MainImg></S.MainImg>
+            <S.MainImg
+              style={{
+                backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[0].imgUrl})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></S.MainImg>
             <S.SubImgBox>
-              <S.SubImg></S.SubImg>
-              <S.SubImg></S.SubImg>
-              <S.SubImg></S.SubImg>
+              <S.SubImg
+                style={{
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[1].imgUrl})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></S.SubImg>
+              <S.SubImg
+                style={{
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[2].imgUrl})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></S.SubImg>
+              <S.SubImg
+                style={{
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[3].imgUrl})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></S.SubImg>
             </S.SubImgBox>
           </S.ImgBox>
           <S.InformBox>
@@ -42,11 +76,15 @@ const CrewDetailUi = ({ data, comments, onLoadMore }) => {
               <S.ProfileBox>
                 <S.ProfileImg></S.ProfileImg>
                 <S.ProfileInform>
-                  <S.NickName>춘딩딩</S.NickName>
+                  <S.NickName>{data?.fetchCrewBoard.user.nickname}</S.NickName>
                   <S.AgeGenderBox>
                     <S.AgeGender>28</S.AgeGender>
                     <S.AgeGender>·</S.AgeGender>
-                    <S.AgeGender>남성</S.AgeGender>
+                    <S.AgeGender>
+                      {data?.fetchCrewBoard.gender
+                        .replace("female", "여성")
+                        .replace("male", "남성")}
+                    </S.AgeGender>
                   </S.AgeGenderBox>
                 </S.ProfileInform>
               </S.ProfileBox>
@@ -69,7 +107,12 @@ const CrewDetailUi = ({ data, comments, onLoadMore }) => {
               <S.Line></S.Line>
               <S.DetailInform>
                 <S.DetailTitle>모집 성별</S.DetailTitle>
-                <S.DetailData>{data?.fetchCrewBoard.gender}</S.DetailData>
+                <S.DetailData>
+                  {data?.fetchCrewBoard.gender
+                    .replace("female", "여자만")
+                    .replace("male", "남자만")
+                    .replace("any", "상관없음")}
+                </S.DetailData>
               </S.DetailInform>
               <S.Line></S.Line>
               <S.DetailInform>

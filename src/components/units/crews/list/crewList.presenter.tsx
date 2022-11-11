@@ -14,13 +14,15 @@ const CrewListUi = ({
   deadLine,
   onClickLatest,
   onClickDeadLine,
-}: ICrewListUiProps) => {
+}: // crewImg,
+ICrewListUiProps) => {
   const { Option } = Select;
   // const { RangePicker }: any = DatePicker;
 
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
+
   return (
     <>
       <S.Wrapper>
@@ -120,6 +122,7 @@ const CrewListUi = ({
             {sort
               ? data?.fetchCrewBoardsLatestFirst[0]?.map((listMap) => (
                   <S.ListBox key={listMap.id}>
+                    {console.log(listMap)}
                     <S.ListHeader>
                       <S.ListInform>
                         <Avatar
@@ -135,7 +138,14 @@ const CrewListUi = ({
                     </S.ListHeader>
                     <Link href={`crews/${listMap.id}`}>
                       <S.ListContainer>
-                        <S.ListThumbnail></S.ListThumbnail>
+                        <S.ListThumbnail
+                          style={{
+                            backgroundImage: `url(https://storage.googleapis.com/${listMap?.thumbnail})`,
+                            backgroundSize: "contain",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></S.ListThumbnail>
                         <S.ListBody>
                           <S.ListTitleBox>
                             <S.ListTitle>{listMap.title}</S.ListTitle>
@@ -218,7 +228,14 @@ const CrewListUi = ({
                     </S.ListHeader>
                     <Link href={`crews/${listMap.id}`}>
                       <S.ListContainer>
-                        <S.ListThumbnail></S.ListThumbnail>
+                        <S.ListThumbnail
+                          style={{
+                            backgroundImage: `url(https://storage.googleapis.com/${listMap?.thumbnail})`,
+                            backgroundSize: "contain",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></S.ListThumbnail>
                         <S.ListBody>
                           <S.ListTitleBox>
                             <S.ListTitle>{listMap.title}</S.ListTitle>

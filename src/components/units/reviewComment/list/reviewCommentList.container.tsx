@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
-import { MouseEvent, useState } from "react";
-import { FETCH_REVIEW_COMMENTS } from "../../reviews/detail/reviewDetail.queries";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import ReviewCommentListUi from "./reviewCommentList.presenter";
 import {
   DELETE_REVIEW_COMMENT,
@@ -18,7 +17,7 @@ const ReviewCommentList = ({ reviewCommentsMap }) => {
 
   const [updateReviewComment] = useMutation(UPDATE_REVIEW_COMMENT);
 
-  const onChangeEditComment = (event) => {
+  const onChangeEditComment = (event: ChangeEvent<HTMLInputElement>) => {
     setEditComments(event.target.value);
   };
 

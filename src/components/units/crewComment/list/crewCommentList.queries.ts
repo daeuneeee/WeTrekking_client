@@ -14,11 +14,17 @@ export const FETCH_CREW_SUB_COMMENTS = gql`
       id
       comment
       createdAt
-      # user{
-      # id
-      # nickname
-      # profile_img
-      # }
+      user {
+        id
+        nickname
+        profile_img
+      }
     }
+  }
+`;
+
+export const DELETE_CREW_COMMENT = gql`
+  mutation deleteCrewComment($commentId: String!) {
+    deleteCrewComment(commentId: $commentId)
   }
 `;

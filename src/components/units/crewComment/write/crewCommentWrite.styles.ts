@@ -12,12 +12,6 @@ export const Container = styled.div`
   border-radius: 4px;
 `;
 
-export const Crew = styled.span`
-  font-weight: 500;
-  font-size: 1.6rem;
-  color: #111;
-`;
-
 export const Contents = styled.textarea`
   width: 100%;
   border: none;

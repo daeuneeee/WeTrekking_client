@@ -23,6 +23,7 @@ export type ICreateCrewBoardInput = {
   dues: Scalars['Int'];
   gender: Scalars['String'];
   peoples: Scalars['Int'];
+  thumbnail: Scalars['String'];
   title: Scalars['String'];
 };
 
@@ -66,6 +67,7 @@ export type ICrewBoard = {
   id: Scalars['String'];
   mountain: IMountain;
   peoples: Scalars['Int'];
+  thumbnail: Scalars['String'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: IUser;
@@ -228,6 +230,7 @@ export type IMutationCreatePointPaymentArgs = {
 
 export type IMutationCreateReviewBoardArgs = {
   createReviewBoardInput: ICreateReviewBoardInput;
+  crewUserListId: Scalars['String'];
   imgURL: Array<Scalars['String']>;
 };
 
@@ -348,6 +351,7 @@ export type IMutationUpdatePasswordArgs = {
 
 
 export type IMutationUpdateReviewBoardArgs = {
+  imgURL: Array<Scalars['String']>;
   reviewBoardId: Scalars['String'];
   updateReviewBoardInput: IUpdateReviewBoardInput;
 };
@@ -360,8 +364,8 @@ export type IMutationUpdateReviewCommentArgs = {
 
 
 export type IMutationUpdateUserArgs = {
+  email: Scalars['String'];
   updateUserInput: IUpdateUserInput;
-  userId: Scalars['String'];
 };
 
 
@@ -422,6 +426,9 @@ export type IQuery = {
   fetchCrewSubComments: Array<ICrewComment>;
   fetchCrewUserList: Array<ICrewUserList>;
   fetchDibs: Array<IDib>;
+  fetchHostCrewList: Array<ICrewBoard>;
+  fetchMountain: IMountain;
+  fetchMountains: Array<IMountain>;
   fetchReviewBoard: IReviewBoard;
   fetchReviewBoardImage: Array<IReviewBoardImage>;
   fetchReviewBoards: Array<IReviewBoard>;
@@ -461,6 +468,16 @@ export type IQueryFetchCrewSubCommentsArgs = {
 };
 
 
+export type IQueryFetchMountainArgs = {
+  mountainId: Scalars['String'];
+};
+
+
+export type IQueryFetchMountainsArgs = {
+  mountain: Scalars['String'];
+};
+
+
 export type IQueryFetchReviewBoardArgs = {
   reviewBoardId: Scalars['String'];
 };
@@ -496,6 +513,7 @@ export type IReviewBoard = {
   review: Scalars['String'];
   star: Scalars['Float'];
   title: Scalars['String'];
+  user: IUser;
 };
 
 export type IReviewBoardImage = {
@@ -525,6 +543,7 @@ export type IUpdateCrewBoardInput = {
   dues?: InputMaybe<Scalars['Int']>;
   gender?: InputMaybe<Scalars['String']>;
   peoples?: InputMaybe<Scalars['Int']>;
+  thumbnail?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
 };
 

@@ -5,7 +5,6 @@ const CrewSubCommentWrite = () => {
     <>
       <Wrapper>
         <Container>
-          <Crew>춘딩딩</Crew>
           <Contents placeholder="내용을 입력해주세요"></Contents>
           <RegisterBox>
             <RegisterBtn>등록</RegisterBtn>
@@ -29,12 +28,6 @@ const Container = styled.div`
   border: 1px solid #d9d9d9;
   padding: 1.6rem 2.4rem;
   border-radius: 4px;
-`;
-
-const Crew = styled.span`
-  font-weight: 500;
-  font-size: 1.6rem;
-  color: #111;
 `;
 
 const Contents = styled.textarea`

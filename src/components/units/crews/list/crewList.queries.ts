@@ -9,6 +9,7 @@ export const FETCH_CREW_BOARDS_LATEST = gql`
       dateTime
       peoples
       createdAt
+      thumbnail
     }
   }
 `;
@@ -22,6 +23,16 @@ export const FETCH_CREW_BOARDS_DEADLINE = gql`
       dateTime
       peoples
       createdAt
+      thumbnail
+    }
+  }
+`;
+
+export const FETCH_BOARD_IMAGE = gql`
+  query fetchBoardImage($crewBoardId: String!) {
+    fetchBoardImage(crewBoardId: $crewBoardId) {
+      id
+      imgUrl
     }
   }
 `;

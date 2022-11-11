@@ -15,10 +15,18 @@ export const reviewIdState = atom({
   key: "reviewIdState",
   default: "",
 });
+
 export const userInfo = atom<Pick<IQuery, "fetchUser">>({
   key: "userInfo",
   default: undefined,
 });
+
+
+export const isModalActive = atom({
+  key: "isModalActive",
+  default: false,
+});
+
 export const isPointModalToggleState = atom<boolean>({
   key: "isPointModalToggleState",
   default: undefined,

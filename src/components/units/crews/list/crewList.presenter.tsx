@@ -5,6 +5,7 @@ import PickFalseSvg from "../../../commons/svg/pickFalse";
 import { ICrewListUiProps } from "./crewList.types";
 import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
+import { getDate } from "../../../../commons/utils/getDate";
 
 const CrewListUi = ({
   data,
@@ -138,7 +139,9 @@ const CrewListUi = ({
                         <S.ListBody>
                           <S.ListTitleBox>
                             <S.ListTitle>{listMap.title}</S.ListTitle>
-                            <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
+                            <S.ListCreatedAt>
+                              {getDate(listMap.createdAt)}
+                            </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
                             {/* <S.ListCrewsImg></S.ListCrewsImg> */}
@@ -219,7 +222,9 @@ const CrewListUi = ({
                         <S.ListBody>
                           <S.ListTitleBox>
                             <S.ListTitle>{listMap.title}</S.ListTitle>
-                            <S.ListCreatedAt>2022.10.31</S.ListCreatedAt>
+                            <S.ListCreatedAt>
+                              {getDate(listMap.createdAt)}
+                            </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
                             {/* <S.ListCrewsImg></S.ListCrewsImg> */}

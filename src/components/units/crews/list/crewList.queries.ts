@@ -8,6 +8,7 @@ export const FETCH_CREW_BOARDS_LATEST = gql`
       date
       dateTime
       peoples
+      createdAt
     }
   }
 `;
@@ -20,6 +21,7 @@ export const FETCH_CREW_BOARDS_DEADLINE = gql`
       date
       dateTime
       peoples
+      createdAt
     }
   }
 `;

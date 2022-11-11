@@ -1,5 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
@@ -34,16 +35,22 @@ const ReviewCommentWrite = () => {
 
   const onClickRegister = async () => {
     try {
-      await createReviewComment({
-        variables: { reviewBoardId: reviewId, reviewComment },
-        refetchQueries: [
-          {
-            query: FETCH_REVIEW_COMMENTS,
-            variables: { reviewBoardId: reviewId },
-          },
-        ],
-      });
-      document.getElementById("clear").value = "";
+      if (reviewComment === "") {
+        Modal.error({ content: "내용을 입력해주세요!" });
+      }
+      if (reviewComment !== "") {
+        await createReviewComment({
+          variables: { reviewBoardId: reviewId, reviewComment },
+          refetchQueries: [
+            {
+              query: FETCH_REVIEW_COMMENTS,
+              variables: { reviewBoardId: reviewId },
+            },
+          ],
+        });
+        document.getElementById("clear").value = "";
+        setReviewComment("");
+      }
     } catch (error) {}
   };
 
@@ -51,9 +58,6 @@ const ReviewCommentWrite = () => {
     <>
       <Wrapper>
         <Container>
-          {/* <CrewBox> */}
-          <Crew>춘딩딩</Crew>
-          {/* </CrewBox> */}
           <Contents
             placeholder="내용을 입력해주세요"
             onChange={onChangeComment}
@@ -81,14 +85,6 @@ const Container = styled.div`
   border: 1px solid #d9d9d9;
   padding: 16px 24px;
   border-radius: 4px;
-`;
-
-// const CrewBox = styled.div``;
-
-const Crew = styled.span`
-  font-weight: 500;
-  font-size: 1.6rem;
-  color: #111;
 `;
 
 const Contents = styled.textarea`

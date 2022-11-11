@@ -5,11 +5,13 @@ import "antd/dist/antd.css";
 import ReviewCommentList from "../../reviewComment/list/reviewCommentList.container";
 import ReviewCommentWrite from "../../reviewComment/write";
 import { IReviewDetailUiProps } from "./reviewDetail.types";
+import InfiniteScroll from "react-infinite-scroller";
 
 const ReviewDetailUi = ({
   data,
   onClickX,
   reviewComments,
+  onLoadMore,
 }: IReviewDetailUiProps) => {
   return (
     <>
@@ -48,14 +50,23 @@ const ReviewDetailUi = ({
         <S.UnderLine></S.UnderLine>
         <S.CommentContainer>
           <ReviewCommentWrite />
-          {reviewComments?.fetchReviewComments?.map((reviewCommentsMap) => {
-            return (
-              <ReviewCommentList
-                reviewCommentsMap={reviewCommentsMap}
-                key={reviewCommentsMap.id}
-              />
-            );
-          })}
+          <S.ScrollBox>
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={onLoadMore}
+              hasMore={true || false}
+              useWindow={false}
+            >
+              {reviewComments?.fetchReviewComments?.map((reviewCommentsMap) => {
+                return (
+                  <ReviewCommentList
+                    reviewCommentsMap={reviewCommentsMap}
+                    key={reviewCommentsMap.id}
+                  />
+                );
+              })}
+            </InfiniteScroll>
+          </S.ScrollBox>
         </S.CommentContainer>
       </S.Wrapper>
     </>

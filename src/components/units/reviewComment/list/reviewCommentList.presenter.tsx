@@ -1,9 +1,19 @@
 import * as S from "./reviewCommentList.styles";
 import { Avatar } from "@mui/material";
 import { getDate, getTime } from "../../../../commons/utils/getDate";
+import ConfirmModal from "../../../commons/modals/confirmModal";
 
-const ReviewCommentListUi = ({ reviewCommentsMap }) => {
-  console.log(reviewCommentsMap);
+const ReviewCommentListUi = ({
+  reviewCommentsMap,
+  onClickShowModal,
+  onClickCancelModal,
+  onClickModalConfirm,
+  isModalOpen,
+  onClickEditBtn,
+  isEditOpen,
+  onChangeEditComment,
+  onClickEdit,
+}) => {
   return (
     <>
       <S.Wrapper>
@@ -15,14 +25,52 @@ const ReviewCommentListUi = ({ reviewCommentsMap }) => {
           <S.CommentBox>
             <S.NickName>{reviewCommentsMap?.user?.nickname}</S.NickName>
             <S.Comment>{reviewCommentsMap?.reviewComment}</S.Comment>
-            <S.DateBox>
-              <S.Date>{getDate(reviewCommentsMap?.createdAt)}</S.Date>
-              <S.Date>|</S.Date>
-              <S.Date>{getTime(reviewCommentsMap?.createdAt)}</S.Date>
-            </S.DateBox>
+            <S.DateEditDeleteBox>
+              <S.DateBox>
+                <S.Date>{getDate(reviewCommentsMap?.createdAt)}</S.Date>
+                <S.Date>|</S.Date>
+                <S.Date>{getTime(reviewCommentsMap?.createdAt)}</S.Date>
+              </S.DateBox>
+              <S.EditDeleteBox>
+                <S.EditDelete
+                  id={reviewCommentsMap?.id}
+                  onClick={onClickEditBtn}
+                >
+                  수정
+                </S.EditDelete>
+                <S.EditDeleteDot>·</S.EditDeleteDot>
+                <S.EditDelete
+                  id={reviewCommentsMap?.id}
+                  onClick={onClickShowModal}
+                >
+                  삭제
+                </S.EditDelete>
+              </S.EditDeleteBox>
+            </S.DateEditDeleteBox>
           </S.CommentBox>
         </S.Container>
+        <ConfirmModal
+          onOk={onClickModalConfirm}
+          onCancel={onClickCancelModal}
+          contents="댓글을 삭제하시겠습니까?"
+          open={isModalOpen}
+        />
       </S.Wrapper>
+
+      {isEditOpen && (
+        <>
+          <S.EditContainer>
+            <S.EditContents
+              placeholder="내용을 입력해주세요"
+              onChange={onChangeEditComment}
+              id="clear"
+            ></S.EditContents>
+            <S.EditRegisterBox>
+              <S.EditRegisterBtn onClick={onClickEdit}>수정</S.EditRegisterBtn>
+            </S.EditRegisterBox>
+          </S.EditContainer>
+        </>
+      )}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mainColor } from "../../../../commons/styles/color";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -44,35 +45,69 @@ export const Date = styled.span`
   color: #999;
 `;
 
-// export const Container = styled.div`
-// `;
+export const DateEditDeleteBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+`;
 
-// export const Container = styled.div`
-// `;
+export const EditDelete = styled.span`
+  font-size: 1.1rem;
+  color: ${mainColor};
+  cursor: pointer;
+`;
 
-// export const Container = styled.div`
-// `;
+export const EditDeleteBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.1rem;
+`;
 
-// export const Container = styled.div`
-// `;
+export const EditDeleteDot = styled.span`
+  font-size: 1.1rem;
+  color: ${mainColor};
+`;
 
-// export const Container = styled.div`
-// `;
+export const EditContainer = styled.div`
+  width: 100%;
+  height: 140px;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  padding: 16px 24px;
+  border-radius: 4px;
+  margin-top: 2rem;
+`;
 
-// export const Container = styled.div`
-// `;
+export const EditContents = styled.textarea`
+  width: 100%;
+  height: 50px;
+  border: none;
+  resize: none;
+  margin-top: 12px;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #999;
+  margin-bottom: 5px;
+  outline: none;
+  ::placeholder {
+    color: #999;
+  }
+`;
 
-// export const Container = styled.div`
-// `;
+export const EditRegisterBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
-// export const Container = styled.div`
-// `;
-
-// export const Container = styled.section`
-// `;
-
-// export const Container = styled.div`
-// `;
+export const EditRegisterBtn = styled.button`
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #999;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+`;
 
 // export const Container = styled.div`
 // `;

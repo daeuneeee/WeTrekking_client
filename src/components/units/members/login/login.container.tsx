@@ -39,6 +39,11 @@ const Login = () => {
       console.log(data);
       const result = await login({
         variables: data,
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
       });
       setAccessToken(String(result.data?.login));
       alert("로그인 성공");

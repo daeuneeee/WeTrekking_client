@@ -1,6 +1,7 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, MouseEvent, useState } from "react";
-import { IMutation } from "../../../../commons/types/generated/types";
+import { IMutation, IQuery } from "../../../../commons/types/generated/types";
+import { FETCH_USER } from "../../crews/detail/crewDetail.queries";
 import CrewSubCommentListUi from "./crewSubCommentList.presenter";
 import {
   DELETE_CREW_SUB_COMMENT,
@@ -20,6 +21,11 @@ const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
   const [updateSubCrewComment] = useMutation<
     Pick<IMutation, "updateCrewSubComment">
   >(UPDATE_CREW_SUB_COMMENT);
+
+  const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  const userId = data?.fetchUser.id;
+  const subCommentUserId = subCommentsMap?.user.id;
 
   const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setEditComments(event?.target.value);
@@ -43,6 +49,7 @@ const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
       },
     });
     setIsModalOpen(false);
+    alert("정상적으로 삭제되었습니다.");
   };
 
   const onClickEditBtn = (event: MouseEvent<HTMLButtonElement>) => {
@@ -80,6 +87,8 @@ const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
       isEditOpen={isEditOpen}
       onChangeEditComment={onChangeEditComment}
       editComments={editComments}
+      subCommentUserId={subCommentUserId}
+      userId={userId}
     />
   );
 };

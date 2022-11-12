@@ -8,6 +8,7 @@ import {
   IQueryFetchCrewSubCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSubCommentState } from "../../../../store";
+import { FETCH_USER } from "../../crews/detail/crewDetail.queries";
 import CrewCommentListUi from "./crewCommentList.presenter";
 import {
   DELETE_CREW_COMMENT,
@@ -27,6 +28,11 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
   const [isOpenSubComment, setIsOpenSubComment] = useRecoilState(
     isOpenSubCommentState
   );
+
+  const { data: userInform } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  const userId = userInform?.fetchUser.id;
+  const commentUserId = commentsMap?.user.id;
 
   const [updateCrewComment] =
     useMutation<Pick<IMutation, "updateCrewComment">>(UPDATE_CREW_COMMENT);
@@ -70,6 +76,7 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
       },
     });
     setIsModalOpen(false);
+    alert("정상적으로 삭제되었습니다.");
   };
 
   const onClickEditBtn = (event: MouseEvent<HTMLButtonElement>) => {
@@ -116,6 +123,8 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
       onClickEdit={onClickEdit}
       onChangeEditComment={onChangeEditComment}
       editComments={editComments}
+      commentUserId={commentUserId}
+      userId={userId}
     />
   );
 };

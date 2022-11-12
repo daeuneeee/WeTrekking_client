@@ -15,6 +15,8 @@ const ReviewCommentListUi = ({
   onChangeEditComment,
   onClickEdit,
   editComments,
+  reviewCommentUserId,
+  userId,
 }: IReviewCommentListUiProps) => {
   return (
     <>
@@ -33,21 +35,23 @@ const ReviewCommentListUi = ({
                 <S.Date>|</S.Date>
                 <S.Date>{getTime(reviewCommentsMap?.createdAt)}</S.Date>
               </S.DateBox>
-              <S.EditDeleteBox>
-                <S.EditDelete
-                  id={reviewCommentsMap?.id}
-                  onClick={onClickEditBtn}
-                >
-                  수정
-                </S.EditDelete>
-                <S.EditDeleteDot>·</S.EditDeleteDot>
-                <S.EditDelete
-                  id={reviewCommentsMap?.id}
-                  onClick={onClickShowModal}
-                >
-                  삭제
-                </S.EditDelete>
-              </S.EditDeleteBox>
+              {reviewCommentUserId === userId && (
+                <S.EditDeleteBox>
+                  <S.EditDelete
+                    id={reviewCommentsMap?.id}
+                    onClick={onClickEditBtn}
+                  >
+                    수정
+                  </S.EditDelete>
+                  <S.EditDeleteDot>·</S.EditDeleteDot>
+                  <S.EditDelete
+                    id={reviewCommentsMap?.id}
+                    onClick={onClickShowModal}
+                  >
+                    삭제
+                  </S.EditDelete>
+                </S.EditDeleteBox>
+              )}
             </S.DateEditDeleteBox>
           </S.CommentBox>
         </S.Container>

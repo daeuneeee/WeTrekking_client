@@ -1,6 +1,7 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, MouseEvent, useState } from "react";
-import { IMutation } from "../../../../commons/types/generated/types";
+import { IMutation, IQuery } from "../../../../commons/types/generated/types";
+import { FETCH_USER } from "../../crews/detail/crewDetail.queries";
 import ReviewCommentListUi from "./reviewCommentList.presenter";
 import {
   DELETE_REVIEW_COMMENT,
@@ -21,6 +22,11 @@ const ReviewCommentList = ({ reviewCommentsMap }: IReviewCommentListProps) => {
   const [updateReviewComment] = useMutation<
     Pick<IMutation, "updateReviewComment">
   >(UPDATE_REVIEW_COMMENT);
+
+  const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  const userId = data?.fetchUser.id;
+  const reviewCommentUserId = reviewCommentsMap?.user.id;
 
   const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setEditComments(event.target.value);
@@ -80,6 +86,8 @@ const ReviewCommentList = ({ reviewCommentsMap }: IReviewCommentListProps) => {
       onClickEdit={onClickEdit}
       onChangeEditComment={onChangeEditComment}
       editComments={editComments}
+      reviewCommentUserId={reviewCommentUserId}
+      userId={userId}
     />
   );
 };

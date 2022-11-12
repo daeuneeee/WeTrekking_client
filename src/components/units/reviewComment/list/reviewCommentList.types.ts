@@ -15,4 +15,6 @@ export interface IReviewCommentListUiProps {
   onChangeEditComment: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onClickEdit: () => void;
   editComments: string;
+  reviewCommentUserId: string;
+  userId?: string;
 }

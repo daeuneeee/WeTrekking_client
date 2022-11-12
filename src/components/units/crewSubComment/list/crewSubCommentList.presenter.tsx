@@ -15,6 +15,8 @@ const CrewSubCommentListUi = ({
   onClickEdit,
   onClickEditBtn,
   editComments,
+  subCommentUserId,
+  userId,
 }: ICrewSubCommentListUiProps) => {
   return (
     <>
@@ -35,13 +37,17 @@ const CrewSubCommentListUi = ({
                 <S.Date>{getTime(subCommentsMap?.createdAt)}</S.Date>
               </S.DateBox>
               <S.BtnBox>
-                <S.Btn id={subCommentsMap?.id} onClick={onClickEditBtn}>
-                  수정
-                </S.Btn>
-                <S.BtnDot>·</S.BtnDot>
-                <S.Btn onClick={onClickShowModal} id={subCommentsMap?.id}>
-                  삭제
-                </S.Btn>
+                {subCommentUserId === userId && (
+                  <>
+                    <S.Btn id={subCommentsMap?.id} onClick={onClickEditBtn}>
+                      수정
+                    </S.Btn>
+                    <S.BtnDot>·</S.BtnDot>
+                    <S.Btn onClick={onClickShowModal} id={subCommentsMap?.id}>
+                      삭제
+                    </S.Btn>
+                  </>
+                )}
               </S.BtnBox>
             </S.CommentInformBox>
           </S.CommentBox>

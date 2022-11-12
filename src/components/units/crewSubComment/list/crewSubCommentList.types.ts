@@ -11,6 +11,8 @@ export interface ICrewSubCommentListUiProps {
   onClickEdit: () => void;
   onClickEditBtn: (event: MouseEvent<HTMLButtonElement>) => void;
   editComments: string;
+  subCommentUserId?: string;
+  userId?: string;
 }
 
 export interface ICrewSubCommentListProps {

@@ -21,6 +21,8 @@ const CrewCommentListUi = ({
   onClickEdit,
   onChangeEditComment,
   editComments,
+  commentUserId,
+  userId,
 }: ICrewCommentListUiProps) => {
   return (
     <>
@@ -44,14 +46,18 @@ const CrewCommentListUi = ({
                 <S.Btn id={commentsMap?.id} onClick={onClickComment}>
                   댓글 달기
                 </S.Btn>
-                <S.BtnDot>·</S.BtnDot>
-                <S.Btn id={commentsMap?.id} onClick={onClickEditBtn}>
-                  수정
-                </S.Btn>
-                <S.BtnDot>·</S.BtnDot>
-                <S.Btn id={commentsMap?.id} onClick={onClickShowModal}>
-                  삭제
-                </S.Btn>
+                {userId === commentUserId && (
+                  <>
+                    <S.BtnDot>·</S.BtnDot>
+                    <S.Btn id={commentsMap?.id} onClick={onClickEditBtn}>
+                      수정
+                    </S.Btn>
+                    <S.BtnDot>·</S.BtnDot>
+                    <S.Btn id={commentsMap?.id} onClick={onClickShowModal}>
+                      삭제
+                    </S.Btn>
+                  </>
+                )}
               </S.BtnBox>
             </S.CommentInformBox>
           </S.CommentBox>

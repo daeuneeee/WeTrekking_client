@@ -4,7 +4,11 @@ import MyPageNav from "../navigation";
 import * as S from "./myinfo.styles";
 import { IMyInfoUiProps } from "./myinfo.types";
 
-const MyInfoUi = ({ userDatas, onClickPointModal }: IMyInfoUiProps) => {
+const MyInfoUi = ({
+  userDatas,
+  onClickPointModal,
+  onClickToReviewWrite,
+}: IMyInfoUiProps) => {
   return (
     <S.Wrapper>
       <MyPageNav page="내 정보" />
@@ -107,7 +111,13 @@ const MyInfoUi = ({ userDatas, onClickPointModal }: IMyInfoUiProps) => {
                 </S.ListWriterInfoBox>
               </S.MyMListInfoBox>
             </S.ReviewBg>
-            <S.ReviewWriteBtn className="reviewBtn">리뷰 쓰기</S.ReviewWriteBtn>
+            <S.ReviewWriteBtn
+              id="123"
+              className="reviewBtn"
+              onClick={onClickToReviewWrite}
+            >
+              리뷰 쓰기
+            </S.ReviewWriteBtn>
           </S.MyMListBox>
         </S.MyMListContainer>
       </S.InfoContainer>

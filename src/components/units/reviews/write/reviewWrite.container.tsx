@@ -1,11 +1,17 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import CrewReviewWriteUi from "./reviewWrite.presenter";
-import { CREATE_REVIEW, UPLOAD_FILES_REVIEW } from "./reviewWrite.queries";
+import {
+  CREATE_REVIEW,
+  FETCH_CREW_BOARD,
+  UPLOAD_FILES_REVIEW,
+} from "./reviewWrite.queries";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IFormData } from "./reviewWrite.types";
+import { crewBoardIdState } from "../../../../store";
+import { useRecoilState } from "recoil";
 
 const schema = yup.object({
   title: yup.string().required("제목을 입력해주세요"),
@@ -24,6 +30,9 @@ const CrewReviewWrite = () => {
   const [rate, setRate] = useState(5);
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
+  const [crewBoardId] = useRecoilState(crewBoardIdState);
+
+  console.log(crewBoardId);
 
   const [createReview] = useMutation(CREATE_REVIEW);
   const [uploadFileReview] = useMutation(UPLOAD_FILES_REVIEW);
@@ -31,26 +40,43 @@ const CrewReviewWrite = () => {
     setRate(value);
   };
 
+  const { data: crewBoardInfo } = useQuery(FETCH_CREW_BOARD, {
+    variables: {
+      crewBoardId: "b1a1eb74-9930-435b-8b9f-43ef683b1174",
+    },
+  });
+
+  console.log(crewBoardInfo);
+
   const onClickRegister = async (data: IFormData) => {
-    const results = await Promise.all(
-      files.map(
-        async (files) =>
-          await (files && uploadFileReview({ variables: { files } }))
-      )
-    );
-    console.log(results);
-    const resultUrls = results.map((el) =>
-      el ? el.data?.uploadFilesForReviewBoard : ""
-    );
-    console.log(resultUrls);
+    try {
+      const results = await Promise.all(
+        files.map(
+          async (files) =>
+            await (files && uploadFileReview({ variables: { files } }))
+        )
+      );
+      const resultUrls = results.map((el) =>
+        el ? el.data?.uploadFilesForReviewBoard : ""
+      );
 
-    data.star = rate;
-    console.log(data);
+      const resultUrlsFlat = resultUrls.flat();
 
-    // await createReview({ variables: { createReviewBoardInput: data } });
+      data.star = rate;
+
+      await createReview({
+        variables: {
+          crewUserListId: "asdasd",
+          createReviewBoardInput: data,
+          imgURL: resultUrlsFlat,
+        },
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
   };
-
-  console.log(files);
 
   const onChangeFile =
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {

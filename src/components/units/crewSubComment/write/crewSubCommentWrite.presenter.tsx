@@ -1,10 +1,11 @@
 import * as S from "./crewSubCommentWrite.styles";
+import { ICrewSubCommentWriteUiProps } from "./crewSubCommentWrite.types";
 
 const CrewSubCommentWriteUi = ({
   onClickComment,
   onChangeSubComment,
   subComment,
-}) => {
+}: ICrewSubCommentWriteUiProps) => {
   return (
     <>
       <S.Wrapper>

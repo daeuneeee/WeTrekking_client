@@ -4,6 +4,7 @@ import CrewSubCommentWrite from "../../crewSubComment/write/crewSubCommentWrite.
 import { getDate, getTime } from "../../../../commons/utils/getDate";
 import ConfirmModal from "../../../commons/modals/confirmModal";
 import CrewSubCommentList from "../../crewSubComment/list/crewSubCommentList.container";
+import { ICrewCommentListUiProps } from "./crewCommentList.types";
 
 const CrewCommentListUi = ({
   commentsMap,
@@ -20,7 +21,7 @@ const CrewCommentListUi = ({
   onClickEdit,
   onChangeEditComment,
   editComments,
-}) => {
+}: ICrewCommentListUiProps) => {
   return (
     <>
       <S.Wrapper>
@@ -76,7 +77,6 @@ const CrewCommentListUi = ({
             return (
               <CrewSubCommentList
                 key={subCommentsMap.id}
-                commentsMap={commentsMap}
                 subCommentsMap={subCommentsMap}
               />
             );

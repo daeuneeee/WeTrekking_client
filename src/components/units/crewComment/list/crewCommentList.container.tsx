@@ -1,21 +1,22 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import {
+  IMutation,
   IQuery,
   IQueryFetchCrewSubCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSubCommentState } from "../../../../store";
 import CrewCommentListUi from "./crewCommentList.presenter";
-import { UPDATE_CREW_COMMENT } from "./crewCommentList.queries";
 import {
   DELETE_CREW_COMMENT,
   FETCH_CREW_SUB_COMMENTS,
+  UPDATE_CREW_COMMENT,
 } from "./crewCommentList.queries";
+import { ICrewCommentListProps } from "./crewCommentList.types";
 
-const CrewCommentList = ({ commentsMap }) => {
+const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
   const router = useRouter();
 
   const [commentId, setCommentId] = useState("");
@@ -27,9 +28,10 @@ const CrewCommentList = ({ commentsMap }) => {
     isOpenSubCommentState
   );
 
-  const [updateCrewComment] = useMutation(UPDATE_CREW_COMMENT);
+  const [updateCrewComment] =
+    useMutation<Pick<IMutation, "updateCrewComment">>(UPDATE_CREW_COMMENT);
 
-  const onChangeEditComment = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setEditComments(event.target.value);
   };
 
@@ -39,13 +41,13 @@ const CrewCommentList = ({ commentsMap }) => {
   >(FETCH_CREW_SUB_COMMENTS, {
     variables: {
       commentId: commentsMap.id,
-      boardId: String(router.query.crewId),
     },
   });
 
-  const [deleteCrewComment] = useMutation(DELETE_CREW_COMMENT);
+  const [deleteCrewComment] =
+    useMutation<Pick<IMutation, "deleteCrewComment">>(DELETE_CREW_COMMENT);
 
-  const onClickComment = (event) => {
+  const onClickComment = (event: MouseEvent<HTMLSpanElement>) => {
     setCommentId(event.currentTarget.id);
     setIsOpenSubComment((prev) => !prev);
   };
@@ -54,7 +56,6 @@ const CrewCommentList = ({ commentsMap }) => {
     setIsModalOpen(true);
     setCommentId(event.currentTarget.id);
   };
-  console.log(commentId);
 
   const onClickCancelModal = () => {
     setIsModalOpen(false);

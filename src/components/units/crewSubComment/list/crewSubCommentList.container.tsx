@@ -1,21 +1,27 @@
 import { useMutation } from "@apollo/client";
-import { MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
+import { IMutation } from "../../../../commons/types/generated/types";
 import CrewSubCommentListUi from "./crewSubCommentList.presenter";
 import {
   DELETE_CREW_SUB_COMMENT,
   UPDATE_CREW_SUB_COMMENT,
 } from "./crewSubCommentList.queries";
+import { ICrewSubCommentListProps } from "./crewSubCommentList.types";
 
-const CrewSubCommentList = ({ subCommentsMap }) => {
+const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
   const [commentId, setCommentId] = useState("");
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editComments, setEditComments] = useState("");
 
-  const [deleteCrewSubComment] = useMutation(DELETE_CREW_SUB_COMMENT);
-  const [updateSubCrewComment] = useMutation(UPDATE_CREW_SUB_COMMENT);
+  const [deleteCrewSubComment] = useMutation<
+    Pick<IMutation, "deleteCrewSubComment">
+  >(DELETE_CREW_SUB_COMMENT);
+  const [updateSubCrewComment] = useMutation<
+    Pick<IMutation, "updateCrewSubComment">
+  >(UPDATE_CREW_SUB_COMMENT);
 
-  const onChangeEditComment = (event) => {
+  const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setEditComments(event?.target.value);
   };
 

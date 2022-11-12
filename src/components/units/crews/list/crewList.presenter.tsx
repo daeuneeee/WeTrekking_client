@@ -14,10 +14,8 @@ const CrewListUi = ({
   deadLine,
   onClickLatest,
   onClickDeadLine,
-}: // crewImg,
-ICrewListUiProps) => {
+}: ICrewListUiProps) => {
   const { Option } = Select;
-  // const { RangePicker }: any = DatePicker;
 
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -127,7 +125,9 @@ ICrewListUiProps) => {
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src={`https://storage.googleapis.com/${listMap?.user.profile_img}`}
+                          src={`https://storage.googleapis.com/${String(
+                            listMap?.user.profile_img
+                          )}`}
                           className="avatar"
                         ></Avatar>
                         <S.ListNickName>
@@ -219,7 +219,9 @@ ICrewListUiProps) => {
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src={`https://storage.googleapis.com/${listMap?.user.profile_img}`}
+                          src={`https://storage.googleapis.com/${String(
+                            listMap?.user.profile_img
+                          )}`}
                           className="avatar"
                         ></Avatar>
                         <S.ListNickName>

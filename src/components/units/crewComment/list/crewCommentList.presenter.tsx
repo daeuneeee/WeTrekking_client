@@ -1,19 +1,25 @@
 import * as S from "./crewCommentList.styles";
 import { Avatar } from "@mui/material";
-import CrewSubCommentList from "../../crewSubComment/list/crewSubCommentList.container";
-import CrewSubCommentWrite from "../../crewSubComment/write";
+import CrewSubCommentWrite from "../../crewSubComment/write/crewSubCommentWrite.container";
 import { getDate, getTime } from "../../../../commons/utils/getDate";
 import ConfirmModal from "../../../commons/modals/confirmModal";
+import CrewSubCommentList from "../../crewSubComment/list/crewSubCommentList.container";
 
 const CrewCommentListUi = ({
   commentsMap,
   data,
   onClickComment,
-  isOpen,
+  isOpenSubComment,
   onClickShowModal,
   isModalOpen,
   onClickModalConfirm,
   onClickCancelModal,
+  commentId,
+  onClickEditBtn,
+  isEditOpen,
+  onClickEdit,
+  onChangeEditComment,
+  editComments,
 }) => {
   return (
     <>
@@ -34,11 +40,15 @@ const CrewCommentListUi = ({
                 <S.Date>{getTime(commentsMap?.createdAt)}</S.Date>
               </S.DateBox>
               <S.BtnBox>
-                <S.Btn onClick={onClickComment}>댓글 달기</S.Btn>
+                <S.Btn id={commentsMap?.id} onClick={onClickComment}>
+                  댓글 달기
+                </S.Btn>
                 <S.BtnDot>·</S.BtnDot>
-                <S.Btn>수정</S.Btn>
+                <S.Btn id={commentsMap?.id} onClick={onClickEditBtn}>
+                  수정
+                </S.Btn>
                 <S.BtnDot>·</S.BtnDot>
-                <S.Btn id={commentsMap.id} onClick={onClickShowModal}>
+                <S.Btn id={commentsMap?.id} onClick={onClickShowModal}>
                   삭제
                 </S.Btn>
               </S.BtnBox>
@@ -46,6 +56,22 @@ const CrewCommentListUi = ({
           </S.CommentBox>
         </S.Container>
         <S.NestedCommentBox>
+          {isEditOpen && (
+            <>
+              <S.EditContainer>
+                <S.EditContents
+                  onChange={onChangeEditComment}
+                  id="clear"
+                  defaultValue={commentsMap?.comment || editComments}
+                ></S.EditContents>
+                <S.EditRegisterBox>
+                  <S.EditRegisterBtn onClick={onClickEdit}>
+                    수정
+                  </S.EditRegisterBtn>
+                </S.EditRegisterBox>
+              </S.EditContainer>
+            </>
+          )}
           {data?.fetchCrewSubComments.map((subCommentsMap) => {
             return (
               <CrewSubCommentList
@@ -55,12 +81,14 @@ const CrewCommentListUi = ({
               />
             );
           })}
-          {isOpen && <CrewSubCommentWrite />}
+          {commentId && isOpenSubComment && (
+            <CrewSubCommentWrite commentsMap={commentsMap} />
+          )}
         </S.NestedCommentBox>
         <ConfirmModal
           onOk={onClickModalConfirm}
           onCancel={onClickCancelModal}
-          contents="삭제하시겠습니까?"
+          contents="댓글을 삭제하시겠습니까?"
           open={isModalOpen}
         />
       </S.Wrapper>

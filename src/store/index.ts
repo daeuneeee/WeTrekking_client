@@ -21,7 +21,6 @@ export const userInfo = atom<Pick<IQuery, "fetchUser">>({
   default: undefined,
 });
 
-
 export const isModalActive = atom({
   key: "isModalActive",
   default: false,
@@ -30,4 +29,9 @@ export const isModalActive = atom({
 export const isPointModalToggleState = atom<boolean>({
   key: "isPointModalToggleState",
   default: undefined,
+});
+
+export const isOpenSubCommentState = atom({
+  key: "isOpenSubCommentState",
+  default: false,
 });

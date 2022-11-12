@@ -48,7 +48,6 @@ const ReviewCommentWrite = () => {
             },
           ],
         });
-        document.getElementById("clear").value = "";
         setReviewComment("");
       }
     } catch (error) {}
@@ -61,6 +60,7 @@ const ReviewCommentWrite = () => {
           <Contents
             placeholder="내용을 입력해주세요"
             onChange={onChangeComment}
+            value={reviewComment}
             id="clear"
           ></Contents>
           <RegisterBox>

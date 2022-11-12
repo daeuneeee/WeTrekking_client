@@ -47,27 +47,20 @@ const ReviewCommentList = ({ reviewCommentsMap }) => {
   };
 
   const onClickEdit = async () => {
-    try {
-      if (editComments === "") {
-        Modal.error({ content: "내용을 입력해주세요!" });
-      }
-      if (editComments !== "") {
-        const myVariables = {
-          reviewCommentId: commentId,
-          updateComment: editComments,
-        };
-        await updateReviewComment({
-          variables: myVariables,
-          update(cache) {
-            cache.modify({
-              fields: () => {},
-            });
-          },
+    const myVariables = {
+      reviewCommentId: commentId,
+      updateComment: editComments,
+    };
+    await updateReviewComment({
+      variables: myVariables,
+      update(cache) {
+        cache.modify({
+          fields: () => {},
         });
-        setIsEditOpen(false);
-        setEditComments("");
-      }
-    } catch (error) {}
+      },
+    });
+    setIsEditOpen(false);
+    setEditComments("");
   };
 
   return (
@@ -81,6 +74,7 @@ const ReviewCommentList = ({ reviewCommentsMap }) => {
       isEditOpen={isEditOpen}
       onClickEdit={onClickEdit}
       onChangeEditComment={onChangeEditComment}
+      editComments={editComments}
     />
   );
 };

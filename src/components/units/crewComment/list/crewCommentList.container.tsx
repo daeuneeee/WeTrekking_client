@@ -1,11 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
+import { useRecoilState } from "recoil";
 import {
   IQuery,
   IQueryFetchCrewSubCommentsArgs,
 } from "../../../../commons/types/generated/types";
+import { isOpenSubCommentState } from "../../../../store";
 import CrewCommentListUi from "./crewCommentList.presenter";
+import { UPDATE_CREW_COMMENT } from "./crewCommentList.queries";
 import {
   DELETE_CREW_COMMENT,
   FETCH_CREW_SUB_COMMENTS,
@@ -15,8 +19,19 @@ const CrewCommentList = ({ commentsMap }) => {
   const router = useRouter();
 
   const [commentId, setCommentId] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editComments, setEditComments] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isOpenSubComment, setIsOpenSubComment] = useRecoilState(
+    isOpenSubCommentState
+  );
+
+  const [updateCrewComment] = useMutation(UPDATE_CREW_COMMENT);
+
+  const onChangeEditComment = (event: ChangeEvent<HTMLInputElement>) => {
+    setEditComments(event.target.value);
+  };
 
   const { data } = useQuery<
     Pick<IQuery, "fetchCrewSubComments">,
@@ -30,9 +45,9 @@ const CrewCommentList = ({ commentsMap }) => {
 
   const [deleteCrewComment] = useMutation(DELETE_CREW_COMMENT);
 
-  const onClickComment = () => {
-    // setCommentId()
-    setIsOpen((prev) => !prev);
+  const onClickComment = (event) => {
+    setCommentId(event.currentTarget.id);
+    setIsOpenSubComment((prev) => !prev);
   };
 
   const onClickShowModal = (event: MouseEvent<HTMLButtonElement>) => {
@@ -55,16 +70,51 @@ const CrewCommentList = ({ commentsMap }) => {
     });
     setIsModalOpen(false);
   };
+
+  const onClickEditBtn = (event: MouseEvent<HTMLButtonElement>) => {
+    setCommentId(event.currentTarget.id);
+    setIsEditOpen((prev) => !prev);
+  };
+
+  const onClickEdit = async () => {
+    const myVariables = {
+      commentId,
+      updateCrewCommentInput: {},
+    };
+    if (editComments) {
+      myVariables.updateCrewCommentInput.comment = editComments;
+    }
+    if (router.query.crewId) {
+      myVariables.updateCrewCommentInput.boardId = router.query.crewId;
+    }
+    await updateCrewComment({
+      variables: myVariables,
+      update(cache) {
+        cache.modify({
+          fields: () => {},
+        });
+      },
+    });
+    setIsEditOpen(false);
+    setEditComments("");
+  };
+
   return (
     <CrewCommentListUi
       commentsMap={commentsMap}
       data={data}
       onClickComment={onClickComment}
-      isOpen={isOpen}
+      isOpenSubComment={isOpenSubComment}
       onClickShowModal={onClickShowModal}
       onClickCancelModal={onClickCancelModal}
       onClickModalConfirm={onClickModalConfirm}
       isModalOpen={isModalOpen}
+      commentId={commentId}
+      onClickEditBtn={onClickEditBtn}
+      isEditOpen={isEditOpen}
+      onClickEdit={onClickEdit}
+      onChangeEditComment={onChangeEditComment}
+      editComments={editComments}
     />
   );
 };

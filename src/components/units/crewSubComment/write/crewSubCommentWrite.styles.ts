@@ -1,28 +1,11 @@
 import styled from "@emotion/styled";
 
-const CrewSubCommentWrite = () => {
-  return (
-    <>
-      <Wrapper>
-        <Container>
-          <Contents placeholder="내용을 입력해주세요"></Contents>
-          <RegisterBox>
-            <RegisterBtn>등록</RegisterBtn>
-          </RegisterBox>
-        </Container>
-      </Wrapper>
-    </>
-  );
-};
-
-export default CrewSubCommentWrite;
-
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: 95%;
   margin-top: 3rem;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   background: #fff;
   border: 1px solid #d9d9d9;
@@ -30,7 +13,7 @@ const Container = styled.div`
   border-radius: 4px;
 `;
 
-const Contents = styled.textarea`
+export const Contents = styled.textarea`
   width: 100%;
   border: none;
   resize: none;
@@ -46,12 +29,12 @@ const Contents = styled.textarea`
   }
 `;
 
-const RegisterBox = styled.div`
+export const RegisterBox = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
 
-const RegisterBtn = styled.button`
+export const RegisterBtn = styled.button`
   font-weight: 500;
   font-size: 1.3rem;
   color: #999;

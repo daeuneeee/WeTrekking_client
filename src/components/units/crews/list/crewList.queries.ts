@@ -10,6 +10,11 @@ export const FETCH_CREW_BOARDS_LATEST = gql`
       peoples
       createdAt
       thumbnail
+      user {
+        id
+        nickname
+        profile_img
+      }
     }
   }
 `;
@@ -24,6 +29,11 @@ export const FETCH_CREW_BOARDS_DEADLINE = gql`
       peoples
       createdAt
       thumbnail
+      user {
+        id
+        nickname
+        profile_img
+      }
     }
   }
 `;

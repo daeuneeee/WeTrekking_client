@@ -37,6 +37,10 @@ const CrewDetail = () => {
     variables: { crewBoardId: String(router.query.crewId) },
   });
 
+  const onClickEdit = () => {
+    void router.push(`/crews/${String(router.query.crewId)}/edit`);
+  };
+
   const onLoadMore = async () => {
     if (!comments) return;
     await fetchMore({
@@ -65,6 +69,7 @@ const CrewDetail = () => {
       comments={comments}
       onLoadMore={onLoadMore}
       crewImg={crewImg}
+      onClickEdit={onClickEdit}
     />
   );
 };

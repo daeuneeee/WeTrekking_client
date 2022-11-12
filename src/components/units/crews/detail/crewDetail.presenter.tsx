@@ -1,4 +1,5 @@
 import { Avatar } from "@mui/material";
+import DOMPurify from "dompurify";
 import InfiniteScroll from "react-infinite-scroller";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentList from "../../crewComment/list/crewCommentList.container";
@@ -11,6 +12,7 @@ const CrewDetailUi = ({
   comments,
   onLoadMore,
   crewImg,
+  onClickEdit,
 }: ICrewDetailUiProps) => {
   return (
     <>
@@ -19,7 +21,7 @@ const CrewDetailUi = ({
           <S.ImgBox>
             <S.MainImg
               style={{
-                backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[0].imgUrl})`,
+                backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[0]?.imgUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -28,7 +30,7 @@ const CrewDetailUi = ({
             <S.SubImgBox>
               <S.SubImg
                 style={{
-                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[1].imgUrl})`,
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[1]?.imgUrl})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -36,7 +38,7 @@ const CrewDetailUi = ({
               ></S.SubImg>
               <S.SubImg
                 style={{
-                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[2].imgUrl})`,
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[2]?.imgUrl})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -44,7 +46,7 @@ const CrewDetailUi = ({
               ></S.SubImg>
               <S.SubImg
                 style={{
-                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[3].imgUrl})`,
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[3]?.imgUrl})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -132,7 +134,15 @@ const CrewDetailUi = ({
               )}`}</S.DueData>
               <S.DueWon>원</S.DueWon>
             </S.DueBox>
-            <S.Description>{data?.fetchCrewBoard.description}</S.Description>
+            {typeof window !== "undefined" ? (
+              <S.Description
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(data?.fetchCrewBoard.description),
+                }}
+              ></S.Description>
+            ) : (
+              <S.Description></S.Description>
+            )}
           </S.InformBox>
         </S.Header>
         <S.MiddleUnderLine></S.MiddleUnderLine>
@@ -354,6 +364,8 @@ const CrewDetailUi = ({
         <S.Footer>
           <S.ListBtn>목록</S.ListBtn>
           <S.ApplyBtn>참가</S.ApplyBtn>
+          <S.ApplyBtn onClick={onClickEdit}>수정</S.ApplyBtn>
+          <S.ApplyBtn>삭제</S.ApplyBtn>
         </S.Footer>
         <S.MiddleUnderLine></S.MiddleUnderLine>
         <S.CommentContainer>

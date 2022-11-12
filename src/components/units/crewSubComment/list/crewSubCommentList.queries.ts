@@ -1,17 +1,19 @@
 import { gql } from "@apollo/client";
 
 export const DELETE_CREW_SUB_COMMENT = gql`
-  mutation deleteCrewSubComment($commentId: String!) {
-    deleteCrewSubComment(commentId: $commentId)
+  mutation deleteCrewSubComment($subCommentId: String!) {
+    deleteCrewSubComment(subCommentId: $subCommentId)
   }
 `;
 
 export const UPDATE_CREW_SUB_COMMENT = gql`
   mutation updateCrewSubComment(
-    $updateSubCrewCommentInput: UpdateSubCrewCommentInput!
+    $updateComment: String!
+    $subCommentId: String!
   ) {
     updateCrewSubComment(
-      updateSubCrewCommentInput: $updateSubCrewCommentInput
+      updateComment: $updateComment
+      subCommentId: $subCommentId
     ) {
       id
     }

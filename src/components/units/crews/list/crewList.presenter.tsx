@@ -127,16 +127,18 @@ ICrewListUiProps) => {
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src="/images/commons/profile-img.png"
-                          sx={{ width: 32, height: 32 }}
+                          src={`https://storage.googleapis.com/${listMap?.user.profile_img}`}
+                          className="avatar"
                         ></Avatar>
-                        <S.ListNickName>춘딩딩</S.ListNickName>
+                        <S.ListNickName>
+                          {listMap?.user?.nickname}
+                        </S.ListNickName>
                       </S.ListInform>
                       <S.ListPick>
                         <PickFalseSvg />
                       </S.ListPick>
                     </S.ListHeader>
-                    <Link href={`crews/${listMap.id}`}>
+                    <Link href={`crews/${listMap?.id}`}>
                       <S.ListContainer>
                         <S.ListThumbnail
                           style={{
@@ -148,9 +150,9 @@ ICrewListUiProps) => {
                         ></S.ListThumbnail>
                         <S.ListBody>
                           <S.ListTitleBox>
-                            <S.ListTitle>{listMap.title}</S.ListTitle>
+                            <S.ListTitle>{listMap?.title}</S.ListTitle>
                             <S.ListCreatedAt>
-                              {getDate(listMap.createdAt)}
+                              {getDate(listMap?.createdAt)}
                             </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
@@ -183,7 +185,7 @@ ICrewListUiProps) => {
                               />
                             </AvatarGroup>
                             <S.ListCrewsNum>
-                              모집인원 3/{listMap.peoples}
+                              모집인원 3/{listMap?.peoples}
                             </S.ListCrewsNum>
                           </S.ListCrewsBox>
                         </S.ListBody>
@@ -198,10 +200,10 @@ ICrewListUiProps) => {
                             {/* <S.TimeImg>
                         <img src="/images/crew/time.png" />
                       </S.TimeImg> */}
-                            <S.Day>{listMap.date}</S.Day>
+                            <S.Day>{listMap?.date}</S.Day>
                             <S.TimePartition></S.TimePartition>
                             <S.Time>
-                              {listMap.dateTime
+                              {listMap?.dateTime
                                 .replace("am", "AM")
                                 .replace("pm", "PM")}
                             </S.Time>
@@ -212,21 +214,23 @@ ICrewListUiProps) => {
                   </S.ListBox>
                 ))
               : deadLine?.fetchCrewBoardsDeadlineFirst[0]?.map((listMap) => (
-                  <S.ListBox key={listMap.id}>
+                  <S.ListBox key={listMap?.id}>
                     <S.ListHeader>
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src="/images/commons/profile-img.png"
-                          sx={{ width: 32, height: 32 }}
+                          src={`https://storage.googleapis.com/${listMap?.user.profile_img}`}
+                          className="avatar"
                         ></Avatar>
-                        <S.ListNickName>춘딩딩</S.ListNickName>
+                        <S.ListNickName>
+                          {listMap?.user?.nickname}
+                        </S.ListNickName>
                       </S.ListInform>
                       <S.ListPick>
                         <PickFalseSvg />
                       </S.ListPick>
                     </S.ListHeader>
-                    <Link href={`crews/${listMap.id}`}>
+                    <Link href={`crews/${listMap?.id}`}>
                       <S.ListContainer>
                         <S.ListThumbnail
                           style={{
@@ -238,9 +242,9 @@ ICrewListUiProps) => {
                         ></S.ListThumbnail>
                         <S.ListBody>
                           <S.ListTitleBox>
-                            <S.ListTitle>{listMap.title}</S.ListTitle>
+                            <S.ListTitle>{listMap?.title}</S.ListTitle>
                             <S.ListCreatedAt>
-                              {getDate(listMap.createdAt)}
+                              {getDate(listMap?.createdAt)}
                             </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
@@ -273,7 +277,7 @@ ICrewListUiProps) => {
                               />
                             </AvatarGroup>
                             <S.ListCrewsNum>
-                              모집인원 3/{listMap.peoples}
+                              모집인원 3/{listMap?.peoples}
                             </S.ListCrewsNum>
                           </S.ListCrewsBox>
                         </S.ListBody>
@@ -288,10 +292,10 @@ ICrewListUiProps) => {
                             {/* <S.TimeImg>
                         <img src="/images/crew/time.png" />
                       </S.TimeImg> */}
-                            <S.Day>{listMap.date}</S.Day>
+                            <S.Day>{listMap?.date}</S.Day>
                             <S.TimePartition></S.TimePartition>
                             <S.Time>
-                              {listMap.dateTime
+                              {listMap?.dateTime
                                 .replace("am", "AM")
                                 .replace("pm", "PM")}
                             </S.Time>

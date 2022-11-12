@@ -15,14 +15,15 @@ import { useRouter } from "next/router";
 // import { yupResolver } from "@hookform/resolvers/yup";
 // import * as yup from "yup";
 import { Address } from "react-daum-postcode";
-import { IFormData } from "./crewWrite.types";
+import { ICrewWriteProps, IFormData } from "./crewWrite.types";
+import { IMutation } from "../../../../commons/types/generated/types";
 
 // const schema = yup.object({
 //   title: yup.string().required("제목을 입력해주세요"),
 //   review: yup.string().required("내용을 입력해주세요"),
 // });
 
-const CrewWrite = ({ isEdit, data }) => {
+const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClicked, setIsClicked] = useState("남자만");
   const [people, setPeople] = useState(0);
@@ -47,11 +48,14 @@ const CrewWrite = ({ isEdit, data }) => {
     // resolver: yupResolver(schema),
   });
 
-  const [createCrewBoard] = useMutation(CREATE_CREW_BOARD);
-  const [uploadFileCrew] = useMutation(UPLOAD_FILES_CREW);
-  const [updateCrewBoard] = useMutation(UPDATE_CREW_BOARD);
+  const [createCrewBoard] =
+    useMutation<Pick<IMutation, "createCrewBoard">>(CREATE_CREW_BOARD);
+  const [uploadFileCrew] =
+    useMutation<Pick<IMutation, "uploadFilesForCrewBoard">>(UPLOAD_FILES_CREW);
+  const [updateCrewBoard] =
+    useMutation<Pick<IMutation, "updateCrewBoard">>(UPDATE_CREW_BOARD);
 
-  const onChangeDescription = (value) => {
+  const onChangeDescription = (value: string) => {
     setValue("description", value);
     void trigger("description");
   };
@@ -142,7 +146,7 @@ const CrewWrite = ({ isEdit, data }) => {
       };
     };
 
-  const onClickEdit = async (data) => {
+  const onClickEdit = async (data: IFormData) => {
     // data.dues = Number(data.dues);
     // if (date) data.date = date;
     // if (time) data.dateTime = time;

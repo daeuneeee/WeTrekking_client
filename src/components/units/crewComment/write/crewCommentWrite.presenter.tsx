@@ -1,6 +1,11 @@
 import * as S from "./crewCommentWrite.styles";
+import { ICrewCommentWriteUiProps } from "./crewCommentWrite.types";
 
-const CrewCommentWriteUi = ({ onChangeComment, onClickRegister, comment }) => {
+const CrewCommentWriteUi = ({
+  onChangeComment,
+  onClickRegister,
+  comment,
+}: ICrewCommentWriteUiProps) => {
   return (
     <>
       <S.Wrapper>

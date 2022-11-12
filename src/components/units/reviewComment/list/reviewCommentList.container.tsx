@@ -1,23 +1,28 @@
 import { useMutation } from "@apollo/client";
-import { Modal } from "antd";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import { IMutation } from "../../../../commons/types/generated/types";
 import ReviewCommentListUi from "./reviewCommentList.presenter";
 import {
   DELETE_REVIEW_COMMENT,
   UPDATE_REVIEW_COMMENT,
 } from "./reviewCommentList.queries";
+import { IReviewCommentListProps } from "./reviewCommentList.types";
 
-const ReviewCommentList = ({ reviewCommentsMap }) => {
+const ReviewCommentList = ({ reviewCommentsMap }: IReviewCommentListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [commentId, setCommentId] = useState("");
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editComments, setEditComments] = useState("");
 
-  const [deleteReviewComment] = useMutation(DELETE_REVIEW_COMMENT);
+  const [deleteReviewComment] = useMutation<
+    Pick<IMutation, "deleteReviewComment">
+  >(DELETE_REVIEW_COMMENT);
 
-  const [updateReviewComment] = useMutation(UPDATE_REVIEW_COMMENT);
+  const [updateReviewComment] = useMutation<
+    Pick<IMutation, "updateReviewComment">
+  >(UPDATE_REVIEW_COMMENT);
 
-  const onChangeEditComment = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setEditComments(event.target.value);
   };
 

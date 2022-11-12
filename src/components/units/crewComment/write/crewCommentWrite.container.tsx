@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   IMutation,
   IMutationCreateCrewCommentArgs,
@@ -20,7 +20,7 @@ const CrewCommentWrite = () => {
   >(CREATE_CREW_COMMENT);
   const [comment, setComment] = useState("");
 
-  const onChangeComment = (event) => {
+  const onChangeComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);
   };
 

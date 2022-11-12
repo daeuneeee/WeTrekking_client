@@ -2,6 +2,7 @@ import * as S from "./crewSubCommentList.styles";
 import { Avatar } from "@mui/material";
 import { getDate, getTime } from "../../../../commons/utils/getDate";
 import ConfirmModal from "../../../commons/modals/confirmModal";
+import { ICrewSubCommentListUiProps } from "./crewSubCommentList.types";
 
 const CrewSubCommentListUi = ({
   subCommentsMap,
@@ -14,7 +15,7 @@ const CrewSubCommentListUi = ({
   onClickEdit,
   onClickEditBtn,
   editComments,
-}) => {
+}: ICrewSubCommentListUiProps) => {
   return (
     <>
       <S.Wrapper>

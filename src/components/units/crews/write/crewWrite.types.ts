@@ -10,6 +10,7 @@ import {
 } from "react-hook-form";
 import { ChangeEvent } from "react";
 import { RangePickerProps } from "antd/lib/date-picker";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IFormData {
   title: string;
@@ -51,4 +52,13 @@ export interface ICrewWriteUiProps {
     index: number
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
   imageUrls: string[];
+  isEdit: boolean;
+  data: Pick<IQuery, "fetchCrewBoard">;
+  onClickEdit: (data: IFormData) => void;
+  onChangeDescription: (value: string) => void;
+}
+
+export interface ICrewWriteProps {
+  isEdit: boolean;
+  data: Pick<IQuery, "fetchCrewBoard">;
 }

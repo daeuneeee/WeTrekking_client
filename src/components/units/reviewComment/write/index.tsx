@@ -1,9 +1,9 @@
 import { gql, useMutation } from "@apollo/client";
 import styled from "@emotion/styled";
 import { Modal } from "antd";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
+import { IMutation } from "../../../../commons/types/generated/types";
 import { reviewIdState } from "../../../../store";
 import { FETCH_REVIEW_COMMENTS } from "../../reviews/detail/reviewDetail.queries";
 
@@ -23,13 +23,14 @@ const CREATE_REVIEW_COMMENT = gql`
 `;
 
 const ReviewCommentWrite = () => {
-  // const router = useRouter();
   const [reviewComment, setReviewComment] = useState("");
   const [reviewId] = useRecoilState(reviewIdState);
 
-  const [createReviewComment] = useMutation(CREATE_REVIEW_COMMENT);
+  const [createReviewComment] = useMutation<
+    Pick<IMutation, "createReviewComment">
+  >(CREATE_REVIEW_COMMENT);
 
-  const onChangeComment = (event) => {
+  const onChangeComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewComment(event.target.value);
   };
 

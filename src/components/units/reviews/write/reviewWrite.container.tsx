@@ -12,6 +12,7 @@ import * as yup from "yup";
 import { IFormData } from "./reviewWrite.types";
 import { crewBoardIdState } from "../../../../store";
 import { useRecoilState } from "recoil";
+import { IMutation } from "../../../../commons/types/generated/types";
 
 const schema = yup.object({
   title: yup.string().required("제목을 입력해주세요"),
@@ -32,10 +33,12 @@ const CrewReviewWrite = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [crewBoardId] = useRecoilState(crewBoardIdState);
 
-  console.log(crewBoardId);
-
-  const [createReview] = useMutation(CREATE_REVIEW);
-  const [uploadFileReview] = useMutation(UPLOAD_FILES_REVIEW);
+  const [createReview] =
+    useMutation<Pick<IMutation, "createReviewBoard">>(CREATE_REVIEW);
+  const [uploadFileReview] =
+    useMutation<Pick<IMutation, "uploadFilesForReviewBoard">>(
+      UPLOAD_FILES_REVIEW
+    );
   const onChangeRate = (value: number) => {
     setRate(value);
   };

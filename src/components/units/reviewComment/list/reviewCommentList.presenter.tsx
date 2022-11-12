@@ -2,6 +2,7 @@ import * as S from "./reviewCommentList.styles";
 import { Avatar } from "@mui/material";
 import { getDate, getTime } from "../../../../commons/utils/getDate";
 import ConfirmModal from "../../../commons/modals/confirmModal";
+import { IReviewCommentListUiProps } from "./reviewCommentList.types";
 
 const ReviewCommentListUi = ({
   reviewCommentsMap,
@@ -14,7 +15,7 @@ const ReviewCommentListUi = ({
   onChangeEditComment,
   onClickEdit,
   editComments,
-}) => {
+}: IReviewCommentListUiProps) => {
   return (
     <>
       <S.Wrapper>

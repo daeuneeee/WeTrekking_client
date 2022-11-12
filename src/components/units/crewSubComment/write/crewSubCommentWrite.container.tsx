@@ -1,16 +1,18 @@
 import { useMutation } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
+import { IMutation } from "../../../../commons/types/generated/types";
 import { isOpenSubCommentState } from "../../../../store";
 import CrewSubCommentWriteUi from "./crewSubCommentWrite.presenter";
 import { CREATE_CREW_SUB_COMMENT } from "./crewSubCommentWrite.queries";
+import { ICrewSubCommentWriteProps } from "./crewSubCommentWrite.types";
 
-const CrewSubCommentWrite = ({ commentsMap }) => {
-  const [createCrewSubComment] = useMutation(CREATE_CREW_SUB_COMMENT);
+const CrewSubCommentWrite = ({ commentsMap }: ICrewSubCommentWriteProps) => {
+  const [createCrewSubComment] = useMutation<
+    Pick<IMutation, "createCrewSubComment">
+  >(CREATE_CREW_SUB_COMMENT);
   const [subComment, setSubComment] = useState("");
-  const [isOpenSubComment, setIsOpenSubComment] = useRecoilState(
-    isOpenSubCommentState
-  );
+  const [, setIsOpenSubComment] = useRecoilState(isOpenSubCommentState);
 
   const onClickComment = async () => {
     await createCrewSubComment({
@@ -26,7 +28,7 @@ const CrewSubCommentWrite = ({ commentsMap }) => {
     setIsOpenSubComment((prev) => !prev);
   };
 
-  const onChangeSubComment = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeSubComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setSubComment(event.target.value);
   };
 

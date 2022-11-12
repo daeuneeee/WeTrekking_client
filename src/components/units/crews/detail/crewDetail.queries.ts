@@ -46,3 +46,17 @@ export const FETCH_BOARD_IMAGE = gql`
     }
   }
 `;
+
+export const DELETE_CREW_BOARD = gql`
+  mutation deleteCrewBoard($crewBoardId: String!) {
+    deleteCrewBoard(crewBoardId: $crewBoardId)
+  }
+`;
+
+export const FETCH_USER = gql`
+  query {
+    fetchUser {
+      id
+    }
+  }
+`;

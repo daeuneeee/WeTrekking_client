@@ -1,6 +1,7 @@
 import { Avatar } from "@mui/material";
 import DOMPurify from "dompurify";
 import InfiniteScroll from "react-infinite-scroller";
+import ConfirmModal from "../../../commons/modals/confirmModal";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentList from "../../crewComment/list/crewCommentList.container";
 import CrewCommentWrite from "../../crewComment/write/crewCommentWrite.container";
@@ -13,6 +14,13 @@ const CrewDetailUi = ({
   onLoadMore,
   crewImg,
   onClickEdit,
+  boardId,
+  userId,
+  onClickList,
+  onClickShowModal,
+  onClickCancelModal,
+  onClickModalConfirm,
+  isModalOpen,
 }: ICrewDetailUiProps) => {
   return (
     <>
@@ -372,10 +380,15 @@ const CrewDetailUi = ({
           </S.ListBox>
         </S.Body>
         <S.Footer>
-          <S.ListBtn>목록</S.ListBtn>
-          <S.ApplyBtn>참가</S.ApplyBtn>
-          <S.ApplyBtn onClick={onClickEdit}>수정</S.ApplyBtn>
-          <S.ApplyBtn>삭제</S.ApplyBtn>
+          <S.ListBtn onClick={onClickList}>목록</S.ListBtn>
+          {userId === boardId ? (
+            <>
+              <S.ApplyBtn onClick={onClickEdit}>수정</S.ApplyBtn>
+              <S.ApplyBtn onClick={onClickShowModal}>삭제</S.ApplyBtn>
+            </>
+          ) : (
+            <S.ApplyBtn>참가</S.ApplyBtn>
+          )}
         </S.Footer>
         <S.MiddleUnderLine></S.MiddleUnderLine>
         <S.CommentContainer>
@@ -395,6 +408,12 @@ const CrewDetailUi = ({
             })}
           </InfiniteScroll>
         </S.CommentContainer>
+        <ConfirmModal
+          onOk={onClickModalConfirm}
+          onCancel={onClickCancelModal}
+          contents="게시글을 삭제하시겠습니까?"
+          open={isModalOpen}
+        />
       </S.Wrapper>
     </>
   );

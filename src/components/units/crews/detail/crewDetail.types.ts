@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface ICrewDetailUiProps {
@@ -6,4 +7,11 @@ export interface ICrewDetailUiProps {
   onLoadMore: any;
   crewImg?: Pick<IQuery, "fetchBoardImage">;
   onClickEdit: () => void;
+  boardId?: string;
+  userId?: string;
+  onClickList: () => void;
+  onClickShowModal: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickCancelModal: () => void;
+  onClickModalConfirm: () => void;
+  isModalOpen: boolean;
 }

@@ -109,6 +109,10 @@ const CrewReviewWriteUi = ({
             <S.Error>{errors.title?.message}</S.Error>
           </S.InputBox>
           <S.InputBox>
+            <S.Label>산</S.Label>
+            {/* <S.Input {...register("title")} /> */}
+          </S.InputBox>
+          <S.InputBox>
             <S.Label>별점</S.Label>
             <S.StarBox>
               <S.Star allowHalf defaultValue={5} onChange={onChangeRate} />

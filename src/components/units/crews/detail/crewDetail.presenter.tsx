@@ -19,7 +19,7 @@ const CrewDetailUi = ({
           <S.ImgBox>
             <S.MainImg
               style={{
-                backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[0].imgUrl})`,
+                backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[0]?.imgUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -28,7 +28,7 @@ const CrewDetailUi = ({
             <S.SubImgBox>
               <S.SubImg
                 style={{
-                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[1].imgUrl})`,
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[1]?.imgUrl})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -36,7 +36,7 @@ const CrewDetailUi = ({
               ></S.SubImg>
               <S.SubImg
                 style={{
-                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[2].imgUrl})`,
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[2]?.imgUrl})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -44,7 +44,7 @@ const CrewDetailUi = ({
               ></S.SubImg>
               <S.SubImg
                 style={{
-                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[3].imgUrl})`,
+                  backgroundImage: `url(https://storage.googleapis.com/${crewImg?.fetchBoardImage[3]?.imgUrl})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",

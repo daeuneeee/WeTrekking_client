@@ -7,15 +7,16 @@ const ConfirmModalBox = styled(Modal)`
   /* @media ${tablet} { */
   position: fixed;
   width: 90%;
-
-  /* transform-origin: 0;
-  top: 50%;
-  left: 50;
-  transform: translate(-50%, -50%); */
-  /* } */
 `;
 
-const ConfirmModal = (props) => {
+interface iConfirmModalProps {
+  open: boolean;
+  onOk: () => void;
+  onCancel: () => void;
+  contents: string;
+}
+
+const ConfirmModal = (props: iConfirmModalProps) => {
   return (
     <>
       <ConfirmModalBox

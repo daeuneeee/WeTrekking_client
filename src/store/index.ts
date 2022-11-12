@@ -35,3 +35,8 @@ export const isOpenSubCommentState = atom({
   key: "isOpenSubCommentState",
   default: false,
 });
+
+export const crewBoardIdState = atom({
+  key: "crewBoardIdState",
+  default: "",
+});

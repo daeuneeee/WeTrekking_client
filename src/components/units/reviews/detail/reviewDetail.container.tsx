@@ -53,7 +53,6 @@ const ReviewDetail = () => {
     });
   };
 
-  console.log(reviewComments);
   return (
     <ReviewDetailUi
       data={data}

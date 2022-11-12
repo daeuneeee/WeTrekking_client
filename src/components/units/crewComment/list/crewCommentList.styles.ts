@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
 `;
 
 export const Container = styled.section`
@@ -78,6 +77,45 @@ export const NestedCommentBox = styled.div`
   width: 100%;
 `;
 
+export const EditContainer = styled.div`
+  width: 100%;
+  height: 140px;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  padding: 16px 24px;
+  border-radius: 4px;
+  margin-top: 2rem;
+`;
+
+export const EditContents = styled.textarea`
+  width: 100%;
+  height: 50px;
+  border: none;
+  resize: none;
+  margin-top: 12px;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #999;
+  margin-bottom: 5px;
+  outline: none;
+  ::placeholder {
+    color: #999;
+  }
+`;
+
+export const EditRegisterBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const EditRegisterBtn = styled.button`
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #999;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+`;
 // export const Container = styled.div`
 // `;
 

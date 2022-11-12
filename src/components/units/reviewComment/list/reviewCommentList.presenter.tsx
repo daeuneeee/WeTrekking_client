@@ -13,6 +13,7 @@ const ReviewCommentListUi = ({
   isEditOpen,
   onChangeEditComment,
   onClickEdit,
+  editComments,
 }) => {
   return (
     <>
@@ -56,14 +57,14 @@ const ReviewCommentListUi = ({
           open={isModalOpen}
         />
       </S.Wrapper>
-
       {isEditOpen && (
         <>
           <S.EditContainer>
+            {console.log(reviewCommentsMap)}
             <S.EditContents
-              placeholder="내용을 입력해주세요"
               onChange={onChangeEditComment}
               id="clear"
+              defaultValue={reviewCommentsMap?.reviewComment || editComments}
             ></S.EditContents>
             <S.EditRegisterBox>
               <S.EditRegisterBtn onClick={onClickEdit}>수정</S.EditRegisterBtn>

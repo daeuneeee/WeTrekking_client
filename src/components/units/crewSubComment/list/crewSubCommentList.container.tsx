@@ -15,6 +15,10 @@ const CrewSubCommentList = ({ subCommentsMap }) => {
   const [deleteCrewSubComment] = useMutation(DELETE_CREW_SUB_COMMENT);
   const [updateSubCrewComment] = useMutation(UPDATE_CREW_SUB_COMMENT);
 
+  const onChangeEditComment = (event) => {
+    setEditComments(event?.target.value);
+  };
+
   const onClickShowModal = (event: MouseEvent<HTMLButtonElement>) => {
     setIsModalOpen(true);
     setCommentId(event.currentTarget.id);
@@ -25,7 +29,7 @@ const CrewSubCommentList = ({ subCommentsMap }) => {
   };
   const onClickModalConfirm = async () => {
     await deleteCrewSubComment({
-      variables: { commentId },
+      variables: { subCommentId: commentId },
       update(cache) {
         cache.modify({
           fields: () => {},
@@ -39,18 +43,13 @@ const CrewSubCommentList = ({ subCommentsMap }) => {
     setCommentId(event.currentTarget.id);
     setIsEditOpen((prev) => !prev);
   };
-  console.log(commentId);
 
   const onClickEdit = async () => {
     const myVariables = {
-      updateSubCrewCommentInput: {},
+      updateComment: editComments,
+      subCommentId: commentId,
     };
-    if (editComments) {
-      myVariables.updateSubCrewCommentInput.subComment = editComments;
-    }
-    if (commentId) {
-      myVariables.updateSubCrewCommentInput.parentId = commentId;
-    }
+
     await updateSubCrewComment({
       variables: myVariables,
       update(cache) {
@@ -73,6 +72,8 @@ const CrewSubCommentList = ({ subCommentsMap }) => {
       onClickEditBtn={onClickEditBtn}
       onClickEdit={onClickEdit}
       isEditOpen={isEditOpen}
+      onChangeEditComment={onChangeEditComment}
+      editComments={editComments}
     />
   );
 };

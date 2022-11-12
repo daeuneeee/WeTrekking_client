@@ -284,6 +284,7 @@ export const Description = styled.div`
   padding: 1.6rem 1.6rem 20% 1.6rem;
   font-weight: 400;
   font-size: 1.6rem;
+  border-radius: 4px;
 `;
 
 export const MiddleUnderLine = styled.div`

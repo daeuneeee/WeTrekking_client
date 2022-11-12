@@ -2,6 +2,11 @@ import styled from "@emotion/styled";
 import { Space, TimePicker, Slider } from "antd";
 import { subColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(async () => await import("react-quill"), {
+  ssr: false,
+});
 
 export const Wrapper = styled.div`
   width: 792px;
@@ -353,10 +358,11 @@ export const People = styled.span`
   color: #999;
 `;
 
-export const TextArea = styled.textarea`
+export const TextArea = styled(ReactQuill)`
   width: 100%;
   /* height: 160px; */
-  padding: 1.2rem 1.2rem 20%;
+  padding: 1.2rem 1.2rem 2rem;
+  /* min-height: 160px; */
   color: #111;
   font-weight: 400;
   font-size: 1.6rem;
@@ -366,6 +372,15 @@ export const TextArea = styled.textarea`
   margin-bottom: 1.2rem;
   :focus {
     outline-color: ${subColor};
+  }
+  & .ql-snow {
+    border: none;
+  }
+  & .ql-toolbar {
+    display: none;
+  }
+  .ql-editor {
+    font-size: 1.6rem;
   }
 `;
 

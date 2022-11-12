@@ -307,6 +307,10 @@ export const ListInform = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 6px;
+  .avatar {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
 `;
 
 export const ListNickName = styled.span`
@@ -316,8 +320,8 @@ export const ListNickName = styled.span`
 `;
 
 export const ListPick = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
   cursor: pointer;
 `;
 

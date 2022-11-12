@@ -4,6 +4,8 @@ import { DatePicker, Modal } from "antd";
 import { ICrewWriteUiProps } from "./crewWrite.types";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { mainColor } from "../../../../commons/styles/color";
+import "react-quill/dist/quill.snow.css";
+import moment from "moment";
 
 const CrewWriteUi = ({
   onChangeTime,
@@ -22,12 +24,16 @@ const CrewWriteUi = ({
   disabledDate,
   onChangeFile,
   imageUrls,
+  isEdit,
+  data,
+  onClickEdit,
+  onChangeDescription,
 }: ICrewWriteUiProps) => {
   return (
-    <form onSubmit={handleSubmit(onClickRegister)}>
+    <form onSubmit={handleSubmit(isEdit ? onClickEdit : onClickRegister)}>
       <S.Wrapper>
         <S.Header>
-          <S.Title>크루 등록하기</S.Title>
+          <S.Title>{isEdit ? "크루 수정하기" : "크루 등록하기"}</S.Title>
           <S.ImgBox>
             <S.DefaultFileInput
               type="file"
@@ -117,7 +123,10 @@ const CrewWriteUi = ({
         <S.Body>
           <S.InputBox>
             <S.Label>제목</S.Label>
-            <S.Input {...register("title")} />
+            <S.Input
+              {...register("title")}
+              // defaultValue={data?.fetchCrewBoard.title}
+            />
           </S.InputBox>
           <S.InputBox>
             <S.Label>산</S.Label>
@@ -128,24 +137,35 @@ const CrewWriteUi = ({
             <S.DateBox>
               <S.Date direction="vertical">
                 <DatePicker
+                  // inputReadOnly
                   disabledDate={disabledDate}
                   onChange={onChangeDate}
                   placeholder="등록 날짜를 선택해주세요."
+                  defaultValue={moment(data?.fetchCrewBoard.date)}
                 />
               </S.Date>
               <S.Time
+                // inputReadOnly
                 use12Hours
                 format="h:mm a"
                 onChange={onChangeTime}
                 placeholder="등록 시간을 선택해주세요."
+                defaultValue={moment(data?.fetchCrewBoard.dateTime)}
               />
             </S.DateBox>
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 장소</S.Label>
-            <S.Input readOnly defaultValue={address} />
+            <S.Input
+              readOnly
+              value={address || data?.fetchCrewBoard.address}
+              // value={address}
+            />
             <S.AddressBox>
-              <S.AddressDetail {...register("addressDetail")} />
+              <S.AddressDetail
+                {...register("addressDetail")}
+                // defaultValue={data?.fetchCrewBoard.addressDetail}
+              />
               <S.AddressBtn type="button" onClick={onToggleModal}>
                 주소찾기
               </S.AddressBtn>
@@ -163,7 +183,10 @@ const CrewWriteUi = ({
           </S.InputBox>
           <S.InputBox>
             <S.Label>회비</S.Label>
-            <S.Input {...register("dues")} />
+            <S.Input
+              {...register("dues")}
+              // defaultValue={data?.fetchCrewBoard.dues}
+            />
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 성별</S.Label>
@@ -226,21 +249,24 @@ const CrewWriteUi = ({
             <S.Label>모집 인원</S.Label>
             <S.PeopleBox>
               <S.PeopleSlider
-                defaultValue={0}
+                value={people || data?.fetchCrewBoard.peoples}
                 max={15}
                 onChange={onChangePeople}
               />
-              <S.People>{people}명</S.People>
+              <S.People>{people || data?.fetchCrewBoard.peoples}명</S.People>
             </S.PeopleBox>
           </S.InputBox>
           <S.InputBox>
             <S.Label>상세 내용</S.Label>
-            <S.TextArea {...register("description")} />
+            <S.TextArea
+              onChange={onChangeDescription}
+              defaultValue={data?.fetchCrewBoard.description}
+            />
           </S.InputBox>
         </S.Body>
         <S.Footer>
           <S.CancelBtn>취소</S.CancelBtn>
-          <S.RegisterBtn>등록</S.RegisterBtn>
+          <S.RegisterBtn>{isEdit ? "수정" : "등록"}</S.RegisterBtn>
         </S.Footer>
       </S.Wrapper>
     </form>

@@ -3,7 +3,7 @@ import CrewWriteUi from "./crewWrite.presenter";
 import type { Moment } from "moment";
 import { DatePickerProps, Modal } from "antd";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   CREATE_CREW_BOARD,
   UPDATE_CREW_BOARD,
@@ -16,14 +16,23 @@ import { useRouter } from "next/router";
 // import * as yup from "yup";
 import { Address } from "react-daum-postcode";
 import { ICrewWriteProps, IFormData } from "./crewWrite.types";
-import { IMutation } from "../../../../commons/types/generated/types";
+import {
+  IMutation,
+  IQuery,
+  IQueryFetchBoardImageArgs,
+  IQueryFetchCrewBoardArgs,
+} from "../../../../commons/types/generated/types";
+import {
+  FETCH_BOARD_IMAGE,
+  FETCH_CREW_BOARD,
+} from "../detail/crewDetail.queries";
 
 // const schema = yup.object({
 //   title: yup.string().required("제목을 입력해주세요"),
 //   review: yup.string().required("내용을 입력해주세요"),
 // });
 
-const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
+const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClicked, setIsClicked] = useState("남자만");
   const [people, setPeople] = useState(0);
@@ -33,13 +42,6 @@ const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
   const [gender, setGender] = useState("");
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
-
-  useEffect(() => {
-    isEdit ? setGender(data?.fetchCrewBoard.gender) : setGender("male");
-    setValue("title", data?.fetchCrewBoard.title);
-    setValue("addressDetail", data?.fetchCrewBoard.addressDetail);
-    setValue("dues", data?.fetchCrewBoard.dues);
-  }, [data]);
 
   const router = useRouter();
 
@@ -54,6 +56,36 @@ const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
     useMutation<Pick<IMutation, "uploadFilesForCrewBoard">>(UPLOAD_FILES_CREW);
   const [updateCrewBoard] =
     useMutation<Pick<IMutation, "updateCrewBoard">>(UPDATE_CREW_BOARD);
+
+  const { data: boardData } = useQuery<
+    Pick<IQuery, "fetchCrewBoard">,
+    IQueryFetchCrewBoardArgs
+  >(FETCH_CREW_BOARD, {
+    variables: { crewBoardId: String(router.query.crewId) },
+  });
+
+  const { data: crewImg } = useQuery<
+    Pick<IQuery, "fetchBoardImage">,
+    IQueryFetchBoardImageArgs
+  >(FETCH_BOARD_IMAGE, {
+    variables: {
+      crewBoardId: String(router.query.crewId),
+    },
+  });
+
+  useEffect(() => {
+    isEdit
+      ? setGender(String(boardData?.fetchCrewBoard.gender))
+      : setGender("male");
+    setValue("title", boardData?.fetchCrewBoard.title);
+    setValue("addressDetail", boardData?.fetchCrewBoard.addressDetail);
+    setValue("dues", Number(boardData?.fetchCrewBoard.dues));
+    setValue("description", boardData?.fetchCrewBoard.description);
+    setValue("address", boardData?.fetchCrewBoard.address);
+    setIsClicked(String(boardData?.fetchCrewBoard.gender));
+  }, [boardData]);
+
+  console.log(crewImg);
 
   const onChangeDescription = (value: string) => {
     setValue("description", value);
@@ -120,7 +152,7 @@ const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
           cache.modify({ fields: () => {} });
         },
       });
-      await router.push(`/crews/${String(result.data.createCrewBoard.id)}`);
+      await router.push(`/crews/${String(result?.data?.createCrewBoard.id)}`);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
@@ -147,25 +179,40 @@ const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
     };
 
   const onClickEdit = async (data: IFormData) => {
-    // data.dues = Number(data.dues);
-    // if (date) data.date = date;
-    // if (time) data.dateTime = time;
-    // if (people) data.peoples = people;
-    // if (address) data.address = address;
-    // if (gender) data.gender = gender;
-    // console.log(data);
-    const myVariables = {
-      crewBoardId: router.query.crewId,
-      updateCrewBoardInput: {},
-    };
-    if (date) myVariables.updateCrewBoardInput.date = date;
-    if (time) myVariables.updateCrewBoardInput.dateTime = time;
-    if (people) myVariables.updateCrewBoardInput.peoples = people;
-    if (address) myVariables.updateCrewBoardInput.address = address;
-    if (gender) myVariables.updateCrewBoardInput.gender = gender;
+    data.dues = Number(data.dues);
+    if (date) {
+      data.date = date;
+    } else {
+      data.date = boardData?.fetchCrewBoard.date;
+    }
+    if (time) {
+      data.dateTime = time;
+    } else {
+      data.dateTime = boardData?.fetchCrewBoard.dateTime;
+    }
+    if (people) {
+      data.peoples = people;
+    } else {
+      data.peoples = boardData?.fetchCrewBoard.peoples;
+    }
+    if (gender) data.gender = gender;
 
-    const result = await updateCrewBoard({ variables: myVariables });
-    console.log(result);
+    console.log(data);
+
+    await updateCrewBoard({
+      variables: {
+        crewBoardId: router.query.crewId,
+        updateCrewBoardInput: data,
+        imgURL: ["asdasd"],
+      },
+      update(cache) {
+        cache.modify({
+          fields: () => {},
+        });
+      },
+    });
+
+    void router.push(`/crews/${String(router.query.crewId)}`);
   };
 
   return (
@@ -187,9 +234,11 @@ const CrewWrite = ({ isEdit, data }: ICrewWriteProps) => {
       onChangeFile={onChangeFile}
       imageUrls={imageUrls}
       isEdit={isEdit}
-      data={data}
+      data={boardData}
       onChangeDescription={onChangeDescription}
       onClickEdit={onClickEdit}
+      crewImg={crewImg}
+      date={date}
     />
   );
 };

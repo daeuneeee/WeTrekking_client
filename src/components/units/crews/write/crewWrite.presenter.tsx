@@ -28,7 +28,10 @@ const CrewWriteUi = ({
   data,
   onClickEdit,
   onChangeDescription,
+  crewImg,
+  date,
 }: ICrewWriteUiProps) => {
+  console.log(crewImg);
   return (
     <form onSubmit={handleSubmit(isEdit ? onClickEdit : onClickRegister)}>
       <S.Wrapper>
@@ -140,8 +143,11 @@ const CrewWriteUi = ({
                   // inputReadOnly
                   disabledDate={disabledDate}
                   onChange={onChangeDate}
-                  placeholder="등록 날짜를 선택해주세요."
-                  defaultValue={moment(data?.fetchCrewBoard.date)}
+                  placeholder={
+                    data
+                      ? data?.fetchCrewBoard.date
+                      : "등록 날짜를 선택해주세요."
+                  }
                 />
               </S.Date>
               <S.Time
@@ -149,8 +155,11 @@ const CrewWriteUi = ({
                 use12Hours
                 format="h:mm a"
                 onChange={onChangeTime}
-                placeholder="등록 시간을 선택해주세요."
-                defaultValue={moment(data?.fetchCrewBoard.dateTime)}
+                placeholder={
+                  data
+                    ? data.fetchCrewBoard.dateTime
+                    : "등록 시간을 선택해주세요."
+                }
               />
             </S.DateBox>
           </S.InputBox>
@@ -159,13 +168,10 @@ const CrewWriteUi = ({
             <S.Input
               readOnly
               value={address || data?.fetchCrewBoard.address}
-              // value={address}
+              {...register("address")}
             />
             <S.AddressBox>
-              <S.AddressDetail
-                {...register("addressDetail")}
-                // defaultValue={data?.fetchCrewBoard.addressDetail}
-              />
+              <S.AddressDetail {...register("addressDetail")} />
               <S.AddressBtn type="button" onClick={onToggleModal}>
                 주소찾기
               </S.AddressBtn>
@@ -191,56 +197,58 @@ const CrewWriteUi = ({
           <S.InputBox>
             <S.Label>모집 성별</S.Label>
             <S.GenderBox>
-              {isClicked === "남자만" ? (
+              {isClicked === "male" ? (
                 <S.Gender01
-                  htmlFor="남자만"
+                  htmlFor="male"
                   style={{ backgroundColor: `${mainColor}`, color: "#fff" }}
                 >
                   남자만
                 </S.Gender01>
               ) : (
-                <S.Gender01 htmlFor="남자만">남자만</S.Gender01>
+                <S.Gender01 htmlFor="male">남자만</S.Gender01>
               )}
-              {isClicked === "여자만" ? (
+              {isClicked === "female" ? (
                 <S.Gender02
-                  htmlFor="여자만"
+                  htmlFor="female"
                   style={{ backgroundColor: `${mainColor}`, color: "#fff" }}
                 >
                   여자만
                 </S.Gender02>
               ) : (
-                <S.Gender02 htmlFor="여자만">여자만</S.Gender02>
+                <S.Gender02 htmlFor="female">여자만</S.Gender02>
               )}
-              {isClicked === "상관없음" ? (
+              {isClicked === "any" ? (
                 <S.Gender03
-                  htmlFor="상관없음"
+                  htmlFor="any"
                   style={{ backgroundColor: `${mainColor}`, color: "#fff" }}
                 >
                   상관없음
                 </S.Gender03>
               ) : (
-                <S.Gender03 htmlFor="상관없음">상관없음</S.Gender03>
+                <S.Gender03 htmlFor="any">상관없음</S.Gender03>
               )}
               <S.RadioInput
                 type="radio"
                 name="gender"
-                id="남자만"
+                id="male"
                 onChange={onChangeRadio}
-                checked={isClicked === "남자만"}
+                checked={isClicked === "male"}
                 value="male"
               />
               <S.RadioInput
                 type="radio"
                 name="gender"
-                id="여자만"
+                id="female"
                 onChange={onChangeRadio}
+                checked={isClicked === "female"}
                 value="female"
               />
               <S.RadioInput
                 type="radio"
                 name="gender"
-                id="상관없음"
+                id="any"
                 onChange={onChangeRadio}
+                checked={isClicked === "any"}
                 value="any"
               />
             </S.GenderBox>
@@ -260,7 +268,7 @@ const CrewWriteUi = ({
             <S.Label>상세 내용</S.Label>
             <S.TextArea
               onChange={onChangeDescription}
-              defaultValue={data?.fetchCrewBoard.description}
+              value={data && String(data?.fetchCrewBoard.description)}
             />
           </S.InputBox>
         </S.Body>

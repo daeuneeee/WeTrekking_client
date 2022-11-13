@@ -56,8 +56,7 @@ export interface ICrewWriteUiProps {
   data?: Pick<IQuery, "fetchCrewBoard">;
   onClickEdit: (data: IFormData) => void;
   onChangeDescription: (value: string) => void;
-  crewImg?: Pick<IQuery, "fetchBoardImage">;
-  date: string;
+  editImageUrlsFlat: string[] | undefined;
 }
 export interface ICrewWriteProps {
   isEdit: boolean;

@@ -27,10 +27,8 @@ const CrewWriteUi = ({
   data,
   onClickEdit,
   onChangeDescription,
-  crewImg,
-  date,
+  editImageUrlsFlat,
 }: ICrewWriteUiProps) => {
-  console.log(crewImg);
   return (
     <form onSubmit={handleSubmit(isEdit ? onClickEdit : onClickRegister)}>
       <S.Wrapper>
@@ -60,14 +58,23 @@ const CrewWriteUi = ({
             <S.MainImgBox
               htmlFor="file01"
               style={{
-                backgroundImage: imageUrls[0] ? `url(${imageUrls[0]})` : "",
+                backgroundImage: imageUrls[0]
+                  ? `url(${imageUrls[0].replace(" ", "20%")})`
+                  : `url(https://storage.googleapis.com/${String(
+                      editImageUrlsFlat?.[0]
+                    )})`,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
             >
               <S.MainImgHidden
-                style={{ visibility: imageUrls[0] ? "hidden" : undefined }}
+                style={{
+                  visibility:
+                    imageUrls[0] || editImageUrlsFlat?.[0]
+                      ? "hidden"
+                      : undefined,
+                }}
               >
                 <S.MainImg src="/images/write/camera.png" />
                 <S.MainText>사진을 등록 해주세요.</S.MainText>
@@ -79,7 +86,11 @@ const CrewWriteUi = ({
               <S.SubImg
                 htmlFor="file02"
                 style={{
-                  backgroundImage: imageUrls[1] ? `url(${imageUrls[1]})` : "",
+                  backgroundImage: imageUrls[1]
+                    ? `url(${imageUrls[1].replace(" ", "20%")})`
+                    : `url(https://storage.googleapis.com/${String(
+                        editImageUrlsFlat?.[1]
+                      )})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
@@ -87,13 +98,22 @@ const CrewWriteUi = ({
               >
                 <img
                   src="/images/write/camera.png"
-                  style={{ visibility: imageUrls[1] ? "hidden" : undefined }}
+                  style={{
+                    visibility:
+                      imageUrls[1] || editImageUrlsFlat?.[1]
+                        ? "hidden"
+                        : undefined,
+                  }}
                 />
               </S.SubImg>
               <S.SubImg
                 htmlFor="file03"
                 style={{
-                  backgroundImage: imageUrls[2] ? `url(${imageUrls[2]})` : "",
+                  backgroundImage: imageUrls[2]
+                    ? `url(${imageUrls[2].replace(" ", "20%")})`
+                    : `url(https://storage.googleapis.com/${String(
+                        editImageUrlsFlat?.[2]
+                      )})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
@@ -101,13 +121,22 @@ const CrewWriteUi = ({
               >
                 <img
                   src="/images/write/camera.png"
-                  style={{ visibility: imageUrls[2] ? "hidden" : undefined }}
+                  style={{
+                    visibility:
+                      imageUrls[2] || editImageUrlsFlat?.[2]
+                        ? "hidden"
+                        : undefined,
+                  }}
                 />
               </S.SubImg>
               <S.SubImg
                 htmlFor="file04"
                 style={{
-                  backgroundImage: imageUrls[3] ? `url(${imageUrls[3]})` : "",
+                  backgroundImage: imageUrls[3]
+                    ? `url(${imageUrls[3].replace(" ", "20%")})`
+                    : `url(https://storage.googleapis.com/${String(
+                        editImageUrlsFlat?.[3]
+                      )})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
@@ -115,7 +144,12 @@ const CrewWriteUi = ({
               >
                 <img
                   src="/images/write/camera.png"
-                  style={{ visibility: imageUrls[3] ? "hidden" : undefined }}
+                  style={{
+                    visibility:
+                      imageUrls[3] || editImageUrlsFlat?.[3]
+                        ? "hidden"
+                        : undefined,
+                  }}
                 />
               </S.SubImg>
             </S.SubImgBox>
@@ -188,10 +222,7 @@ const CrewWriteUi = ({
           </S.InputBox>
           <S.InputBox>
             <S.Label>회비</S.Label>
-            <S.Input
-              {...register("dues")}
-              // defaultValue={data?.fetchCrewBoard.dues}
-            />
+            <S.Input {...register("dues")} />
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 성별</S.Label>
@@ -256,11 +287,16 @@ const CrewWriteUi = ({
             <S.Label>모집 인원</S.Label>
             <S.PeopleBox>
               <S.PeopleSlider
-                value={people || data?.fetchCrewBoard.peoples}
+                value={
+                  isEdit ? people || data?.fetchCrewBoard.peoples : people || 1
+                }
                 max={15}
                 onChange={onChangePeople}
               />
-              <S.People>{people || data?.fetchCrewBoard.peoples}명</S.People>
+              <S.People>
+                {isEdit ? people || data?.fetchCrewBoard.peoples : people || 1}
+                명
+              </S.People>
             </S.PeopleBox>
           </S.InputBox>
           <S.InputBox>

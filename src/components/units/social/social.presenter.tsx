@@ -1,5 +1,4 @@
 import { mainColor } from "../../../commons/styles/color";
-import Input01 from "../../commons/inputs/input-01";
 import * as A from "../members/login/login.styles";
 import * as S from "../members/join/join.styles";
 import { ISocialJoinProps } from "./social.types";
@@ -39,12 +38,12 @@ const SocialJoinUi = ({
             <A.LoginInputTitle>
               닉네임<span>*</span>
             </A.LoginInputTitle>
-            <Input01
+            <S.DefaultInput
               type="text"
               placeholder="닉네임을 입력해 주세요."
               maxLength={51}
               name="nickname"
-              register={register}
+              {...register("nickname")}
             />
             <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>

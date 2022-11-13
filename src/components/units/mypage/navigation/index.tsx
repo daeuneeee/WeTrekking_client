@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import { mainColor } from "../../../../commons/styles/color";
-import { mobile, tablet } from "../../../../commons/styles/media";
+import { mobile } from "../../../../commons/styles/media";
 
 const mypageMenu = [
   { name: "내 정보", router: "/mypage" },
@@ -53,13 +53,13 @@ const MyPageNav = ({ page }: IPageProps) => {
   const router = useRouter();
 
   const onClickToPage = (event: MouseEvent<HTMLLIElement>) => {
-    void router.push(`${event.target.id}`);
+    void router.push(event.currentTarget.id);
   };
 
   return (
     <Wrapper>
       <MyPageUl>
-        {mypageMenu.map((el) => {
+        {mypageMenu.map((el, index) => {
           return (
             <MyPageLi
               style={{
@@ -68,6 +68,7 @@ const MyPageNav = ({ page }: IPageProps) => {
               }}
               id={el.router}
               onClick={onClickToPage}
+              key={index}
             >
               {el.name}
             </MyPageLi>

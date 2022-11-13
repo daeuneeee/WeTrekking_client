@@ -21,5 +21,5 @@ export interface ICrewCommentListUiProps {
   onChangeEditComment: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   editComments: string;
   commentUserId: string;
-  userId: string;
+  userId?: string;
 }

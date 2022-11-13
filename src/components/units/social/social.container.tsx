@@ -1,20 +1,20 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { ChangeEvent, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import SocialJoinUi from "./social.presenter";
 
 const SocialJoin = () => {
   const [isGenderCheck, setIsGenderCheck] = useState("male");
-  const [phone01, setPhone01] = useState("");
-  const [phone02, setPhone02] = useState("");
-  const [phone03, setPhone03] = useState("");
+  const [, setPhone01] = useState("");
+  const [, setPhone02] = useState("");
+  const [, setPhone03] = useState("");
   const phoneInput01 = useRef<HTMLInputElement>();
   const phoneInput02 = useRef<HTMLInputElement>();
   const phoneInput03 = useRef<HTMLInputElement>();
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const { register, handleSubmit, setValue, formState } = useForm({
+  const { register } = useForm({
     mode: "onChange",
   });
 

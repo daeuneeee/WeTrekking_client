@@ -17,7 +17,7 @@ const Find = ({ findId }: IFindProps) => {
 
   const router = useRouter();
 
-  const { register, handleSubmit, setValue, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
   });
 

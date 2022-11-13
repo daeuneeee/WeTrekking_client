@@ -24,10 +24,12 @@ export const UPDATE_CREW_BOARD = gql`
   mutation updateCrewBoard(
     $crewBoardId: String!
     $updateCrewBoardInput: UpdateCrewBoardInput!
+    $imgURL: [String!]!
   ) {
     updateCrewBoard(
       crewBoardId: $crewBoardId
-      updateCrewBoardInput: $crewBoardId
+      updateCrewBoardInput: $updateCrewBoardInput
+      imgURL: $imgURL
     ) {
       id
     }

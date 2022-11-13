@@ -22,7 +22,7 @@ export interface IFormData {
   description: string;
   gender: string;
   peoples: number;
-  thumbnail: string;
+  thumbnail?: string;
 }
 
 export interface UseFormReturn<TFieldValues extends FieldValues = FieldValues> {
@@ -53,12 +53,12 @@ export interface ICrewWriteUiProps {
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
   imageUrls: string[];
   isEdit: boolean;
-  data: Pick<IQuery, "fetchCrewBoard">;
+  data?: Pick<IQuery, "fetchCrewBoard">;
   onClickEdit: (data: IFormData) => void;
   onChangeDescription: (value: string) => void;
+  crewImg?: Pick<IQuery, "fetchBoardImage">;
+  date: string;
 }
-
 export interface ICrewWriteProps {
   isEdit: boolean;
-  data: Pick<IQuery, "fetchCrewBoard">;
 }

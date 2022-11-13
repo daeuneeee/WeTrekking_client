@@ -1,5 +1,5 @@
-import Input01 from "../../../commons/inputs/input-01";
 import * as S from "./login.styles";
+import * as A from "../join/join.styles";
 import { ILoginUiProps } from "./login.types";
 const LoginUi = ({
   onChangeCheckBox,
@@ -19,22 +19,22 @@ const LoginUi = ({
         <S.LoginForm onSubmit={handleSubmit(onClickLogin)}>
           <S.LoginInputContainer>
             <S.LoginInputTitle>이메일</S.LoginInputTitle>
-            <Input01
+            <A.DefaultInput
               type="text"
               placeholder="이메일을 입력해 주세요."
               maxLength={50}
               name="email"
-              register={register}
+              {...register("email")}
             />
           </S.LoginInputContainer>
           <S.LoginInputContainer>
             <S.LoginInputTitle>비밀번호</S.LoginInputTitle>
-            <Input01
+            <A.DefaultInput
               type="password"
               placeholder="비밀번호를 입력해 주세요."
               maxLength={16}
               name="password"
-              register={register}
+              {...register("password")}
             />
           </S.LoginInputContainer>
           <S.LoginSubList>

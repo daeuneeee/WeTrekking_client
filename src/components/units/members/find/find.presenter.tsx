@@ -1,5 +1,4 @@
 import { mainColor } from "../../../../commons/styles/color";
-import Input01 from "../../../commons/inputs/input-01";
 import * as A from "../login/login.styles";
 import * as S from "../join/join.styles";
 import * as D from "../find/find.styles";
@@ -35,8 +34,8 @@ const FindUi = ({
           </D.FindTabLeft>
           <D.FindTabRight
             style={{
-              border: findId === false ? `1px solid ${mainColor}` : "",
-              color: findId === false ? `${mainColor}` : "",
+              border: !findId ? `1px solid ${mainColor}` : "",
+              color: !findId ? `${mainColor}` : "",
             }}
             onClick={onClickToFindPw}
           >
@@ -51,12 +50,12 @@ const FindUi = ({
             <A.LoginInputTitle>
               이름<span>*</span>
             </A.LoginInputTitle>
-            <Input01
+            <S.DefaultInput
               type="text"
               placeholder="이름을 입력해 주세요."
               maxLength={51}
               name="name"
-              register={register}
+              {...register("name")}
             />
             <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
@@ -65,12 +64,12 @@ const FindUi = ({
               <A.LoginInputTitle>
                 아이디<span>*</span>
               </A.LoginInputTitle>
-              <Input01
+              <S.DefaultInput
                 type="text"
                 placeholder="아이디를 입력해 주세요."
                 maxLength={51}
                 name="email"
-                register={register}
+                {...register("email")}
               />
               <S.ErrorMsg>{formState.errors.email?.message}</S.ErrorMsg>
             </A.LoginInputContainer>
@@ -118,12 +117,12 @@ const FindUi = ({
             <A.LoginInputTitle>
               인증번호 6자리 숫자 입력<span>*</span>
             </A.LoginInputTitle>
-            <Input01
+            <S.DefaultInput
               type="text"
               placeholder="인증번호를 입력해 주세요."
               maxLength={6}
               name="phoneToken"
-              register={register}
+              {...register("phoneToken")}
             />
             <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { mainColor } from "../../../../commons/styles/color";
-import { mobile, tablet } from "../../../../commons/styles/media";
+import { mobile } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;

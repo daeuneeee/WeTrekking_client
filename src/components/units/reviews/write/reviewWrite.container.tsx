@@ -10,8 +10,8 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IFormData } from "./reviewWrite.types";
-import { crewBoardIdState } from "../../../../store";
-import { useRecoilState } from "recoil";
+// import { crewBoardIdState } from "../../../../store";
+// import { useRecoilState } from "recoil";
 import { IMutation } from "../../../../commons/types/generated/types";
 
 const schema = yup.object({
@@ -31,7 +31,7 @@ const CrewReviewWrite = () => {
   const [rate, setRate] = useState(5);
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
-  const [crewBoardId] = useRecoilState(crewBoardIdState);
+  // const [crewBoardId] = useRecoilState(crewBoardIdState);
 
   const [createReview] =
     useMutation<Pick<IMutation, "createReviewBoard">>(CREATE_REVIEW);

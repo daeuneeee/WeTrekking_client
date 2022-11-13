@@ -1,11 +1,7 @@
-import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { isOpenSideBarState } from "../../../store";
 import Footer from "./footer";
 import Header from "./header";
 import MainHeader from "./mainHeader";
-import ReviewDetailLayout from "./reviewDetail/indes";
 
 interface IProps {
   children: JSX.Element;

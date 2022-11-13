@@ -1,6 +1,8 @@
 import { Avatar } from "@mui/material";
 import DOMPurify from "dompurify";
 import InfiniteScroll from "react-infinite-scroller";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../../store";
 import ConfirmModal from "../../../commons/modals/confirmModal";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentList from "../../crewComment/list/crewCommentList.container";
@@ -21,7 +23,10 @@ const CrewDetailUi = ({
   onClickCancelModal,
   onClickModalConfirm,
   isModalOpen,
+  onClickLogin,
 }: ICrewDetailUiProps) => {
+  const [accessToken] = useRecoilState(accessTokenState);
+
   return (
     <>
       <S.Wrapper>
@@ -183,200 +188,213 @@ const CrewDetailUi = ({
                 <S.Img src="/images/detail/profile-detail.png" />
               </S.CrewListBox>
             </S.ListInform>
-            <S.CrewBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewPosition>방장</S.CrewPosition>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              {/* 여기부터 맵돌리기 */}
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              {/* 여기까지 맵돌리기 */}
-              {/* 여기부터 삭제하기 */}
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              <S.CrewInformBox>
-                <S.CrewInform>
-                  <Avatar
-                    alt="Crew Image"
-                    src="/images/commons/profile-img.png"
-                    className="avatar"
-                  ></Avatar>
-                  <S.CrewPositionNickName>
-                    <S.CrewNickName>춘딩딩</S.CrewNickName>
-                  </S.CrewPositionNickName>
-                </S.CrewInform>
-                <S.CrewAgeGenderBox>
-                  <S.CrewAgeGender>28</S.CrewAgeGender>
-                  <S.CrewAgeGender>·</S.CrewAgeGender>
-                  <S.CrewAgeGender>남성</S.CrewAgeGender>
-                </S.CrewAgeGenderBox>
-              </S.CrewInformBox>
-              {/* 여기까지 삭제하기 */}
-            </S.CrewBox>
+            <S.CrewContainer>
+              <S.CrewBox
+                style={{ filter: !accessToken ? "blur(10px)" : "none" }}
+              >
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewPosition>방장</S.CrewPosition>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                {/* 여기부터 맵돌리기 */}
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                {/* 여기까지 맵돌리기 */}
+                {/* 여기부터 삭제하기 */}
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                <S.CrewInformBox>
+                  <S.CrewInform>
+                    <Avatar
+                      alt="Crew Image"
+                      src="/images/commons/profile-img.png"
+                      className="avatar"
+                    ></Avatar>
+                    <S.CrewPositionNickName>
+                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                    </S.CrewPositionNickName>
+                  </S.CrewInform>
+                  <S.CrewAgeGenderBox>
+                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>·</S.CrewAgeGender>
+                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                  </S.CrewAgeGenderBox>
+                </S.CrewInformBox>
+                {/* 여기까지 삭제하기 */}
+              </S.CrewBox>
+              {!accessToken && (
+                <S.CrewLoginCheckBox>
+                  <S.CrewLoginText>참가자 리스트는</S.CrewLoginText>
+                  <S.CrewLoginText>
+                    로그인 하셔야 볼 수 있습니다.
+                  </S.CrewLoginText>
+                  <S.CrewLoginBtn onClick={onClickLogin}>로그인</S.CrewLoginBtn>
+                </S.CrewLoginCheckBox>
+              )}
+            </S.CrewContainer>
           </S.ListBox>
         </S.Body>
         <S.Footer>

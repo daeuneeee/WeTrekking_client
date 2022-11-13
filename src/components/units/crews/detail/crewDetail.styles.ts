@@ -402,18 +402,50 @@ export const Img = styled.img`
   width: 2.4rem;
 `;
 
+export const CrewContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
 export const CrewBox = styled.div`
   width: 100%;
   background: #fafafa;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
-  margin-top: 2.4rem;
   overflow-y: auto;
   padding: 4.44% 3.33%;
   display: flex;
   flex-direction: column;
   gap: 12px;
   max-height: 53.9rem;
+`;
+
+export const CrewLoginCheckBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+export const CrewLoginText = styled.p`
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+`;
+export const CrewLoginBtn = styled.button`
+  width: 30%;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: white;
+  margin-top: 1rem;
+  border: none;
 `;
 
 export const CrewInformBox = styled.div`

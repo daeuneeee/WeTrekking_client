@@ -80,6 +80,10 @@ const CrewDetail = () => {
     void router.push(`/crews`);
   };
 
+  const onClickLogin = () => {
+    void router.push(`/login`);
+  };
+
   const onClickShowModal = (event: MouseEvent<HTMLButtonElement>) => {
     setIsModalOpen(true);
     setCrewId(event.currentTarget.id);
@@ -116,6 +120,7 @@ const CrewDetail = () => {
       onClickCancelModal={onClickCancelModal}
       onClickModalConfirm={onClickModalConfirm}
       isModalOpen={isModalOpen}
+      onClickLogin={onClickLogin}
     />
   );
 };

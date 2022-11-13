@@ -120,7 +120,6 @@ const CrewListUi = ({
             {sort
               ? data?.fetchCrewBoardsLatestFirst[0]?.map((listMap) => (
                   <S.ListBox key={listMap.id}>
-                    {console.log(listMap)}
                     <S.ListHeader>
                       <S.ListInform>
                         <Avatar

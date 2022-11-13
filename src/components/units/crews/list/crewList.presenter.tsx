@@ -17,8 +17,8 @@ const CrewListUi = ({
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+  const handleChange = (value: any) => {
+    console.log(value);
   };
 
   return (
@@ -141,7 +141,9 @@ const CrewListUi = ({
                       <S.ListContainer>
                         <S.ListThumbnail
                           style={{
-                            backgroundImage: `url(https://storage.googleapis.com/${listMap?.thumbnail})`,
+                            backgroundImage: `url(https://storage.googleapis.com/${String(
+                              listMap?.thumbnail
+                            )})`,
                             backgroundSize: "contain",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
@@ -235,7 +237,9 @@ const CrewListUi = ({
                       <S.ListContainer>
                         <S.ListThumbnail
                           style={{
-                            backgroundImage: `url(https://storage.googleapis.com/${listMap?.thumbnail})`,
+                            backgroundImage: `url(https://storage.googleapis.com/${String(
+                              listMap?.thumbnail
+                            )})`,
                             backgroundSize: "contain",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",

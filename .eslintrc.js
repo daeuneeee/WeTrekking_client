@@ -18,5 +18,6 @@ module.exports = {
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/triple-slash-reference": "off",
     "react/no-unknown-property": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
   },
 };

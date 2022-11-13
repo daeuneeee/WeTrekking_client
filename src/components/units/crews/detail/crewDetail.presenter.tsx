@@ -36,7 +36,7 @@ const CrewDetailUi = ({
               style={{
                 backgroundImage: `url(https://storage.googleapis.com/${String(
                   crewImg?.fetchBoardImage[0]?.imgUrl
-                )})`,
+                ).replace(" ", "20%")})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -47,7 +47,7 @@ const CrewDetailUi = ({
                 style={{
                   backgroundImage: `url(https://storage.googleapis.com/${String(
                     crewImg?.fetchBoardImage[1]?.imgUrl
-                  )})`,
+                  ).replace(" ", "20%")})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -57,7 +57,7 @@ const CrewDetailUi = ({
                 style={{
                   backgroundImage: `url(https://storage.googleapis.com/${String(
                     crewImg?.fetchBoardImage[2]?.imgUrl
-                  )})`,
+                  ).replace(" ", "20%")})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -67,7 +67,7 @@ const CrewDetailUi = ({
                 style={{
                   backgroundImage: `url(https://storage.googleapis.com/${String(
                     crewImg?.fetchBoardImage[3]?.imgUrl
-                  )})`,
+                  ).replace(" ", "20%")})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",

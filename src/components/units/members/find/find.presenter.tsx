@@ -18,6 +18,13 @@ const FindUi = ({
   onClickToFindId,
   onClickToFindPw,
   onClickToJoin,
+  isPhoneNumCheck,
+  isCheckNumActive,
+  onClickCheckTokenToPhone,
+  onClickSendToPhone,
+  onChangePhoneToken,
+  onClickFineEmail,
+  onClickFindPassword,
 }: IFindUiProps) => {
   return (
     <A.Wrapper>
@@ -42,7 +49,13 @@ const FindUi = ({
             비밀번호 찾기
           </D.FindTabRight>
         </D.FindTabContainer>
-        <S.JoinForm>
+        <S.JoinForm
+          onSubmit={
+            findId
+              ? handleSubmit(onClickFineEmail)
+              : handleSubmit(onClickFindPassword)
+          }
+        >
           <A.LoginTitle>
             We Trekking<span>{findId ? "아이디 찾기" : "비밀번호 찾기"}</span>
           </A.LoginTitle>
@@ -59,7 +72,7 @@ const FindUi = ({
             />
             <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
-          {findId && (
+          {!findId && (
             <A.LoginInputContainer>
               <A.LoginInputTitle>
                 아이디<span>*</span>
@@ -111,21 +124,33 @@ const FindUi = ({
                 />
               </S.PhoneInputBox>
             </S.JoinPhoneBox>
-            <S.PhoneAuthBtn type="button">인증번호 받기</S.PhoneAuthBtn>
+            <S.PhoneAuthBtn type="button" onClick={onClickSendToPhone}>
+              인증번호 받기
+            </S.PhoneAuthBtn>
           </A.LoginInputContainer>
-          <A.LoginInputContainer>
-            <A.LoginInputTitle>
-              인증번호 6자리 숫자 입력<span>*</span>
-            </A.LoginInputTitle>
-            <S.DefaultInput
-              type="text"
-              placeholder="인증번호를 입력해 주세요."
-              maxLength={6}
-              name="phoneToken"
-              {...register("phoneToken")}
-            />
-            <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
-          </A.LoginInputContainer>
+          {isCheckNumActive && (
+            <A.LoginInputContainer>
+              <A.LoginInputTitle>
+                인증번호 6자리 숫자 입력<span>*</span>
+              </A.LoginInputTitle>
+              <S.DefaultInput
+                type="text"
+                placeholder="인증번호를 입력해 주세요."
+                maxLength={6}
+                name="phoneToken"
+                onChange={onChangePhoneToken}
+              />
+              <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
+              <S.CheckNumBtn
+                type="button"
+                onClick={onClickCheckTokenToPhone}
+                disabled={isPhoneNumCheck || false}
+              >
+                인증번호 확인
+              </S.CheckNumBtn>
+            </A.LoginInputContainer>
+          )}
+
           <S.SubmitJoinBtn>확인</S.SubmitJoinBtn>
         </S.JoinForm>
         <A.JoinToMent>

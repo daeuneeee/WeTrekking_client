@@ -14,4 +14,28 @@ export interface IFindUiProps {
   onClickToFindId: () => void;
   onClickToFindPw: () => void;
   onClickToJoin: () => void;
+  isPhoneNumCheck: boolean;
+  isCheckNumActive: boolean;
+  onClickCheckTokenToPhone: () => void;
+  onClickSendToPhone: () => void;
+  onChangePhoneToken: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickFineEmail: (data: IFindEmail) => void;
+  onClickFindPassword: (data: IFindPassword) => void;
+}
+
+export interface IFindEmail {
+  name: string;
+  phone: string;
+  phoneToken: string;
+}
+
+export interface IFindPassword {
+  name: string;
+  email: string;
+  phone: string;
+  phoneToken: string;
+}
+
+export interface IFindProps {
+  findId: boolean;
 }

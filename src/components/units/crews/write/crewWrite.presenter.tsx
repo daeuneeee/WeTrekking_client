@@ -5,7 +5,6 @@ import { ICrewWriteUiProps } from "./crewWrite.types";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { mainColor } from "../../../../commons/styles/color";
 import "react-quill/dist/quill.snow.css";
-import moment from "moment";
 
 const CrewWriteUi = ({
   onChangeTime,

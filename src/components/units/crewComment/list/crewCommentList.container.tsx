@@ -84,8 +84,16 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
     setIsEditOpen((prev) => !prev);
   };
 
+  interface IMyvariabledProps {
+    commentId: string;
+    updateCrewCommentInput: {
+      comment?: string;
+      boardId?: string | string[];
+    };
+  }
+
   const onClickEdit = async () => {
-    const myVariables = {
+    const myVariables: IMyvariabledProps = {
       commentId,
       updateCrewCommentInput: {},
     };

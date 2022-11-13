@@ -240,7 +240,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
     try {
       const result = await uploadUserProfile({
         variables: {
-          file: file,
+          file,
         },
       });
 
@@ -277,7 +277,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
     try {
       const result = await uploadUserProfile({
         variables: {
-          file: file,
+          file,
         },
       });
 

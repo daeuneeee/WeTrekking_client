@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+
 import { tablet } from "./media";
 
 // prettier-ignore
@@ -112,7 +113,6 @@ table {
 	margin: 0;
 	padding: 0;
 }
-
 
 
 

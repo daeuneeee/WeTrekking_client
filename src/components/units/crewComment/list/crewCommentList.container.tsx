@@ -15,7 +15,10 @@ import {
   FETCH_CREW_SUB_COMMENTS,
   UPDATE_CREW_COMMENT,
 } from "./crewCommentList.queries";
-import { ICrewCommentListProps } from "./crewCommentList.types";
+import {
+  ICrewCommentListProps,
+  IMyVariablesProps,
+} from "./crewCommentList.types";
 
 const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
   const router = useRouter();
@@ -84,16 +87,8 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
     setIsEditOpen((prev) => !prev);
   };
 
-  interface IMyvariabledProps {
-    commentId: string;
-    updateCrewCommentInput: {
-      comment?: string;
-      boardId?: string | string[];
-    };
-  }
-
   const onClickEdit = async () => {
-    const myVariables: IMyvariabledProps = {
+    const myVariables: IMyVariablesProps = {
       commentId,
       updateCrewCommentInput: {},
     };

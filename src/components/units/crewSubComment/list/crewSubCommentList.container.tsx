@@ -7,7 +7,10 @@ import {
   DELETE_CREW_SUB_COMMENT,
   UPDATE_CREW_SUB_COMMENT,
 } from "./crewSubCommentList.queries";
-import { ICrewSubCommentListProps } from "./crewSubCommentList.types";
+import {
+  ICrewSubCommentListProps,
+  IMyVariablesProps,
+} from "./crewSubCommentList.types";
 
 const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
   const [commentId, setCommentId] = useState("");
@@ -58,10 +61,13 @@ const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
   };
 
   const onClickEdit = async () => {
-    const myVariables = {
-      updateComment: editComments,
+    console.log(editComments);
+    const myVariables: IMyVariablesProps = {
       subCommentId: commentId,
     };
+    if (editComments) {
+      myVariables.updateComment = editComments;
+    }
 
     await updateSubCrewComment({
       variables: myVariables,

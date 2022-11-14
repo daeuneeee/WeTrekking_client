@@ -5,6 +5,9 @@ import { ICrewWriteUiProps } from "./crewWrite.types";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { mainColor } from "../../../../commons/styles/color";
 import "react-quill/dist/quill.snow.css";
+import MountainModal from "../../../commons/modals/mountainModal";
+import { mountainAddressState } from "../../../../store";
+import { useRecoilState } from "recoil";
 
 const CrewWriteUi = ({
   onChangeTime,
@@ -28,7 +31,11 @@ const CrewWriteUi = ({
   onClickEdit,
   onChangeDescription,
   editImageUrlsFlat,
+  onClickMountainSearch,
+  isMountainModalOpen,
 }: ICrewWriteUiProps) => {
+  const [mountainAddress] = useRecoilState(mountainAddressState);
+
   return (
     <form onSubmit={handleSubmit(isEdit ? onClickEdit : onClickRegister)}>
       <S.Wrapper>
@@ -166,7 +173,11 @@ const CrewWriteUi = ({
           </S.InputBox>
           <S.InputBox>
             <S.Label>산</S.Label>
-            <S.Input />
+            <S.BtnInputBox>
+              <S.BtnInput value={mountainAddress} />
+              <S.Btn onClick={onClickMountainSearch}>산 찾기</S.Btn>
+              {isMountainModalOpen && <MountainModal />}
+            </S.BtnInputBox>
           </S.InputBox>
           <S.InputBox>
             <S.Label>등산 일자</S.Label>
@@ -203,11 +214,11 @@ const CrewWriteUi = ({
               value={address || data?.fetchCrewBoard.address}
               {...register("address")}
             />
-            <S.AddressBox>
-              <S.AddressDetail {...register("addressDetail")} />
-              <S.AddressBtn type="button" onClick={onToggleModal}>
+            <S.BtnInputBox>
+              <S.BtnInput {...register("addressDetail")} />
+              <S.Btn type="button" onClick={onToggleModal}>
                 주소찾기
-              </S.AddressBtn>
+              </S.Btn>
               {isOpen && (
                 <Modal
                   title="주소검색"
@@ -218,7 +229,7 @@ const CrewWriteUi = ({
                   <DaumPostcodeEmbed onComplete={handleComplete} />
                 </Modal>
               )}
-            </S.AddressBox>
+            </S.BtnInputBox>
           </S.InputBox>
           <S.InputBox>
             <S.Label>회비</S.Label>

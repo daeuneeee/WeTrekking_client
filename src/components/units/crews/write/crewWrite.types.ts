@@ -57,6 +57,8 @@ export interface ICrewWriteUiProps {
   onClickEdit: (data: IFormData) => void;
   onChangeDescription: (value: string) => void;
   editImageUrlsFlat: string[] | undefined;
+  onClickMountainSearch: () => void;
+  isMountainModalOpen: boolean;
 }
 export interface ICrewWriteProps {
   isEdit: boolean;

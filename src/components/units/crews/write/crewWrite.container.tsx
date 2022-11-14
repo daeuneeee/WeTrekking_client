@@ -26,6 +26,8 @@ import {
   FETCH_BOARD_IMAGE,
   FETCH_CREW_BOARD,
 } from "../detail/crewDetail.queries";
+import { useRecoilState } from "recoil";
+import { isMountainModalOpenState } from "../../../../store";
 
 // const schema = yup.object({
 //   title: yup.string().required("제목을 입력해주세요"),
@@ -43,6 +45,9 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [editImageUrls, setEditImageUrls] = useState<any>(["", "", "", ""]);
   const [files, setFiles] = useState<any>();
+  const [isMountainModalOpen, setIsMountainModalOpen] = useRecoilState(
+    isMountainModalOpenState
+  );
 
   const router = useRouter();
 
@@ -136,6 +141,10 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
   const disabledDate: RangePickerProps["disabledDate"] = (current) => {
     return current && current < moment().endOf("day");
+  };
+
+  const onClickMountainSearch = () => {
+    setIsMountainModalOpen((prev) => !prev);
   };
 
   const onClickRegister = async (data: IFormData) => {
@@ -272,6 +281,8 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       onChangeDescription={onChangeDescription}
       onClickEdit={onClickEdit}
       editImageUrlsFlat={editImageUrlsFlat}
+      onClickMountainSearch={onClickMountainSearch}
+      isMountainModalOpen={isMountainModalOpen}
     />
   );
 };

@@ -212,14 +212,14 @@ export const Time = styled(TimePicker)`
   }
 `;
 
-export const AddressBox = styled.div`
+export const BtnInputBox = styled.div`
   display: flex;
   flex-direction: row;
   gap: 3.5%;
   margin-top: 1rem;
 `;
 
-export const AddressDetail = styled.input`
+export const BtnInput = styled.input`
   width: 442px;
   padding: 1.65rem 1.2rem;
   border: 1px solid #d9d9d9;
@@ -233,7 +233,7 @@ export const AddressDetail = styled.input`
   }
 `;
 
-export const AddressBtn = styled.button`
+export const Btn = styled.button`
   width: 138px;
   padding: 1.65rem 1.2rem;
   font-weight: 700;

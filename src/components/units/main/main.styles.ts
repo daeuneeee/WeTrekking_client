@@ -1,12 +1,13 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/media";
 
 const ScrollAnimation = keyframes`
   0% {
-   bottom: -22px;
+   bottom: -2.2rem;
   }
   100% {
-   bottom: -40px;
+   bottom: -4rem;
   }
 `;
 
@@ -34,9 +35,15 @@ export const Container = styled.div`
 export const MainTextBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.8rem;
   align-items: center;
-  padding-bottom: 100px;
+  padding-bottom: 10rem;
+  img {
+    width: 100%;
+    @media ${mobile} {
+      width: 70%;
+    }
+  }
 `;
 
 export const MainText = styled.p`
@@ -46,8 +53,8 @@ export const MainText = styled.p`
 `;
 
 export const CrewFindBtn = styled.button`
-  width: 160px;
-  height: 52px;
+  width: 16rem;
+  height: 5.2rem;
   font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
@@ -60,7 +67,7 @@ export const CrewFindBtn = styled.button`
 export const ScrollBox = styled.div`
   position: absolute;
   z-index: 999;
-  bottom: 60px;
+  bottom: 6rem;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0.7;
@@ -71,6 +78,7 @@ export const ScrollText = styled.p`
 `;
 
 export const ScrollIcon = styled.img`
+  width: 3.7rem;
   display: block;
   position: absolute;
   left: 50%;

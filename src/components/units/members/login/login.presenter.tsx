@@ -48,7 +48,12 @@ const LoginUi = ({
 
               <S.RememberId htmlFor="rememberId">
                 <S.RememberIdCheckBox>
-                  {isCheck && <img src="/images/login/id-check.png" alt="" />}
+                  {isCheck && (
+                    <img
+                      src="/images/login/id-check.png"
+                      alt="아이디 체크박스"
+                    />
+                  )}
                 </S.RememberIdCheckBox>
                 <span>아이디 기억하기</span>
               </S.RememberId>
@@ -66,13 +71,13 @@ const LoginUi = ({
         </S.SnsLoginTitleBox>
         <S.SnsLoginBtnBox>
           <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/google">
-            <img src="/images/login/google-login.png" />
+            <img src="/images/login/google-login.png" alt="구글 소셜 로그인" />
           </S.SnsLoginBtn>
           <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/kakao">
-            <img src="/images/login/kakao-login.png" />
+            <img src="/images/login/kakao-login.png" alt="카카오 소셜 로그인" />
           </S.SnsLoginBtn>
           <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/naver">
-            <img src="/images/login/naver-login.png" />
+            <img src="/images/login/naver-login.png" alt="네이버 소셜 로그인" />
           </S.SnsLoginBtn>
         </S.SnsLoginBtnBox>
         <S.JoinToMent>

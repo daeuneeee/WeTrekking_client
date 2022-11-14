@@ -281,7 +281,10 @@ const JoinUi = ({
                 {imgUrl ? (
                   <img />
                 ) : (
-                  <img src="/images/join/photo-upload.png" alt="" />
+                  <img
+                    src="/images/join/photo-upload.png"
+                    alt="사진 업로드 이미지"
+                  />
                 )}
               </S.ProfileUploadBtn>
               <S.ProfileUploadText>사진을 선택해 주세요</S.ProfileUploadText>

@@ -1,32 +1,36 @@
 {
-    "theme_color": "#2F4B2A",
-    "background_color": "#426A3A",
-    "display": "browser",
-    "scope": "/",
-    "start_url": "/",
-    "name": "WeTrekking",
-    "short_name": "WeTrekking",
-    "description": "\ub4f1\uc0b0 \uc88b\uc544\ud558\ub294\uc0ac\ub78c\ub4e4 \uc5ec\uae30\ub85c \ubaa8\uc5ec!",
-    "icons": [
-        {
-            "src": "/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ]
+  "theme_color": "#2F4B2A",
+  "background_color": "#426A3A",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "WeTrekking",
+  "short_name": "WeTrekking",
+  "description": "\ub4f1\uc0b0 \uc88b\uc544\ud558\ub294\uc0ac\ub78c\ub4e4 \uc5ec\uae30\ub85c \ubaa8\uc5ec!",
+  "icons": [
+    {
+      "src": "/pwa/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

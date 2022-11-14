@@ -18,3 +18,8 @@ export interface ICrewSubCommentListUiProps {
 export interface ICrewSubCommentListProps {
   subCommentsMap: any;
 }
+
+export interface IMyVariablesProps {
+  subCommentId: string;
+  updateComment?: string;
+}

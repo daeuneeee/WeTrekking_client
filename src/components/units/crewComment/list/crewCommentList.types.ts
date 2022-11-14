@@ -23,3 +23,11 @@ export interface ICrewCommentListUiProps {
   commentUserId: string;
   userId?: string;
 }
+
+export interface IMyVariablesProps {
+  commentId: string;
+  updateCrewCommentInput: {
+    comment?: string;
+    boardId?: string | string[];
+  };
+}

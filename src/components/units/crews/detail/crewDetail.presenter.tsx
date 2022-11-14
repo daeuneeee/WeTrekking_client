@@ -80,7 +80,10 @@ const CrewDetailUi = ({
               <S.LocationPickBox>
                 <S.LocationTitleBox>
                   <S.LocationBox>
-                    <S.LocationImg src="/images/detail/location.png" />
+                    <S.LocationImg
+                      src="/images/detail/location.png"
+                      alt="gps"
+                    />
                     <S.Location>설악산</S.Location>
                   </S.LocationBox>
                   <S.Title>{data?.fetchCrewBoard.title}</S.Title>
@@ -185,7 +188,10 @@ const CrewDetailUi = ({
               <S.CrewListBox>
                 <S.CrewList>14</S.CrewList>
                 <S.CrewListAll>/{data?.fetchCrewBoard.peoples}</S.CrewListAll>
-                <S.Img src="/images/detail/profile-detail.png" />
+                <S.Img
+                  src="/images/detail/profile-detail.png"
+                  alt="프로필상세"
+                />
               </S.CrewListBox>
             </S.ListInform>
             <S.CrewContainer>

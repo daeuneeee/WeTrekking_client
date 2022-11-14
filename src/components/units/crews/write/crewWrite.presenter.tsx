@@ -76,7 +76,7 @@ const CrewWriteUi = ({
                       : undefined,
                 }}
               >
-                <S.MainImg src="/images/write/camera.png" />
+                <S.MainImg src="/images/write/camera.png" alt="카메라이미지" />
                 <S.MainText>사진을 등록 해주세요.</S.MainText>
                 <S.SubText>사진은 최대 4장까지 등록 가능합니다.</S.SubText>
                 <S.SubText>여기 보이는 사진이 썸네일이 됩니다.</S.SubText>
@@ -104,6 +104,7 @@ const CrewWriteUi = ({
                         ? "hidden"
                         : undefined,
                   }}
+                  alt="카메라이미지"
                 />
               </S.SubImg>
               <S.SubImg
@@ -127,6 +128,7 @@ const CrewWriteUi = ({
                         ? "hidden"
                         : undefined,
                   }}
+                  alt="카메라이미지"
                 />
               </S.SubImg>
               <S.SubImg
@@ -150,6 +152,7 @@ const CrewWriteUi = ({
                         ? "hidden"
                         : undefined,
                   }}
+                  alt="카메라이미지"
                 />
               </S.SubImg>
             </S.SubImgBox>

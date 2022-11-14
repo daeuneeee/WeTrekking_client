@@ -17,6 +17,10 @@ module.exports = withPlugins(
       {
         pwa: {
           dest: "public",
+          disable: process.env.NODE_ENV === "development",
+          register: true,
+          scope: "/app",
+          sw: "server.js",
         },
       },
     ],

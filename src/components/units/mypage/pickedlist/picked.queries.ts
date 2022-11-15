@@ -26,18 +26,18 @@ export const FETCH_DIBS = gql`
         dues
         peoples
         thumbnail
-        mountain
+        # mountain
         createdAt
-        user {
-          id
-          email
-          name
-          nickname
-          birth
-          phone
-          gender
-          profile_img
-        }
+        # user {
+        #   id
+        #   email
+        #   name
+        #   nickname
+        #   birth
+        #   phone
+        #   gender
+        #   profile_img
+        # }
       }
     }
   }

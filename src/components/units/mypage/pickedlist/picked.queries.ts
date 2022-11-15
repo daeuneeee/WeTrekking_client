@@ -28,16 +28,16 @@ export const FETCH_DIBS = gql`
         thumbnail
         # mountain
         createdAt
-        # user {
-        #   id
-        #   email
-        #   name
-        #   nickname
-        #   birth
-        #   phone
-        #   gender
-        #   profile_img
-        # }
+        user {
+          id
+          email
+          name
+          nickname
+          birth
+          phone
+          gender
+          profile_img
+        }
       }
     }
   }

@@ -27,7 +27,7 @@ export const globalStyles = css`
 }
 
 .ant-modal-wrap {
-    z-index: 9999 !important;
+    /* z-index: 9999 !important; */
 	.ant-modal-title {
     font-size: 1.6rem;
     line-height: 2.2rem;

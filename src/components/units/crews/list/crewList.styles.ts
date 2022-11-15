@@ -341,6 +341,9 @@ export const ListThumbnail = styled.div`
   background: #cccccc;
   border-radius: 8px;
   margin-bottom: 1.6rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export const ListBody = styled.div``;

@@ -46,8 +46,8 @@ const Login = () => {
         },
       });
       setAccessToken(String(result.data?.login));
-      alert("로그인 성공");
       void router.push("/crews");
+      alert("로그인 성공");
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);

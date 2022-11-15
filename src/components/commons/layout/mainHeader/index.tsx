@@ -255,6 +255,7 @@ const MainHeader = () => {
     try {
       setAccessToken("");
       await logout();
+      void router.push("/");
       alert("로그아웃 되었습니다.");
     } catch (error) {
       if (error instanceof Error) {

@@ -44,7 +44,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [gender, setGender] = useState("");
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [editImageUrls, setEditImageUrls] = useState<any>(["", "", "", ""]);
-  const [files, setFiles] = useState<any>();
+  const [files, setFiles] = useState<any>([]);
   const [isMountainModalOpen, setIsMountainModalOpen] = useRecoilState(
     isMountainModalOpenState
   );
@@ -219,8 +219,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
     const updateImgUrlsFlat = updateImgUrls.flat();
 
-    // const updateImages = [...imgDatas];
-
     data.dues = Number(data.dues);
     if (date) {
       data.date = date;
@@ -240,8 +238,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
     if (gender) data.gender = gender;
     // const boardImgData = crewImg?.fetchBoardImage;
     // const updateImg = [...boardImgData];
-
-    console.log(updateImgUrlsFlat);
 
     await updateCrewBoard({
       variables: {

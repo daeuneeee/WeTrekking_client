@@ -1,9 +1,26 @@
 import * as A from "../uploadlist/uploadlist.styles";
 import * as S from "../applylist/applylist.styles";
 import { Avatar } from "@mui/material";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
+import ConfirmModal from "../../../commons/modals/confirmModal";
 
-const UList = () => {
+interface IElProps {
+  el: any;
+  index: number;
+  isModalActive: boolean;
+  onClickModalToggle: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickListDel: () => void;
+  onClickModalCancel: () => void;
+}
+
+const UList = ({
+  el,
+  index,
+  isModalActive,
+  onClickModalToggle,
+  onClickListDel,
+  onClickModalCancel,
+}: IElProps) => {
   const [isActive, setIsActive] = useState(false);
 
   const onClickUserActive = () => {
@@ -12,10 +29,10 @@ const UList = () => {
 
   return (
     <S.ContentUl>
-      <S.ListLiNum className="mobile">1</S.ListLiNum>
-      <S.ListLiMountain>백두산</S.ListLiMountain>
+      <S.ListLiNum className="mobile">{index + 1}</S.ListLiNum>
+      <S.ListLiMountain>{el.mountain}</S.ListLiMountain>
       <S.ListLiTitle>
-        <a>백두산 가실분 구합니다.</a>
+        <a>{el.title}</a>
       </S.ListLiTitle>
       <S.ListLiSign>
         <A.UserViewBtn onClick={onClickUserActive}>신청자 보기</A.UserViewBtn>
@@ -155,9 +172,17 @@ const UList = () => {
       </S.ListLiSign>
       <S.ListLiCancel>
         <S.CancelBtn>
-          <S.CancelMent>취소하기</S.CancelMent>
+          <S.CancelMent id={el.id} onClick={onClickModalToggle}>
+            삭제하기
+          </S.CancelMent>
         </S.CancelBtn>
       </S.ListLiCancel>
+      <ConfirmModal
+        open={isModalActive}
+        onOk={onClickListDel}
+        onCancel={onClickModalCancel}
+        contents="삭제하시겠습니까?"
+      />
     </S.ContentUl>
   );
 };

@@ -1,9 +1,11 @@
 import { Avatar } from "@mui/material";
 import DOMPurify from "dompurify";
+import { Fragment } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../store";
 import ConfirmModal from "../../../commons/modals/confirmModal";
+import PickFalseSvg from "../../../commons/svg/pickFalse";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
 import CrewCommentList from "../../crewComment/list/crewCommentList.container";
 import CrewCommentWrite from "../../crewComment/write/crewCommentWrite.container";
@@ -24,6 +26,8 @@ const CrewDetailUi = ({
   onClickModalConfirm,
   isModalOpen,
   onClickLogin,
+  onClickPick,
+  isDib,
 }: ICrewDetailUiProps) => {
   const [accessToken] = useRecoilState(accessTokenState);
 
@@ -93,8 +97,8 @@ const CrewDetailUi = ({
                     <S.ChatBox></S.ChatBox>
                   </S.PickChatBox>
                   <S.PickChatBox>
-                    <S.PickBox>
-                      <PickTrueSvg />
+                    <S.PickBox onClick={onClickPick}>
+                      {Number(isDib) >= 1 ? <PickTrueSvg /> : <PickFalseSvg />}
                     </S.PickBox>
                   </S.PickChatBox>
                 </S.PickChatContainer>

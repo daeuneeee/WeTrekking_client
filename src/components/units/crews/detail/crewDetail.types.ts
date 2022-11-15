@@ -15,4 +15,6 @@ export interface ICrewDetailUiProps {
   onClickModalConfirm: () => void;
   isModalOpen: boolean;
   onClickLogin: () => void;
+  onClickPick: () => void;
+  isDib?: number;
 }

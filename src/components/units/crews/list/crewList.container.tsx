@@ -1,9 +1,14 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { IQuery } from "../../../../commons/types/generated/types";
+import { IMutation, IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState } from "../../../../store";
+import {
+  CREATE_DIB,
+  FETCH_CREW_BOARD,
+  FETCH_DIBS,
+} from "../detail/crewDetail.queries";
 import CrewListUi from "./crewList.presenter";
 import {
   FETCH_CREW_BOARDS_DEADLINE,
@@ -12,16 +17,46 @@ import {
 
 const CrewList = () => {
   const router = useRouter();
+  const [sort, setSort] = useState(true);
 
   const [accessToken] = useRecoilState(accessTokenState);
+
+  const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
+
+  const { data: dib } = useQuery<Pick<IQuery, "fetchDibs">>(FETCH_DIBS);
 
   const { data } = useQuery<Pick<IQuery, "fetchCrewBoardsLatestFirst">>(
     FETCH_CREW_BOARDS_LATEST
   );
+
   const { data: deadLine } = useQuery<
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
   >(FETCH_CREW_BOARDS_DEADLINE);
-  const [sort, setSort] = useState(true);
+
+  // const latestId = data?.fetchCrewBoardsLatestFirst[0].map((el) => el.id);
+
+  const isDib = dib?.fetchDibs.map((el) => el.crewBoard.id).filter((el) => el);
+
+  // const isDib = dib?.fetchDibs.map((el) => el);
+  // console.log(isDib);
+  // console.log(data);
+
+  const dataList = data?.fetchCrewBoardsLatestFirst.map((el) => el);
+
+  console.log(dataList);
+
+  const onClickPick = () => {
+    void createDib({
+      variables: { crewBoardId: router.query.crewId },
+      refetchQueries: [
+        {
+          query: FETCH_CREW_BOARD,
+          variables: { crewBoardId: String(router.query.crewId) },
+        },
+        { query: FETCH_DIBS },
+      ],
+    });
+  };
 
   const onClickToWrite = () => {
     if (!accessToken) {
@@ -48,6 +83,8 @@ const CrewList = () => {
       deadLine={deadLine}
       onClickLatest={onClickLatest}
       onClickDeadLine={onClickDeadLine}
+      onClickPick={onClickPick}
+      isDib={isDib}
     />
   );
 };

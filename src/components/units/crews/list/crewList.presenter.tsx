@@ -6,6 +6,7 @@ import { ICrewListUiProps } from "./crewList.types";
 import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
 import { getDate } from "../../../../commons/utils/getDate";
+import PickTrueSvg from "../../../commons/svg/pickTrue";
 
 const CrewListUi = ({
   data,
@@ -14,6 +15,8 @@ const CrewListUi = ({
   deadLine,
   onClickLatest,
   onClickDeadLine,
+  onClickPick,
+  isDib,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -133,8 +136,12 @@ const CrewListUi = ({
                           {listMap?.user?.nickname}
                         </S.ListNickName>
                       </S.ListInform>
-                      <S.ListPick>
-                        <PickFalseSvg />
+                      <S.ListPick onClick={onClickPick}>
+                        {listMap.id.includes(isDib?.map((el) => el)) ? (
+                          <PickTrueSvg />
+                        ) : (
+                          <PickFalseSvg />
+                        )}
                       </S.ListPick>
                     </S.ListHeader>
                     <Link href={`crews/${listMap?.id}`}>

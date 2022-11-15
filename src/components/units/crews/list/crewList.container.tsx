@@ -37,17 +37,19 @@ const CrewList = () => {
 
   const isDib = dib?.fetchDibs.map((el) => el.crewBoard.id).filter((el) => el);
 
-  // const isDib = dib?.fetchDibs.map((el) => el);
-  // console.log(isDib);
-  // console.log(data);
-
-  const dataList = data?.fetchCrewBoardsLatestFirst.map((el) => el);
+  const dataList = data?.fetchCrewBoardsLatestFirst.map((el) => {
+    return isDib?.map((dibId) => {
+      console.log(el);
+      console.log(dibId);
+      return el.filter((el) => el.id === dibId);
+    });
+  });
 
   console.log(dataList);
 
   const onClickPick = () => {
     void createDib({
-      variables: { crewBoardId: router.query.crewId },
+      variables: { crewBoardId: "991efa19-6222-4ead-b54c-147a243cea29" },
       refetchQueries: [
         {
           query: FETCH_CREW_BOARD,

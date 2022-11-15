@@ -11,7 +11,7 @@ import { accessTokenState, userInfo } from "../../../../store";
 const Wrapper = styled.div`
   width: 100%;
   padding: 2.4rem 0;
-  z-index: 9998;
+  z-index: 1000;
   background-color: #fff;
   @media ${tablet} {
     position: sticky;
@@ -124,7 +124,7 @@ const MMenuContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9998;
+  z-index: 50;
   padding-top: 10%;
   @media ${mobile} {
     padding-top: 18%;

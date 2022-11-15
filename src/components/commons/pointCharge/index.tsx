@@ -7,6 +7,7 @@ import { IQuery } from "../../../commons/types/generated/types";
 import "antd/dist/antd.css";
 import Head from "next/head";
 import { gql, useMutation } from "@apollo/client";
+import { mainColor } from "../../../commons/styles/color";
 
 const PointContainer = styled.div`
   width: 100%;
@@ -17,6 +18,25 @@ const PointContainer = styled.div`
   }
   .ant-btn:empty {
     display: none;
+  }
+  .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    border-color: ${mainColor};
+  }
+  .ant-select-open {
+    border-color: ${mainColor};
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border-color: ${mainColor};
+  }
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    border-color: ${mainColor};
+    background: ${mainColor};
+  }
+  .ant-btn-primary {
+    border-color: ${mainColor} !important;
+    background: ${mainColor} !important;
   }
 `;
 

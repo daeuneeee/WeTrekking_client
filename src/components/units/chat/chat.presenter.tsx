@@ -245,7 +245,7 @@ const ChatUi = () => {
             <S.ChatViewFoot>
               <S.ChatForm>
                 <S.ChatInput type="text" placeholder="채팅을 입력해주세요." />
-                <S.ChatBtn>전송</S.ChatBtn>
+                <S.ChatBtn type="button">전송</S.ChatBtn>
               </S.ChatForm>
             </S.ChatViewFoot>
           </S.ChatView>

@@ -60,3 +60,23 @@ export const FETCH_USER = gql`
     }
   }
 `;
+
+export const CREATE_DIB = gql`
+  mutation createDib($crewBoardId: String!) {
+    createDib(crewBoardId: $crewBoardId)
+  }
+`;
+
+export const FETCH_DIBS = gql`
+  query {
+    fetchDibs {
+      id
+      user {
+        id
+      }
+      crewBoard {
+        id
+      }
+    }
+  }
+`;

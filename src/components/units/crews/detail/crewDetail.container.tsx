@@ -10,10 +10,12 @@ import {
 } from "../../../../commons/types/generated/types";
 import CrewDetailUi from "./crewDetail.presenter";
 import {
+  CREATE_DIB,
   DELETE_CREW_BOARD,
   FETCH_BOARD_IMAGE,
   FETCH_CREW_BOARD,
   FETCH_CREW_COMMENTS,
+  FETCH_DIBS,
   FETCH_USER,
 } from "./crewDetail.queries";
 
@@ -22,8 +24,12 @@ const CrewDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setCrewId] = useState("");
 
+  const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
+
   const [deleteCrewBoard] =
     useMutation<Pick<IMutation, "deleteCrewBoard">>(DELETE_CREW_BOARD);
+
+  const { data: dib } = useQuery<Pick<IQuery, "fetchDibs">>(FETCH_DIBS);
 
   const { data: comments, fetchMore } = useQuery<
     Pick<IQuery, "fetchCrewComments">,
@@ -38,6 +44,7 @@ const CrewDetail = () => {
   >(FETCH_CREW_BOARD, {
     variables: { crewBoardId: String(router.query.crewId) },
   });
+
   const { data: crewImg } = useQuery<
     Pick<IQuery, "fetchBoardImage">,
     IQueryFetchBoardImageArgs
@@ -46,6 +53,10 @@ const CrewDetail = () => {
   });
 
   const { data: userInform } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  const isDib = dib?.fetchDibs
+    .map((el) => el.crewBoard.id)
+    .filter((el) => el.includes(String(data?.fetchCrewBoard.id))).length;
 
   const userId = userInform?.fetchUser.id;
   const boardId = data?.fetchCrewBoard.user.id;
@@ -82,6 +93,19 @@ const CrewDetail = () => {
 
   const onClickLogin = () => {
     void router.push(`/login`);
+  };
+
+  const onClickPick = () => {
+    void createDib({
+      variables: { crewBoardId: router.query.crewId },
+      refetchQueries: [
+        {
+          query: FETCH_CREW_BOARD,
+          variables: { crewBoardId: String(router.query.crewId) },
+        },
+        { query: FETCH_DIBS },
+      ],
+    });
   };
 
   const onClickShowModal = (event: MouseEvent<HTMLButtonElement>) => {
@@ -121,6 +145,8 @@ const CrewDetail = () => {
       onClickModalConfirm={onClickModalConfirm}
       isModalOpen={isModalOpen}
       onClickLogin={onClickLogin}
+      onClickPick={onClickPick}
+      isDib={isDib}
     />
   );
 };

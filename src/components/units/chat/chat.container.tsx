@@ -1,11 +1,15 @@
 import ChatUi from "./chat.presenter";
-// import io from "socket.io-client";
-// import { ChangeEvent, useState } from "react";
+import io from "socket.io-client";
+import { ChangeEvent, useState } from "react";
 
 const Chat = () => {
-  // const [chatMsg, setChatMsg] = useState("");
+  const [chatMsg, setChatMsg] = useState("");
 
-  // const socket = io.connect("http://localhost:3001");
+  const socket = io("https://develop.wetrekking.kr/wetrekkingchat", {
+    transports: ["WebSocket"],
+  });
+
+  console.log(socket);
 
   // const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
   //   setChatMsg(event.target.value);
@@ -17,7 +21,6 @@ const Chat = () => {
   //   const aaa = socket.on("msg", (msg: any) => {
   //     console.log(msg);
   //   });
-  //   console.log(aaa);
   // };
 
   return <ChatUi />;

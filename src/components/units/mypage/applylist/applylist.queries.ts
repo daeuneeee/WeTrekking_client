@@ -5,7 +5,30 @@ export const FETCH_CREW_USER_LIST = gql`
     fetchCrewUserList {
       id
       status
-      crewBoard
+      user {
+        id
+        name
+      }
+      crewBoard {
+        id
+        title
+        description
+        date
+        dateTime
+        addressDetail
+        address
+        gender
+        mountain {
+          id
+          mountain
+        }
+      }
     }
+  }
+`;
+
+export const DELETE_CREW_USER_LIST = gql`
+  mutation deleteCrewUserList($crewBoardId: String!) {
+    deleteCrewUserList(crewBoardId: $crewBoardId)
   }
 `;

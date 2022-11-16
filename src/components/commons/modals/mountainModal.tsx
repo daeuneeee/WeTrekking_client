@@ -11,6 +11,10 @@ import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { tablet } from "../../../commons/styles/media";
+import {
+  IQuery,
+  IQueryFetchMountainsWithSearchArgs,
+} from "../../../commons/types/generated/types";
 
 const FETCH_MOUNTAIN_SEARCH = gql`
   query fetchMountainsWithSearch($search: String!) {
@@ -29,11 +33,12 @@ const MountainModal = () => {
   const [, setIsMountainId] = useRecoilState(mountainIdState);
   const [, setMountainAddress] = useRecoilState(mountainAddressState);
 
-  const { data, refetch } = useQuery(FETCH_MOUNTAIN_SEARCH, {
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchMountainsWithSearch">,
+    IQueryFetchMountainsWithSearchArgs
+  >(FETCH_MOUNTAIN_SEARCH, {
     variables: { search: keyword },
   });
-
-  console.log(data);
 
   const onClickList = (event: MouseEvent<HTMLUListElement>) => {
     setIsMountainId(event.currentTarget.className);
@@ -46,7 +51,6 @@ const MountainModal = () => {
   };
 
   const getDebounce = _.debounce((value) => {
-    console.log(value);
     void refetch({ search: value });
     setKeyword(value);
   }, 300);

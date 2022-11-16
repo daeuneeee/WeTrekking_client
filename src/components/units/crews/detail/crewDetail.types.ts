@@ -18,4 +18,5 @@ export interface ICrewDetailUiProps {
   onClickPick: () => void;
   isDib?: number;
   onClickToChat: () => void;
+  onClickApply: () => void;
 }

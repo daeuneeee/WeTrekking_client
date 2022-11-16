@@ -86,3 +86,9 @@ export const FETCH_DIBS = gql`
     }
   }
 `;
+
+export const CREATE_CREW_USER_LIST = gql`
+  mutation createCrewUserList($crewBoardId: String!) {
+    createCrewUserList(crewBoardId: $crewBoardId)
+  }
+`;

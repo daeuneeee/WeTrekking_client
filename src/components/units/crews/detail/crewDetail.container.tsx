@@ -10,6 +10,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import CrewDetailUi from "./crewDetail.presenter";
 import {
+  CREATE_CREW_USER_LIST,
   CREATE_DIB,
   DELETE_CREW_BOARD,
   FETCH_BOARD_IMAGE,
@@ -25,6 +26,9 @@ const CrewDetail = () => {
   const [, setCrewId] = useState("");
 
   const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
+  const [createCrewUserList] = useMutation<
+    Pick<IMutation, "createCrewUserList">
+  >(CREATE_CREW_USER_LIST);
 
   const [deleteCrewBoard] =
     useMutation<Pick<IMutation, "deleteCrewBoard">>(DELETE_CREW_BOARD);
@@ -95,6 +99,15 @@ const CrewDetail = () => {
     void router.push(`/login`);
   };
 
+  const onClickApply = async () => {
+    try {
+      await createCrewUserList({
+        variables: { crewBoardId: router.query.crewId },
+      });
+      alert("참가신청이 완료되었습니다!");
+    } catch (error) {}
+  };
+
   const onClickPick = () => {
     void createDib({
       variables: { crewBoardId: router.query.crewId },
@@ -147,6 +160,7 @@ const CrewDetail = () => {
       onClickLogin={onClickLogin}
       onClickPick={onClickPick}
       isDib={isDib}
+      onClickApply={onClickApply}
     />
   );
 };

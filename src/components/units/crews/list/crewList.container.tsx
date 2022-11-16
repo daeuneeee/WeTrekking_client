@@ -33,6 +33,8 @@ const CrewList = () => {
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
   >(FETCH_CREW_BOARDS_DEADLINE);
 
+  console.log(router);
+
   // const latestId = data?.fetchCrewBoardsLatestFirst[0].map((el) => el.id);
 
   const isDib = dib?.fetchDibs.map((el) => el.crewBoard.id).filter((el) => el);

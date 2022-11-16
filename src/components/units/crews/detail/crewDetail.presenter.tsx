@@ -28,6 +28,7 @@ const CrewDetailUi = ({
   onClickLogin,
   onClickPick,
   isDib,
+  onClickApply,
 }: ICrewDetailUiProps) => {
   const [accessToken] = useRecoilState(accessTokenState);
 
@@ -415,7 +416,7 @@ const CrewDetailUi = ({
               <S.ApplyBtn onClick={onClickShowModal}>삭제</S.ApplyBtn>
             </>
           ) : (
-            <S.ApplyBtn>참가</S.ApplyBtn>
+            <S.ApplyBtn onClick={onClickApply}>참가신청</S.ApplyBtn>
           )}
         </S.Footer>
         <S.MiddleUnderLine></S.MiddleUnderLine>

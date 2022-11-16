@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../store";
+import CrewMap from "../../../commons/kakaomap/map-address";
 import ConfirmModal from "../../../commons/modals/confirmModal";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
@@ -28,9 +29,13 @@ const CrewDetailUi = ({
   onClickLogin,
   onClickPick,
   isDib,
+  onClickToChat,
   onClickApply,
 }: ICrewDetailUiProps) => {
   const [accessToken] = useRecoilState(accessTokenState);
+  const year = new Date().getFullYear();
+  const userBirth =
+    year - Number(data?.fetchCrewBoard.user.birth?.slice(0, 4)) + 1;
 
   return (
     <>
@@ -89,12 +94,14 @@ const CrewDetailUi = ({
                       src="/images/detail/location.png"
                       alt="gps"
                     />
-                    <S.Location>설악산</S.Location>
+                    <S.Location>
+                      {data?.fetchCrewBoard.mountain.mountain}
+                    </S.Location>
                   </S.LocationBox>
                   <S.Title>{data?.fetchCrewBoard.title}</S.Title>
                 </S.LocationTitleBox>
                 <S.PickChatContainer>
-                  <S.PickChatBox>
+                  <S.PickChatBox onClick={onClickToChat}>
                     <S.ChatBox></S.ChatBox>
                   </S.PickChatBox>
                   <S.PickChatBox>
@@ -105,11 +112,17 @@ const CrewDetailUi = ({
                 </S.PickChatContainer>
               </S.LocationPickBox>
               <S.ProfileBox>
-                <S.ProfileImg></S.ProfileImg>
+                <S.ProfileImg
+                  style={{
+                    backgroundImage: `url(https://storage.googleapis.com/${String(
+                      data?.fetchCrewBoard.user.profile_img
+                    )})`,
+                  }}
+                ></S.ProfileImg>
                 <S.ProfileInform>
                   <S.NickName>{data?.fetchCrewBoard.user.nickname}</S.NickName>
                   <S.AgeGenderBox>
-                    <S.AgeGender>28</S.AgeGender>
+                    <S.AgeGender>{userBirth}</S.AgeGender>
                     <S.AgeGender>·</S.AgeGender>
                     <S.AgeGender>
                       {data?.fetchCrewBoard.gender
@@ -179,8 +192,10 @@ const CrewDetailUi = ({
         <S.MiddleUnderLine></S.MiddleUnderLine>
         <S.Body>
           <S.MapBox>
-            <S.BodyTitle>지도</S.BodyTitle>
-            <S.Map></S.Map>
+            <S.BodyTitle>모임장소</S.BodyTitle>
+            <S.Map>
+              <CrewMap data={data} />
+            </S.Map>
             <S.AddressBox>
               <S.Address>{data?.fetchCrewBoard.address}</S.Address>
               <S.Address>{data?.fetchCrewBoard.addressDetail}</S.Address>

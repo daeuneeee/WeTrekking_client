@@ -174,6 +174,8 @@ export const ProfileImg = styled.div`
   height: 6.8rem;
   border: 1px solid #d9d9d9;
   border-radius: 100%;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const ProfileInform = styled.div`
@@ -346,8 +348,7 @@ export const BodyTitle = styled.p`
 
 export const Map = styled.div`
   width: 100%;
-  /* height: 434px; */
-  padding-bottom: 59%;
+  height: 434px;
   border-radius: 8px;
   border: 1px solid green;
   margin-bottom: 1.9rem;

@@ -69,6 +69,10 @@ const CrewDetail = () => {
     void router.push(`/crews/${String(router.query.crewId)}/edit`);
   };
 
+  const onClickToChat = () => {
+    void router.push(`/crews/${String(router.query.crewId)}/chat`);
+  };
+
   const onLoadMore = async () => {
     if (!comments) return;
     await fetchMore({
@@ -105,9 +109,11 @@ const CrewDetail = () => {
         variables: { crewBoardId: router.query.crewId },
       });
       alert("참가신청이 완료되었습니다!");
+
     } catch (error) {
       alert("이미 신청하셨습니다.");
     }
+
   };
 
   const onClickPick = () => {
@@ -162,6 +168,7 @@ const CrewDetail = () => {
       onClickLogin={onClickLogin}
       onClickPick={onClickPick}
       isDib={isDib}
+      onClickToChat={onClickToChat}
       onClickApply={onClickApply}
     />
   );

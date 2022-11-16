@@ -6,8 +6,6 @@ import DaumPostcodeEmbed from "react-daum-postcode";
 import { mainColor } from "../../../../commons/styles/color";
 import "react-quill/dist/quill.snow.css";
 import MountainModal from "../../../commons/modals/mountainModal";
-import { mountainAddressState } from "../../../../store";
-import { useRecoilState } from "recoil";
 
 const CrewWriteUi = ({
   onChangeTime,
@@ -33,9 +31,8 @@ const CrewWriteUi = ({
   editImageUrlsFlat,
   onClickMountainSearch,
   isMountainModalOpen,
+  mountainAddress,
 }: ICrewWriteUiProps) => {
-  const [mountainAddress] = useRecoilState(mountainAddressState);
-
   return (
     <form onSubmit={handleSubmit(isEdit ? onClickEdit : onClickRegister)}>
       <S.Wrapper>
@@ -178,7 +175,9 @@ const CrewWriteUi = ({
             <S.Label>산</S.Label>
             <S.BtnInputBox>
               <S.BtnInput value={mountainAddress} />
-              <S.Btn onClick={onClickMountainSearch}>산 찾기</S.Btn>
+              <S.Btn type="button" onClick={onClickMountainSearch}>
+                산 찾기
+              </S.Btn>
               {isMountainModalOpen && <MountainModal />}
             </S.BtnInputBox>
           </S.InputBox>

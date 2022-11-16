@@ -109,6 +109,7 @@ const CrewDetail = () => {
         variables: { crewBoardId: router.query.crewId },
       });
       alert("참가신청이 완료되었습니다!");
+      void router.push("/mypage/applylist");
     } catch (error) {}
   };
 

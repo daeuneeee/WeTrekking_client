@@ -46,6 +46,9 @@ export const ListLiMountain = styled.li`
   font-weight: 400;
   color: #111;
   text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   @media ${mobile} {
     width: 11%;
   }

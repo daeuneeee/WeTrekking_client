@@ -4,10 +4,13 @@ export const CREATE_CREW_BOARD = gql`
   mutation createCrewBoard(
     $createCrewBoardInput: CreateCrewBoardInput!
     $imgURL: [String!]!
+    $mountainId: String!
   ) {
+    x
     createCrewBoard(
       createCrewBoardInput: $createCrewBoardInput
       imgURL: $imgURL
+      mountainId: $mountainId
     ) {
       id
     }

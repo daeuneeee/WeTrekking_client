@@ -15,6 +15,11 @@ export const FETCH_HOST_CREW_LIST = gql`
       peoples
       thumbnail
       createdAt
+      mountain {
+        id
+        mountain
+        address
+      }
       user {
         id
         email

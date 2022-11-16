@@ -79,6 +79,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
 
   const router = useRouter();
 
+  console.log(userDatas);
+
   useEffect(() => {
     if (!isUpdate) {
       setValue("gender", isGenderCheck);

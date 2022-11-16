@@ -129,8 +129,8 @@ const JoinUi = ({
             </A.LoginInputTitle>
             <S.DefaultInput
               type="text"
-              placeholder="생년월일을 입력해 주세요. (ex: 970101)"
-              maxLength={6}
+              placeholder="생년월일을 입력해 주세요. (ex: 19970708)"
+              maxLength={8}
               name="birth"
               {...register("birth")}
               disabled={isUpdate || false}

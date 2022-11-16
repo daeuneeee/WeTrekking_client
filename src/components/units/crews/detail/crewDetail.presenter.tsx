@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../store";
+import CrewMap from "../../../commons/kakaomap/map-address";
 import ConfirmModal from "../../../commons/modals/confirmModal";
 import PickFalseSvg from "../../../commons/svg/pickFalse";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
@@ -35,6 +36,7 @@ const CrewDetailUi = ({
   const year = new Date().getFullYear();
   const userBirth =
     year - Number(data?.fetchCrewBoard.user.birth?.slice(0, 4)) + 1;
+
   return (
     <>
       <S.Wrapper>
@@ -191,7 +193,9 @@ const CrewDetailUi = ({
         <S.Body>
           <S.MapBox>
             <S.BodyTitle>모임장소</S.BodyTitle>
-            <S.Map></S.Map>
+            <S.Map>
+              <CrewMap data={data} />
+            </S.Map>
             <S.AddressBox>
               <S.Address>{data?.fetchCrewBoard.address}</S.Address>
               <S.Address>{data?.fetchCrewBoard.addressDetail}</S.Address>

@@ -13,11 +13,17 @@ export const FETCH_CREW_BOARD = gql`
       gender
       dues
       peoples
+      mountain {
+        id
+        mountain
+        address
+      }
       user {
         id
         nickname
         gender
         birth
+        profile_img
       }
     }
   }

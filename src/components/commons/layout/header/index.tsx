@@ -187,7 +187,7 @@ const FETCH_USER = gql`
       email
       name
       nickname
-      # birth
+      birth
       phone
       gender
       profile_img

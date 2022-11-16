@@ -65,6 +65,10 @@ const CrewDetail = () => {
     void router.push(`/crews/${String(router.query.crewId)}/edit`);
   };
 
+  const onClickToChat = () => {
+    void router.push(`/crews/${String(router.query.crewId)}/chat`);
+  };
+
   const onLoadMore = async () => {
     if (!comments) return;
     await fetchMore({
@@ -147,6 +151,7 @@ const CrewDetail = () => {
       onClickLogin={onClickLogin}
       onClickPick={onClickPick}
       isDib={isDib}
+      onClickToChat={onClickToChat}
     />
   );
 };

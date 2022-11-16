@@ -6,6 +6,7 @@ export const CREATE_CREW_BOARD = gql`
     $imgURL: [String!]!
     $mountainId: String!
   ) {
+    x
     createCrewBoard(
       createCrewBoardInput: $createCrewBoardInput
       imgURL: $imgURL

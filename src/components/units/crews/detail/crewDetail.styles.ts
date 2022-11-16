@@ -174,6 +174,8 @@ export const ProfileImg = styled.div`
   height: 6.8rem;
   border: 1px solid #d9d9d9;
   border-radius: 100%;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const ProfileInform = styled.div`

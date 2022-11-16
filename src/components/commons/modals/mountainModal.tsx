@@ -2,7 +2,11 @@ import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import { subColor } from "../../../commons/styles/color";
-import { isMountainModalOpenState, mountainAddressState } from "../../../store";
+import {
+  isMountainModalOpenState,
+  mountainAddressState,
+  mountainIdState,
+} from "../../../store";
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { ChangeEvent, MouseEvent, useState } from "react";
@@ -21,13 +25,17 @@ const MountainModal = () => {
   const [keyword, setKeyword] = useState("");
 
   const [, setIsMountainModalOpen] = useRecoilState(isMountainModalOpenState);
+  const [, setIsMountainId] = useRecoilState(mountainIdState);
   const [, setMountainAddress] = useRecoilState(mountainAddressState);
 
   const { data, refetch } = useQuery(FETCH_MOUNTAIN_SEARCH, {
     variables: { search: keyword },
   });
 
+  console.log(data);
+
   const onClickList = (event: MouseEvent<HTMLUListElement>) => {
+    setIsMountainId(event.currentTarget.className);
     setMountainAddress(event.currentTarget.id);
     setIsMountainModalOpen(false);
   };
@@ -37,10 +45,10 @@ const MountainModal = () => {
   };
 
   const getDebounce = _.debounce((value) => {
+    console.log(value);
     void refetch({ search: value });
     setKeyword(value);
-  });
-  console.log(keyword);
+  }, 300);
 
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
     getDebounce(event.target.value);
@@ -71,6 +79,7 @@ const MountainModal = () => {
                 <ListData
                   key={uuidv4()}
                   onClick={onClickList}
+                  className={mountainMap.id}
                   id={`${String(mountainMap.mountain)} / ${String(
                     mountainMap.address
                   )}`}

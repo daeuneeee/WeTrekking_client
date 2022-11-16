@@ -1,9 +1,9 @@
 import * as S from "./picked.styles";
 import * as A from "../../crews/list/crewList.styles";
-import PickFalseSvg from "../../../commons/svg/pickFalse";
 import { Avatar, AvatarGroup } from "@mui/material";
 import MyPageNav from "../navigation";
 import { IPickedListUiProps } from "./picked.types";
+import PickTrueSvg from "../../../commons/svg/pickTrue";
 
 const PickedListUi = ({ data }: IPickedListUiProps) => {
   return (
@@ -25,7 +25,7 @@ const PickedListUi = ({ data }: IPickedListUiProps) => {
                     <A.ListNickName>{el.crewBoard.user.name}</A.ListNickName>
                   </A.ListInform>
                   <A.ListPick>
-                    <PickFalseSvg />
+                    <PickTrueSvg />
                   </A.ListPick>
                 </A.ListHeader>
                 <A.ListContainer>

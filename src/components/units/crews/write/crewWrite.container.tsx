@@ -27,7 +27,11 @@ import {
   FETCH_CREW_BOARD,
 } from "../detail/crewDetail.queries";
 import { useRecoilState } from "recoil";
-import { isMountainModalOpenState } from "../../../../store";
+import {
+  isMountainModalOpenState,
+  mountainAddressState,
+  mountainIdState,
+} from "../../../../store";
 
 // const schema = yup.object({
 //   title: yup.string().required("제목을 입력해주세요"),
@@ -48,6 +52,10 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [isMountainModalOpen, setIsMountainModalOpen] = useRecoilState(
     isMountainModalOpenState
   );
+  const [isMountainId] = useRecoilState(mountainIdState);
+  const [mountainAddress] = useRecoilState(mountainAddressState);
+
+  console.log(isMountainId);
 
   const router = useRouter();
 
@@ -149,6 +157,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
   const onClickRegister = async (data: IFormData) => {
     try {
+      console.log(data);
       if (files === undefined) return;
       const results = await Promise.all(
         files.map(
@@ -169,7 +178,11 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       data.gender = gender;
       data.thumbnail = resultUrlsFlat[0];
       const result = await createCrewBoard({
-        variables: { createCrewBoardInput: data, imgURL: resultUrlsFlat },
+        variables: {
+          createCrewBoardInput: data,
+          imgURL: resultUrlsFlat,
+          mountainId: isMountainId.split(" ")[0],
+        },
         update(cache) {
           cache.modify({ fields: () => {} });
         },
@@ -211,8 +224,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       )
     );
 
-    console.log(files);
-
     const updateImgUrls = results.map((el, index) => {
       return el ? el.data?.uploadFilesForCrewBoard : newEditImageUrls[index];
     });
@@ -244,6 +255,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         crewBoardId: router.query.crewId,
         updateCrewBoardInput: data,
         imgURL: updateImgUrlsFlat,
+        // mountainId: isMountainId,
       },
       update(cache) {
         cache.modify({
@@ -279,6 +291,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       editImageUrlsFlat={editImageUrlsFlat}
       onClickMountainSearch={onClickMountainSearch}
       isMountainModalOpen={isMountainModalOpen}
+      mountainAddress={mountainAddress}
     />
   );
 };

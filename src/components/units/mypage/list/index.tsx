@@ -30,7 +30,7 @@ const UList = ({
   return (
     <S.ContentUl>
       <S.ListLiNum className="mobile">{index + 1}</S.ListLiNum>
-      <S.ListLiMountain>{el.mountain}</S.ListLiMountain>
+      <S.ListLiMountain>{el.mountain.mountain}</S.ListLiMountain>
       <S.ListLiTitle>
         <a>{el.title}</a>
       </S.ListLiTitle>

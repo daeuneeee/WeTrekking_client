@@ -7,7 +7,10 @@ import {
   DELETE_REVIEW_COMMENT,
   UPDATE_REVIEW_COMMENT,
 } from "./reviewCommentList.queries";
-import { IReviewCommentListProps } from "./reviewCommentList.types";
+import {
+  IMyVariables,
+  IReviewCommentListProps,
+} from "./reviewCommentList.types";
 
 const ReviewCommentList = ({ reviewCommentsMap }: IReviewCommentListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,10 +61,12 @@ const ReviewCommentList = ({ reviewCommentsMap }: IReviewCommentListProps) => {
   };
 
   const onClickEdit = async () => {
-    const myVariables = {
+    const myVariables: IMyVariables = {
       reviewCommentId: commentId,
-      updateComment: editComments,
     };
+    if (editComments) {
+      myVariables.updateComment = editComments;
+    }
     await updateReviewComment({
       variables: myVariables,
       update(cache) {

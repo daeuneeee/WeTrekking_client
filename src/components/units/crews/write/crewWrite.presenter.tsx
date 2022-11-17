@@ -32,6 +32,11 @@ const CrewWriteUi = ({
   onClickMountainSearch,
   isMountainModalOpen,
   mountainAddress,
+  errors,
+  dateError,
+  // dateError,
+  timeError,
+  addressError,
 }: ICrewWriteUiProps) => {
   return (
     <form onSubmit={handleSubmit(isEdit ? onClickEdit : onClickRegister)}>
@@ -82,8 +87,9 @@ const CrewWriteUi = ({
               >
                 <S.MainImg src="/images/write/camera.png" alt="카메라이미지" />
                 <S.MainText>사진을 등록 해주세요.</S.MainText>
-                <S.SubText>사진은 최대 4장까지 등록 가능합니다.</S.SubText>
+                {/* <S.SubText>사진은 최대 4장까지 등록 가능합니다.</S.SubText> */}
                 <S.SubText>여기 보이는 사진이 썸네일이 됩니다.</S.SubText>
+                <S.SubTextError>썸네일은 필수입니다.</S.SubTextError>
               </S.MainImgHidden>
             </S.MainImgBox>
             <S.SubImgBox>
@@ -170,6 +176,7 @@ const CrewWriteUi = ({
               {...register("title")}
               // defaultValue={data?.fetchCrewBoard.title}
             />
+            <S.Error>{errors.title?.message}</S.Error>
           </S.InputBox>
           <S.InputBox>
             <S.Label>산</S.Label>
@@ -184,43 +191,50 @@ const CrewWriteUi = ({
           <S.InputBox>
             <S.Label>등산 일자</S.Label>
             <S.DateBox>
-              <S.Date direction="vertical">
-                <DatePicker
+              <S.DateTimeBox>
+                <S.Date direction="vertical">
+                  <DatePicker
+                    // inputReadOnly
+                    disabledDate={disabledDate}
+                    onChange={onChangeDate}
+                    // {...register("date")}
+                    placeholder={
+                      data
+                        ? data?.fetchCrewBoard.date
+                        : "등산 날짜를 선택해주세요."
+                    }
+                  />
+                </S.Date>
+                <S.Error>{errors.date?.message}</S.Error>
+              </S.DateTimeBox>
+              <S.DateTimeBox>
+                <S.Time
                   // inputReadOnly
-                  disabledDate={disabledDate}
-                  onChange={onChangeDate}
+                  use12Hours
+                  format="h:mm a"
+                  onChange={onChangeTime}
                   placeholder={
                     data
-                      ? data?.fetchCrewBoard.date
-                      : "등록 날짜를 선택해주세요."
+                      ? data.fetchCrewBoard.dateTime
+                      : "등산 시간을 선택해주세요."
                   }
                 />
-              </S.Date>
-              <S.Time
-                // inputReadOnly
-                use12Hours
-                format="h:mm a"
-                onChange={onChangeTime}
-                placeholder={
-                  data
-                    ? data.fetchCrewBoard.dateTime
-                    : "등록 시간을 선택해주세요."
-                }
-              />
+                <S.Error>{timeError}</S.Error>
+              </S.DateTimeBox>
             </S.DateBox>
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 장소</S.Label>
-            <S.Input
-              readOnly
-              value={address || data?.fetchCrewBoard.address}
-              {...register("address")}
-            />
-            <S.BtnInputBox>
-              <S.BtnInput {...register("addressDetail")} />
-              <S.Btn type="button" onClick={onToggleModal}>
-                주소찾기
-              </S.Btn>
+            <S.Input readOnly value={address || data?.fetchCrewBoard.address} />
+            <S.Error>{errors.address?.message}</S.Error>
+            <S.AddressBox>
+              <S.AddressDetailBox>
+                <S.BtnInput {...register("addressDetail")} />
+                <S.Btn type="button" onClick={onToggleModal}>
+                  주소찾기
+                </S.Btn>
+                <S.Error>{addressError}</S.Error>
+              </S.AddressDetailBox>
               {isOpen && (
                 <Modal
                   title="주소검색"
@@ -231,11 +245,13 @@ const CrewWriteUi = ({
                   <DaumPostcodeEmbed onComplete={handleComplete} />
                 </Modal>
               )}
-            </S.BtnInputBox>
+              <S.Error>{errors.addressDetail?.message}</S.Error>
+            </S.AddressBox>
           </S.InputBox>
           <S.InputBox>
             <S.Label>회비</S.Label>
             <S.Input {...register("dues")} />
+            <S.Error>{errors.dues?.message}</S.Error>
           </S.InputBox>
           <S.InputBox>
             <S.Label>모집 성별</S.Label>
@@ -318,6 +334,7 @@ const CrewWriteUi = ({
               onChange={onChangeDescription}
               value={data && String(data?.fetchCrewBoard.description)}
             />
+            <S.Error>{errors.description?.message}</S.Error>
           </S.InputBox>
         </S.Body>
         <S.Footer>

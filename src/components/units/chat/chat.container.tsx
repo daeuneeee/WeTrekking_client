@@ -34,6 +34,7 @@ const Chat = () => {
       // $('#chatList').append(`<div>${data[0]} : ${data[1]}</div>`);
       console.log(data);
     });
+    socket.join("123");
     // 누군가 입장
     socket.on("welcome", (welcome) => {
       // $('#chatList').append(`<div style="color:blue;">${welcome}</div>`);

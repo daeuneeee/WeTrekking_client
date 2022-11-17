@@ -9,6 +9,7 @@ import { FIND_USER_EMAIL, FIND_USER_PASSWORD } from "./find.queries";
 import { IFindEmail, IFindPassword, IFindProps } from "./find.types";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
 
 const findEmailYup = yup.object({
   name: yup.string().required("이름은 필수 입력사항 입니다.."),
@@ -80,15 +81,15 @@ const Find = ({ findId }: IFindProps) => {
             phone: `${phone01}${phone02}${phone03}`,
           },
         });
-        alert("인증번호가 전송되었습니다.");
+        successModal("인증번호가 전송되었습니다.");
         setIsCheckNumActive(true);
         console.log(result);
       } else {
-        alert("핸드폰 번호를 입력해주세요.");
+        errorModal("핸드폰 번호를 입력해주세요.");
       }
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        errorModal(error.message);
       }
     }
   };
@@ -104,11 +105,11 @@ const Find = ({ findId }: IFindProps) => {
           phoneToken,
         },
       });
-      alert(result.data?.checkTokenPhone);
+      successModal(String(result.data?.checkTokenPhone));
       setIsPhoneNumCheck(true);
     } catch (error) {
       if (error instanceof Error) {
-        alert("인증에 실패하였습니다.");
+        errorModal("인증에 실패하였습니다.");
       }
     }
   };
@@ -126,7 +127,7 @@ const Find = ({ findId }: IFindProps) => {
             phoneToken,
           },
         });
-        alert(
+        successModal(
           `${data?.name}님의 이메일은 ${String(
             result.data?.findUserEmail
           )}입니다.`
@@ -135,7 +136,7 @@ const Find = ({ findId }: IFindProps) => {
       }
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        errorModal(error.message);
       }
     }
   };
@@ -155,7 +156,7 @@ const Find = ({ findId }: IFindProps) => {
           },
         });
         console.log(result);
-        alert(
+        successModal(
           `${data.email}의 임시 비밀번호는 ${String(
             result.data?.findUserPassword
           )}입니다.`
@@ -163,7 +164,7 @@ const Find = ({ findId }: IFindProps) => {
       }
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        errorModal(error.message);
       }
     }
   };

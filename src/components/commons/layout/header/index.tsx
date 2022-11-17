@@ -7,6 +7,7 @@ import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState, userInfo } from "../../../../store";
+import { successModal } from "../../modals/alertModals";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -251,7 +252,7 @@ const Header = () => {
       await logout();
       setAccessToken("");
       void router.push("/");
-      alert("로그아웃 되었습니다.");
+      successModal("로그아웃 되었습니다.");
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);

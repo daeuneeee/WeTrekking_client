@@ -8,6 +8,7 @@ import "antd/dist/antd.css";
 import Head from "next/head";
 import { gql, useMutation } from "@apollo/client";
 import { mainColor } from "../../../commons/styles/color";
+import { errorModal, successModal } from "../modals/alertModals";
 
 const PointContainer = styled.div`
   width: 100%;
@@ -101,10 +102,10 @@ const PointBox = () => {
               });
             },
           });
-          alert("포인트 충전이 완료되었습니다.");
+          successModal("포인트 충전이 완료되었습니다.");
         } else {
           // 결제 실패 시 로직,
-          alert("충전이 실패했습니다. 다시 시도해주세요.");
+          errorModal("충전이 실패했습니다. 다시 시도해주세요.");
         }
       }
     );

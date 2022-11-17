@@ -33,21 +33,15 @@ const CrewList = () => {
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
   >(FETCH_CREW_BOARDS_DEADLINE);
 
-  console.log(router);
-
   // const latestId = data?.fetchCrewBoardsLatestFirst[0].map((el) => el.id);
 
   const isDib = dib?.fetchDibs.map((el) => el.crewBoard.id).filter((el) => el);
 
-  const dataList = data?.fetchCrewBoardsLatestFirst.map((el) => {
-    return isDib?.map((dibId) => {
-      console.log(el);
-      console.log(dibId);
-      return el.filter((el) => el.id === dibId);
-    });
-  });
-
-  console.log(dataList);
+  // const dataList = data?.fetchCrewBoardsLatestFirst.map((el) => {
+  //   return isDib?.map((dibId) => {
+  //     return el.filter((el) => el.id === dibId);
+  //   });
+  // });
 
   const onClickPick = () => {
     void createDib({

@@ -70,13 +70,13 @@ const LoginUi = ({
           <S.SnsTitleLine></S.SnsTitleLine>
         </S.SnsLoginTitleBox>
         <S.SnsLoginBtnBox>
-          <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/google">
+          <S.SnsLoginBtn href="https://wetrekking.kr/login/google">
             <img src="/images/login/google-login.png" alt="구글 소셜 로그인" />
           </S.SnsLoginBtn>
-          <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/kakao">
+          <S.SnsLoginBtn href="https://wetrekking.kr/login/kakao">
             <img src="/images/login/kakao-login.png" alt="카카오 소셜 로그인" />
           </S.SnsLoginBtn>
-          <S.SnsLoginBtn href="https://develop.wetrekking.kr/login/naver">
+          <S.SnsLoginBtn href="https://wetrekking.kr/login/naver">
             <img src="/images/login/naver-login.png" alt="네이버 소셜 로그인" />
           </S.SnsLoginBtn>
         </S.SnsLoginBtnBox>

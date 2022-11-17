@@ -98,6 +98,7 @@ export type ICrewBoardAndUser = {
   thumbnail: Scalars['String'];
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
+  user: IUser;
 };
 
 export type ICrewBoardImage = {
@@ -451,6 +452,7 @@ export type IQuery = {
   fetchAllCrewBoardsWithUsers: Array<ICrewBoardAndUser>;
   fetchAllMountains: Array<IMountain>;
   fetchAllReviewBoardImages: Array<IReviewBoardImage>;
+  fetchApplyList: Array<ICrewUserList>;
   fetchBoardImage: Array<ICrewBoardImage>;
   fetchChatUsers: Array<ICrewUserList>;
   fetchCrewBoard: ICrewBoard;
@@ -477,6 +479,11 @@ export type IQuery = {
   fetchUserCrewComments: Array<ICrewComment>;
   fetchUserCrewSubComments: Array<ICrewComment>;
   fetchVisitList: Array<ICrewUserList>;
+};
+
+
+export type IQueryFetchApplyListArgs = {
+  crewBoardId: Scalars['String'];
 };
 
 

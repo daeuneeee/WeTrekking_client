@@ -1,10 +1,12 @@
-import { IQuery } from "../../../../commons/types/generated/types";
+import { MouseEvent } from "react";
 
 export interface ICrewListUiProps {
-  data?: Pick<IQuery, "fetchCrewBoardsLatestFirst">;
   onClickToWrite: () => void;
   sort: boolean;
-  deadLine?: Pick<IQuery, "fetchCrewBoardsDeadlineFirst">;
   onClickLatest: () => void;
   onClickDeadLine: () => void;
+  onClickPick: (event: MouseEvent<HTMLDivElement>) => void;
+  onClickFetchMore: () => void;
+  itemsLatest: any;
+  itemsDeadLine: any;
 }

@@ -21,25 +21,10 @@ export const FETCH_CREW_BOARDS_LATEST = gql`
       }
       dibUsers {
         id
-        # nickname
-        # profile_img
-        # gender
-        # phone
-        # birth
-        # email
-        # name
-        # point
       }
       assignedUsers {
         id
         profile_img
-        # nickname
-        # gender
-        # phone
-        # birth
-        # email
-        # name
-        # point
       }
       createdAt
     }
@@ -67,25 +52,10 @@ export const FETCH_CREW_BOARDS_DEADLINE = gql`
       }
       dibUsers {
         id
-        # nickname
-        # profile_img
-        # gender
-        # phone
-        # birth
-        # email
-        # name
-        # point
       }
       assignedUsers {
         id
         profile_img
-        # nickname
-        # gender
-        # phone
-        # birth
-        # email
-        # name
-        # point
       }
       createdAt
     }

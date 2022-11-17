@@ -187,6 +187,7 @@ const CrewWriteUi = ({
               </S.Btn>
               {isMountainModalOpen && <MountainModal />}
             </S.BtnInputBox>
+            {/* <S.Error>{errors.mountain?.message}</S.Error> */}
           </S.InputBox>
           <S.InputBox>
             <S.Label>등산 일자</S.Label>

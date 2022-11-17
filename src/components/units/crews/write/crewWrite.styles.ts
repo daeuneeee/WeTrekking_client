@@ -219,8 +219,8 @@ export const Time = styled(TimePicker)`
 export const BtnInputBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3.5%;
   margin-top: 1rem;
+  gap: 0.8rem;
 `;
 
 export const AddressBox = styled.div`
@@ -444,12 +444,13 @@ export const Error = styled.p`
 export const AddressDetailBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3.5%;
+  gap: 0.8rem;
 `;
 
 export const DateTimeBox = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 8px;
 `;
 
 // export const ImgBox = styled.div`

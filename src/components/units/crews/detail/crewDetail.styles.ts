@@ -220,11 +220,7 @@ export const DetailInform = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
-  /* border-right: 1px solid #d9d9d9; */
   padding: 2.1rem 2rem;
-  /* :last-child {
-    border-right: none;
-  } */
 `;
 
 export const Line = styled.div`
@@ -244,8 +240,6 @@ export const DetailData = styled.span`
   font-size: 1.6rem;
   color: #111;
 `;
-
-// export const TrailBtn = styled.button``;
 
 export const DueBox = styled.div`
   display: flex;
@@ -279,7 +273,6 @@ export const DueWon = styled.span`
 
 export const Description = styled.div`
   width: 100%;
-  /* height: 160px; */
   border: 1px solid #d9d9d9;
   resize: none;
   overflow-y: auto;
@@ -350,7 +343,6 @@ export const Map = styled.div`
   width: 100%;
   height: 434px;
   border-radius: 8px;
-  border: 1px solid green;
   margin-bottom: 1.9rem;
   margin-top: 2.4rem;
 `;

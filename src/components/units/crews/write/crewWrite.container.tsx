@@ -38,6 +38,7 @@ const schema = yup.object({
   addressDetail: yup.string().required("상세주소를 입력해주세요"),
   dues: yup.number().required("회비를 입력해주세요"),
   description: yup.string().required("내용을 입력해주세요"),
+  // mountain: yup.string().required("내용을 입력해주세요"),
   // date: yup.date().required("날짜를"),
 });
 
@@ -73,7 +74,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
     register,
     handleSubmit,
     setValue,
-    trigger,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -286,7 +286,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         crewBoardId: router.query.crewId,
         updateCrewBoardInput: data,
         imgURL: updateImgUrlsFlat,
-        // mountainId: isMountainId,
+        mountainId: isMountainId,
       },
       update(cache) {
         cache.modify({

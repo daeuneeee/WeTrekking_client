@@ -9,6 +9,10 @@ import {
   IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { errorModal, successModal } from "../../../commons/modals/alertModals";
+import {
+  FETCH_CREW_BOARDS_DEADLINE,
+  FETCH_CREW_BOARDS_LATEST,
+} from "../list/crewList.queries";
 import CrewDetailUi from "./crewDetail.presenter";
 import {
   CREATE_CREW_USER_LIST,
@@ -124,6 +128,10 @@ const CrewDetail = () => {
           variables: { crewBoardId: String(router.query.crewId) },
         },
         { query: FETCH_DIBS },
+        {
+          query: FETCH_CREW_BOARDS_LATEST,
+        },
+        { query: FETCH_CREW_BOARDS_DEADLINE },
       ],
     });
   };

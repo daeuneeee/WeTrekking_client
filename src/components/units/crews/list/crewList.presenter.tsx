@@ -16,14 +16,19 @@ const CrewListUi = ({
   onClickLatest,
   onClickDeadLine,
   onClickPick,
-  isDib,
+  onClickFetchMore,
+  items,
+  visible,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
+  console.log(items);
   const handleChange = (value: any) => {
     console.log(value);
   };
 
+  // console.log(data);
+  // console.log(deadLine);
   return (
     <>
       <S.Wrapper>
@@ -121,7 +126,7 @@ const CrewListUi = ({
           </S.Header>
           <S.Body>
             {sort
-              ? data?.fetchCrewBoardsLatestFirst[0]?.map((listMap) => (
+              ? items?.map((listMap) => (
                   <S.ListBox key={listMap.id}>
                     <S.ListHeader>
                       <S.ListInform>
@@ -136,8 +141,8 @@ const CrewListUi = ({
                           {listMap?.user?.nickname}
                         </S.ListNickName>
                       </S.ListInform>
-                      <S.ListPick onClick={onClickPick}>
-                        {listMap.id.includes(isDib?.map((el) => el)) ? (
+                      <S.ListPick onClick={onClickPick} id={listMap.id}>
+                        {listMap.dibUsers[0]?.id ? (
                           <PickTrueSvg />
                         ) : (
                           <PickFalseSvg />
@@ -319,7 +324,7 @@ const CrewListUi = ({
                 ))}
           </S.Body>
           <S.Footer>
-            <S.MoreBtn>더보기</S.MoreBtn>
+            <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
           </S.Footer>
         </S.CrewBox>
       </S.Wrapper>

@@ -1,6 +1,5 @@
 import { Avatar } from "@mui/material";
 import DOMPurify from "dompurify";
-import { Fragment } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../store";
@@ -12,6 +11,7 @@ import CrewCommentList from "../../crewComment/list/crewCommentList.container";
 import CrewCommentWrite from "../../crewComment/write/crewCommentWrite.container";
 import * as S from "./crewDetail.styles";
 import { ICrewDetailUiProps } from "./crewDetail.types";
+import { v4 as uuidv4 } from "uuid";
 
 const CrewDetailUi = ({
   data,
@@ -444,10 +444,7 @@ const CrewDetailUi = ({
           >
             {comments?.fetchCrewComments.map((commentsMap) => {
               return (
-                <CrewCommentList
-                  commentsMap={commentsMap}
-                  key={commentsMap.id}
-                />
+                <CrewCommentList commentsMap={commentsMap} key={uuidv4()} />
               );
             })}
           </InfiniteScroll>

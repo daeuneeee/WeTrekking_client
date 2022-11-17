@@ -1,14 +1,10 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState } from "../../../../store";
-import {
-  CREATE_DIB,
-  FETCH_CREW_BOARD,
-  FETCH_DIBS,
-} from "../detail/crewDetail.queries";
+import { CREATE_DIB, FETCH_CREW_BOARD } from "../detail/crewDetail.queries";
 import CrewListUi from "./crewList.presenter";
 import {
   FETCH_CREW_BOARDS_DEADLINE,
@@ -18,41 +14,46 @@ import {
 const CrewList = () => {
   const router = useRouter();
   const [sort, setSort] = useState(true);
+  // const [items, setItems] = useState([]);
+  const [visible, setVisible] = useState(9);
 
   const [accessToken] = useRecoilState(accessTokenState);
 
   const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
 
-  const { data: dib } = useQuery<Pick<IQuery, "fetchDibs">>(FETCH_DIBS);
-
-  const { data } = useQuery<Pick<IQuery, "fetchCrewBoardsLatestFirst">>(
-    FETCH_CREW_BOARDS_LATEST
-  );
+  const { data, fetchMore } = useQuery<
+    Pick<IQuery, "fetchCrewBoardsLatestFirst">
+  >(FETCH_CREW_BOARDS_LATEST);
 
   const { data: deadLine } = useQuery<
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
   >(FETCH_CREW_BOARDS_DEADLINE);
 
-  // const latestId = data?.fetchCrewBoardsLatestFirst[0].map((el) => el.id);
+  const items = data?.fetchCrewBoardsLatestFirst.flat().slice(0, visible);
+  console.log(items);
 
-  const isDib = dib?.fetchDibs.map((el) => el.crewBoard.id).filter((el) => el);
+  // useEffect(() => {
+  //   console.log(data?.fetchCrewBoardsLatestFirst);
+  // }, []);
 
-  // const dataList = data?.fetchCrewBoardsLatestFirst.map((el) => {
-  //   return isDib?.map((dibId) => {
-  //     return el.filter((el) => el.id === dibId);
-  //   });
-  // });
-
-  const onClickPick = () => {
+  const onClickPick = (event: any) => {
     void createDib({
-      variables: { crewBoardId: "991efa19-6222-4ead-b54c-147a243cea29" },
-      refetchQueries: [
-        {
-          query: FETCH_CREW_BOARD,
-          variables: { crewBoardId: String(router.query.crewId) },
-        },
-        { query: FETCH_DIBS },
-      ],
+      variables: { crewBoardId: event.currentTarget.id },
+      update(cache) {
+        cache.modify({
+          fields: () => {},
+        });
+      },
+      // refetchQueries: [
+      //   {
+      //     query: FETCH_CREW_BOARDS_LATEST,
+      //   },
+      //   { query: FETCH_CREW_BOARDS_DEADLINE },
+      //   {
+      //     query: FETCH_CREW_BOARD,
+      //     variables: { crewBoardId: String(router.query.crewId) },
+      //   },
+      // ],
     });
   };
 
@@ -73,6 +74,26 @@ const CrewList = () => {
     setSort(false);
   };
 
+  const onClickFetchMore = async () => {
+    // if (data === undefined) return;
+    // await fetchMore({
+    //   updateQuery: (prev, { fetchMoreResult }) => {
+    //     if (fetchMoreResult.fetchCrewBoardsLatestFirst === undefined) {
+    //       return {
+    //         fetchCrewBoardsLatestFirst: [...prev.fetchCrewBoardsLatestFirst],
+    //       };
+    //     }
+    //     return {
+    //       fetchCrewBoardsLatestFirst: [
+    //         ...prev.fetchCrewBoardsLatestFirst,
+    //         ...fetchMoreResult.fetchCrewBoardsLatestFirst,
+    //       ],
+    //     };
+    //   },
+    // });
+    setVisible((prev) => prev + 9);
+  };
+
   return (
     <CrewListUi
       data={data}
@@ -82,7 +103,9 @@ const CrewList = () => {
       onClickLatest={onClickLatest}
       onClickDeadLine={onClickDeadLine}
       onClickPick={onClickPick}
-      isDib={isDib}
+      onClickFetchMore={onClickFetchMore}
+      visible={visible}
+      items={items}
     />
   );
 };

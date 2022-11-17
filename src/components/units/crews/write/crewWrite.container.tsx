@@ -158,6 +158,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const onClickRegister = async (data: IFormData) => {
     try {
       console.log(data);
+      console.log(isMountainId);
       if (files === undefined) return;
       const results = await Promise.all(
         files.map(

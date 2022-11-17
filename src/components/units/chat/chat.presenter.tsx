@@ -1,7 +1,8 @@
 import * as S from "./chat.styles";
 import { AvatarGroup, Avatar } from "@mui/material";
+import { IChatUiProps } from "./chat.types";
 
-const ChatUi = () => {
+const ChatUi = ({ onChangeInput, onClickSendBtn }: IChatUiProps) => {
   return (
     <S.Wrapper>
       <S.Container>
@@ -244,8 +245,14 @@ const ChatUi = () => {
             </S.ChatViewBody>
             <S.ChatViewFoot>
               <S.ChatForm>
-                <S.ChatInput type="text" placeholder="채팅을 입력해주세요." />
-                <S.ChatBtn type="button">전송</S.ChatBtn>
+                <S.ChatInput
+                  type="text"
+                  placeholder="채팅을 입력해주세요."
+                  onChange={onChangeInput}
+                />
+                <S.ChatBtn type="button" onClick={onClickSendBtn}>
+                  전송
+                </S.ChatBtn>
               </S.ChatForm>
             </S.ChatViewFoot>
           </S.ChatView>

@@ -320,8 +320,12 @@ const Header = () => {
       {isActive && (
         <MMenuContainer>
           <MSubMenuBox>
-            <MLoginBtn onClick={onClickToLogin}>로그인</MLoginBtn>
-            <MJoinBtn onClick={onClickToJoin}>회원가입</MJoinBtn>
+            <MLoginBtn onClick={accessToken ? logoutUser : onClickToLogin}>
+              {accessToken ? "로그아웃" : "로그인"}
+            </MLoginBtn>
+            <MJoinBtn onClick={accessToken ? onClickToMypage : onClickToJoin}>
+              {accessToken ? "마이페이지" : "회원가입"}
+            </MJoinBtn>
           </MSubMenuBox>
           <MMenu>
             <MMenuList onClick={onClickToCrews}>크루 모집/신청</MMenuList>

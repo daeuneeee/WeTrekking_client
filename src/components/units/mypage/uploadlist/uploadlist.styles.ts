@@ -98,6 +98,7 @@ export const UserAgeGender = styled.p`
   font-weight: 400;
   color: #999;
   margin-bottom: 0;
+  text-align: left;
 `;
 
 export const UserBtnBox = styled.div`

@@ -12,8 +12,8 @@ import {
 import moment from "moment";
 import { RangePickerProps } from "antd/lib/date-picker";
 import { useRouter } from "next/router";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { Address } from "react-daum-postcode";
 import { ICrewWriteProps, IFormData } from "./crewWrite.types";
 import {
@@ -33,10 +33,13 @@ import {
   mountainIdState,
 } from "../../../../store";
 
-// const schema = yup.object({
-//   title: yup.string().required("제목을 입력해주세요"),
-//   review: yup.string().required("내용을 입력해주세요"),
-// });
+const schema = yup.object({
+  title: yup.string().required("제목을 입력해주세요"),
+  addressDetail: yup.string().required("상세주소를 입력해주세요"),
+  dues: yup.number().required("회비를 입력해주세요"),
+  description: yup.string().required("내용을 입력해주세요"),
+  // date: yup.date().required("날짜를"),
+});
 
 const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +52,13 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [editImageUrls, setEditImageUrls] = useState<any>(["", "", "", ""]);
   const [files, setFiles] = useState<any>([]);
+
+  // const [mountainError, setMountainError] = useState("");
+  // const [descriptionError, setDescriptionError] = useState("");
+  const [dateError, setDateError] = useState("");
+  const [timeError, setTimeError] = useState("");
+  const [addressError, setAddressError] = useState("");
+
   const [isMountainModalOpen, setIsMountainModalOpen] = useRecoilState(
     isMountainModalOpenState
   );
@@ -59,9 +69,15 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
   const router = useRouter();
 
-  const { register, handleSubmit, setValue, trigger } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    trigger,
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const [createCrewBoard] =
@@ -87,11 +103,11 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
     },
   });
 
-  const imgDatas = crewImg?.fetchBoardImage.map((el) => {
-    return el.imgUrl;
-  });
+  // const imgDatas = crewImg?.fetchBoardImage.map((el) => {
+  //   return el.imgUrl;
+  // });
 
-  console.log(imgDatas);
+  // console.log(imgDatas);
 
   const crewImgMap = crewImg?.fetchBoardImage.map(
     (crewImgMap) => crewImgMap.imgUrl
@@ -106,6 +122,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
     setValue("dues", boardData?.fetchCrewBoard.dues);
     setValue("description", boardData?.fetchCrewBoard.description);
     setValue("address", boardData?.fetchCrewBoard.address);
+    setValue("date", boardData?.fetchCrewBoard.date);
     isEdit
       ? setIsClicked(String(boardData?.fetchCrewBoard.gender))
       : setIsClicked("male");
@@ -114,7 +131,8 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
   const onChangeDescription = (value: string) => {
     setValue("description", value);
-    void trigger("description");
+    console.log(value);
+    // void trigger("description");
   };
 
   const onChangeDate: DatePickerProps["onChange"] = (
@@ -122,6 +140,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
     dateString: string
   ) => {
     setDate(dateString);
+    setValue("date", dateString);
   };
   const onChangeTime = (time: Moment | null, timeString: string) => {
     setTime(timeString);
@@ -154,7 +173,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const onClickMountainSearch = () => {
     setIsMountainModalOpen((prev) => !prev);
   };
-
   const onClickRegister = async (data: IFormData) => {
     try {
       console.log(data);
@@ -188,10 +206,22 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         },
       });
       await router.push(`/crews/${String(result?.data?.createCrewBoard.id)}`);
+
+      if (data.date === null || data.date === undefined || data.date === "") {
+        setDateError("날짜를 입력해주세요");
+      }
+      if (data.dateTime === "") {
+        setTimeError("시간을 입력해주세요");
+      }
+      if (data.address === "") {
+        setAddressError("주소를 입력해주세요");
+      }
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
+
+  console.log(dateError);
 
   const onChangeFile =
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -292,6 +322,10 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       onClickMountainSearch={onClickMountainSearch}
       isMountainModalOpen={isMountainModalOpen}
       mountainAddress={mountainAddress}
+      errors={errors}
+      dateError={dateError}
+      timeError={timeError}
+      addressError={addressError}
     />
   );
 };

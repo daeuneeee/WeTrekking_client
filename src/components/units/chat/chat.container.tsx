@@ -6,7 +6,7 @@ const Chat = () => {
   const [chatMsg, setChatMsg] = useState("");
 
   const socket = io("https://develop.wetrekking.kr/wetrekkingchat", {
-    transports: ["WebSocket"],
+    transports: ["websocket"],
   });
 
   console.log(socket);

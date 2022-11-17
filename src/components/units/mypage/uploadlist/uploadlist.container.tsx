@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { MouseEvent, useState } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
+import { successModal } from "../../../commons/modals/alertModals";
 import { DELETE_CREW_BOARD } from "../../crews/detail/crewDetail.queries";
 import UploadListUi from "./uploadlist.presenter";
 import { FETCH_HOST_CREW_LIST } from "./uploadlist.queries";
@@ -31,7 +32,7 @@ const UploadList = () => {
           cache.modify({ fields: () => {} });
         },
       });
-      alert("정상적으로 삭제되었습니다.");
+      successModal("정상적으로 삭제되었습니다.");
       setIsModalActive(false);
     } catch (error) {}
   };

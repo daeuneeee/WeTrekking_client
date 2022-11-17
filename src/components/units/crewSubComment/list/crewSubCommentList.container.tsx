@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
+import { successModal } from "../../../commons/modals/alertModals";
 import { FETCH_USER } from "../../crews/detail/crewDetail.queries";
 import CrewSubCommentListUi from "./crewSubCommentList.presenter";
 import {
@@ -52,7 +53,7 @@ const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
       },
     });
     setIsModalOpen(false);
-    alert("정상적으로 삭제되었습니다.");
+    successModal("정상적으로 삭제되었습니다.");
   };
 
   const onClickEditBtn = (event: MouseEvent<HTMLButtonElement>) => {

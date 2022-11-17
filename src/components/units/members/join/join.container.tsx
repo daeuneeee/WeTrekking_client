@@ -23,6 +23,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { userInfo } from "../../../../store";
 import { useRecoilState } from "recoil";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
 
 const joinYup = yup.object({
   birth: yup.string().required("생년월일은 필수 입력사항 입니다"),
@@ -54,7 +55,7 @@ const updateInfoYup = yup.object({
 });
 
 const Join = ({ isUpdate }: IJoinProps) => {
-  const { register, handleSubmit, setValue, getValues, formState } = useForm({
+  const { register, handleSubmit, setValue, formState } = useForm({
     resolver: isUpdate ? yupResolver(updateInfoYup) : yupResolver(joinYup),
     mode: "onChange",
   });
@@ -78,8 +79,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
   const phoneInput03 = useRef<HTMLInputElement>();
 
   const router = useRouter();
-
-  console.log(userDatas);
 
   useEffect(() => {
     if (!isUpdate) {
@@ -144,11 +143,11 @@ const Join = ({ isUpdate }: IJoinProps) => {
         },
       });
       console.log(phoneData);
-      alert("인증번호가 전송되었습니다.");
+      successModal("인증번호가 전송되었습니다.");
       setIsCheckNumActive(true);
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        errorModal(error.message);
       }
     }
   };
@@ -164,11 +163,11 @@ const Join = ({ isUpdate }: IJoinProps) => {
           phoneToken,
         },
       });
-      alert(result.data?.checkTokenPhone);
+      successModal(String(result.data?.checkTokenPhone));
       setIsPhoneNumCheck(true);
     } catch (error) {
       if (error instanceof Error) {
-        alert("인증에 실패하였습니다.");
+        errorModal("인증에 실패하였습니다.");
       }
     }
   };
@@ -181,7 +180,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
   const [checkEmail] = useMutation<Pick<IMutation, "checkEmail">>(CHECK_EMAIL);
 
   const onClickCheckEmail = async () => {
-    console.log(getValues("email"));
     const { data } = await checkEmail({
       variables: {
         email,
@@ -189,13 +187,13 @@ const Join = ({ isUpdate }: IJoinProps) => {
     });
     if (email.includes("@") && email.includes(".")) {
       if (data?.checkEmail === "true") {
-        alert("사용가능한 이메일 입니다.");
+        successModal("사용가능한 이메일 입니다.");
         setIsEmailCheck(true);
       } else if (data?.checkEmail === "false") {
-        alert("이미 사용중인 이메일 입니다.");
+        errorModal("이미 사용중인 이메일 입니다.");
       }
     } else {
-      alert("올바른 이메일 형식이 아닙니다.");
+      errorModal("올바른 이메일 형식이 아닙니다.");
     }
   };
 
@@ -210,13 +208,13 @@ const Join = ({ isUpdate }: IJoinProps) => {
         },
       });
       if (data?.checkNickName === "true") {
-        alert("사용가능한 닉네임입니다.");
+        successModal("사용가능한 닉네임입니다.");
         setIsNicknameCheck(true);
       } else {
-        alert("사용중인 닉네임 입니다.");
+        errorModal("사용중인 닉네임 입니다.");
       }
     } else {
-      alert("닉네임을 입력해 주세요.");
+      errorModal("닉네임을 입력해 주세요.");
     }
   };
 
@@ -232,7 +230,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
     if (file === undefined) return;
     fileReader.readAsDataURL(file);
     fileReader.onload = (value) => {
-      console.log(value);
       if (typeof value.target?.result === "string") {
         setImgUrl(value.target.result);
       }
@@ -249,11 +246,11 @@ const Join = ({ isUpdate }: IJoinProps) => {
       const fileUrl = result.data?.uploadFileForUserProfile;
 
       if (!isEmailCheck) {
-        alert("이메일 중복확인을 해주세요.");
+        errorModal("이메일 중복확인을 해주세요.");
       } else if (!isNicknameCheck) {
-        alert("닉네임 중복확인을 해주세요.");
+        errorModal("닉네임 중복확인을 해주세요.");
       } else if (!isPhoneNumCheck) {
-        alert("휴대폰 인증을 해주세요.");
+        errorModal("휴대폰 인증을 해주세요.");
       } else {
         delete data.passwordConfirm;
         data.phone = `${phone01}${phone02}${phone03}`;
@@ -263,8 +260,8 @@ const Join = ({ isUpdate }: IJoinProps) => {
             createUserInput: data,
           },
         });
-        alert("회원가입 성공");
-        void router.push("/");
+        successModal("회원가입 성공");
+        void router.push("/crews");
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -285,8 +282,6 @@ const Join = ({ isUpdate }: IJoinProps) => {
 
       const fileUrl = result.data?.uploadFileForUserProfile;
 
-      console.log(fileUrl);
-
       const myUserInput: IMyUserInput = {};
       if (data.password) {
         myUserInput.password = data.password;
@@ -302,9 +297,9 @@ const Join = ({ isUpdate }: IJoinProps) => {
       }
 
       if (nickname && !isNicknameCheck) {
-        alert("닉네임 중복확인을 해주세요.");
+        errorModal("닉네임 중복확인을 해주세요.");
       } else if (phone01 && phone02 && phone03 && !isPhoneNumCheck) {
-        alert("휴대폰 인증을 해주세요.");
+        errorModal("휴대폰 인증을 해주세요.");
       } else {
         await updateUser({
           variables: {
@@ -318,7 +313,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
           },
         });
       }
-      alert("정보수정이 완료 되었습니다.");
+      successModal("정보수정이 완료 되었습니다.");
       void router.push("/crews");
     } catch (error) {
       if (error instanceof Error) {

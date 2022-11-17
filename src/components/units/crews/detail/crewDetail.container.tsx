@@ -8,6 +8,7 @@ import {
   IQueryFetchCrewBoardArgs,
   IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
 import CrewDetailUi from "./crewDetail.presenter";
 import {
   CREATE_CREW_USER_LIST,
@@ -108,12 +109,10 @@ const CrewDetail = () => {
       await createCrewUserList({
         variables: { crewBoardId: router.query.crewId },
       });
-      alert("참가신청이 완료되었습니다!");
-
+      successModal("참가신청이 완료되었습니다!");
     } catch (error) {
-      alert("이미 신청하셨습니다.");
+      errorModal("이미 신청하셨습니다.");
     }
-
   };
 
   const onClickPick = () => {
@@ -145,7 +144,7 @@ const CrewDetail = () => {
           cache.modify({ fields: { fetchCrewBoardsLatestFirst: () => {} } });
         },
       });
-      alert("정상적으로 삭제되었습니다.");
+      successModal("정상적으로 삭제되었습니다.");
       void router.push(`/crews`);
       setIsModalOpen(false);
     } catch (error) {}

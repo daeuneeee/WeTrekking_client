@@ -24,7 +24,6 @@ const ApplyList = () => {
   const onClickModalOff = () => {
     setIsActive(false);
   };
-  console.log(data?.fetchCrewUserList[0].status);
 
   const crewCancelBtn = async () => {
     try {

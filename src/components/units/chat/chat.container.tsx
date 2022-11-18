@@ -65,6 +65,7 @@ const Chat = () => {
 
   socket.emit("join", name, room, boardId);
 
+
   const onClickSendBtn = () => {
     if (chatMsg) {
       socket.emit("send-chat", room, name, chatMsg);

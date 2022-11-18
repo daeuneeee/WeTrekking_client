@@ -15,7 +15,6 @@ import {
 } from "../list/crewList.queries";
 import CrewDetailUi from "./crewDetail.presenter";
 import {
-  CREATE_CREW_USER_LIST,
   CREATE_DIB,
   DELETE_CREW_BOARD,
   FETCH_BOARD_IMAGE,
@@ -23,6 +22,7 @@ import {
   FETCH_CREW_COMMENTS,
   FETCH_DIBS,
   FETCH_USER,
+  CREATE_CREW_USER_LIST,
 } from "./crewDetail.queries";
 
 const CrewDetail = () => {

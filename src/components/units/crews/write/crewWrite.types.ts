@@ -61,6 +61,10 @@ export interface ICrewWriteUiProps {
   onClickMountainSearch: () => void;
   isMountainModalOpen: boolean;
   mountainAddress: string;
+  errors: any;
+  dateError: any;
+  timeError: any;
+  addressError: any;
 }
 export interface ICrewWriteProps {
   isEdit: boolean;

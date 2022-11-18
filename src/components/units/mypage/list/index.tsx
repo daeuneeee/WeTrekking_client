@@ -69,7 +69,7 @@ const UList = ({
 }: IElProps) => {
   const [isActive, setIsActive] = useState(false);
   const [accessToken] = useRecoilState(accessTokenState);
-  const [applyList, setApplyList] = useState();
+  const [applyList, setApplyList] = useState<any>();
 
   const [acceptCrew] = useMutation(ACCEPT_CREW);
   const [rejectCrew] = useMutation(REJECT_CREW);
@@ -147,8 +147,6 @@ const UList = ({
     }
   };
 
-  console.log(applyList);
-
   return (
     <S.ContentUl>
       <S.ListLiNum className="mobile">{index + 1}</S.ListLiNum>
@@ -167,7 +165,7 @@ const UList = ({
                 신청자 <span>{applyList?.fetchApplyList.length} 명</span>
               </A.ModalTitle>
               <A.UserListContainer>
-                {applyList?.fetchApplyList?.map((el) => {
+                {applyList?.fetchApplyList?.map((el: any) => {
                   return (
                     <A.UserListBox key={el.id}>
                       <A.UserProfileInfoBox>

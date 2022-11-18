@@ -34,7 +34,6 @@ const CrewWriteUi = ({
   mountainAddress,
   errors,
   dateError,
-  // dateError,
   timeError,
   addressError,
 }: ICrewWriteUiProps) => {

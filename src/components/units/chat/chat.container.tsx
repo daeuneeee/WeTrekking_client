@@ -19,6 +19,22 @@ const FETCH_LOGS = gql`
   }
 `;
 
+const FETCH_CHAT_USER = gql`
+  query fetchChatUsers($boardId: String!) {
+    fetchChatUsers(boardId: $boardId) {
+      id
+      status
+      user {
+        id
+        name
+        birth
+        gender
+        profile_img
+      }
+    }
+  }
+`;
+
 const Chat = () => {
   const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [chatMsg, setChatMsg] = useState("");
@@ -45,7 +61,20 @@ const Chat = () => {
     },
   });
 
-  console.log(crewDetail);
+  const { data: crewUsers, refetch: crewUserRefetch } = useQuery(
+    FETCH_CHAT_USER,
+    {
+      variables: {
+        boardId: router.query.crewId,
+      },
+    }
+  );
+
+  useEffect(() => {
+    void crewUserRefetch();
+  }, [crewUsers]);
+
+  console.log(crewUsers);
 
   useEffect(() => {
     void refetch();
@@ -53,7 +82,7 @@ const Chat = () => {
 
   console.log(data);
 
-  const chatInput = useRef();
+  const chatInput = useRef<HTMLInputElement>(null);
 
   const getDebounce = _.debounce((value) => {
     setChatMsg(value);
@@ -65,12 +94,12 @@ const Chat = () => {
 
   socket.emit("join", name, room, boardId);
 
-
   const onClickSendBtn = () => {
     if (chatMsg) {
       socket.emit("send-chat", room, name, chatMsg);
       void refetch();
       setChatMsg("");
+      // @ts-expect-error
       chatInput.current?.value = "";
     }
   };
@@ -82,6 +111,8 @@ const Chat = () => {
         onClickSendBtn={onClickSendBtn}
         data={data}
         chatInput={chatInput}
+        crewDetail={crewDetail}
+        crewUsers={crewUsers}
       />
     </>
   );

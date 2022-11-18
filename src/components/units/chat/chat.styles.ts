@@ -243,16 +243,19 @@ export const InfoMyRank = styled.p`
   font-size: 1.2rem;
   font-weight: 500;
   color: ${mainColor};
+  margin-bottom: 0;
 `;
 
 export const InfoMyName = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   color: #111;
+  margin-bottom: 0;
 `;
 
 export const InfoAgeName = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
   color: #999;
+  margin-bottom: 0;
 `;

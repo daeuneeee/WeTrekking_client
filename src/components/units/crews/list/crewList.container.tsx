@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState } from "../../../../store";
@@ -12,12 +12,14 @@ import CrewListUi from "./crewList.presenter";
 import {
   FETCH_CREW_BOARDS_DEADLINE,
   FETCH_CREW_BOARDS_LATEST,
+  FETCH_USER,
 } from "./crewList.queries";
 
 const CrewList = () => {
   const router = useRouter();
   const [sort, setSort] = useState(true);
   const [visible, setVisible] = useState(9);
+  const [loginId, setLoginId] = useState("");
 
   const [accessToken] = useRecoilState(accessTokenState);
 
@@ -31,13 +33,11 @@ const CrewList = () => {
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
   >(FETCH_CREW_BOARDS_DEADLINE);
 
-  const items = data?.fetchCrewBoardsLatestFirst.flat().slice(0, visible);
+  const { data: loggedUser } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
-  console.log(items);
-
-  // useEffect(() => {
-  //   console.log(data?.fetchCrewBoardsLatestFirst);
-  // }, []);
+  useEffect(() => {
+    setLoginId(String(loggedUser?.fetchUser.id));
+  }, [loggedUser]);
 
   const itemsLatest = data?.fetchCrewBoardsLatestFirst.flat().slice(0, visible);
   const itemsDeadLine = deadLine?.fetchCrewBoardsDeadlineFirst
@@ -45,14 +45,19 @@ const CrewList = () => {
     .slice(0, visible);
 
   const onClickPick = (event: MouseEvent<HTMLDivElement>) => {
-    void createDib({
-      variables: { crewBoardId: event.currentTarget.id },
-      update(cache) {
-        cache.modify({
-          fields: () => {},
-        });
-      },
-    });
+    try {
+      void createDib({
+        variables: { crewBoardId: event.currentTarget.id },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
+      });
+    } catch (error) {
+      errorModal("로그인이 필요합니다.");
+      void router.push("/login");
+    }
   };
 
   const onClickToWrite = () => {
@@ -86,6 +91,7 @@ const CrewList = () => {
       onClickFetchMore={onClickFetchMore}
       itemsLatest={itemsLatest}
       itemsDeadLine={itemsDeadLine}
+      loginId={loginId}
     />
   );
 };

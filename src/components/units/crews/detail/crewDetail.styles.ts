@@ -341,7 +341,7 @@ export const BodyTitle = styled.p`
 
 export const Map = styled.div`
   width: 100%;
-  height: 434px;
+  height: 43.4rem;
   border-radius: 8px;
   margin-bottom: 1.9rem;
   margin-top: 2.4rem;
@@ -379,6 +379,7 @@ export const CrewListBox = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 0.2rem;
+  margin-bottom: 2rem;
 `;
 
 export const CrewList = styled.span`
@@ -439,6 +440,7 @@ export const CrewLoginBtn = styled.button`
   color: white;
   margin-top: 1rem;
   border: none;
+  cursor: pointer;
 `;
 
 export const CrewInformBox = styled.div`

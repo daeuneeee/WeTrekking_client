@@ -24,6 +24,9 @@ export const RankingTitle = styled.span`
   font-weight: 700;
   font-size: 3.6rem;
   color: #fff;
+  @media ${tablet} {
+    font-size: 2.8rem;
+  }
 `;
 
 export const Ranking = styled.div`
@@ -86,6 +89,9 @@ export const RankingNum = styled.p`
   font-size: 1.6rem;
   color: #fff;
   margin-bottom: 0;
+  @media ${tablet} {
+    font-size: 1.2rem;
+  }
 `;
 
 export const CrewBox = styled.section`
@@ -123,6 +129,9 @@ export const Title = styled.span`
   font-weight: 700;
   font-size: 3.2rem;
   color: #111;
+  @media ${tablet} {
+    font-size: 2.8rem;
+  }
 `;
 
 export const OrderBox = styled.ul`
@@ -130,6 +139,10 @@ export const OrderBox = styled.ul`
   flex-direction: row;
   margin-top: 1rem;
   gap: 8px;
+  align-items: flex-end;
+  @media ${tablet} {
+    margin-bottom: 0.8rem;
+  }
 `;
 
 export const OrderList = styled.li`

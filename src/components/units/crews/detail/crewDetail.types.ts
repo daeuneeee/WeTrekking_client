@@ -19,4 +19,5 @@ export interface ICrewDetailUiProps {
   isDib?: number;
   onClickToChat: () => void;
   onClickApply: () => void;
+  acceptedList?: Pick<IQuery, "fetchAcceptedList">;
 }

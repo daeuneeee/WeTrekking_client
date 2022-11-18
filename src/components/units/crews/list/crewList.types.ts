@@ -9,4 +9,5 @@ export interface ICrewListUiProps {
   onClickFetchMore: () => void;
   itemsLatest: any;
   itemsDeadLine: any;
+  loginId: string;
 }

@@ -16,6 +16,7 @@ export type Scalars = {
 
 export type IChat = {
   __typename?: 'Chat';
+  createdAt: Scalars['DateTime'];
   message: Scalars['String'];
   name: Scalars['String'];
   roomName: Scalars['String'];
@@ -129,9 +130,9 @@ export type ICrewUserList = {
   user: IUser;
 };
 
-export type IDib = {
-  __typename?: 'Dib';
-  crewBoard: ICrewBoard;
+export type IDibsWithCrewBoard = {
+  __typename?: 'DibsWithCrewBoard';
+  crewBoard: ICrewBoardAndUser;
   id: Scalars['String'];
   user: IUser;
 };
@@ -152,11 +153,12 @@ export type IMutation = {
   checkTokenPhone: Scalars['String'];
   createCrewBoard: ICrewBoard;
   createCrewBoardTEST: ICrewBoard;
+  /** 댓글 생성하기 */
   createCrewComment: ICrewComment;
+  /** 대댓글 생성하기 */
   createCrewSubComment: ICrewComment;
   createCrewUserList: Scalars['String'];
   createDib: Scalars['Boolean'];
-  createMongoDBTrekking: Scalars['String'];
   createMountain: Scalars['String'];
   createPointPayment: IPointPayment;
   createReviewBoard: IReviewBoard;
@@ -164,9 +166,12 @@ export type IMutation = {
   createRoom: IRoom;
   createUser: IUser;
   deleteCrewBoard: Scalars['Boolean'];
+  /** 댓글 삭제하기 */
   deleteCrewComment: Scalars['Boolean'];
+  /** 대댓글 삭제하기 */
   deleteCrewSubComment: Scalars['Boolean'];
   deleteCrewUserList: Scalars['String'];
+  deleteReviewBoard: Scalars['Boolean'];
   deleteReviewComment: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   findUserEmail: Scalars['String'];
@@ -180,7 +185,9 @@ export type IMutation = {
   sendTokenToPhone: Scalars['String'];
   socialUpdateUser: IUser;
   updateCrewBoard: ICrewBoard;
+  /** 댓글 수정하기 */
   updateCrewComment: ICrewComment;
+  /** 대댓글 수정하기 */
   updateCrewSubComment: ICrewComment;
   updatePassword: Scalars['String'];
   updateReviewBoard: IReviewBoard;
@@ -190,7 +197,7 @@ export type IMutation = {
   uploadFileForUserProfile: Scalars['String'];
   uploadFilesForCrewBoard: Array<Scalars['String']>;
   uploadFilesForReviewBoard: Array<Scalars['String']>;
-  uploadReviewBoaredImage: Array<IReviewBoardImage>;
+  uploadReviewBoardImage: Array<IReviewBoardImage>;
 };
 
 
@@ -299,6 +306,11 @@ export type IMutationDeleteCrewSubCommentArgs = {
 
 export type IMutationDeleteCrewUserListArgs = {
   crewBoardId: Scalars['String'];
+};
+
+
+export type IMutationDeleteReviewBoardArgs = {
+  revewBoardId: Scalars['String'];
 };
 
 
@@ -424,7 +436,7 @@ export type IMutationUploadFilesForReviewBoardArgs = {
 };
 
 
-export type IMutationUploadReviewBoaredImageArgs = {
+export type IMutationUploadReviewBoardImageArgs = {
   imgURL: Array<Scalars['String']>;
   reviewBoardId: Scalars['String'];
 };
@@ -446,6 +458,7 @@ export type IPointPayment = {
 
 export type IQuery = {
   __typename?: 'Query';
+  fetchAcceptedList: Array<ICrewUserList>;
   fetchAllCrewBoardImages: Array<ICrewBoardImage>;
   fetchAllCrewBoards: Array<ICrewBoard>;
   fetchAllCrewBoardsWithDelete: Array<ICrewBoard>;
@@ -460,10 +473,12 @@ export type IQuery = {
   fetchCrewBoardsDeadlineFirst: Array<Array<ICrewBoardAndUser>>;
   fetchCrewBoardsLatestFirst: Array<Array<ICrewBoardAndUser>>;
   fetchCrewBoardsTEST: Array<Array<ICrewBoard>>;
+  /** boardId에 해당하는 댓글 전체 조회 */
   fetchCrewComments: Array<ICrewComment>;
+  /** commentId에 해당하는 대댓글 조회하기 */
   fetchCrewSubComments: Array<ICrewComment>;
   fetchCrewUserList: Array<ICrewUserList>;
-  fetchDibs: Array<IDib>;
+  fetchDibs: Array<IDibsWithCrewBoard>;
   fetchHostCrewList: Array<ICrewBoard>;
   fetchLogs: Array<IChat>;
   fetchMountain: IMountain;
@@ -474,11 +489,19 @@ export type IQuery = {
   fetchReviewBoardImage: Array<IReviewBoardImage>;
   fetchReviewBoards: Array<IReviewBoard>;
   fetchReviewComments: Array<IReviewComment>;
-  fetchTrekkingInfo: ITrekking;
+  /** 산이름을 통해 좌표 반환 */
+  fetchTrekkingCoordinate: Array<ITrekkingInfo>;
   fetchUser: IUser;
+  /** userId에 해당하는 댓글 전체 조회 */
   fetchUserCrewComments: Array<ICrewComment>;
+  /** userId와 boardId에 해당하는 대댓글 조회하기 */
   fetchUserCrewSubComments: Array<ICrewComment>;
   fetchVisitList: Array<ICrewUserList>;
+};
+
+
+export type IQueryFetchAcceptedListArgs = {
+  crewBoardId: Scalars['String'];
 };
 
 
@@ -553,8 +576,7 @@ export type IQueryFetchReviewCommentsArgs = {
 };
 
 
-export type IQueryFetchTrekkingInfoArgs = {
-  address: Scalars['String'];
+export type IQueryFetchTrekkingCoordinateArgs = {
   mountainName: Scalars['String'];
 };
 
@@ -606,10 +628,12 @@ export type IRoom = {
   user: Scalars['String'];
 };
 
-export type ITrekking = {
-  __typename?: 'Trekking';
+export type ITrekkingInfo = {
+  __typename?: 'TrekkingInfo';
+  coordinate: Array<Array<Scalars['Float']>>;
+  difficulty: Scalars['String'];
   mountainName: Scalars['String'];
-  xyz: Array<Array<Scalars['Float']>>;
+  trekkingName: Scalars['String'];
 };
 
 export type IUpdateCrewBoardInput = {

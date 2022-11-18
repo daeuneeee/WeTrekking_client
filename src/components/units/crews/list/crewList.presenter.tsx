@@ -17,6 +17,7 @@ const CrewListUi = ({
   onClickFetchMore,
   itemsLatest,
   itemsDeadLine,
+  loginId,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -137,7 +138,7 @@ const CrewListUi = ({
                         </S.ListNickName>
                       </S.ListInform>
                       <S.ListPick onClick={onClickPick} id={listMap.id}>
-                        {listMap.dibUsers[0]?.id ? (
+                        {loginId === listMap.dibUsers[0]?.id ? (
                           <PickTrueSvg />
                         ) : (
                           <PickFalseSvg />

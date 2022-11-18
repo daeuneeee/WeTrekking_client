@@ -107,3 +107,11 @@ export const FETCH_BOARD_IMAGE = gql`
     }
   }
 `;
+
+export const FETCH_USER = gql`
+  query {
+    fetchUser {
+      id
+    }
+  }
+`;

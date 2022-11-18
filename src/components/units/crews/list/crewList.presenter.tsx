@@ -6,14 +6,17 @@ import { ICrewListUiProps } from "./crewList.types";
 import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
 import { getDate } from "../../../../commons/utils/getDate";
+import PickTrueSvg from "../../../commons/svg/pickTrue";
 
 const CrewListUi = ({
-  data,
   onClickToWrite,
   sort,
-  deadLine,
   onClickLatest,
   onClickDeadLine,
+  onClickPick,
+  onClickFetchMore,
+  itemsLatest,
+  itemsDeadLine,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -118,7 +121,7 @@ const CrewListUi = ({
           </S.Header>
           <S.Body>
             {sort
-              ? data?.fetchCrewBoardsLatestFirst[0]?.map((listMap) => (
+              ? itemsLatest?.map((listMap: any) => (
                   <S.ListBox key={listMap.id}>
                     <S.ListHeader>
                       <S.ListInform>
@@ -133,11 +136,15 @@ const CrewListUi = ({
                           {listMap?.user?.nickname}
                         </S.ListNickName>
                       </S.ListInform>
-                      <S.ListPick>
-                        <PickFalseSvg />
+                      <S.ListPick onClick={onClickPick} id={listMap.id}>
+                        {listMap.dibUsers[0]?.id ? (
+                          <PickTrueSvg />
+                        ) : (
+                          <PickFalseSvg />
+                        )}
                       </S.ListPick>
                     </S.ListHeader>
-                    <Link href={`crews/${listMap?.id}`}>
+                    <Link href={`crews/${String(listMap?.id)}`}>
                       <S.ListContainer>
                         <S.ListThumbnail
                           style={{
@@ -157,50 +164,30 @@ const CrewListUi = ({
                             </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
-                            {/* <S.ListCrewsImg></S.ListCrewsImg> */}
                             <AvatarGroup max={4}>
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
+                              {listMap?.assignedUsers?.map((assignMap: any) => (
+                                <>
+                                  <Avatar
+                                    alt="user profile"
+                                    src={`https://storage.googleapis.com/${String(
+                                      assignMap?.profile_img
+                                    )}`}
+                                    sx={{ width: 24, height: 24 }}
+                                  />
+                                </>
+                              ))}
                             </AvatarGroup>
                             <S.ListCrewsNum>
-                              모집인원 3/{listMap?.peoples}
+                              모집인원 {listMap?.assignedUsers.length}/
+                              {listMap?.peoples}
                             </S.ListCrewsNum>
                           </S.ListCrewsBox>
                         </S.ListBody>
                         <S.ListFooter>
                           <S.ListLocationBox>
-                            {/* <S.LocationImg>
-                        <img src="/images/crew/location.png" />
-                      </S.LocationImg> */}
                             <S.Location>설악산</S.Location>
                           </S.ListLocationBox>
                           <S.ListTimeAndDayBox>
-                            {/* <S.TimeImg>
-                        <img src="/images/crew/time.png" />
-                      </S.TimeImg> */}
                             <S.Day>{listMap?.date}</S.Day>
                             <S.TimePartition></S.TimePartition>
                             <S.Time>
@@ -214,7 +201,7 @@ const CrewListUi = ({
                     </Link>
                   </S.ListBox>
                 ))
-              : deadLine?.fetchCrewBoardsDeadlineFirst[0]?.map((listMap) => (
+              : itemsDeadLine?.map((listMap: any) => (
                   <S.ListBox key={listMap?.id}>
                     <S.ListHeader>
                       <S.ListInform>
@@ -233,7 +220,7 @@ const CrewListUi = ({
                         <PickFalseSvg />
                       </S.ListPick>
                     </S.ListHeader>
-                    <Link href={`crews/${listMap?.id}`}>
+                    <Link href={`crews/${String(listMap?.id)}`}>
                       <S.ListContainer>
                         <S.ListThumbnail
                           style={{
@@ -255,48 +242,29 @@ const CrewListUi = ({
                           <S.ListCrewsBox>
                             {/* <S.ListCrewsImg></S.ListCrewsImg> */}
                             <AvatarGroup max={4}>
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
-                              <Avatar
-                                alt="Remy Sharp"
-                                src="/static/images/avatar/1.jpg"
-                                sx={{ width: 24, height: 24 }}
-                              />
+                              {listMap?.assignedUsers?.map((assignMap: any) => (
+                                <>
+                                  <Avatar
+                                    alt="user profile"
+                                    src={`https://storage.googleapis.com/${String(
+                                      assignMap?.profile_img
+                                    )}`}
+                                    sx={{ width: 24, height: 24 }}
+                                  />
+                                </>
+                              ))}
                             </AvatarGroup>
                             <S.ListCrewsNum>
-                              모집인원 3/{listMap?.peoples}
+                              모집인원 {listMap?.assignedUsers.length}/
+                              {listMap?.peoples}
                             </S.ListCrewsNum>
                           </S.ListCrewsBox>
                         </S.ListBody>
                         <S.ListFooter>
                           <S.ListLocationBox>
-                            {/* <S.LocationImg>
-                        <img src="/images/crew/location.png" />
-                      </S.LocationImg> */}
                             <S.Location>설악산</S.Location>
                           </S.ListLocationBox>
                           <S.ListTimeAndDayBox>
-                            {/* <S.TimeImg>
-                        <img src="/images/crew/time.png" />
-                      </S.TimeImg> */}
                             <S.Day>{listMap?.date}</S.Day>
                             <S.TimePartition></S.TimePartition>
                             <S.Time>
@@ -312,7 +280,7 @@ const CrewListUi = ({
                 ))}
           </S.Body>
           <S.Footer>
-            <S.MoreBtn>더보기</S.MoreBtn>
+            <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
           </S.Footer>
         </S.CrewBox>
       </S.Wrapper>

@@ -20,7 +20,7 @@ export const Container = styled.div`
 
 export const ChatContainer = styled.section`
   width: 100%;
-  height: 796px;
+  height: 828px;
   display: flex;
   justify-content: space-between;
   @media ${tablet} {
@@ -102,12 +102,17 @@ export const ChatViewBody = styled.div`
   }
 `;
 
+export const Reverse = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+`;
+
 export const ChatViewFoot = styled.div`
   width: 100%;
   padding: 2.4rem 3rem;
 `;
 
-export const ChatForm = styled.form`
+export const ChatForm = styled.div`
   width: 100%;
   border: 1px solid ${mainColor};
   padding: 2.2rem 3rem;
@@ -115,8 +120,9 @@ export const ChatForm = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
   @media ${tablet} {
-    width: 90%;
+    width: 95%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -132,6 +138,7 @@ export const ChatInput = styled.input`
   font-size: 1.6rem;
   font-weight: 400;
   color: #111;
+  background-color: #fff;
   ::placeholder {
     color: #999;
   }
@@ -236,16 +243,19 @@ export const InfoMyRank = styled.p`
   font-size: 1.2rem;
   font-weight: 500;
   color: ${mainColor};
+  margin-bottom: 0;
 `;
 
 export const InfoMyName = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   color: #111;
+  margin-bottom: 0;
 `;
 
 export const InfoAgeName = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
   color: #999;
+  margin-bottom: 0;
 `;

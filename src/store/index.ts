@@ -50,3 +50,8 @@ export const mountainAddressState = atom({
   key: "mountainAddressState",
   default: "",
 });
+
+export const mountainIdState = atom({
+  key: "mountainIdState",
+  default: "",
+});

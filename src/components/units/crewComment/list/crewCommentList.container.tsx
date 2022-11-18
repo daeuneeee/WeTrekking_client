@@ -8,6 +8,7 @@ import {
   IQueryFetchCrewSubCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSubCommentState } from "../../../../store";
+import { successModal } from "../../../commons/modals/alertModals";
 import { FETCH_USER } from "../../crews/detail/crewDetail.queries";
 import CrewCommentListUi from "./crewCommentList.presenter";
 import {
@@ -79,7 +80,7 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
       },
     });
     setIsModalOpen(false);
-    alert("정상적으로 삭제되었습니다.");
+    successModal("정상적으로 삭제되었습니다.");
   };
 
   const onClickEditBtn = (event: MouseEvent<HTMLButtonElement>) => {

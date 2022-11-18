@@ -21,5 +21,7 @@ export interface ICrewSubCommentListProps {
 
 export interface IMyVariablesProps {
   subCommentId: string;
-  updateComment?: string;
+  updateSubCrewCommentInput: {
+    subComment?: string;
+  };
 }

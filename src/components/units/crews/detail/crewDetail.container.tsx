@@ -8,13 +8,21 @@ import {
   IQueryFetchCrewBoardArgs,
   IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
+import {
+  FETCH_CREW_BOARDS_DEADLINE,
+  FETCH_CREW_BOARDS_LATEST,
+} from "../list/crewList.queries";
 import CrewDetailUi from "./crewDetail.presenter";
 import {
+  CREATE_DIB,
   DELETE_CREW_BOARD,
   FETCH_BOARD_IMAGE,
   FETCH_CREW_BOARD,
   FETCH_CREW_COMMENTS,
+  FETCH_DIBS,
   FETCH_USER,
+  CREATE_CREW_USER_LIST,
 } from "./crewDetail.queries";
 
 const CrewDetail = () => {
@@ -22,8 +30,15 @@ const CrewDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setCrewId] = useState("");
 
+  const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
+  const [createCrewUserList] = useMutation<
+    Pick<IMutation, "createCrewUserList">
+  >(CREATE_CREW_USER_LIST);
+
   const [deleteCrewBoard] =
     useMutation<Pick<IMutation, "deleteCrewBoard">>(DELETE_CREW_BOARD);
+
+  const { data: dib } = useQuery<Pick<IQuery, "fetchDibs">>(FETCH_DIBS);
 
   const { data: comments, fetchMore } = useQuery<
     Pick<IQuery, "fetchCrewComments">,
@@ -38,6 +53,7 @@ const CrewDetail = () => {
   >(FETCH_CREW_BOARD, {
     variables: { crewBoardId: String(router.query.crewId) },
   });
+
   const { data: crewImg } = useQuery<
     Pick<IQuery, "fetchBoardImage">,
     IQueryFetchBoardImageArgs
@@ -47,11 +63,19 @@ const CrewDetail = () => {
 
   const { data: userInform } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
+  const isDib = dib?.fetchDibs
+    .map((el) => el.crewBoard.id)
+    .filter((el) => el.includes(String(data?.fetchCrewBoard.id))).length;
+
   const userId = userInform?.fetchUser.id;
   const boardId = data?.fetchCrewBoard.user.id;
 
   const onClickEdit = () => {
     void router.push(`/crews/${String(router.query.crewId)}/edit`);
+  };
+
+  const onClickToChat = () => {
+    void router.push(`/crews/${String(router.query.crewId)}/chat`);
   };
 
   const onLoadMore = async () => {
@@ -84,6 +108,34 @@ const CrewDetail = () => {
     void router.push(`/login`);
   };
 
+  const onClickApply = async () => {
+    try {
+      await createCrewUserList({
+        variables: { crewBoardId: router.query.crewId },
+      });
+      successModal("참가신청이 완료되었습니다!");
+    } catch (error) {
+      errorModal("이미 신청하셨습니다.");
+    }
+  };
+
+  const onClickPick = () => {
+    void createDib({
+      variables: { crewBoardId: router.query.crewId },
+      refetchQueries: [
+        {
+          query: FETCH_CREW_BOARD,
+          variables: { crewBoardId: String(router.query.crewId) },
+        },
+        { query: FETCH_DIBS },
+        {
+          query: FETCH_CREW_BOARDS_LATEST,
+        },
+        { query: FETCH_CREW_BOARDS_DEADLINE },
+      ],
+    });
+  };
+
   const onClickShowModal = (event: MouseEvent<HTMLButtonElement>) => {
     setIsModalOpen(true);
     setCrewId(event.currentTarget.id);
@@ -100,7 +152,7 @@ const CrewDetail = () => {
           cache.modify({ fields: { fetchCrewBoardsLatestFirst: () => {} } });
         },
       });
-      alert("정상적으로 삭제되었습니다.");
+      successModal("정상적으로 삭제되었습니다.");
       void router.push(`/crews`);
       setIsModalOpen(false);
     } catch (error) {}
@@ -121,6 +173,10 @@ const CrewDetail = () => {
       onClickModalConfirm={onClickModalConfirm}
       isModalOpen={isModalOpen}
       onClickLogin={onClickLogin}
+      onClickPick={onClickPick}
+      isDib={isDib}
+      onClickToChat={onClickToChat}
+      onClickApply={onClickApply}
     />
   );
 };

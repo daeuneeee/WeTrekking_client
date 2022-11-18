@@ -7,6 +7,8 @@ import { IQuery } from "../../../commons/types/generated/types";
 import "antd/dist/antd.css";
 import Head from "next/head";
 import { gql, useMutation } from "@apollo/client";
+import { mainColor } from "../../../commons/styles/color";
+import { errorModal, successModal } from "../modals/alertModals";
 
 const PointContainer = styled.div`
   width: 100%;
@@ -17,6 +19,25 @@ const PointContainer = styled.div`
   }
   .ant-btn:empty {
     display: none;
+  }
+  .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    border-color: ${mainColor};
+  }
+  .ant-select-open {
+    border-color: ${mainColor};
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border-color: ${mainColor};
+  }
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    border-color: ${mainColor};
+    background: ${mainColor};
+  }
+  .ant-btn-primary {
+    border-color: ${mainColor} !important;
+    background: ${mainColor} !important;
   }
 `;
 
@@ -81,10 +102,10 @@ const PointBox = () => {
               });
             },
           });
-          alert("포인트 충전이 완료되었습니다.");
+          successModal("포인트 충전이 완료되었습니다.");
         } else {
           // 결제 실패 시 로직,
-          alert("충전이 실패했습니다. 다시 시도해주세요.");
+          errorModal("충전이 실패했습니다. 다시 시도해주세요.");
         }
       }
     );

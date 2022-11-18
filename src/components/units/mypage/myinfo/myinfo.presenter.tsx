@@ -33,7 +33,13 @@ const MyInfoUi = ({
               </S.UserGenderPhoneText>
               <S.GenderPhoneLine></S.GenderPhoneLine>
               <S.UserGenderPhoneText>
-                phone <span>{userDatas?.fetchUser.phone}</span>
+                phone{" "}
+                <span>
+                  {String(userDatas?.fetchUser.phone).replace(
+                    /^(\d{2,3})(\d{3,4})(\d{4})$/,
+                    `$1-$2-$3`
+                  )}
+                </span>
               </S.UserGenderPhoneText>
             </S.GenderPhoneBox>
           </S.ProfileBody>

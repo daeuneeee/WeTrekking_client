@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { IMutation } from "../../../../commons/types/generated/types";
 import { accessTokenState } from "../../../../store";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
 import LoginUi from "./login.presenter";
 import { LOGIN } from "./login.queries";
 import { ILoginProps } from "./login.types";
@@ -36,7 +37,6 @@ const Login = () => {
 
   const onClickLogin = async (data: ILoginProps) => {
     try {
-      console.log(data);
       const result = await login({
         variables: data,
         update(cache) {
@@ -46,11 +46,11 @@ const Login = () => {
         },
       });
       setAccessToken(String(result.data?.login));
-      alert("로그인 성공");
       void router.push("/crews");
+      successModal("로그인 성공");
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error);
+        errorModal(error.message);
       }
     }
   };

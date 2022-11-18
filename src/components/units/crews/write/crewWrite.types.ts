@@ -23,6 +23,7 @@ export interface IFormData {
   gender: string;
   peoples: number;
   thumbnail?: string;
+  mountain: string;
 }
 
 export interface UseFormReturn<TFieldValues extends FieldValues = FieldValues> {
@@ -59,6 +60,11 @@ export interface ICrewWriteUiProps {
   editImageUrlsFlat: string[] | undefined;
   onClickMountainSearch: () => void;
   isMountainModalOpen: boolean;
+  mountainAddress: string;
+  errors: any;
+  dateError: any;
+  timeError: any;
+  addressError: any;
 }
 export interface ICrewWriteProps {
   isEdit: boolean;

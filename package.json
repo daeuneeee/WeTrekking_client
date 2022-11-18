@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.10.5",
     "@hookform/resolvers": "^2.9.8",
     "@mui/material": "^5.10.12",
+    "@nestjs/common": "^9.2.0",
     "@types/react-slick": "^0.23.10",
     "antd": "^4.23.6",
     "apollo-upload-client": "^17.0.0",
@@ -33,7 +34,11 @@
     "react-quill": "^2.0.0",
     "react-slick": "^0.29.0",
     "recoil": "^0.7.5",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.7",
     "slick-carousel": "^1.8.1",
+    "socket.io": "^4.5.3",
+    "socket.io-client": "^4.5.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {

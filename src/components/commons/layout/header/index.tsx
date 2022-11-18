@@ -7,11 +7,12 @@ import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState, userInfo } from "../../../../store";
+import { successModal } from "../../modals/alertModals";
 
 const Wrapper = styled.div`
   width: 100%;
   padding: 2.4rem 0;
-  z-index: 9998;
+  z-index: 1000;
   background-color: #fff;
   @media ${tablet} {
     position: sticky;
@@ -124,7 +125,7 @@ const MMenuContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9998;
+  z-index: 50;
   padding-top: 10%;
   @media ${mobile} {
     padding-top: 18%;
@@ -187,7 +188,7 @@ const FETCH_USER = gql`
       email
       name
       nickname
-      # birth
+      birth
       phone
       gender
       profile_img
@@ -250,7 +251,8 @@ const Header = () => {
     try {
       await logout();
       setAccessToken("");
-      alert("로그아웃 되었습니다.");
+      void router.push("/");
+      successModal("로그아웃 되었습니다.");
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -318,8 +320,12 @@ const Header = () => {
       {isActive && (
         <MMenuContainer>
           <MSubMenuBox>
-            <MLoginBtn onClick={onClickToLogin}>로그인</MLoginBtn>
-            <MJoinBtn onClick={onClickToJoin}>회원가입</MJoinBtn>
+            <MLoginBtn onClick={accessToken ? logoutUser : onClickToLogin}>
+              {accessToken ? "로그아웃" : "로그인"}
+            </MLoginBtn>
+            <MJoinBtn onClick={accessToken ? onClickToMypage : onClickToJoin}>
+              {accessToken ? "마이페이지" : "회원가입"}
+            </MJoinBtn>
           </MSubMenuBox>
           <MMenu>
             <MMenuList onClick={onClickToCrews}>크루 모집/신청</MMenuList>

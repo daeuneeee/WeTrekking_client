@@ -2,10 +2,19 @@ import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import { subColor } from "../../../commons/styles/color";
-import { isMountainModalOpenState, mountainAddressState } from "../../../store";
+import {
+  isMountainModalOpenState,
+  mountainAddressState,
+  mountainIdState,
+} from "../../../store";
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import { tablet } from "../../../commons/styles/media";
+import {
+  IQuery,
+  IQueryFetchMountainsWithSearchArgs,
+} from "../../../commons/types/generated/types";
 
 const FETCH_MOUNTAIN_SEARCH = gql`
   query fetchMountainsWithSearch($search: String!) {
@@ -21,13 +30,18 @@ const MountainModal = () => {
   const [keyword, setKeyword] = useState("");
 
   const [, setIsMountainModalOpen] = useRecoilState(isMountainModalOpenState);
+  const [, setIsMountainId] = useRecoilState(mountainIdState);
   const [, setMountainAddress] = useRecoilState(mountainAddressState);
 
-  const { data, refetch } = useQuery(FETCH_MOUNTAIN_SEARCH, {
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchMountainsWithSearch">,
+    IQueryFetchMountainsWithSearchArgs
+  >(FETCH_MOUNTAIN_SEARCH, {
     variables: { search: keyword },
   });
 
   const onClickList = (event: MouseEvent<HTMLUListElement>) => {
+    setIsMountainId(event.currentTarget.className);
     setMountainAddress(event.currentTarget.id);
     setIsMountainModalOpen(false);
   };
@@ -39,8 +53,7 @@ const MountainModal = () => {
   const getDebounce = _.debounce((value) => {
     void refetch({ search: value });
     setKeyword(value);
-  });
-  console.log(keyword);
+  }, 300);
 
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
     getDebounce(event.target.value);
@@ -71,6 +84,7 @@ const MountainModal = () => {
                 <ListData
                   key={uuidv4()}
                   onClick={onClickList}
+                  className={mountainMap.id}
                   id={`${String(mountainMap.mountain)} / ${String(
                     mountainMap.address
                   )}`}
@@ -114,6 +128,9 @@ const ModalContainer = styled.div`
   position: fixed;
   z-index: 9999;
   background-color: white;
+  @media ${tablet} {
+    width: 90%;
+  }
 `;
 
 const MountainInput = styled.input`
@@ -154,7 +171,7 @@ const ModalBody = styled.div`
 const ModalSearchBox = styled.div`
   width: 100%;
   border-bottom: 1px solid #111;
-  padding: 0 1.5rem;
+  padding: 1px 1.5rem;
 `;
 
 const ModalMountainListBox = styled.section`

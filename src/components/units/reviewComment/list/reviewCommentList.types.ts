@@ -18,3 +18,8 @@ export interface IReviewCommentListUiProps {
   reviewCommentUserId: string;
   userId?: string;
 }
+
+export interface IMyVariables {
+  reviewCommentId: string;
+  updateComment?: string;
+}

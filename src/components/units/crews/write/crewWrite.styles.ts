@@ -107,6 +107,10 @@ export const SubText = styled.p`
   margin-bottom: 0.5rem;
 `;
 
+export const SubTextError = styled(SubText)`
+  color: red;
+`;
+
 export const UnderLine = styled.div`
   width: 100%;
   height: 1px;
@@ -215,8 +219,13 @@ export const Time = styled(TimePicker)`
 export const BtnInputBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3.5%;
   margin-top: 1rem;
+  gap: 0.8rem;
+`;
+
+export const AddressBox = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const BtnInput = styled.input`
@@ -369,7 +378,6 @@ export const TextArea = styled(ReactQuill)`
   border: 1px solid #dcdfe4;
   border-radius: 4px;
   resize: none;
-  margin-bottom: 1.2rem;
   :focus {
     outline-color: ${subColor};
   }
@@ -390,7 +398,7 @@ export const Footer = styled.div`
   gap: 2.4rem;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10.4rem;
+  margin: 1.2rem 0 10rem;
 `;
 
 export const CancelBtn = styled.button`
@@ -427,11 +435,23 @@ export const DefaultFileInput = styled.input`
   display: none;
 `;
 
-// export const ImgBox = styled.div`
-// `
+export const Error = styled.p`
+  color: red;
+  font-size: 1.3rem;
+  margin-top: 0.3rem;
+`;
 
-// export const ImgBox = styled.div`
-// `
+export const AddressDetailBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+`;
+
+export const DateTimeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
 
 // export const ImgBox = styled.div`
 // `

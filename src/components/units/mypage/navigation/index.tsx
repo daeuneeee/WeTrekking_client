@@ -40,7 +40,7 @@ const MyPageLi = styled.li`
   font-size: 1.8rem;
   font-weight: 700;
   color: #999;
-  padding: 4rem 0;
+  padding: 3rem 0;
   box-sizing: content-box;
   cursor: pointer;
 `;

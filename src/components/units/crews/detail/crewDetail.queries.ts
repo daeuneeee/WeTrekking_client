@@ -13,11 +13,17 @@ export const FETCH_CREW_BOARD = gql`
       gender
       dues
       peoples
+      mountain {
+        id
+        mountain
+        address
+      }
       user {
         id
         nickname
         gender
         birth
+        profile_img
       }
     }
   }
@@ -58,5 +64,31 @@ export const FETCH_USER = gql`
     fetchUser {
       id
     }
+  }
+`;
+
+export const CREATE_DIB = gql`
+  mutation createDib($crewBoardId: String!) {
+    createDib(crewBoardId: $crewBoardId)
+  }
+`;
+
+export const FETCH_DIBS = gql`
+  query {
+    fetchDibs {
+      id
+      user {
+        id
+      }
+      crewBoard {
+        id
+      }
+    }
+  }
+`;
+
+export const CREATE_CREW_USER_LIST = gql`
+  mutation createCrewUserList($crewBoardId: String!) {
+    createCrewUserList(crewBoardId: $crewBoardId)
   }
 `;

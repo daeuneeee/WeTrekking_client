@@ -14,6 +14,13 @@ export type Scalars = {
   Upload: any;
 };
 
+export type IChat = {
+  __typename?: 'Chat';
+  message: Scalars['String'];
+  name: Scalars['String'];
+  roomName: Scalars['String'];
+};
+
 export type ICreateCrewBoardInput = {
   address: Scalars['String'];
   addressDetail: Scalars['String'];
@@ -33,7 +40,6 @@ export type ICreateCrewCommentInput = {
 };
 
 export type ICreateReviewBoardInput = {
-  mountain: Scalars['String'];
   review: Scalars['String'];
   star: Scalars['Float'];
   title: Scalars['String'];
@@ -71,6 +77,27 @@ export type ICrewBoard = {
   thumbnail: Scalars['String'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+  user: IUser;
+};
+
+export type ICrewBoardAndUser = {
+  __typename?: 'CrewBoardAndUser';
+  address: Scalars['String'];
+  addressDetail: Scalars['String'];
+  assignedUsers: Array<IUser>;
+  createdAt: Scalars['DateTime'];
+  date: Scalars['String'];
+  dateTime: Scalars['String'];
+  description: Scalars['String'];
+  dibUsers: Array<IUser>;
+  dues: Scalars['Int'];
+  gender: Scalars['String'];
+  id: Scalars['String'];
+  mountain: IMountain;
+  peoples: Scalars['Int'];
+  thumbnail: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
   user: IUser;
 };
 
@@ -129,10 +156,12 @@ export type IMutation = {
   createCrewSubComment: ICrewComment;
   createCrewUserList: Scalars['String'];
   createDib: Scalars['Boolean'];
+  createMongoDBTrekking: Scalars['String'];
   createMountain: Scalars['String'];
   createPointPayment: IPointPayment;
   createReviewBoard: IReviewBoard;
   createReviewComment: IReviewComment;
+  createRoom: IRoom;
   createUser: IUser;
   deleteCrewBoard: Scalars['Boolean'];
   deleteCrewComment: Scalars['Boolean'];
@@ -194,6 +223,7 @@ export type IMutationCheckTokenPhoneArgs = {
 export type IMutationCreateCrewBoardArgs = {
   createCrewBoardInput: ICreateCrewBoardInput;
   imgURL: Array<Scalars['String']>;
+  mountainId: Scalars['String'];
 };
 
 
@@ -238,6 +268,12 @@ export type IMutationCreateReviewBoardArgs = {
 export type IMutationCreateReviewCommentArgs = {
   reviewBoardId: Scalars['String'];
   reviewComment: Scalars['String'];
+};
+
+
+export type IMutationCreateRoomArgs = {
+  boardId: Scalars['String'];
+  roomName: Scalars['String'];
 };
 
 
@@ -326,6 +362,7 @@ export type IMutationSocialUpdateUserArgs = {
 export type IMutationUpdateCrewBoardArgs = {
   crewBoardId: Scalars['String'];
   imgURL: Array<Scalars['String']>;
+  mountainId: Scalars['String'];
   updateCrewBoardInput: IUpdateCrewBoardInput;
 };
 
@@ -338,7 +375,7 @@ export type IMutationUpdateCrewCommentArgs = {
 
 export type IMutationUpdateCrewSubCommentArgs = {
   subCommentId: Scalars['String'];
-  updateComment: Scalars['String'];
+  updateSubCrewCommentInput: IUpdateSubCrewCommentInput;
 };
 
 
@@ -355,8 +392,8 @@ export type IMutationUpdateReviewBoardArgs = {
 
 
 export type IMutationUpdateReviewCommentArgs = {
-  reviewCommentId: Scalars['String'];
-  updateComment: Scalars['String'];
+  reviewCommentId?: InputMaybe<Scalars['String']>;
+  updateComment?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -412,25 +449,32 @@ export type IQuery = {
   fetchAllCrewBoardImages: Array<ICrewBoardImage>;
   fetchAllCrewBoards: Array<ICrewBoard>;
   fetchAllCrewBoardsWithDelete: Array<ICrewBoard>;
+  fetchAllCrewBoardsWithUsers: Array<ICrewBoardAndUser>;
   fetchAllMountains: Array<IMountain>;
   fetchAllReviewBoardImages: Array<IReviewBoardImage>;
+  fetchApplyList: Array<ICrewUserList>;
   fetchBoardImage: Array<ICrewBoardImage>;
+  fetchChatUsers: Array<ICrewUserList>;
   fetchCrewBoard: ICrewBoard;
   fetchCrewBoardsBySearch: Array<Array<ICrewBoard>>;
-  fetchCrewBoardsDeadlineFirst: Array<Array<ICrewBoard>>;
-  fetchCrewBoardsLatestFirst: Array<Array<ICrewBoard>>;
+  fetchCrewBoardsDeadlineFirst: Array<Array<ICrewBoardAndUser>>;
+  fetchCrewBoardsLatestFirst: Array<Array<ICrewBoardAndUser>>;
   fetchCrewBoardsTEST: Array<Array<ICrewBoard>>;
   fetchCrewComments: Array<ICrewComment>;
   fetchCrewSubComments: Array<ICrewComment>;
   fetchCrewUserList: Array<ICrewUserList>;
   fetchDibs: Array<IDib>;
   fetchHostCrewList: Array<ICrewBoard>;
+  fetchLogs: Array<IChat>;
   fetchMountain: IMountain;
   fetchMountainsWithSearch: Array<IMountain>;
+  fetchPointPayment: IPointPayment;
+  fetchPointPayments: Array<IPointPayment>;
   fetchReviewBoard: IReviewBoard;
   fetchReviewBoardImage: Array<IReviewBoardImage>;
   fetchReviewBoards: Array<IReviewBoard>;
   fetchReviewComments: Array<IReviewComment>;
+  fetchTrekkingInfo: ITrekking;
   fetchUser: IUser;
   fetchUserCrewComments: Array<ICrewComment>;
   fetchUserCrewSubComments: Array<ICrewComment>;
@@ -438,8 +482,18 @@ export type IQuery = {
 };
 
 
+export type IQueryFetchApplyListArgs = {
+  crewBoardId: Scalars['String'];
+};
+
+
 export type IQueryFetchBoardImageArgs = {
   crewBoardId: Scalars['String'];
+};
+
+
+export type IQueryFetchChatUsersArgs = {
+  boardId: Scalars['String'];
 };
 
 
@@ -468,6 +522,11 @@ export type IQueryFetchCrewSubCommentsArgs = {
 };
 
 
+export type IQueryFetchLogsArgs = {
+  roomName: Scalars['String'];
+};
+
+
 export type IQueryFetchMountainArgs = {
   mountainId: Scalars['String'];
 };
@@ -491,6 +550,12 @@ export type IQueryFetchReviewBoardImageArgs = {
 export type IQueryFetchReviewCommentsArgs = {
   page?: InputMaybe<Scalars['Int']>;
   reviewBoardId: Scalars['String'];
+};
+
+
+export type IQueryFetchTrekkingInfoArgs = {
+  address: Scalars['String'];
+  mountainName: Scalars['String'];
 };
 
 
@@ -534,6 +599,19 @@ export type IReviewComment = {
   user: IUser;
 };
 
+export type IRoom = {
+  __typename?: 'Room';
+  boardId: Scalars['String'];
+  roomName: Scalars['String'];
+  user: Scalars['String'];
+};
+
+export type ITrekking = {
+  __typename?: 'Trekking';
+  mountainName: Scalars['String'];
+  xyz: Array<Array<Scalars['Float']>>;
+};
+
 export type IUpdateCrewBoardInput = {
   address?: InputMaybe<Scalars['String']>;
   addressDetail?: InputMaybe<Scalars['String']>;
@@ -553,10 +631,14 @@ export type IUpdateCrewCommentInput = {
 };
 
 export type IUpdateReviewBoardInput = {
-  mountain?: InputMaybe<Scalars['String']>;
   review?: InputMaybe<Scalars['String']>;
   star?: InputMaybe<Scalars['Float']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type IUpdateSubCrewCommentInput = {
+  parentId?: InputMaybe<Scalars['String']>;
+  subComment?: InputMaybe<Scalars['String']>;
 };
 
 export type IUpdateUserInput = {

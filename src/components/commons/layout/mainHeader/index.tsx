@@ -1,12 +1,14 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState, userInfo } from "../../../../store";
+
+import { successModal } from "../../modals/alertModals";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -14,7 +16,7 @@ const Wrapper = styled.div`
   left: 0;
   width: 100%;
   padding: 2.4rem 0;
-  z-index: 9999;
+  z-index: 1000;
 
   @media (min-width: 1200px) {
     &:hover {
@@ -157,7 +159,7 @@ const MMenuContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9998;
+  z-index: 50;
   padding-top: 10%;
   @media ${mobile} {
     padding-top: 18%;
@@ -211,13 +213,39 @@ const LOGOUT = gql`
   }
 `;
 
+const FETCH_USER = gql`
+  query fetchUser {
+    fetchUser {
+      id
+      email
+      name
+      nickname
+      birth
+      phone
+      gender
+      profile_img
+      point
+    }
+  }
+`;
+
 const MainHeader = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
+  const [userDatas, setUserDatas] =
+    useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [isActive, setIsActive] = useState(false);
 
   const router = useRouter();
   const [logout] = useMutation(LOGOUT);
+
+  const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  console.log(data);
+
+  useEffect(() => {
+    if (data === undefined) return;
+    setUserDatas(data);
+  }, [data]);
 
   const onClickToMain = () => {
     void router.push("/");
@@ -255,7 +283,8 @@ const MainHeader = () => {
     try {
       setAccessToken("");
       await logout();
-      alert("로그아웃 되었습니다.");
+      void router.push("/");
+      successModal("로그아웃 되었습니다.");
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -341,8 +370,12 @@ const MainHeader = () => {
       {isActive && (
         <MMenuContainer>
           <MSubMenuBox>
-            <MLoginBtn onClick={onClickToLogin}>로그인</MLoginBtn>
-            <MJoinBtn onClick={onClickToJoin}>회원가입</MJoinBtn>
+            <MLoginBtn onClick={accessToken ? logoutUser : onClickToLogin}>
+              {accessToken ? "로그아웃" : "로그인"}
+            </MLoginBtn>
+            <MJoinBtn onClick={accessToken ? onClickToMypage : onClickToJoin}>
+              {accessToken ? "마이페이지" : "회원가입"}
+            </MJoinBtn>
           </MSubMenuBox>
           <MMenu>
             <MMenuList onClick={onClickToCrews}>크루 모집/신청</MMenuList>

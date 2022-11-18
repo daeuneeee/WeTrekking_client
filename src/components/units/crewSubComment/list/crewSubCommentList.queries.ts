@@ -8,12 +8,12 @@ export const DELETE_CREW_SUB_COMMENT = gql`
 
 export const UPDATE_CREW_SUB_COMMENT = gql`
   mutation updateCrewSubComment(
-    $updateComment: String!
     $subCommentId: String!
+    $updateSubCrewCommentInput: UpdateSubCrewCommentInput!
   ) {
     updateCrewSubComment(
-      updateComment: $updateComment
       subCommentId: $subCommentId
+      updateSubCrewCommentInput: $updateSubCrewCommentInput
     ) {
       id
     }

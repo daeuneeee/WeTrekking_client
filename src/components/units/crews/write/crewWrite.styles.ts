@@ -444,7 +444,6 @@ export const Error = styled.p`
 export const AddressDetailBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.8rem;
 `;
 
 export const DateTimeBox = styled.div`

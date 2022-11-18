@@ -12,6 +12,7 @@ import CrewCommentWrite from "../../crewComment/write/crewCommentWrite.container
 import * as S from "./crewDetail.styles";
 import { ICrewDetailUiProps } from "./crewDetail.types";
 import { v4 as uuidv4 } from "uuid";
+import { getAge } from "../../../../commons/utils/getAge";
 
 const CrewDetailUi = ({
   data,
@@ -31,6 +32,7 @@ const CrewDetailUi = ({
   isDib,
   onClickToChat,
   onClickApply,
+  acceptedList,
 }: ICrewDetailUiProps) => {
   const [accessToken] = useRecoilState(accessTokenState);
   const year = new Date().getFullYear();
@@ -206,7 +208,9 @@ const CrewDetailUi = ({
             <S.ListInform>
               <S.BodyTitle>참가자 리스트</S.BodyTitle>
               <S.CrewListBox>
-                <S.CrewList>14</S.CrewList>
+                <S.CrewList>
+                  {acceptedList?.fetchAcceptedList.length}
+                </S.CrewList>
                 <S.CrewListAll>/{data?.fetchCrewBoard.peoples}</S.CrewListAll>
                 <S.Img
                   src="/images/detail/profile-detail.png"
@@ -222,194 +226,63 @@ const CrewDetailUi = ({
                   <S.CrewInform>
                     <Avatar
                       alt="Crew Image"
-                      src="/images/commons/profile-img.png"
+                      src={`https://storage.googleapis.com/${String(
+                        data?.fetchCrewBoard.user.profile_img
+                      )}`}
                       className="avatar"
                     ></Avatar>
                     <S.CrewPositionNickName>
                       <S.CrewPosition>방장</S.CrewPosition>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
+                      <S.CrewNickName>
+                        {data?.fetchCrewBoard.user.nickname}
+                      </S.CrewNickName>
                     </S.CrewPositionNickName>
                   </S.CrewInform>
                   <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
+                    <S.CrewAgeGender>
+                      {getAge(String(data?.fetchCrewBoard.user.birth))}
+                    </S.CrewAgeGender>
                     <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
+                    <S.CrewAgeGender>
+                      {data?.fetchCrewBoard.user.gender
+                        .replace("male", "남성")
+                        .replace("female", "여성")}
+                    </S.CrewAgeGender>
                   </S.CrewAgeGenderBox>
                 </S.CrewInformBox>
-                {/* 여기부터 맵돌리기 */}
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                {/* 여기까지 맵돌리기 */}
-                {/* 여기부터 삭제하기 */}
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src="/images/commons/profile-img.png"
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewNickName>춘딩딩</S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>28</S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>남성</S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                {/* 여기까지 삭제하기 */}
+                {acceptedList?.fetchAcceptedList.map((acceptMap) =>
+                  boardId !== acceptMap.user.id ? (
+                    <S.CrewInformBox key={acceptMap.id}>
+                      <S.CrewInform>
+                        <Avatar
+                          alt="Crew Image"
+                          src={`https://storage.googleapis.com/${String(
+                            acceptMap.user.profile_img
+                          )}`}
+                          className="avatar"
+                        ></Avatar>
+                        <S.CrewPositionNickName>
+                          <S.CrewNickName>
+                            {acceptMap.user.nickname}
+                          </S.CrewNickName>
+                        </S.CrewPositionNickName>
+                      </S.CrewInform>
+                      <S.CrewAgeGenderBox>
+                        <S.CrewAgeGender>
+                          {getAge(acceptMap.user.birth)}
+                        </S.CrewAgeGender>
+                        <S.CrewAgeGender>·</S.CrewAgeGender>
+                        <S.CrewAgeGender>
+                          {acceptMap.user.gender
+                            .replace("male", "남성")
+                            .replace("female", "여성")}
+                        </S.CrewAgeGender>
+                      </S.CrewAgeGenderBox>
+                    </S.CrewInformBox>
+                  ) : (
+                    <></>
+                  )
+                )}
               </S.CrewBox>
               {!accessToken && (
                 <S.CrewLoginCheckBox>

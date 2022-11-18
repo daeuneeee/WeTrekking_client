@@ -164,7 +164,7 @@ const CrewListUi = ({
                             </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
-                            <AvatarGroup max={4}>
+                            <AvatarGroup max={20}>
                               {listMap?.assignedUsers?.map((assignMap: any) => (
                                 <>
                                   <Avatar
@@ -240,8 +240,7 @@ const CrewListUi = ({
                             </S.ListCreatedAt>
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
-                            {/* <S.ListCrewsImg></S.ListCrewsImg> */}
-                            <AvatarGroup max={4}>
+                            <AvatarGroup max={20}>
                               {listMap?.assignedUsers?.map((assignMap: any) => (
                                 <>
                                   <Avatar

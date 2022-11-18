@@ -22,7 +22,6 @@ const CrewListUi = ({
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
-  console.log(items);
   const handleChange = (value: any) => {
     console.log(value);
   };

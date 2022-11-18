@@ -1,8 +1,18 @@
 import * as S from "./chat.styles";
 import { AvatarGroup, Avatar } from "@mui/material";
 import { IChatUiProps } from "./chat.types";
+import { IQuery } from "../../../commons/types/generated/types";
+import { useRecoilState } from "recoil";
+import { userInfo } from "../../../store";
 
-const ChatUi = ({ onChangeInput, onClickSendBtn }: IChatUiProps) => {
+const ChatUi = ({
+  onChangeInput,
+  onClickSendBtn,
+  data,
+  chatInput,
+}: IChatUiProps) => {
+  const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
+
   return (
     <S.Wrapper>
       <S.Container>
@@ -214,34 +224,43 @@ const ChatUi = ({ onChangeInput, onClickSendBtn }: IChatUiProps) => {
               </S.ChatTitleAndUser>
             </S.ChatViewHead>
             <S.ChatViewBody>
-              <S.ChatGroup>
-                <S.ProfileChatBox>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    className="chatAvatar"
-                  />
-                  <S.ChatMsgContainer>
-                    <S.GroupChatMsgBox>안녕하세요 ㅎㅎ</S.GroupChatMsgBox>
-                    <S.ChatMstTime>8:00 PM</S.ChatMstTime>
-                  </S.ChatMsgContainer>
-                </S.ProfileChatBox>
-              </S.ChatGroup>
-              <S.ChatMy>
-                <S.MyProfileChatBox>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    className="chatAvatar"
-                  />
-                  <S.MyChatMsgContainer>
-                    <S.MyGroupChatMsgBox>
-                      다들 어디쯤 오셨나요??
-                    </S.MyGroupChatMsgBox>
-                    <S.ChatMstTime>8:00 PM</S.ChatMstTime>
-                  </S.MyChatMsgContainer>
-                </S.MyProfileChatBox>
-              </S.ChatMy>
+              {data?.fetchLogs.map((el: any) => {
+                return (
+                  <>
+                    {el.name !== userDatas?.fetchUser.name ? (
+                      <S.ChatGroup>
+                        <S.ProfileChatBox>
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            className="chatAvatar"
+                          />
+                          <S.ChatMsgContainer>
+                            <S.GroupChatMsgBox>{el.message}</S.GroupChatMsgBox>
+                            <S.ChatMstTime>8:00 PM</S.ChatMstTime>
+                          </S.ChatMsgContainer>
+                        </S.ProfileChatBox>
+                      </S.ChatGroup>
+                    ) : (
+                      <S.ChatMy>
+                        <S.MyProfileChatBox>
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            className="chatAvatar"
+                          />
+                          <S.MyChatMsgContainer>
+                            <S.MyGroupChatMsgBox>
+                              {el.message}
+                            </S.MyGroupChatMsgBox>
+                            <S.ChatMstTime>8:00 PM</S.ChatMstTime>
+                          </S.MyChatMsgContainer>
+                        </S.MyProfileChatBox>
+                      </S.ChatMy>
+                    )}
+                  </>
+                );
+              })}
             </S.ChatViewBody>
             <S.ChatViewFoot>
               <S.ChatForm>
@@ -249,6 +268,12 @@ const ChatUi = ({ onChangeInput, onClickSendBtn }: IChatUiProps) => {
                   type="text"
                   placeholder="채팅을 입력해주세요."
                   onChange={onChangeInput}
+                  ref={chatInput}
+                  onKeyPress={(event) => {
+                    if (event.key === "Enter") {
+                      onClickSendBtn();
+                    }
+                  }}
                 />
                 <S.ChatBtn type="button" onClick={onClickSendBtn}>
                   전송

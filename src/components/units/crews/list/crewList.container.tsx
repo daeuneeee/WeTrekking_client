@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
 import { accessTokenState } from "../../../../store";
+import { errorModal } from "../../../commons/modals/alertModals";
 import { CREATE_DIB, FETCH_CREW_BOARD } from "../detail/crewDetail.queries";
 import CrewListUi from "./crewList.presenter";
 import {
@@ -30,7 +31,6 @@ const CrewList = () => {
   >(FETCH_CREW_BOARDS_DEADLINE);
 
   const items = data?.fetchCrewBoardsLatestFirst.flat().slice(0, visible);
-  console.log(items);
 
   // useEffect(() => {
   //   console.log(data?.fetchCrewBoardsLatestFirst);
@@ -59,7 +59,7 @@ const CrewList = () => {
 
   const onClickToWrite = () => {
     if (!accessToken) {
-      alert("로그인이 필요합니다.");
+      errorModal("로그인이 필요합니다.");
       void router.push("/login");
     } else {
       void router.push("/crews/write");

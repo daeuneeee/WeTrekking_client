@@ -4,6 +4,7 @@ import { MouseEvent, useState } from "react";
 import {
   IMutation,
   IQuery,
+  IQueryFetchAcceptedListArgs,
   IQueryFetchBoardImageArgs,
   IQueryFetchCrewBoardArgs,
   IQueryFetchCrewCommentsArgs,
@@ -23,6 +24,7 @@ import {
   FETCH_DIBS,
   FETCH_USER,
   CREATE_CREW_USER_LIST,
+  FETCH_ACCEPTED_LIST,
 } from "./crewDetail.queries";
 
 const CrewDetail = () => {
@@ -62,6 +64,13 @@ const CrewDetail = () => {
   });
 
   const { data: userInform } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  const { data: acceptedList } = useQuery<
+    Pick<IQuery, "fetchAcceptedList">,
+    IQueryFetchAcceptedListArgs
+  >(FETCH_ACCEPTED_LIST, {
+    variables: { crewBoardId: String(router.query.crewId) },
+  });
 
   const isDib = dib?.fetchDibs
     .map((el) => el.crewBoard.id)
@@ -177,6 +186,7 @@ const CrewDetail = () => {
       isDib={isDib}
       onClickToChat={onClickToChat}
       onClickApply={onClickApply}
+      acceptedList={acceptedList}
     />
   );
 };

@@ -379,6 +379,7 @@ export const CrewListBox = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 0.2rem;
+  margin-bottom: 2rem;
 `;
 
 export const CrewList = styled.span`

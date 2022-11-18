@@ -186,7 +186,7 @@ const CrewWriteUi = ({
               </S.Btn>
               {isMountainModalOpen && <MountainModal />}
             </S.BtnInputBox>
-            {/* <S.Error>{errors.mountain?.message}</S.Error> */}
+            <S.Error>{errors.mountain?.message}</S.Error>
           </S.InputBox>
           <S.InputBox>
             <S.Label>등산 일자</S.Label>
@@ -229,10 +229,12 @@ const CrewWriteUi = ({
             <S.Error>{errors.address?.message}</S.Error>
             <S.AddressBox>
               <S.AddressDetailBox>
-                <S.BtnInput {...register("addressDetail")} />
-                <S.Btn type="button" onClick={onToggleModal}>
-                  주소찾기
-                </S.Btn>
+                <S.BtnInputBox>
+                  <S.BtnInput {...register("addressDetail")} />
+                  <S.Btn type="button" onClick={onToggleModal}>
+                    주소찾기
+                  </S.Btn>
+                </S.BtnInputBox>
                 <S.Error>{addressError}</S.Error>
               </S.AddressDetailBox>
               {isOpen && (

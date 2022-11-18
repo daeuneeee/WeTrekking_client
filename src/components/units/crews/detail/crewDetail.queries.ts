@@ -92,3 +92,19 @@ export const CREATE_CREW_USER_LIST = gql`
     createCrewUserList(crewBoardId: $crewBoardId)
   }
 `;
+
+export const FETCH_ACCEPTED_LIST = gql`
+  query fetchAcceptedList($crewBoardId: String!) {
+    fetchAcceptedList(crewBoardId: $crewBoardId) {
+      id
+      status
+      user {
+        id
+        nickname
+        birth
+        gender
+        profile_img
+      }
+    }
+  }
+`;

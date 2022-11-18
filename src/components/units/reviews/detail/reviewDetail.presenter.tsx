@@ -6,6 +6,7 @@ import ReviewCommentList from "../../reviewComment/list/reviewCommentList.contai
 import ReviewCommentWrite from "../../reviewComment/write";
 import { IReviewDetailUiProps } from "./reviewDetail.types";
 import InfiniteScroll from "react-infinite-scroller";
+import { getAge } from "../../../../commons/utils/getAge";
 
 const ReviewDetailUi = ({
   data,
@@ -13,6 +14,7 @@ const ReviewDetailUi = ({
   reviewComments,
   onLoadMore,
 }: IReviewDetailUiProps) => {
+  console.log(data);
   return (
     <>
       <S.Wrapper>
@@ -32,17 +34,27 @@ const ReviewDetailUi = ({
           <S.WriteProfile>
             <Avatar alt="Crew Image" sx={{ width: 68, height: 68 }}></Avatar>
             <S.WriterInform>
-              <S.NickName>춘딩딩</S.NickName>
+              <S.NickName>{data?.fetchReviewBoard.user.nickname}</S.NickName>
               <S.AgeGenderBox>
-                <S.AgeGender>28</S.AgeGender>
+                <S.AgeGender>
+                  {getAge(String(data?.fetchReviewBoard.user.birth))}
+                </S.AgeGender>
                 <S.AgeGender>·</S.AgeGender>
-                <S.AgeGender>남성</S.AgeGender>
+                <S.AgeGender>
+                  {data?.fetchReviewBoard.user.gender
+                    .replace("male", "남성")
+                    .replace("female", "여성")}
+                </S.AgeGender>
               </S.AgeGenderBox>
             </S.WriterInform>
           </S.WriteProfile>
           <S.Location>설악산</S.Location>
           <S.RatingBox>
-            <Rate disabled value={Number(data?.fetchReviewBoard.star)} />
+            <Rate
+              allowHalf
+              disabled
+              value={Number(data?.fetchReviewBoard.star)}
+            />
           </S.RatingBox>
         </S.InformBox>
         <S.UnderLine></S.UnderLine>

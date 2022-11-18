@@ -1,10 +1,23 @@
 import ChatUi from "./chat.presenter";
 import io from "socket.io-client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IQuery } from "../../../commons/types/generated/types";
 import { userInfo } from "../../../store";
 import { useRouter } from "next/router";
+import { gql, useQuery } from "@apollo/client";
+import _ from "lodash";
+import { FETCH_CREW_BOARD } from "../crews/detail/crewDetail.queries";
+
+const FETCH_LOGS = gql`
+  query fetchLogs($roomName: String!) {
+    fetchLogs(roomName: $roomName) {
+      name
+      roomName
+      message
+    }
+  }
+`;
 
 const Chat = () => {
   const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
@@ -20,42 +33,56 @@ const Chat = () => {
     transports: ["websocket"],
   });
 
-  console.log(socket);
+  const { data, refetch } = useQuery(FETCH_LOGS, {
+    variables: {
+      roomName: router.query.crewId,
+    },
+  });
+
+  const { data: crewDetail } = useQuery(FETCH_CREW_BOARD, {
+    variables: {
+      crewBoardId: router.query.crewId,
+    },
+  });
+
+  console.log(crewDetail);
+
+  useEffect(() => {
+    void refetch();
+  }, [data]);
+
+  console.log(data);
+
+  const chatInput = useRef();
+
+  const getDebounce = _.debounce((value) => {
+    setChatMsg(value);
+  }, 200);
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setChatMsg(event.target.value);
+    getDebounce(event.target.value);
   };
 
   socket.emit("join", name, room, boardId);
 
-  socket.on("connect", () => {
-    // 누군가 채팅침
-    socket.on(room, (data) => {
-      // $('#chatList').append(`<div>${data[0]} : ${data[1]}</div>`);
-      console.log(data);
-    });
-    socket.join("123");
-    // 누군가 입장
-    socket.on("welcome", (welcome) => {
-      // $('#chatList').append(`<div style="color:blue;">${welcome}</div>`);
-      console.log(welcome);
-    });
-  });
-  // console.log(room);
-  // console.log(name);
-  // console.log(chatMsg);
 
   const onClickSendBtn = () => {
-    const aaa = socket.emit("send-chat", room, name, chatMsg);
-    // $("#msg").val("");
-    // $("#chatList").append(`<div style="color:red;">나 : ${message}</div>`);
-    console.log(aaa);
+    if (chatMsg) {
+      socket.emit("send-chat", room, name, chatMsg);
+      void refetch();
+      setChatMsg("");
+      chatInput.current?.value = "";
+    }
   };
 
   return (
     <>
-      <div id="asdddd"></div>
-      <ChatUi onChangeInput={onChangeInput} onClickSendBtn={onClickSendBtn} />
+      <ChatUi
+        onChangeInput={onChangeInput}
+        onClickSendBtn={onClickSendBtn}
+        data={data}
+        chatInput={chatInput}
+      />
     </>
   );
 };

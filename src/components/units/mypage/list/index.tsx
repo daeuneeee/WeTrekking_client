@@ -74,7 +74,7 @@ const UList = ({
   const [acceptCrew] = useMutation(ACCEPT_CREW);
   const [rejectCrew] = useMutation(REJECT_CREW);
 
-  const onClickAccept = (userId) => async () => {
+  const onClickAccept = (userId: string) => async () => {
     try {
       await acceptCrew({
         variables: {
@@ -94,7 +94,7 @@ const UList = ({
       }
     }
   };
-  const onClickRejectCrew = (userId) => async () => {
+  const onClickRejectCrew = (userId: string) => async () => {
     try {
       await rejectCrew({
         variables: {

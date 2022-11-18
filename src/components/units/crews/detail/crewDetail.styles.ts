@@ -440,6 +440,7 @@ export const CrewLoginBtn = styled.button`
   color: white;
   margin-top: 1rem;
   border: none;
+  cursor: pointer;
 `;
 
 export const CrewInformBox = styled.div`

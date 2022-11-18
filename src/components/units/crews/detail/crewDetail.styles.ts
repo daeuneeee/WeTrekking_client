@@ -341,7 +341,7 @@ export const BodyTitle = styled.p`
 
 export const Map = styled.div`
   width: 100%;
-  height: 434px;
+  height: 43.4rem;
   border-radius: 8px;
   margin-bottom: 1.9rem;
   margin-top: 2.4rem;

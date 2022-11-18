@@ -62,12 +62,12 @@ const CrewSubCommentList = ({ subCommentsMap }: ICrewSubCommentListProps) => {
   };
 
   const onClickEdit = async () => {
-    console.log(editComments);
     const myVariables: IMyVariablesProps = {
       subCommentId: commentId,
+      updateSubCrewCommentInput: {},
     };
     if (editComments) {
-      myVariables.updateComment = editComments;
+      myVariables.updateSubCrewCommentInput.subComment = editComments;
     }
 
     await updateSubCrewComment({

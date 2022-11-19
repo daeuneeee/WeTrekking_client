@@ -10,6 +10,7 @@ const CrewReviewWriteUi = ({
   onChangeFile,
   imageUrls,
   errors,
+  crewBoardInfo,
 }: ICrewReviewWriteUiProps) => {
   return (
     <form onSubmit={handleSubmit(onClickRegister)}>
@@ -112,7 +113,7 @@ const CrewReviewWriteUi = ({
             <S.Error>{errors.title?.message}</S.Error>
           </S.InputBox>
           <S.InputBox>
-            <S.Label>산</S.Label>
+            <S.Label>{crewBoardInfo?.fetchCrewBoard.mountain.mountain}</S.Label>
             {/* <S.Input {...register("title")} /> */}
           </S.InputBox>
           <S.InputBox>

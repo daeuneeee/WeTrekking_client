@@ -25,7 +25,26 @@ export const FETCH_CREW_BOARD = gql`
     fetchCrewBoard(crewBoardId: $crewBoardId) {
       id
       title
-      mountain
+      description
+      date
+      dateTime
+      addressDetail
+      address
+      gender
+      dues
+      peoples
+      mountain {
+        id
+        mountain
+        address
+      }
+      user {
+        id
+        nickname
+        gender
+        birth
+        profile_img
+      }
     }
   }
 `;

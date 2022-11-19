@@ -84,7 +84,9 @@ const ReviewDetail = () => {
   const onClickModalConfirm = async () => {
     try {
       await deleteReviewBoard({
-        variables: { revewBoardId: crewId },
+        variables: {
+          reviewBoardId: crewId,
+        },
         update(cache) {
           cache.modify({ fields: { fetchReviewBoards: () => {} } });
         },

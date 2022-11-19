@@ -243,7 +243,7 @@ export const Partition = styled.span`
 
 export const Search = styled.input`
   padding: 0.5rem 1.2rem;
-  width: 216px;
+  width: 100%;
   height: 32px;
   background-color: #fff;
   border: 1px solid #d9d9d9;
@@ -253,12 +253,6 @@ export const Search = styled.input`
     font-weight: 400;
     font-size: 1.3rem;
     color: #666;
-  }
-  @media ${mobile} {
-    width: 100%;
-  }
-  @media ${tablet} {
-    width: 100%;
   }
 `;
 
@@ -393,13 +387,6 @@ export const ListCrewsBox = styled.div`
   }
 `;
 
-// export const ListCrewsImg = styled.div`
-//   border: 1px solid blue;
-//   border-radius: 100%;
-//   width: 24px;
-//   height: 24px;
-// `;
-
 export const ListCrewsNum = styled.span`
   font-weight: 400;
   font-size: 1.3rem;
@@ -419,11 +406,6 @@ export const ListLocationBox = styled.div`
   align-items: center;
 `;
 
-// export const LocationImg = styled.div`
-//   width: 16px;
-//   height: 16px;
-// `;
-
 export const Location = styled.span`
   font-weight: 400;
   font-size: 1.3rem;
@@ -439,11 +421,6 @@ export const ListTimeAndDayBox = styled.div`
   gap: 0.5rem;
   align-items: center;
 `;
-
-// export const TimeImg = styled.div`
-//   width: 16px;
-//   height: 16px;
-// `;
 
 export const Day = styled.span`
   font-weight: 400;
@@ -542,4 +519,22 @@ export const DateAntD = styled(RangePicker)`
   &.ant-picker-range .ant-picker-active-bar {
     background: ${subColor};
   }
+`;
+
+export const MountainSearchBox = styled.div`
+  position: relative;
+  width: 216px;
+  @media ${mobile} {
+    width: 100%;
+  }
+  @media ${tablet} {
+    width: 100%;
+  }
+`;
+export const MountainSearchBtn = styled.span`
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+  color: ${mainColor};
 `;

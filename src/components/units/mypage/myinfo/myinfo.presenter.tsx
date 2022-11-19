@@ -8,6 +8,7 @@ const MyInfoUi = ({
   userDatas,
   onClickPointModal,
   onClickToReviewWrite,
+  data,
 }: IMyInfoUiProps) => {
   return (
     <S.Wrapper>
@@ -71,60 +72,63 @@ const MyInfoUi = ({
       <S.InfoContainer>
         <S.MyMListTitle>갔던 산 리스트</S.MyMListTitle>
         <S.MyMListContainer>
-          <S.MyMListBox>
-            <S.ReviewBg className="reviewBg">
-              <S.MyMListThum></S.MyMListThum>
-              <S.MyMListInfoBox>
-                <S.ListTitle>설악산 같이 가실?</S.ListTitle>
-                <S.ListMountainName>설악산</S.ListMountainName>
-                <S.ListMountainDate>
-                  22.11.24 <span>|</span> 14:00
-                </S.ListMountainDate>
-                <S.ListWriterT>모집자</S.ListWriterT>
-                <S.ListWriterInfoBox>
-                  <S.ListWriterInfoContainer>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                    />
-                    <S.ListWriterInfo>
-                      <S.ListWriterName>깜장이</S.ListWriterName>
-                      <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                    </S.ListWriterInfo>
-                  </S.ListWriterInfoContainer>
-                  <AvatarGroup max={6} spacing={"small"}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                    />
-                    <Avatar
-                      alt="Travis Howard"
-                      src="/static/images/avatar/2.jpg"
-                    />
-                    <Avatar
-                      alt="Cindy Baker"
-                      src="/static/images/avatar/3.jpg"
-                    />
-                    <Avatar
-                      alt="Agnes Walker"
-                      src="/static/images/avatar/4.jpg"
-                    />
-                    <Avatar
-                      alt="Trevor Henderson"
-                      src="/static/images/avatar/5.jpg"
-                    />
-                  </AvatarGroup>
-                </S.ListWriterInfoBox>
-              </S.MyMListInfoBox>
-            </S.ReviewBg>
-            <S.ReviewWriteBtn
-              id="123"
-              className="reviewBtn"
-              onClick={onClickToReviewWrite}
-            >
-              리뷰 쓰기
-            </S.ReviewWriteBtn>
-          </S.MyMListBox>
+          {data?.fetchVisitList.map((el) => {
+            return (
+              <S.MyMListBox key={el.id}>
+                <S.ReviewBg className="reviewBg">
+                  <S.MyMListThum
+                    style={{
+                      backgroundImage: `url(https://storage.googleapis.com/${el.crewBoard.thumbnail})`,
+                    }}
+                  ></S.MyMListThum>
+                  <S.MyMListInfoBox>
+                    <S.ListTitle>{el.crewBoard.title}</S.ListTitle>
+                    <S.ListMountainName>
+                      {el.crewBoard.mountain.mountain}
+                    </S.ListMountainName>
+                    <S.ListMountainDate>
+                      {el.crewBoard.date} <span>|</span> {el.crewBoard.dateTime}
+                    </S.ListMountainDate>
+                    <S.ListWriterT>모집자</S.ListWriterT>
+                    <S.ListWriterInfoBox>
+                      <S.ListWriterInfoContainer>
+                        <Avatar
+                          alt="프로필 이미지"
+                          src={`https://storage.googleapis.com/${String(
+                            el.crewBoard.user.profile_img
+                          )}`}
+                        />
+                        <S.ListWriterInfo>
+                          <S.ListWriterName>깜장이</S.ListWriterName>
+                          <S.ListWriterAgeGender>
+                            28 · 남성
+                          </S.ListWriterAgeGender>
+                        </S.ListWriterInfo>
+                      </S.ListWriterInfoContainer>
+                      <AvatarGroup max={6} spacing={"small"}>
+                        {data?.fetchVisitList.map((el) => {
+                          return (
+                            <Avatar
+                              alt="Remy Sharp"
+                              src={`https://storage.googleapis.com/$`}
+                              key={el.user.id}
+                            />
+                          );
+                        })}
+                      </AvatarGroup>
+                    </S.ListWriterInfoBox>
+                  </S.MyMListInfoBox>
+                </S.ReviewBg>
+                <S.ReviewWriteBtn
+                  id={el.crewBoard.id}
+                  className="reviewBtn"
+                  onClick={onClickToReviewWrite}
+                >
+                  리뷰 쓰기
+                </S.ReviewWriteBtn>
+              </S.MyMListBox>
+            );
+          })}
         </S.MyMListContainer>
       </S.InfoContainer>
       <PointBox />

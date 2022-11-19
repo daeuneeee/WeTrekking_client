@@ -2,17 +2,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import CrewReviewWriteUi from "./reviewWrite.presenter";
-import {
-  CREATE_REVIEW,
-  FETCH_CREW_BOARD,
-  UPLOAD_FILES_REVIEW,
-} from "./reviewWrite.queries";
+import { CREATE_REVIEW, UPLOAD_FILES_REVIEW } from "./reviewWrite.queries";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IFormData } from "./reviewWrite.types";
-// import { crewBoardIdState } from "../../../../store";
-// import { useRecoilState } from "recoil";
 import { IMutation } from "../../../../commons/types/generated/types";
+import { useRecoilState } from "recoil";
+import { crewBoardIdState } from "../../../../store";
+import { FETCH_CREW_BOARD } from "../../crews/detail/crewDetail.queries";
 
 const schema = yup.object({
   title: yup.string().required("제목을 입력해주세요"),
@@ -31,7 +28,7 @@ const CrewReviewWrite = () => {
   const [rate, setRate] = useState(5);
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
-  // const [crewBoardId] = useRecoilState(crewBoardIdState);
+  const [crewBoardId] = useRecoilState(crewBoardIdState);
 
   const [createReview] =
     useMutation<Pick<IMutation, "createReviewBoard">>(CREATE_REVIEW);
@@ -45,7 +42,7 @@ const CrewReviewWrite = () => {
 
   const { data: crewBoardInfo } = useQuery(FETCH_CREW_BOARD, {
     variables: {
-      crewBoardId: "b1a1eb74-9930-435b-8b9f-43ef683b1174",
+      crewBoardId: crewBoardId,
     },
   });
 
@@ -67,9 +64,11 @@ const CrewReviewWrite = () => {
 
       data.star = rate;
 
+      console.log(data);
+
       await createReview({
         variables: {
-          crewUserListId: "asdasd",
+          crewUserListId: "asdasdad-asdas-dasdasd-sad",
           createReviewBoardInput: data,
           imgURL: resultUrlsFlat,
         },
@@ -110,6 +109,7 @@ const CrewReviewWrite = () => {
       onChangeFile={onChangeFile}
       imageUrls={imageUrls}
       errors={errors}
+      crewBoardInfo={crewBoardInfo}
     />
   );
 };

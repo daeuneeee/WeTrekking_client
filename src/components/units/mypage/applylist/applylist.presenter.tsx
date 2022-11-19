@@ -39,7 +39,7 @@ const ApplyListUi = ({
                 </S.ListLiSign>
                 <S.ListLiCancel>
                   <S.CancelBtn>
-                    <S.CancelMent id={el.id} onClick={onClickModalOn}>
+                    <S.CancelMent id={el.crewBoard.id} onClick={onClickModalOn}>
                       취소하기
                     </S.CancelMent>
                   </S.CancelBtn>

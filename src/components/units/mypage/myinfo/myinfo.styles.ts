@@ -248,6 +248,7 @@ export const ListWriterT = styled.h5`
 export const ListWriterInfoBox = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   @media ${tablet} {
     flex-direction: row;
     align-items: center;

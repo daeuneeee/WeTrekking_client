@@ -98,11 +98,7 @@ const CrewListUi = ({
             </S.TitleBox>
             <S.SearchBox>
               <S.SelectDateBox>
-                <S.SelectAntD
-                  defaultValue="서울"
-                  // style={{ width: 120 }}
-                  onChange={handleChange}
-                >
+                <S.SelectAntD defaultValue="서울" onChange={handleChange}>
                   <Option value="서울">서울</Option>
                   <Option value="경기도">경기도</Option>
                   <Option value="인천">인천</Option>
@@ -113,7 +109,10 @@ const CrewListUi = ({
                 </Space>
               </S.SelectDateBox>
               <S.Partition></S.Partition>
-              <S.Search placeholder="검색어를 입력해주세요" />
+              <S.MountainSearchBox>
+                <S.Search placeholder="산이름" />
+                <S.MountainSearchBtn>찾기</S.MountainSearchBtn>
+              </S.MountainSearchBox>
               <S.SearchBtnBox>
                 <S.SearchBtn>검색</S.SearchBtn>
                 <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>

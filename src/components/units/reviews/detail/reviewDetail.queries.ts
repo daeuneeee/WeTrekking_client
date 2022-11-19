@@ -33,3 +33,9 @@ export const FETCH_REVIEW_COMMENTS = gql`
     }
   }
 `;
+
+export const DELETE_REVIEW_BOARD = gql`
+  mutation deleteReviewBoard($revewBoardId: String!) {
+    deleteReviewBoard(revewBoardId: $revewBoardId)
+  }
+`;

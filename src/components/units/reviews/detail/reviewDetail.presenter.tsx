@@ -7,12 +7,18 @@ import ReviewCommentWrite from "../../reviewComment/write";
 import { IReviewDetailUiProps } from "./reviewDetail.types";
 import InfiniteScroll from "react-infinite-scroller";
 import { getAge } from "../../../../commons/utils/getAge";
+import ConfirmModal from "../../../commons/modals/confirmModal";
 
 const ReviewDetailUi = ({
   data,
   onClickX,
   reviewComments,
   onLoadMore,
+  onClickShowModal,
+  onClickModalConfirm,
+  onClickCancelModal,
+  isModalOpen,
+  userId,
 }: IReviewDetailUiProps) => {
   console.log(data);
   return (
@@ -60,6 +66,15 @@ const ReviewDetailUi = ({
         <S.UnderLine></S.UnderLine>
         <S.Review>{data?.fetchReviewBoard.review}</S.Review>
         <S.UnderLine></S.UnderLine>
+        <S.BtnBox>
+          {userId === data?.fetchReviewBoard.user.id ? (
+            <S.Btn onClick={onClickShowModal} id={data?.fetchReviewBoard.id}>
+              삭제
+            </S.Btn>
+          ) : (
+            <></>
+          )}
+        </S.BtnBox>
         <S.CommentContainer>
           <ReviewCommentWrite />
           <S.ScrollBox>
@@ -80,6 +95,12 @@ const ReviewDetailUi = ({
             </InfiniteScroll>
           </S.ScrollBox>
         </S.CommentContainer>
+        <ConfirmModal
+          onOk={onClickModalConfirm}
+          onCancel={onClickCancelModal}
+          contents="게시글을 삭제하시겠습니까?"
+          open={isModalOpen}
+        />
       </S.Wrapper>
     </>
   );

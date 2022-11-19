@@ -73,6 +73,7 @@ export const InformBox = styled.div`
   justify-content: space-between;
   @media ${tablet} {
     flex-direction: column;
+    gap: 2rem;
   }
 `;
 
@@ -101,6 +102,7 @@ export const RatingBox = styled.div``;
 export const WriterInform = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 `;
 
 export const NickName = styled.span`
@@ -141,6 +143,31 @@ export const ScrollBox = styled.div`
   width: 100%;
   height: auto;
   overflow-y: auto;
+`;
+
+export const BtnBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2.4rem;
+  margin: 0 auto 9.6rem;
+  justify-content: center;
+  @media ${tablet} {
+    width: 100%;
+  }
+`;
+
+export const Btn = styled.button`
+  width: 180px;
+  height: 6.4rem;
+  background: #999999;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.8rem;
+  cursor: pointer;
+  background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
 `;
 
 // export const WriterInformBox = styled.div`

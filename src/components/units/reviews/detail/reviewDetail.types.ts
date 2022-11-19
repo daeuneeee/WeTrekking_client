@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IReviewDetailUiProps {
@@ -5,4 +6,9 @@ export interface IReviewDetailUiProps {
   onClickX: () => void;
   onLoadMore: any;
   reviewComments?: Pick<IQuery, "fetchReviewComments">;
+  onClickShowModal: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickModalConfirm: () => void;
+  onClickCancelModal: () => void;
+  isModalOpen: boolean;
+  userId?: string;
 }

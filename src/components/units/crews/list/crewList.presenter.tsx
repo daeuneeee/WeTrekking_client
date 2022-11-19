@@ -7,6 +7,7 @@ import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
 import { getDate } from "../../../../commons/utils/getDate";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
+import MountainModal from "../../../commons/modals/mountainModal";
 
 const CrewListUi = ({
   onClickToWrite,
@@ -18,6 +19,9 @@ const CrewListUi = ({
   itemsLatest,
   itemsDeadLine,
   loginId,
+  onClickMountainSearch,
+  isMountainModalOpen,
+  mountainAddress,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -110,8 +114,13 @@ const CrewListUi = ({
               </S.SelectDateBox>
               <S.Partition></S.Partition>
               <S.MountainSearchBox>
-                <S.Search placeholder="산이름" />
-                <S.MountainSearchBtn>찾기</S.MountainSearchBtn>
+                <S.Search
+                  placeholder="산이름"
+                  value={mountainAddress.split("/", 1)[0].slice(0, -1)}
+                />
+                <S.MountainSearchBtn onClick={onClickMountainSearch}>
+                  찾기
+                </S.MountainSearchBtn>
               </S.MountainSearchBox>
               <S.SearchBtnBox>
                 <S.SearchBtn>검색</S.SearchBtn>
@@ -165,17 +174,16 @@ const CrewListUi = ({
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
                             <AvatarGroup max={20}>
-                              {listMap?.assignedUsers?.map((assignMap: any) => (
-                                <>
-                                  <Avatar
-                                    alt="user profile"
-                                    src={`https://storage.googleapis.com/${String(
-                                      assignMap?.profile_img
-                                    )}`}
-                                    sx={{ width: 24, height: 24 }}
-                                  />
-                                </>
-                              ))}
+                              {listMap?.assignedUsers?.map((assignMap: any) => [
+                                <Avatar
+                                  key={assignMap?.id}
+                                  alt="user profile"
+                                  src={`https://storage.googleapis.com/${String(
+                                    assignMap?.profile_img
+                                  )}`}
+                                  sx={{ width: 24, height: 24 }}
+                                />,
+                              ])}
                             </AvatarGroup>
                             <S.ListCrewsNum>
                               모집인원 {listMap?.assignedUsers.length}/
@@ -241,17 +249,16 @@ const CrewListUi = ({
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
                             <AvatarGroup max={20}>
-                              {listMap?.assignedUsers?.map((assignMap: any) => (
-                                <>
-                                  <Avatar
-                                    alt="user profile"
-                                    src={`https://storage.googleapis.com/${String(
-                                      assignMap?.profile_img
-                                    )}`}
-                                    sx={{ width: 24, height: 24 }}
-                                  />
-                                </>
-                              ))}
+                              {listMap?.assignedUsers?.map((assignMap: any) => [
+                                <Avatar
+                                  key={assignMap?.id}
+                                  alt="user profile"
+                                  src={`https://storage.googleapis.com/${String(
+                                    assignMap?.profile_img
+                                  )}`}
+                                  sx={{ width: 24, height: 24 }}
+                                />,
+                              ])}
                             </AvatarGroup>
                             <S.ListCrewsNum>
                               모집인원 {listMap?.assignedUsers.length}/
@@ -282,6 +289,7 @@ const CrewListUi = ({
             <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
           </S.Footer>
         </S.CrewBox>
+        {isMountainModalOpen && <MountainModal />}
       </S.Wrapper>
     </>
   );

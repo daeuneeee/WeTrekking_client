@@ -3,7 +3,11 @@ import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
-import { accessTokenState } from "../../../../store";
+import {
+  accessTokenState,
+  isMountainModalOpenState,
+  mountainAddressState,
+} from "../../../../store";
 
 import { errorModal } from "../../../commons/modals/alertModals";
 import { CREATE_DIB } from "../detail/crewDetail.queries";
@@ -22,6 +26,10 @@ const CrewList = () => {
   const [loginId, setLoginId] = useState("");
 
   const [accessToken] = useRecoilState(accessTokenState);
+  const [isMountainModalOpen, setIsMountainModalOpen] = useRecoilState(
+    isMountainModalOpenState
+  );
+  const [mountainAddress] = useRecoilState(mountainAddressState);
 
   const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
 
@@ -81,6 +89,12 @@ const CrewList = () => {
     setVisible((prev) => prev + 9);
   };
 
+  const onClickMountainSearch = () => {
+    setIsMountainModalOpen(true);
+  };
+
+  console.log(mountainAddress.split("/", 1)[0].slice(0, -1));
+
   return (
     <CrewListUi
       onClickToWrite={onClickToWrite}
@@ -92,6 +106,9 @@ const CrewList = () => {
       itemsLatest={itemsLatest}
       itemsDeadLine={itemsDeadLine}
       loginId={loginId}
+      onClickMountainSearch={onClickMountainSearch}
+      isMountainModalOpen={isMountainModalOpen}
+      mountainAddress={mountainAddress}
     />
   );
 };

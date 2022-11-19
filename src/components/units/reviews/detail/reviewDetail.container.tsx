@@ -1,15 +1,26 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { MouseEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import {
+  IMutation,
+  IMutationDeleteReviewBoardArgs,
   IQuery,
   IQueryFetchReviewBoardArgs,
   IQueryFetchReviewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSideBarState, reviewIdState } from "../../../../store";
+import { successModal } from "../../../commons/modals/alertModals";
+import {
+  DELETE_CREW_BOARD,
+  FETCH_USER,
+} from "../../crews/detail/crewDetail.queries";
 import ReviewDetailUi from "./reviewDetail.presenter";
 import { FETCH_REVIEW, FETCH_REVIEW_COMMENTS } from "./reviewDetail.queries";
 
 const ReviewDetail = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [crewId, setCrewId] = useState("");
+
   const [reviewId] = useRecoilState(reviewIdState);
   const [, setIsOpenSideBar] = useRecoilState(isOpenSideBarState);
 
@@ -20,9 +31,7 @@ const ReviewDetail = () => {
     variables: { reviewBoardId: reviewId },
   });
 
-  const onClickX = () => {
-    setIsOpenSideBar(false);
-  };
+  const { data: userInform } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
   const { data: reviewComments, fetchMore } = useQuery<
     Pick<IQuery, "fetchReviewComments">,
@@ -31,6 +40,16 @@ const ReviewDetail = () => {
     variables: { reviewBoardId: reviewId },
   });
 
+  const [deleteReviewBoard] = useMutation<
+    Pick<IMutation, "deleteReviewBoard">,
+    IMutationDeleteReviewBoardArgs
+  >(DELETE_CREW_BOARD);
+
+  const userId = userInform?.fetchUser.id;
+
+  const onClickX = () => {
+    setIsOpenSideBar(false);
+  };
   const onLoadMore = async () => {
     if (!reviewComments) return;
     await fetchMore({
@@ -53,12 +72,40 @@ const ReviewDetail = () => {
     });
   };
 
+  const onClickShowModal = (event: MouseEvent<HTMLButtonElement>) => {
+    setIsModalOpen(true);
+    setCrewId(event.currentTarget.id);
+  };
+  console.log(crewId);
+
+  const onClickCancelModal = () => {
+    setIsModalOpen(false);
+  };
+  const onClickModalConfirm = async () => {
+    try {
+      await deleteReviewBoard({
+        variables: { revewBoardId: crewId },
+        update(cache) {
+          cache.modify({ fields: { fetchReviewBoards: () => {} } });
+        },
+      });
+      successModal("정상적으로 삭제되었습니다.");
+      setIsOpenSideBar(false);
+      setIsModalOpen(false);
+    } catch (error) {}
+  };
+
   return (
     <ReviewDetailUi
       data={data}
       onClickX={onClickX}
       reviewComments={reviewComments}
       onLoadMore={onLoadMore}
+      onClickShowModal={onClickShowModal}
+      onClickModalConfirm={onClickModalConfirm}
+      onClickCancelModal={onClickCancelModal}
+      isModalOpen={isModalOpen}
+      userId={userId}
     />
   );
 };

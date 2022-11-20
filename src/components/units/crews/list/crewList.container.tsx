@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
 import {
@@ -24,6 +24,10 @@ const CrewList = () => {
   const [sort, setSort] = useState(true);
   const [visible, setVisible] = useState(9);
   const [loginId, setLoginId] = useState("");
+  const [region, setRegion] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  // const [search, setSearch] = useState("");
 
   const [accessToken] = useRecoilState(accessTokenState);
   const [isMountainModalOpen, setIsMountainModalOpen] = useRecoilState(
@@ -33,9 +37,11 @@ const CrewList = () => {
 
   const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
 
-  const { data } = useQuery<Pick<IQuery, "fetchCrewBoardsLatestFirst">>(
-    FETCH_CREW_BOARDS_LATEST
-  );
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchCrewBoardsLatestFirst">
+  >(FETCH_CREW_BOARDS_LATEST, {
+    variables: { region: "", startDate: "", endDate: "", search: "" },
+  });
 
   const { data: deadLine } = useQuery<
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
@@ -92,8 +98,22 @@ const CrewList = () => {
   const onClickMountainSearch = () => {
     setIsMountainModalOpen(true);
   };
+  const onChangeRegion = (value: any) => {
+    setRegion(value);
+  };
+  // setSearch(mountainAddress.split("/", 1)[0].slice(0, -1));
+  // console.log(mountainAddress);
 
-  console.log(mountainAddress.split("/", 1)[0].slice(0, -1));
+  const search = mountainAddress.split("/", 1)[0].slice(0, -1);
+
+  const onChangeDate = (value: any, stringDate: string) => {
+    setStartDate(stringDate[0]);
+    setEndDate(stringDate[1]);
+  };
+
+  const onClickLatestSearch = async () => {
+    await refetch({ region, startDate, endDate, search });
+  };
 
   return (
     <CrewListUi
@@ -109,6 +129,10 @@ const CrewList = () => {
       onClickMountainSearch={onClickMountainSearch}
       isMountainModalOpen={isMountainModalOpen}
       mountainAddress={mountainAddress}
+      onChangeRegion={onChangeRegion}
+      onChangeDate={onChangeDate}
+      // onChangeSearch={onChangeSearch}
+      onClickLatestSearch={onClickLatestSearch}
     />
   );
 };

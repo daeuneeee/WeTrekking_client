@@ -22,12 +22,12 @@ const CrewListUi = ({
   onClickMountainSearch,
   isMountainModalOpen,
   mountainAddress,
+  onChangeRegion,
+  onChangeSearch,
+  onChangeDate,
+  onClickLatestSearch,
 }: ICrewListUiProps) => {
   const { Option } = Select;
-
-  const handleChange = (value: any) => {
-    console.log(value);
-  };
 
   return (
     <>
@@ -102,14 +102,29 @@ const CrewListUi = ({
             </S.TitleBox>
             <S.SearchBox>
               <S.SelectDateBox>
-                <S.SelectAntD defaultValue="서울" onChange={handleChange}>
-                  <Option value="서울">서울</Option>
+                <S.SelectAntD defaultValue="지역선택" onChange={onChangeRegion}>
+                  <Option value="서울특별시">서울특별시</Option>
                   <Option value="경기도">경기도</Option>
-                  <Option value="인천">인천</Option>
+                  <Option value="인천광역시">인천광역시</Option>
+                  <Option value="대전광역시">대전광역시</Option>
+                  <Option value="부산광역시">부산광역시</Option>
+                  <Option value="대구광역시">대구광역시</Option>
+                  <Option value="광주광역시">광주광역시</Option>
+                  <Option value="강원도">강원도</Option>
+                  <Option value="충청남도">충청남도</Option>
+                  <Option value="충청북도">충청북도</Option>
+                  <Option value="전라남도">전라남도</Option>
+                  <Option value="전라북도">전라북도</Option>
+                  <Option value="경상남도">경상남도</Option>
+                  <Option value="경상북도">경상북도</Option>
+                  <Option value="제주도">제주도</Option>
                 </S.SelectAntD>
                 <S.Partition></S.Partition>
                 <Space direction="vertical">
-                  <S.DateAntD placeholder={["시작 날짜", "끝 날짜"]} />
+                  <S.DateAntD
+                    placeholder={["시작 날짜", "끝 날짜"]}
+                    onChange={onChangeDate}
+                  />
                 </Space>
               </S.SelectDateBox>
               <S.Partition></S.Partition>
@@ -117,13 +132,14 @@ const CrewListUi = ({
                 <S.Search
                   placeholder="산이름"
                   value={mountainAddress.split("/", 1)[0].slice(0, -1)}
+                  onChange={onChangeSearch}
                 />
                 <S.MountainSearchBtn onClick={onClickMountainSearch}>
                   찾기
                 </S.MountainSearchBtn>
               </S.MountainSearchBox>
               <S.SearchBtnBox>
-                <S.SearchBtn>검색</S.SearchBtn>
+                <S.SearchBtn onClick={onClickLatestSearch}>검색</S.SearchBtn>
                 <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>
               </S.SearchBtnBox>
             </S.SearchBox>
@@ -193,7 +209,7 @@ const CrewListUi = ({
                         </S.ListBody>
                         <S.ListFooter>
                           <S.ListLocationBox>
-                            <S.Location>설악산</S.Location>
+                            <S.Location>{listMap.mountain.mountain}</S.Location>
                           </S.ListLocationBox>
                           <S.ListTimeAndDayBox>
                             <S.Day>{listMap?.date}</S.Day>
@@ -272,7 +288,7 @@ const CrewListUi = ({
                         </S.ListBody>
                         <S.ListFooter>
                           <S.ListLocationBox>
-                            <S.Location>설악산</S.Location>
+                            <S.Location>{listMap.mountain.mountain}</S.Location>
                           </S.ListLocationBox>
                           <S.ListTimeAndDayBox>
                             <S.Day>{listMap?.date}</S.Day>

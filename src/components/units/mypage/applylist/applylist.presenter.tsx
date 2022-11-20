@@ -11,6 +11,8 @@ const ApplyListUi = ({
   onClickModalOn,
   onClickModalOff,
   isActive,
+  onChangePage,
+  pageNum,
 }: IApplyListUiProps) => {
   return (
     <S.Wrapper>
@@ -24,10 +26,14 @@ const ApplyListUi = ({
             <S.ListLiSign>상태</S.ListLiSign>
             <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
-          {data?.fetchCrewUserList[0].map((el: any, index: number) => {
+
+          {data?.fetchCrewUserList[pageNum].map((el, index) => {
+
             return (
               <S.ContentUl key={el.id}>
-                <S.ListLiNum className="mobile">{index + 1}</S.ListLiNum>
+                <S.ListLiNum className="mobile">
+                  {String(index + 1)}
+                </S.ListLiNum>
                 <S.ListLiMountain>
                   {el.crewBoard.mountain.mountain}
                 </S.ListLiMountain>
@@ -49,7 +55,11 @@ const ApplyListUi = ({
           })}
         </S.ApplyListContainer>
         <S.PaginationContainer>
-          <Pagination defaultCurrent={1} total={50} />
+          <Pagination
+            current={Number(pageNum) + 1}
+            total={Number(data?.fetchCrewUserList.length) * 10}
+            onChange={onChangePage}
+          />
         </S.PaginationContainer>
       </S.Container>
       <ConfirmModal

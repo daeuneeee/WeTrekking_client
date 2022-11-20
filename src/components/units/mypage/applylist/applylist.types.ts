@@ -7,4 +7,6 @@ export interface IApplyListUiProps {
   onClickModalOn: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickModalOff: () => void;
   isActive: boolean;
+  onChangePage: (page: number) => void;
+  pageNum: number;
 }

@@ -10,6 +10,8 @@ import { IMutation } from "../../../../commons/types/generated/types";
 import { useRecoilState } from "recoil";
 import { crewBoardIdState } from "../../../../store";
 import { FETCH_CREW_BOARD } from "../../crews/detail/crewDetail.queries";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
+import { useRouter } from "next/router";
 
 const schema = yup.object({
   title: yup.string().required("제목을 입력해주세요"),
@@ -29,6 +31,8 @@ const CrewReviewWrite = () => {
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
   const [crewBoardId] = useRecoilState(crewBoardIdState);
+
+  const router = useRouter();
 
   const [createReview] =
     useMutation<Pick<IMutation, "createReviewBoard">>(CREATE_REVIEW);
@@ -64,18 +68,18 @@ const CrewReviewWrite = () => {
 
       data.star = rate;
 
-      console.log(data);
-
       await createReview({
         variables: {
-          crewUserListId: "asdasdad-asdas-dasdasd-sad",
+          crewUserListId: crewBoardId,
           createReviewBoardInput: data,
           imgURL: resultUrlsFlat,
         },
       });
+      successModal("리뷰가 작성되었습니다.");
+      void router.push("/reviews");
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        errorModal(error.message);
       }
     }
   };

@@ -26,7 +26,9 @@ const ApplyListUi = ({
             <S.ListLiSign>상태</S.ListLiSign>
             <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
+
           {data?.fetchCrewUserList[pageNum].map((el, index) => {
+
             return (
               <S.ContentUl key={el.id}>
                 <S.ListLiNum className="mobile">

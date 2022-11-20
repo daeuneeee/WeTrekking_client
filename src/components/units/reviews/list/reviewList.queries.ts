@@ -8,6 +8,9 @@ export const FETCH_REVIEWS = gql`
       review
       star
       like
+      user {
+        nickname
+      }
     }
   }
 `;

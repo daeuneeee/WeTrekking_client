@@ -38,7 +38,7 @@ const ReviewWrapper = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9998;
+    z-index: 999;
     background-color: #fff;
   }
 `;

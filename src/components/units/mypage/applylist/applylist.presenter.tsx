@@ -28,7 +28,6 @@ const ApplyListUi = ({
           </S.TitleUl>
 
           {data?.fetchCrewUserList[pageNum].map((el, index) => {
-
             return (
               <S.ContentUl key={el.id}>
                 <S.ListLiNum className="mobile">

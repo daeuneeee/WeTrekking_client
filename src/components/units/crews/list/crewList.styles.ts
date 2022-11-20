@@ -348,7 +348,7 @@ export const ListThumbnail = styled.div`
   background: #cccccc;
   border-radius: 8px;
   margin-bottom: 1.6rem;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 `;
@@ -535,6 +535,7 @@ export const MountainSearchBtn = styled.span`
   position: absolute;
   top: 0.5rem;
   right: 1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   color: ${mainColor};
 `;

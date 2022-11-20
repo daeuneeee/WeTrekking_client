@@ -20,4 +20,6 @@ export interface ICrewDetailUiProps {
   onClickToChat: () => void;
   onClickApply: () => void;
   acceptedList?: Pick<IQuery, "fetchAcceptedList">;
+  onClickRoute: () => void;
+  isRouteModalOpen: boolean;
 }

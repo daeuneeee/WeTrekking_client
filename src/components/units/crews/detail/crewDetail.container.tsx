@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { MouseEvent, useState } from "react";
+import { useRecoilState } from "recoil";
 import {
   IMutation,
   IQuery,
@@ -9,6 +10,7 @@ import {
   IQueryFetchCrewBoardArgs,
   IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
+import { isRouteModalOpenState } from "../../../../store";
 import { errorModal, successModal } from "../../../commons/modals/alertModals";
 import {
   FETCH_CREW_BOARDS_DEADLINE,
@@ -29,8 +31,13 @@ import {
 
 const CrewDetail = () => {
   const router = useRouter();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setCrewId] = useState("");
+
+  const [isRouteModalOpen, setIsRouteModalOpen] = useRecoilState(
+    isRouteModalOpenState
+  );
 
   const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
   const [createCrewUserList] = useMutation<
@@ -78,6 +85,10 @@ const CrewDetail = () => {
 
   const userId = userInform?.fetchUser.id;
   const boardId = data?.fetchCrewBoard.user.id;
+
+  const onClickRoute = () => {
+    setIsRouteModalOpen(true);
+  };
 
   const onClickEdit = () => {
     void router.push(`/crews/${String(router.query.crewId)}/edit`);
@@ -187,6 +198,8 @@ const CrewDetail = () => {
       onClickToChat={onClickToChat}
       onClickApply={onClickApply}
       acceptedList={acceptedList}
+      onClickRoute={onClickRoute}
+      isRouteModalOpen={isRouteModalOpen}
     />
   );
 };

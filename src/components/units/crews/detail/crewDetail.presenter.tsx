@@ -13,6 +13,7 @@ import * as S from "./crewDetail.styles";
 import { ICrewDetailUiProps } from "./crewDetail.types";
 import { v4 as uuidv4 } from "uuid";
 import { getAge } from "../../../../commons/utils/getAge";
+import RouteModal from "../../../commons/modals/routeModal";
 
 const CrewDetailUi = ({
   data,
@@ -33,12 +34,10 @@ const CrewDetailUi = ({
   onClickToChat,
   onClickApply,
   acceptedList,
+  onClickRoute,
+  isRouteModalOpen,
 }: ICrewDetailUiProps) => {
   const [accessToken] = useRecoilState(accessTokenState);
-  const year = new Date().getFullYear();
-  const userBirth =
-    year - Number(data?.fetchCrewBoard.user.birth?.slice(0, 4)) + 1;
-
   return (
     <>
       <S.Wrapper>
@@ -106,6 +105,9 @@ const CrewDetailUi = ({
                   <S.PickChatBox onClick={onClickToChat}>
                     <S.ChatBox></S.ChatBox>
                   </S.PickChatBox>
+                  <S.PickChatBox onClick={onClickRoute}>
+                    <S.RouteBox></S.RouteBox>
+                  </S.PickChatBox>
                   <S.PickChatBox>
                     <S.PickBox onClick={onClickPick}>
                       {Number(isDib) >= 1 ? <PickTrueSvg /> : <PickFalseSvg />}
@@ -124,7 +126,9 @@ const CrewDetailUi = ({
                 <S.ProfileInform>
                   <S.NickName>{data?.fetchCrewBoard.user.nickname}</S.NickName>
                   <S.AgeGenderBox>
-                    <S.AgeGender>{userBirth}</S.AgeGender>
+                    <S.AgeGender>
+                      {getAge(String(data?.fetchCrewBoard.user.birth))}
+                    </S.AgeGender>
                     <S.AgeGender>·</S.AgeGender>
                     <S.AgeGender>
                       {data?.fetchCrewBoard.gender
@@ -328,6 +332,12 @@ const CrewDetailUi = ({
           contents="게시글을 삭제하시겠습니까?"
           open={isModalOpen}
         />
+        {isRouteModalOpen && (
+          <RouteModal
+            mountain={String(data?.fetchCrewBoard.mountain.mountain)}
+            address={String(data?.fetchCrewBoard.mountain.address)}
+          />
+        )}
       </S.Wrapper>
     </>
   );

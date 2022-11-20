@@ -55,3 +55,8 @@ export const mountainIdState = atom({
   key: "mountainIdState",
   default: "",
 });
+
+export const isRouteModalOpenState = atom({
+  key: "isRouteModalOpenState",
+  default: false,
+});

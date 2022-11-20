@@ -10,4 +10,7 @@ export interface ICrewListUiProps {
   itemsLatest: any;
   itemsDeadLine: any;
   loginId: string;
+  onClickMountainSearch: () => void;
+  isMountainModalOpen: boolean;
+  mountainAddress: string;
 }

@@ -102,12 +102,19 @@ const CrewDetailUi = ({
                   <S.Title>{data?.fetchCrewBoard.title}</S.Title>
                 </S.LocationTitleBox>
                 <S.PickChatContainer>
-                  <S.PickChatBox onClick={onClickToChat}>
-                    <S.ChatBox></S.ChatBox>
-                  </S.PickChatBox>
+                  {acceptedList?.fetchAcceptedList
+                    .map((el) => el.user.id)
+                    .includes(String(userId)) ? (
+                    <S.PickChatBox onClick={onClickToChat}>
+                      <S.ChatBox></S.ChatBox>
+                    </S.PickChatBox>
+                  ) : (
+                    <></>
+                  )}
                   <S.PickChatBox onClick={onClickRoute}>
                     <S.RouteBox></S.RouteBox>
                   </S.PickChatBox>
+
                   <S.PickChatBox>
                     <S.PickBox onClick={onClickPick}>
                       {Number(isDib) >= 1 ? <PickTrueSvg /> : <PickFalseSvg />}

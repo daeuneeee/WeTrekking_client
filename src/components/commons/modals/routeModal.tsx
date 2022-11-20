@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { isRouteModalOpenState } from "../../../store";
+import { errorModal } from "./alertModals";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -12,15 +13,6 @@ interface IRouteModalProps {
   mountain: string;
   address: string;
 }
-
-const TREKKING_INFORM = gql`
-  query fetchTrekkingInfo($address: String!, $mountainName: String!) {
-    fetchTrekkingInfo(address: $address, mountainName: $mountainName) {
-      mountainName
-      coordinate
-    }
-  }
-`;
 
 const TREKKING_DATA = gql`
   query fetchTrekkingCoordinate($mountainName: String!) {
@@ -35,10 +27,6 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
   console.log(mountain, address);
   const [, setIsRouteModalOpen] = useRecoilState(isRouteModalOpenState);
 
-  const { data } = useQuery(TREKKING_INFORM, {
-    variables: { address: address.slice(0, -1), mountainName: mountain },
-  });
-
   const { data: fetchData } = useQuery(TREKKING_DATA, {
     variables: { mountainName: mountain },
   });
@@ -49,53 +37,61 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
     setIsRouteModalOpen((prev) => !prev);
   };
 
-  const getCoordinates = () => {
+  const getCoordinates = async (fetchData: any) => {
     const geocoder = new window.kakao.maps.services.Geocoder();
-    const coordData: any = [];
-    fetchData?.fetchTrekkingCoordinate.map((el: any) => {
-      const coord = new window.kakao.maps.LatLng(
-        el.coordinate[0][0],
-        el.coordinate[0][1]
-      );
-      geocoder.coord2Address(
-        coord.getLng(),
-        coord.getLat(),
-        (result: any, status: any) => {
-          //   const arr = result[0].address.address_name.split(" ");
-          //   const temp = `${String(arr[0])} ${String(arr[1])}`;
-          // console.log(result);
-          //   if (address.includes(temp)) {
-          //     coordData.push(el.coordinate);
-          //   }
-          coordData.push(el.coordinate);
-        }
-      );
-    });
-    const result: any = [];
-    coordData[0]?.map((el: any) => {
-      result.concat(el);
-    });
-    return coordData;
+    const coords: any = [];
+    await Promise.all(
+      fetchData.fetchTrekkingCoordinate.map(async (el: any) => {
+        return await new Promise((resolve, reject) => {
+          const coord = new window.kakao.maps.LatLng(
+            el.coordinate[0][0],
+            el.coordinate[0][1]
+          );
+          geocoder.coord2Address(
+            coord.getLng(),
+            coord.getLat(),
+            (result: any, status: any) => {
+              //   const arr = result[0].address.address_name.split(" ");
+              //   const temp = `${String(arr[0])} ${String(arr[1])}`;
+              // console.log(result);
+              //   if (address.includes(temp)) {
+              //     coordData.push(el.coordinate);
+              //   }
+              coords.push(el.coordinate);
+              resolve("");
+            }
+          );
+        });
+      })
+    );
+    return coords;
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!fetchData) return;
-    const coordData = getCoordinates();
+    const coordData = await getCoordinates(fetchData);
     console.log(coordData);
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=abcd05d0eb39667951498f33e9ade254";
     document.head.appendChild(script);
 
-    script.onload = () => {
-      const positions = [];
-      coordData.map((el) => {
-        el.map((el2) => {
-          positions.push({
-            latlng: new window.kakao.maps.LatLng(el2[0], el2[1]),
+    script.onload = async () => {
+      const positions: any[] = [];
+      await Promise.all(
+        coordData.map(async (el: any) => {
+          return await new Promise((resolve, reject) => {
+            const result = el.map((el2: any) => {
+              const data = {
+                latlng: new window.kakao.maps.LatLng(el2[0], el2[1]),
+              };
+              positions.push(data);
+              return data;
+            });
+            resolve(result);
           });
-        });
-      });
+        })
+      );
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById("map"); // 지도를 표시할 div
         const mapOption = {
@@ -107,40 +103,6 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
         };
 
         const map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-        // 마커를 표시할 위치와 title 객체 배열입니다
-        // const positions = [
-        //   {
-        //     latlng: new window.kakao.maps.LatLng(
-        //       38.11917214241462,
-        //       128.4667713787109
-        //     ),
-        //   },
-        //   {
-        //     latlng: new window.kakao.maps.LatLng(
-        //       38.11919379341161,
-        //       128.4672751106581
-        //     ),
-        //   },
-        //   {
-        //     latlng: new window.kakao.maps.LatLng(
-        //       38.119275281239695,
-        //       128.4676206818399
-        //     ),
-        //   },
-        //   {
-        //     latlng: new window.kakao.maps.LatLng(
-        //       38.11954853745286,
-        //       128.4680696575272
-        //     ),
-        //   },
-        //   {
-        //     latlng: new window.kakao.maps.LatLng(
-        //       38.11996363398246,
-        //       128.4686119882263
-        //     ),
-        //   },
-        // ];
 
         // 마커 이미지의 이미지 주소입니다
         const imageSrc = "/images/detail/orange-dot.png";
@@ -164,7 +126,64 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
         }
       });
     };
-  });
+
+    // console.log(coordData);
+    // const script = document.createElement("script");
+    // script.src =
+    //   "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=abcd05d0eb39667951498f33e9ade254";
+    // document.head.appendChild(script);
+
+    // script.onload = async () => {
+    //   const positions: any[] = [];
+    //   await Promise.all(
+    //     await coordData.map(async (el: any) => {
+    //       return await new Promise((resolve, reject) => {
+    //         const result = el.map((el2: any) => {
+    //           const data = {
+    //             latlng: new window.kakao.maps.LatLng(el2[0], el2[1]),
+    //           };
+    //           positions.push(data);
+    //           return data;
+    //         });
+    //         resolve(result);
+    //       });
+    //     })
+    //   );
+    //   window.kakao.maps.load(() => {
+    //     const mapContainer = document.getElementById("map"); // 지도를 표시할 div
+    //     const mapOption = {
+    //       center: new window.kakao.maps.LatLng(
+    //         positions[0]?.latlng.Ma,
+    //         positions[0]?.latlng.La
+    //       ), // 지도의 중심좌표
+    //       level: 8, // 지도의 확대 레벨
+    //     };
+
+    //     const map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    //     // 마커 이미지의 이미지 주소입니다
+    //     const imageSrc = "/images/detail/orange-dot.png";
+
+    //     for (let i = 0; i < positions?.length; i++) {
+    //       // 마커 이미지의 이미지 크기 입니다
+    //       const imageSize = new window.kakao.maps.Size(10, 10);
+
+    //       // 마커 이미지를 생성합니다
+    //       const markerImage = new window.kakao.maps.MarkerImage(
+    //         imageSrc,
+    //         imageSize
+    //       );
+
+    //       // 마커를 생성합니다
+    //       const marker = new window.kakao.maps.Marker({
+    //         map, // 마커를 표시할 지도
+    //         position: positions[i].latlng, // 마커를 표시할 위치
+    //         image: markerImage, // 마커 이미지
+    //       });
+    //     }
+    //   });
+    // };
+  }, [fetchData]);
 
   return (
     <>

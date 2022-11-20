@@ -23,9 +23,9 @@ const CrewListUi = ({
   isMountainModalOpen,
   mountainAddress,
   onChangeRegion,
-  onChangeSearch,
   onChangeDate,
   onClickLatestSearch,
+  visible,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -132,7 +132,6 @@ const CrewListUi = ({
                 <S.Search
                   placeholder="산이름"
                   value={mountainAddress.split("/", 1)[0].slice(0, -1)}
-                  onChange={onChangeSearch}
                 />
                 <S.MountainSearchBtn onClick={onClickMountainSearch}>
                   찾기
@@ -306,7 +305,11 @@ const CrewListUi = ({
                 ))}
           </S.Body>
           <S.Footer>
-            <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
+            {itemsLatest?.length < visible ? (
+              <></>
+            ) : (
+              <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
+            )}
           </S.Footer>
         </S.CrewBox>
         {isMountainModalOpen && <MountainModal />}

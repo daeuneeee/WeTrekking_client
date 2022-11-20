@@ -155,9 +155,12 @@ export const PickBox = styled.div`
 `;
 
 export const ChatBox = styled(PickBox)`
-  width: 2.4rem;
-  height: 2.4rem;
-  background: url(/images/detail/chat.png) center center;
+  background: url(/images/detail/chat.png) center;
+  background-size: cover;
+`;
+
+export const RouteBox = styled(PickBox)`
+  background: url(/images/detail/route.png) center;
   background-size: cover;
 `;
 export const ProfileBox = styled.div`

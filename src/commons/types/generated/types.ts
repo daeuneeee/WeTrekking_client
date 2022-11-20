@@ -81,6 +81,26 @@ export type ICrewBoard = {
   user: IUser;
 };
 
+export type ICrewBoardAndList = {
+  __typename?: 'CrewBoardAndList';
+  address: Scalars['String'];
+  addressDetail: Scalars['String'];
+  assignedUsers: Array<IUser>;
+  createdAt: Scalars['DateTime'];
+  date: Scalars['String'];
+  dateTime: Scalars['String'];
+  description: Scalars['String'];
+  dues: Scalars['Int'];
+  gender: Scalars['String'];
+  id: Scalars['String'];
+  mountain: IMountain;
+  peoples: Scalars['Int'];
+  thumbnail: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user: IUser;
+};
+
 export type ICrewBoardAndUser = {
   __typename?: 'CrewBoardAndUser';
   address: Scalars['String'];
@@ -127,6 +147,13 @@ export type ICrewUserList = {
   crewBoard: ICrewBoard;
   id: Scalars['String'];
   status: Scalars['String'];
+  user: IUser;
+};
+
+export type ICrewUserListAndUser = {
+  __typename?: 'CrewUserListAndUser';
+  crewBoard: ICrewBoardAndList;
+  id: Scalars['String'];
   user: IUser;
 };
 
@@ -404,8 +431,7 @@ export type IMutationUpdateReviewBoardArgs = {
 
 
 export type IMutationUpdateReviewCommentArgs = {
-  reviewCommentId?: InputMaybe<Scalars['String']>;
-  updateComment?: InputMaybe<Scalars['String']>;
+  updateReviewCommentInput: IUpdateReviewCommentInput;
 };
 
 
@@ -491,12 +517,13 @@ export type IQuery = {
   fetchReviewComments: Array<IReviewComment>;
   /** 산이름을 통해 좌표 반환 */
   fetchTrekkingCoordinate: Array<ITrekkingInfo>;
+  fetchTrekkingInfo: ITrekking;
   fetchUser: IUser;
   /** userId에 해당하는 댓글 전체 조회 */
   fetchUserCrewComments: Array<ICrewComment>;
   /** userId와 boardId에 해당하는 대댓글 조회하기 */
   fetchUserCrewSubComments: Array<ICrewComment>;
-  fetchVisitList: Array<ICrewUserList>;
+  fetchVisitList: Array<ICrewUserListAndUser>;
 };
 
 
@@ -581,6 +608,12 @@ export type IQueryFetchTrekkingCoordinateArgs = {
 };
 
 
+export type IQueryFetchTrekkingInfoArgs = {
+  address: Scalars['String'];
+  mountainName: Scalars['String'];
+};
+
+
 export type IQueryFetchUserCrewCommentsArgs = {
   boardId: Scalars['String'];
   userId: Scalars['String'];
@@ -617,7 +650,7 @@ export type IReviewComment = {
   deletedAt: Scalars['DateTime'];
   id: Scalars['String'];
   reviewBoard: IReviewBoard;
-  reviewComment: Scalars['String'];
+  reviewComment?: Maybe<Scalars['String']>;
   user: IUser;
 };
 
@@ -626,6 +659,12 @@ export type IRoom = {
   boardId: Scalars['String'];
   roomName: Scalars['String'];
   user: Scalars['String'];
+};
+
+export type ITrekking = {
+  __typename?: 'Trekking';
+  coordinate: Array<Array<Scalars['Float']>>;
+  mountainName: Scalars['String'];
 };
 
 export type ITrekkingInfo = {
@@ -687,4 +726,9 @@ export type IUser = {
   phone: Scalars['String'];
   point: Scalars['Int'];
   profile_img?: Maybe<Scalars['String']>;
+};
+
+export type IUpdateReviewCommentInput = {
+  comment?: InputMaybe<Scalars['String']>;
+  reviewCommentId?: InputMaybe<Scalars['String']>;
 };

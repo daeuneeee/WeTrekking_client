@@ -8,8 +8,16 @@ export const FETCH_REVIEWS = gql`
       review
       star
       like
+      createdAt
       user {
         nickname
+      }
+      crewUserList {
+        id
+        # crewBoard {
+        #   id
+        #   mountain
+        # }
       }
     }
   }

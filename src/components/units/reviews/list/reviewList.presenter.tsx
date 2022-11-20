@@ -1,4 +1,5 @@
 import { Pagination } from "antd";
+import { getDate } from "../../../../commons/utils/getDate";
 import * as S from "./reviewList.styles";
 import { IReviewListUiProps } from "./reviewList.types";
 
@@ -7,6 +8,8 @@ const ReviewListUi = ({
   onClickList,
   reviewId,
   isOpenSideBar,
+  number,
+  onChangePage,
 }: IReviewListUiProps) => {
   return (
     <S.Wrapper style={{ width: isOpenSideBar ? "97vw" : "100%" }}>
@@ -21,7 +24,7 @@ const ReviewListUi = ({
             <S.ListLiWrite>작성자</S.ListLiWrite>
             <S.ListLiCreatedAt>작성일</S.ListLiCreatedAt>
           </S.TitleUl>
-          {data?.fetchReviewBoards.map((ReviewsMap, index) => (
+          {data?.fetchReviewBoards[number].map((ReviewsMap, index) => (
             <S.ContentUl key={ReviewsMap.id}>
               <S.ListLiNum>{Number(index) + 1}</S.ListLiNum>
               <S.ListLiMountain>백두산</S.ListLiMountain>
@@ -40,13 +43,18 @@ const ReviewListUi = ({
                 <S.Write>{ReviewsMap.user.nickname}</S.Write>
               </S.ListLiWrite>
               <S.ListLiCreatedAt>
-                <S.CreatedAt>2022.10.10</S.CreatedAt>
+                {console.log(ReviewsMap)}
+                <S.CreatedAt>{getDate(ReviewsMap.createdAt)}</S.CreatedAt>
               </S.ListLiCreatedAt>
             </S.ContentUl>
           ))}
         </S.ReviewListContainer>
         <S.PaginationContainer>
-          <Pagination defaultCurrent={1} total={50} />
+          <Pagination
+            current={Number(number) + 1}
+            total={Number(data?.fetchReviewBoards?.length) * 10}
+            onChange={onChangePage}
+          />
         </S.PaginationContainer>
       </S.Container>
     </S.Wrapper>

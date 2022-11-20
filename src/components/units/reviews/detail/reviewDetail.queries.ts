@@ -15,6 +15,16 @@ export const FETCH_REVIEW = gql`
         gender
         birth
       }
+      crewUserList {
+        id
+        crewBoard {
+          id
+          mountain {
+            id
+            mountain
+          }
+        }
+      }
     }
   }
 `;

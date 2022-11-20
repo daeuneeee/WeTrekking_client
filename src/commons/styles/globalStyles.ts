@@ -31,6 +31,10 @@ export const globalStyles = css`
 	.ant-modal-title {
     font-size: 1.6rem;
     line-height: 2.2rem;
+	.ant-modal{
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
 p{
 		font-size: 1.6rem;

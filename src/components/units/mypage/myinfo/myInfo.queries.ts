@@ -24,6 +24,9 @@ export const FETCH_VISIT_LIST = gql`
         createdAt
         user {
           name
+          nickname
+          birth
+          gender
           profile_img
         }
       }

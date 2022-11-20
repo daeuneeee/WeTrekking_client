@@ -111,7 +111,7 @@ const MyInfoUi = ({
                           </S.ListWriterAgeGender>
                         </S.ListWriterInfo>
                       </S.ListWriterInfoContainer>
-                      <AvatarGroup max={6} spacing={"small"}>
+                      {/* <AvatarGroup max={6} spacing={"small"}>
                         {data?.fetchVisitList.map((el) => {
                           return (
                             <Avatar
@@ -121,12 +121,12 @@ const MyInfoUi = ({
                             />
                           );
                         })}
-                      </AvatarGroup>
+                      </AvatarGroup> */}
                     </S.ListWriterInfoBox>
                   </S.MyMListInfoBox>
                 </S.ReviewBg>
                 <S.ReviewWriteBtn
-                  id={el.crewBoard.id}
+                  id={el.id}
                   className="reviewBtn"
                   onClick={onClickToReviewWrite}
                 >

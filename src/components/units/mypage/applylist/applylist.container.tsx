@@ -13,6 +13,7 @@ const ApplyList = () => {
 
   const { data } =
     useQuery<Pick<IQuery, "fetchCrewUserList">>(FETCH_CREW_USER_LIST);
+  console.log(data);
 
   const [deleteCrewuserList] = useMutation(DELETE_CREW_USER_LIST);
 

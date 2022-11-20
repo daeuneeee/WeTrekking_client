@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { mainColor } from "./color";
 
 import { tablet } from "./media";
 
@@ -31,9 +32,16 @@ export const globalStyles = css`
 	.ant-modal-title {
     font-size: 1.6rem;
     line-height: 2.2rem;
+
+}
+.ant-modal-content{
 	.ant-modal{
 		left: 50%;
 		transform: translateX(-50%);
+	}
+	.ant-btn-primary{
+		border-color: ${mainColor};
+		background-color: ${mainColor};
 	}
 }
 p{
@@ -89,9 +97,9 @@ footer, header, hgroup, menu, nav, section {
 html,body{
 	font-family: pretendard;
 	font-size: 10px;
-	/* @media (max-width : 767px){
-	font-size: 9px;
-} */
+	@media (max-width : 767px){
+	font-size: 7px;
+}
 }
 
 body {

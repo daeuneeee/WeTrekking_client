@@ -241,6 +241,7 @@ const Header = () => {
 
   const onClickToMypage = () => {
     void router.push("/mypage");
+    setIsActive(false);
   };
 
   const onClickMenuOn = () => {

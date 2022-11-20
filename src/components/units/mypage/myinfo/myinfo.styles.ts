@@ -186,6 +186,9 @@ export const MyMListBox = styled.div`
       -webkit-filter: blur(5px);
     }
   }
+  @media ${tablet} {
+    width: 100%;
+  }
 `;
 
 export const MyMListThum = styled.div`
@@ -193,6 +196,8 @@ export const MyMListThum = styled.div`
   height: 309px;
   background-color: gray;
   border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
   @media ${tablet} {
     width: 100%;
     height: auto;

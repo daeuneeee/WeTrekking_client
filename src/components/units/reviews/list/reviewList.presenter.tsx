@@ -37,7 +37,7 @@ const ReviewListUi = ({
                 </S.Title>
               </S.ListLiTitle>
               <S.ListLiWrite>
-                <S.Write>춘딩딩</S.Write>
+                <S.Write>{ReviewsMap.user.nickname}</S.Write>
               </S.ListLiWrite>
               <S.ListLiCreatedAt>
                 <S.CreatedAt>2022.10.10</S.CreatedAt>

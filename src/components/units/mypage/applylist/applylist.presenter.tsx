@@ -24,7 +24,7 @@ const ApplyListUi = ({
             <S.ListLiSign>상태</S.ListLiSign>
             <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
-          {data?.fetchCrewUserList.map((el, index) => {
+          {data?.fetchCrewUserList[0].map((el: any, index: number) => {
             return (
               <S.ContentUl key={el.id}>
                 <S.ListLiNum className="mobile">{index + 1}</S.ListLiNum>

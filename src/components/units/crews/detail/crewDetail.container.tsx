@@ -86,6 +86,9 @@ const CrewDetail = () => {
   const userId = userInform?.fetchUser.id;
   const boardId = data?.fetchCrewBoard.user.id;
 
+  console.log(userId);
+  console.log(acceptedList?.fetchAcceptedList.map((el) => el.user.id));
+
   const onClickRoute = () => {
     setIsRouteModalOpen(true);
   };

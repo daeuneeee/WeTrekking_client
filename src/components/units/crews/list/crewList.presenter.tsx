@@ -224,8 +224,12 @@ const CrewListUi = ({
                           {listMap?.user?.nickname}
                         </S.ListNickName>
                       </S.ListInform>
-                      <S.ListPick>
-                        <PickFalseSvg />
+                      <S.ListPick onClick={onClickPick} id={listMap.id}>
+                        {loginId === listMap.dibUsers[0]?.id ? (
+                          <PickTrueSvg />
+                        ) : (
+                          <PickFalseSvg />
+                        )}
                       </S.ListPick>
                     </S.ListHeader>
                     <Link href={`crews/${String(listMap?.id)}`}>

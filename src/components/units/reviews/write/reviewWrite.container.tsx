@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { IFormData } from "./reviewWrite.types";
 import { IMutation } from "../../../../commons/types/generated/types";
 import { useRecoilState } from "recoil";
-import { crewBoardIdState } from "../../../../store";
+import { crewBoardIdState, crewUserListIdState } from "../../../../store";
 import { FETCH_CREW_BOARD } from "../../crews/detail/crewDetail.queries";
 import { errorModal, successModal } from "../../../commons/modals/alertModals";
 import { useRouter } from "next/router";
@@ -31,6 +31,7 @@ const CrewReviewWrite = () => {
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
   const [crewBoardId] = useRecoilState(crewBoardIdState);
+  const [crewUserListId] = useRecoilState(crewUserListIdState);
 
   const router = useRouter();
 
@@ -50,8 +51,6 @@ const CrewReviewWrite = () => {
     },
   });
 
-  console.log(crewBoardInfo);
-
   const onClickRegister = async (data: IFormData) => {
     try {
       const results = await Promise.all(
@@ -70,7 +69,7 @@ const CrewReviewWrite = () => {
 
       await createReview({
         variables: {
-          crewUserListId: crewBoardId,
+          crewUserListId: crewUserListId,
           createReviewBoardInput: data,
           imgURL: resultUrlsFlat,
         },
@@ -82,6 +81,10 @@ const CrewReviewWrite = () => {
         errorModal(error.message);
       }
     }
+  };
+
+  const onClickToMypage = () => {
+    void router.push("/mypage");
   };
 
   const onChangeFile =
@@ -114,6 +117,7 @@ const CrewReviewWrite = () => {
       imageUrls={imageUrls}
       errors={errors}
       crewBoardInfo={crewBoardInfo}
+      onClickToMypage={onClickToMypage}
     />
   );
 };

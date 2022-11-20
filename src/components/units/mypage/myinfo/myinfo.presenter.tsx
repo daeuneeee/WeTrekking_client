@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { getAge } from "../../../../commons/utils/getAge";
 import PointBox from "../../../commons/pointCharge";
 import MyPageNav from "../navigation";
@@ -126,8 +126,8 @@ const MyInfoUi = ({
                   </S.MyMListInfoBox>
                 </S.ReviewBg>
                 <S.ReviewWriteBtn
-                  id={el.id}
-                  className="reviewBtn"
+                  id={el.crewBoard.id}
+                  className={`${el.id} reviewBtn`}
                   onClick={onClickToReviewWrite}
                 >
                   리뷰 쓰기

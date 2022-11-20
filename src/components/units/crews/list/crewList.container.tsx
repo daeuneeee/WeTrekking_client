@@ -131,8 +131,8 @@ const CrewList = () => {
       mountainAddress={mountainAddress}
       onChangeRegion={onChangeRegion}
       onChangeDate={onChangeDate}
-      // onChangeSearch={onChangeSearch}
       onClickLatestSearch={onClickLatestSearch}
+      visible={visible}
     />
   );
 };

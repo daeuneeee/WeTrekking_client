@@ -43,7 +43,6 @@ const ReviewListUi = ({
                 <S.Write>{ReviewsMap.user.nickname}</S.Write>
               </S.ListLiWrite>
               <S.ListLiCreatedAt>
-                {console.log(ReviewsMap)}
                 <S.CreatedAt>{getDate(ReviewsMap.createdAt)}</S.CreatedAt>
               </S.ListLiCreatedAt>
             </S.ContentUl>

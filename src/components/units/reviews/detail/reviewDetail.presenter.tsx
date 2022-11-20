@@ -54,7 +54,9 @@ const ReviewDetailUi = ({
               </S.AgeGenderBox>
             </S.WriterInform>
           </S.WriteProfile>
-          <S.Location>설악산</S.Location>
+          <S.Location>
+            {data?.fetchReviewBoard.crewUserList.crewBoard.mountain.mountain}
+          </S.Location>
           <S.RatingBox>
             <Rate
               allowHalf

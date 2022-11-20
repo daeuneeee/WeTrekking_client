@@ -108,3 +108,11 @@ export const FETCH_ACCEPTED_LIST = gql`
     }
   }
 `;
+
+export const CREW_ATTENDED = gql`
+  mutation finishCrew($id: String!) {
+    finishCrew(id: $id) {
+      id
+    }
+  }
+`;

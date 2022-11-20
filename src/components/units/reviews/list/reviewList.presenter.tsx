@@ -24,7 +24,7 @@ const ReviewListUi = ({
             <S.ListLiWrite>작성자</S.ListLiWrite>
             <S.ListLiCreatedAt>작성일</S.ListLiCreatedAt>
           </S.TitleUl>
-          {data?.fetchReviewBoards[number].map((ReviewsMap, index) => (
+          {data?.fetchReviewBoards[number]?.map((ReviewsMap, index) => (
             <S.ContentUl key={ReviewsMap.id}>
               <S.ListLiNum>{Number(index) + 1}</S.ListLiNum>
               <S.ListLiMountain>백두산</S.ListLiMountain>

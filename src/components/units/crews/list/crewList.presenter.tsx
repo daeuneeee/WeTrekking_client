@@ -175,7 +175,7 @@ const CrewListUi = ({
                             backgroundImage: `url(https://storage.googleapis.com/${String(
                               listMap?.thumbnail
                             )})`,
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
                           }}
@@ -254,7 +254,7 @@ const CrewListUi = ({
                             backgroundImage: `url(https://storage.googleapis.com/${String(
                               listMap?.thumbnail
                             )})`,
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
                           }}

@@ -12,6 +12,7 @@ export interface ICrewReviewWriteUiProps {
   imageUrls: string[];
   errors: any;
   crewBoardInfo?: Pick<IQuery, "fetchCrewBoard">;
+  onClickToMypage: () => void;
 }
 
 export interface IFormData {

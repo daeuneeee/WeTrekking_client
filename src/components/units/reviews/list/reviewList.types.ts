@@ -6,4 +6,6 @@ export interface IReviewListUiProps {
   onClickList: (event: MouseEvent<HTMLAnchorElement>) => void;
   reviewId: string;
   isOpenSideBar: boolean;
+  number: number;
+  onChangePage: (page: number) => void;
 }

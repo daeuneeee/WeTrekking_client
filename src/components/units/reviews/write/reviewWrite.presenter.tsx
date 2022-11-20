@@ -11,6 +11,7 @@ const CrewReviewWriteUi = ({
   imageUrls,
   errors,
   crewBoardInfo,
+  onClickToMypage,
 }: ICrewReviewWriteUiProps) => {
   return (
     <form onSubmit={handleSubmit(onClickRegister)}>
@@ -132,7 +133,9 @@ const CrewReviewWriteUi = ({
           <S.Error>{errors.review?.message}</S.Error>
         </S.InputBox>
         <S.BtnBox>
-          <S.CancelBtn>취소</S.CancelBtn>
+          <S.CancelBtn type="button" onClick={onClickToMypage}>
+            취소
+          </S.CancelBtn>
           <S.RegisterBtn>등록</S.RegisterBtn>
         </S.BtnBox>
       </S.Wrapper>

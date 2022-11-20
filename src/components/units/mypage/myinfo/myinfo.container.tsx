@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { IQuery } from "../../../../commons/types/generated/types";
 import {
   crewBoardIdState,
+  crewUserListIdState,
   isPointModalToggleState,
   userInfo,
 } from "../../../../store";
@@ -15,6 +16,7 @@ const MyInfo = () => {
   const [userDatas] = useRecoilState<Pick<IQuery, "fetchUser">>(userInfo);
   const [, setIsOpen] = useRecoilState<boolean>(isPointModalToggleState);
   const [, setCrewBoardId] = useRecoilState(crewBoardIdState);
+  const [, setCrewUserListId] = useRecoilState(crewUserListIdState);
 
   const { data } = useQuery<Pick<IQuery, "fetchVisitList">>(FETCH_VISIT_LIST);
 
@@ -29,6 +31,7 @@ const MyInfo = () => {
   const onClickToReviewWrite = (event: MouseEvent<HTMLButtonElement>) => {
     void router.push("/reviews/write");
     setCrewBoardId(event.currentTarget.id);
+    setCrewUserListId(event.currentTarget.className.split(" ")[0]);
   };
 
   return (

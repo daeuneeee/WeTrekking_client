@@ -74,8 +74,6 @@ const Chat = () => {
     void crewUserRefetch();
   }, [crewUsers]);
 
-  console.log(crewUsers);
-
   useEffect(() => {
     void refetch();
   }, [data]);

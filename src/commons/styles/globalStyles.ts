@@ -89,9 +89,9 @@ footer, header, hgroup, menu, nav, section {
 html,body{
 	font-family: pretendard;
 	font-size: 10px;
-	/* @media (max-width : 767px){
-	font-size: 9px;
-} */
+	@media (max-width : 767px){
+	font-size: 7px;
+}
 }
 
 body {

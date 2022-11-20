@@ -1,4 +1,5 @@
 import { Avatar, AvatarGroup } from "@mui/material";
+import { getAge } from "../../../../commons/utils/getAge";
 import PointBox from "../../../commons/pointCharge";
 import MyPageNav from "../navigation";
 import * as S from "./myinfo.styles";
@@ -99,9 +100,14 @@ const MyInfoUi = ({
                           )}`}
                         />
                         <S.ListWriterInfo>
-                          <S.ListWriterName>깜장이</S.ListWriterName>
+                          <S.ListWriterName>
+                            {el.crewBoard.user.nickname}
+                          </S.ListWriterName>
                           <S.ListWriterAgeGender>
-                            28 · 남성
+                            {getAge(el.crewBoard.user.birth)} ·{" "}
+                            {el.crewBoard.user.gender === "male"
+                              ? "남성"
+                              : "여성"}
                           </S.ListWriterAgeGender>
                         </S.ListWriterInfo>
                       </S.ListWriterInfoContainer>

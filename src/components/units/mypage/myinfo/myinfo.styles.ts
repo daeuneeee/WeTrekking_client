@@ -293,7 +293,7 @@ export const ListWriterName = styled.p`
   font-size: 1.8rem;
   font-weight: 500;
   color: #111;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0;
 `;
 
 export const ListWriterAgeGender = styled.p`

@@ -5,8 +5,9 @@ export const FETCH_POINT_PAYMENTS = gql`
     fetchPointPayments {
       id
       amount
-      #   createAt
+      createdAt
       impUid
+      status
     }
   }
 `;

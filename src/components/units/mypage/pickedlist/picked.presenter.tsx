@@ -102,7 +102,6 @@ const PickedListUi = ({
             );
           })}
         </S.PickedListContainer>
-        {console.log(data?.fetchDibs.length, visible)}
         {Number(data?.fetchDibs.length) < visible ? null : (
           <S.MoreBtn onClick={onClickMore}>더 보기</S.MoreBtn>
         )}

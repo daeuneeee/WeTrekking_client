@@ -85,7 +85,7 @@ const ChatUi = ({
                           <Avatar alt="Remy Sharp" className="chatAvatar" />
                           <S.ChatMsgContainer>
                             <S.GroupChatMsgBox>{el.message}</S.GroupChatMsgBox>
-                            <S.ChatMstTime>8:00 PM</S.ChatMstTime>
+                            {/* <S.ChatMstTime>8:00 PM</S.ChatMstTime> */}
                           </S.ChatMsgContainer>
                         </S.ProfileChatBox>
                       </S.ChatGroup>
@@ -103,7 +103,7 @@ const ChatUi = ({
                             <S.MyGroupChatMsgBox>
                               {el.message}
                             </S.MyGroupChatMsgBox>
-                            <S.ChatMstTime>8:00 PM</S.ChatMstTime>
+                            {/* <S.ChatMstTime>8:00 PM</S.ChatMstTime> */}
                           </S.MyChatMsgContainer>
                         </S.MyProfileChatBox>
                       </S.ChatMy>

@@ -16,6 +16,7 @@ import CrewListUi from "./crewList.presenter";
 import {
   FETCH_CREW_BOARDS_DEADLINE,
   FETCH_CREW_BOARDS_LATEST,
+  FETCH_MOUNTAIN_KING,
   FETCH_USER,
 } from "./crewList.queries";
 
@@ -48,6 +49,10 @@ const CrewList = () => {
   >(FETCH_CREW_BOARDS_DEADLINE);
 
   const { data: loggedUser } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
+
+  const { data: mountainKing } = useQuery(FETCH_MOUNTAIN_KING);
+
+  console.log(mountainKing);
 
   useEffect(() => {
     setLoginId(String(loggedUser?.fetchUser.id));
@@ -132,6 +137,7 @@ const CrewList = () => {
       onChangeDate={onChangeDate}
       onClickLatestSearch={onClickLatestSearch}
       visible={visible}
+      mountainKing={mountainKing}
     />
   );
 };

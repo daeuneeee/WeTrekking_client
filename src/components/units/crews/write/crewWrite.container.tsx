@@ -184,6 +184,8 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       );
       const resultUrlsFlat = resultUrls.flat();
 
+      console.log(resultUrlsFlat);
+
       data.date = date;
       data.dateTime = time;
       data.dues = Number(data.dues);

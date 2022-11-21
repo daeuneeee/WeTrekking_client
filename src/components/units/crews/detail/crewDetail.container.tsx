@@ -86,6 +86,8 @@ const CrewDetail = () => {
     variables: { crewBoardId: String(router.query.crewId) },
   });
 
+  console.log(acceptedList);
+
   const isDib = dib?.fetchDibs
     .map((el) => el.crewBoard.id)
     .filter((el) => el.includes(String(data?.fetchCrewBoard.id))).length;
@@ -192,7 +194,14 @@ const CrewDetail = () => {
 
   const onClickAttended = async (event: MouseEvent<HTMLButtonElement>) => {
     try {
-      await attendedCrew({ variables: { id: event?.currentTarget.id } });
+      await attendedCrew({
+        variables: { id: event?.currentTarget.id },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
+      });
       successModal("출석되었습니다.");
     } catch (error) {}
   };

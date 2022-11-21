@@ -26,6 +26,7 @@ const CrewListUi = ({
   onChangeDate,
   onClickLatestSearch,
   visible,
+  mountainKing,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -35,50 +36,26 @@ const CrewListUi = ({
         <S.RankingBox>
           <S.RankingTitle>TOP 3</S.RankingTitle>
           <S.RankingContainer>
-            <S.Ranking>
-              <Avatar
-                alt="Crew Image"
-                src="/images/commons/profile-img.png"
-                className="avatar"
-              ></Avatar>
-              <S.RankingInform>
-                <S.RankingNickName>춘딩딩</S.RankingNickName>
-                <S.RankingEmail>123@123.com</S.RankingEmail>
-              </S.RankingInform>
-              <S.RankingNumBox>
-                <S.RankingNum>TOP 1</S.RankingNum>
-              </S.RankingNumBox>
-            </S.Ranking>
-            {/* 여기부터 삭제 */}
-            <S.Ranking>
-              <Avatar
-                alt="Crew Image"
-                src="/images/commons/profile-img.png"
-                className="avatar"
-              ></Avatar>
-              <S.RankingInform>
-                <S.RankingNickName>땅오</S.RankingNickName>
-                <S.RankingEmail>456@123.com</S.RankingEmail>
-              </S.RankingInform>
-              <S.RankingNumBox>
-                <S.RankingNum>TOP 2</S.RankingNum>
-              </S.RankingNumBox>
-            </S.Ranking>
-            <S.Ranking>
-              <Avatar
-                alt="Crew Image"
-                src="/images/commons/profile-img.png"
-                className="avatar"
-              ></Avatar>
-              <S.RankingInform>
-                <S.RankingNickName>짱구</S.RankingNickName>
-                <S.RankingEmail>789@123.com</S.RankingEmail>
-              </S.RankingInform>
-              <S.RankingNumBox>
-                <S.RankingNum>TOP 3</S.RankingNum>
-              </S.RankingNumBox>
-            </S.Ranking>
-            {/* 여기까지 삭제 */}
+            {mountainKing?.fetchMountainKing.map((el: any, index: number) => {
+              return (
+                <S.Ranking key={el.id}>
+                  <Avatar
+                    alt="Crew Image"
+                    src={`https://storage.googleapis.com/${String(
+                      el.user.profile_img
+                    )}`}
+                    className="avatar"
+                  ></Avatar>
+                  <S.RankingInform>
+                    <S.RankingNickName>{el.user.nickname}</S.RankingNickName>
+                    <S.RankingEmail>{el.user.email}</S.RankingEmail>
+                  </S.RankingInform>
+                  <S.RankingNumBox>
+                    <S.RankingNum>TOP {index + 1}</S.RankingNum>
+                  </S.RankingNumBox>
+                </S.Ranking>
+              );
+            })}
           </S.RankingContainer>
         </S.RankingBox>
         <S.CrewBox>
@@ -173,7 +150,7 @@ const CrewListUi = ({
                         <S.ListThumbnail
                           style={{
                             backgroundImage: `url(https://storage.googleapis.com/${String(
-                              listMap?.thumbnail
+                              (listMap?.thumbnail).replaceAll(" ", "%20")
                             )})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",

@@ -13,4 +13,9 @@ export interface ICrewListUiProps {
   onClickMountainSearch: () => void;
   isMountainModalOpen: boolean;
   mountainAddress: string;
+  onChangeRegion: (value: any) => void;
+  onChangeDate: (value: any, stringDate: string) => void;
+  onClickLatestSearch: () => void;
+  visible: number;
+  mountainKing: any;
 }

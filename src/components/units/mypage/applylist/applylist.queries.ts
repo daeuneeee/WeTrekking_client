@@ -10,6 +10,7 @@ export const FETCH_CREW_USER_LIST = gql`
         name
       }
       crewBoard {
+        id
         title
         mountain {
           mountain

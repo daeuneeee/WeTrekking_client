@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { isOpenSideBarState, reviewIdState } from "../../../../store";
@@ -11,6 +11,12 @@ const ReviewList = () => {
 
   const [isOpenSideBar, setIsOpenSideBar] = useRecoilState(isOpenSideBarState);
   const [reviewId, setReviewId] = useRecoilState(reviewIdState);
+
+  useEffect(() => {
+    return () => {
+      setIsOpenSideBar(false);
+    };
+  }, []);
 
   const { data } = useQuery<Pick<IQuery, "fetchReviewBoards">>(FETCH_REVIEWS);
 

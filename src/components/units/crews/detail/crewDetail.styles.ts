@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { margin } from "@mui/system";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
 

@@ -102,7 +102,6 @@ export const RatingBox = styled.div``;
 export const WriterInform = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 `;
 
 export const NickName = styled.span`

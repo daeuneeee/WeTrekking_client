@@ -24,10 +24,20 @@ const PickedListUi = ({
                   <A.ListHeader>
                     <A.ListInform>
                       <Avatar
-                        src={`https://storage.googleapis.com/${String(
-                          el.crewBoard.user.profile_img
-                        )}`}
-                        sx={{ width: 32, height: 32 }}
+                        src={
+                          el.crewBoard.user.profile_img === null
+                            ? `/images/commons/basic-profile.png`
+                            : `https://storage.googleapis.com/${String(
+                                el.crewBoard.user.profile_img
+                              )}`
+                        }
+                        style={{
+                          border:
+                            el.crewBoard.user.profile_img === null
+                              ? "1px solid #999"
+                              : "",
+                        }}
+                        className="avatar"
                       ></Avatar>
                       <A.ListNickName>{el.crewBoard.user.name}</A.ListNickName>
                     </A.ListInform>
@@ -57,11 +67,21 @@ const PickedListUi = ({
                           {el.crewBoard.assignedUsers.map((el: any) => {
                             return (
                               <Avatar
-                                alt="Remy Sharp"
-                                src={`https://storage.googleapis.com/${String(
-                                  el.profile_img
-                                )}`}
-                                sx={{ width: 24, height: 24 }}
+                                alt="유저 이미지"
+                                src={
+                                  el.profile_img === null
+                                    ? `/images/commons/basic-profile.png`
+                                    : `https://storage.googleapis.com/${String(
+                                        el.profile_img
+                                      )}`
+                                }
+                                style={{
+                                  border:
+                                    el.profile_img === null
+                                      ? "1px solid #999"
+                                      : "",
+                                }}
+                                className="avatar"
                                 key={el.id}
                               />
                             );

@@ -173,11 +173,21 @@ const UList = ({
                     <A.UserListBox key={el.id}>
                       <A.UserProfileInfoBox>
                         <Avatar
-                          alt="Remy Sharp"
-                          src={`https://storage.googleapis.com/${String(
-                            el.user.profile_img
-                          )}`}
-                          sx={{ width: 50, height: 50 }}
+                          alt="유저 이미지"
+                          src={
+                            el.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  el.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              el.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
+                          className="avatar"
                         />
                         <A.UserProfileInfo>
                           <A.UserName>{el.user.nickname}</A.UserName>

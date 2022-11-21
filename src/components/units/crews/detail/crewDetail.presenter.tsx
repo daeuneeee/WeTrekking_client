@@ -230,50 +230,24 @@ const CrewDetailUi = ({
               <S.CrewBox
                 style={{ filter: !accessToken ? "blur(10px)" : "none" }}
               >
-                {/* <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src={`https://storage.googleapis.com/${String(
-                        data?.fetchCrewBoard.user.profile_img
-                      )}`}
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewPosition>방장</S.CrewPosition>
-                      <S.CrewNickName>
-                        {data?.fetchCrewBoard.user.nickname}
-                      </S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    {userId === data?.fetchCrewBoard.user.id && (
-                      <S.AttendedBtn
-                        onClick={onClickAttended}
-                        id={data?.fetchCrewBoard.id}
-                      >
-                        출석
-                      </S.AttendedBtn>
-                    )}
-                    <S.CrewAgeGender>
-                      {getAge(String(data?.fetchCrewBoard.user.birth))}
-                    </S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>
-                      {data?.fetchCrewBoard.user.gender
-                        .replace("male", "남성")
-                        .replace("female", "여성")}
-                    </S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox> */}
                 {acceptedList?.fetchAcceptedList.map((acceptMap) => (
                   <S.CrewInformBox key={acceptMap.id}>
                     <S.CrewInform>
                       <Avatar
                         alt="Crew Image"
-                        src={`https://storage.googleapis.com/${String(
-                          acceptMap.user.profile_img
-                        )}`}
+                        src={
+                          acceptMap.user.profile_img === null
+                            ? `/images/commons/basic-profile.png`
+                            : `https://storage.googleapis.com/${String(
+                                acceptMap.user.profile_img
+                              )}`
+                        }
+                        style={{
+                          border:
+                            acceptMap.user.profile_img === null
+                              ? "1px solid #999"
+                              : "",
+                        }}
                         className="avatar"
                       ></Avatar>
                       <S.CrewPositionNickName>

@@ -37,7 +37,23 @@ const ReviewDetailUi = ({
         <S.UnderLine></S.UnderLine>
         <S.InformBox>
           <S.WriteProfile>
-            <Avatar alt="Crew Image" sx={{ width: 68, height: 68 }}></Avatar>
+            <Avatar
+              alt="Crew Image"
+              sx={{ width: 68, height: 68 }}
+              src={
+                data?.fetchReviewBoard.user.profile_img === null
+                  ? `/images/commons/basic-profile.png`
+                  : `https://storage.googleapis.com/${String(
+                      data?.fetchReviewBoard.user.profile_img
+                    )}`
+              }
+              style={{
+                border:
+                  data?.fetchReviewBoard.user.profile_img === null
+                    ? "1px solid #999"
+                    : "",
+              }}
+            ></Avatar>
             <S.WriterInform>
               <S.NickName>{data?.fetchReviewBoard.user.nickname}</S.NickName>
               <S.AgeGenderBox>

@@ -66,6 +66,7 @@ const CrewCommentList = ({ commentsMap }: ICrewCommentListProps) => {
     setIsModalOpen(true);
     setCommentId(event.currentTarget.id);
   };
+  console.log(commentId);
 
   const onClickCancelModal = () => {
     setIsModalOpen(false);

@@ -8,16 +8,10 @@ export const DELETE_REVIEW_COMMENT = gql`
 
 export const UPDATE_REVIEW_COMMENT = gql`
   mutation updateReviewComment(
-    $reviewCommentId: String
-    $updateComment: String
+    $updateReviewCommentInput: updateReviewCommentInput!
   ) {
-    updateReviewComment(
-      reviewCommentId: $reviewCommentId
-      updateComment: $updateComment
-    ) {
+    updateReviewComment(updateReviewCommentInput: $updateReviewCommentInput) {
       id
-      reviewComment
-      createdAt
     }
   }
 `;

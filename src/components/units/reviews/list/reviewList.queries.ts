@@ -14,10 +14,13 @@ export const FETCH_REVIEWS = gql`
       }
       crewUserList {
         id
-        # crewBoard {
-        #   id
-        #   mountain
-        # }
+        crewBoard {
+          id
+          mountain {
+            id
+            mountain
+          }
+        }
       }
     }
   }

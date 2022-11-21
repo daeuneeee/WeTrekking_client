@@ -27,7 +27,9 @@ const ReviewListUi = ({
           {data?.fetchReviewBoards[number]?.map((ReviewsMap, index) => (
             <S.ContentUl key={ReviewsMap.id}>
               <S.ListLiNum>{Number(index) + 1}</S.ListLiNum>
-              <S.ListLiMountain>백두산</S.ListLiMountain>
+              <S.ListLiMountain>
+                {ReviewsMap.crewUserList.crewBoard.mountain.mountain}
+              </S.ListLiMountain>
               <S.ListLiTitle
                 style={{ width: isOpenSideBar ? "53%" : "58.33%" }}
               >

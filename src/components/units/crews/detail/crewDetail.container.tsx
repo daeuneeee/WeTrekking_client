@@ -1,14 +1,18 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { MouseEvent, useState } from "react";
+import { useRecoilState } from "recoil";
 import {
   IMutation,
+  IMutationFinishCrewArgs,
   IQuery,
   IQueryFetchAcceptedListArgs,
   IQueryFetchBoardImageArgs,
   IQueryFetchCrewBoardArgs,
   IQueryFetchCrewCommentsArgs,
 } from "../../../../commons/types/generated/types";
+import { isRouteModalOpenState } from "../../../../store";
 import { errorModal, successModal } from "../../../commons/modals/alertModals";
 import {
   FETCH_CREW_BOARDS_DEADLINE,
@@ -25,12 +29,18 @@ import {
   FETCH_USER,
   CREATE_CREW_USER_LIST,
   FETCH_ACCEPTED_LIST,
+  CREW_ATTENDED,
 } from "./crewDetail.queries";
 
 const CrewDetail = () => {
   const router = useRouter();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setCrewId] = useState("");
+
+  const [isRouteModalOpen, setIsRouteModalOpen] = useRecoilState(
+    isRouteModalOpenState
+  );
 
   const [createDib] = useMutation<Pick<IMutation, "createDib">>(CREATE_DIB);
   const [createCrewUserList] = useMutation<
@@ -39,6 +49,11 @@ const CrewDetail = () => {
 
   const [deleteCrewBoard] =
     useMutation<Pick<IMutation, "deleteCrewBoard">>(DELETE_CREW_BOARD);
+
+  const [attendedCrew] = useMutation<
+    Pick<IMutation, "finishCrew">,
+    IMutationFinishCrewArgs
+  >(CREW_ATTENDED);
 
   const { data: dib } = useQuery<Pick<IQuery, "fetchDibs">>(FETCH_DIBS);
 
@@ -72,12 +87,18 @@ const CrewDetail = () => {
     variables: { crewBoardId: String(router.query.crewId) },
   });
 
+  console.log(acceptedList);
+
   const isDib = dib?.fetchDibs
     .map((el) => el.crewBoard.id)
     .filter((el) => el.includes(String(data?.fetchCrewBoard.id))).length;
 
   const userId = userInform?.fetchUser.id;
   const boardId = data?.fetchCrewBoard.user.id;
+
+  const onClickRoute = () => {
+    setIsRouteModalOpen(true);
+  };
 
   const onClickEdit = () => {
     void router.push(`/crews/${String(router.query.crewId)}/edit`);
@@ -121,10 +142,15 @@ const CrewDetail = () => {
     try {
       await createCrewUserList({
         variables: { crewBoardId: router.query.crewId },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
       });
       successModal("참가신청이 완료되었습니다!");
     } catch (error) {
-      errorModal("이미 신청하셨습니다.");
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
@@ -167,6 +193,22 @@ const CrewDetail = () => {
     } catch (error) {}
   };
 
+  const onClickAttended = async (event: MouseEvent<HTMLButtonElement>) => {
+    try {
+      await attendedCrew({
+        variables: { id: event?.currentTarget.id },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
+      });
+      successModal("출석되었습니다.");
+    } catch (error) {
+      errorModal("이미 출석 처리 되었습니다.");
+    }
+  };
+
   return (
     <CrewDetailUi
       data={data}
@@ -187,6 +229,9 @@ const CrewDetail = () => {
       onClickToChat={onClickToChat}
       onClickApply={onClickApply}
       acceptedList={acceptedList}
+      onClickRoute={onClickRoute}
+      isRouteModalOpen={isRouteModalOpen}
+      onClickAttended={onClickAttended}
     />
   );
 };

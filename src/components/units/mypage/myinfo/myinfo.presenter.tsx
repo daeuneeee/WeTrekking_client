@@ -1,4 +1,5 @@
-import { Avatar, AvatarGroup } from "@mui/material";
+import { Avatar } from "@mui/material";
+import { getAge } from "../../../../commons/utils/getAge";
 import PointBox from "../../../commons/pointCharge";
 import MyPageNav from "../navigation";
 import * as S from "./myinfo.styles";
@@ -8,6 +9,7 @@ const MyInfoUi = ({
   userDatas,
   onClickPointModal,
   onClickToReviewWrite,
+  data,
 }: IMyInfoUiProps) => {
   return (
     <S.Wrapper>
@@ -16,10 +18,20 @@ const MyInfoUi = ({
         <S.ProfileBox>
           <S.ProfileBody>
             <Avatar
-              alt="Remy Sharp"
-              src={`https://storage.googleapis.com/${String(
-                userDatas?.fetchUser.profile_img
-              )}`}
+              alt="유저 이미지"
+              src={
+                userDatas?.fetchUser.profile_img === null
+                  ? `/images/commons/basic-profile.png`
+                  : `https://storage.googleapis.com/${String(
+                      userDatas?.fetchUser.profile_img
+                    )}`
+              }
+              style={{
+                border:
+                  userDatas?.fetchUser.profile_img === null
+                    ? "1px solid #999"
+                    : "",
+              }}
               className="AvatarImg"
             />
             <S.ProfileName>{userDatas?.fetchUser.name}</S.ProfileName>
@@ -71,60 +83,67 @@ const MyInfoUi = ({
       <S.InfoContainer>
         <S.MyMListTitle>갔던 산 리스트</S.MyMListTitle>
         <S.MyMListContainer>
-          <S.MyMListBox>
-            <S.ReviewBg className="reviewBg">
-              <S.MyMListThum></S.MyMListThum>
-              <S.MyMListInfoBox>
-                <S.ListTitle>설악산 같이 가실?</S.ListTitle>
-                <S.ListMountainName>설악산</S.ListMountainName>
-                <S.ListMountainDate>
-                  22.11.24 <span>|</span> 14:00
-                </S.ListMountainDate>
-                <S.ListWriterT>모집자</S.ListWriterT>
-                <S.ListWriterInfoBox>
-                  <S.ListWriterInfoContainer>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                    />
-                    <S.ListWriterInfo>
-                      <S.ListWriterName>깜장이</S.ListWriterName>
-                      <S.ListWriterAgeGender>28 · 남성</S.ListWriterAgeGender>
-                    </S.ListWriterInfo>
-                  </S.ListWriterInfoContainer>
-                  <AvatarGroup max={6} spacing={"small"}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                    />
-                    <Avatar
-                      alt="Travis Howard"
-                      src="/static/images/avatar/2.jpg"
-                    />
-                    <Avatar
-                      alt="Cindy Baker"
-                      src="/static/images/avatar/3.jpg"
-                    />
-                    <Avatar
-                      alt="Agnes Walker"
-                      src="/static/images/avatar/4.jpg"
-                    />
-                    <Avatar
-                      alt="Trevor Henderson"
-                      src="/static/images/avatar/5.jpg"
-                    />
-                  </AvatarGroup>
-                </S.ListWriterInfoBox>
-              </S.MyMListInfoBox>
-            </S.ReviewBg>
-            <S.ReviewWriteBtn
-              id="123"
-              className="reviewBtn"
-              onClick={onClickToReviewWrite}
-            >
-              리뷰 쓰기
-            </S.ReviewWriteBtn>
-          </S.MyMListBox>
+          {data?.fetchVisitList.map((el) => {
+            return (
+              <S.MyMListBox key={el.id}>
+                <S.ReviewBg className="reviewBg">
+                  <S.MyMListThum
+                    style={{
+                      backgroundImage: `url(https://storage.googleapis.com/${el.crewBoard.thumbnail})`,
+                    }}
+                  ></S.MyMListThum>
+                  <S.MyMListInfoBox>
+                    <S.ListTitle>{el.crewBoard.title}</S.ListTitle>
+                    <S.ListMountainName>
+                      {el.crewBoard.mountain.mountain}
+                    </S.ListMountainName>
+                    <S.ListMountainDate>
+                      {el.crewBoard.date} <span>|</span> {el.crewBoard.dateTime}
+                    </S.ListMountainDate>
+                    <S.ListWriterT>모집자</S.ListWriterT>
+                    <S.ListWriterInfoBox>
+                      <S.ListWriterInfoContainer>
+                        <Avatar
+                          alt="프로필 이미지"
+                          src={
+                            el.crewBoard.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  el.crewBoard.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              el.crewBoard.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
+                        />
+                        <S.ListWriterInfo>
+                          <S.ListWriterName>
+                            {el.crewBoard.user.nickname}
+                          </S.ListWriterName>
+                          <S.ListWriterAgeGender>
+                            {getAge(el.crewBoard.user.birth)} ·{" "}
+                            {el.crewBoard.user.gender === "male"
+                              ? "남성"
+                              : "여성"}
+                          </S.ListWriterAgeGender>
+                        </S.ListWriterInfo>
+                      </S.ListWriterInfoContainer>
+                    </S.ListWriterInfoBox>
+                  </S.MyMListInfoBox>
+                </S.ReviewBg>
+                <S.ReviewWriteBtn
+                  id={el.crewBoard.id}
+                  className={`${el.id} reviewBtn`}
+                  onClick={onClickToReviewWrite}
+                >
+                  리뷰 쓰기
+                </S.ReviewWriteBtn>
+              </S.MyMListBox>
+            );
+          })}
         </S.MyMListContainer>
       </S.InfoContainer>
       <PointBox />

@@ -10,6 +10,8 @@ const CrewReviewWriteUi = ({
   onChangeFile,
   imageUrls,
   errors,
+  crewBoardInfo,
+  onClickToMypage,
 }: ICrewReviewWriteUiProps) => {
   return (
     <form onSubmit={handleSubmit(onClickRegister)}>
@@ -112,7 +114,7 @@ const CrewReviewWriteUi = ({
             <S.Error>{errors.title?.message}</S.Error>
           </S.InputBox>
           <S.InputBox>
-            <S.Label>산</S.Label>
+            <S.Label>{crewBoardInfo?.fetchCrewBoard.mountain.mountain}</S.Label>
             {/* <S.Input {...register("title")} /> */}
           </S.InputBox>
           <S.InputBox>
@@ -131,7 +133,9 @@ const CrewReviewWriteUi = ({
           <S.Error>{errors.review?.message}</S.Error>
         </S.InputBox>
         <S.BtnBox>
-          <S.CancelBtn>취소</S.CancelBtn>
+          <S.CancelBtn type="button" onClick={onClickToMypage}>
+            취소
+          </S.CancelBtn>
           <S.RegisterBtn>등록</S.RegisterBtn>
         </S.BtnBox>
       </S.Wrapper>

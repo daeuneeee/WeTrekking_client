@@ -24,7 +24,19 @@ const ReviewCommentListUi = ({
         <S.Container>
           <Avatar
             alt="Crew Image"
-            src={reviewCommentsMap.user.profile_img}
+            src={
+              reviewCommentsMap.user.profile_img === null
+                ? `/images/commons/basic-profile.png`
+                : `https://storage.googleapis.com/${String(
+                    reviewCommentsMap.user.profile_img
+                  )}`
+            }
+            style={{
+              border:
+                reviewCommentsMap.user.profile_img === null
+                  ? "1px solid #999"
+                  : "",
+            }}
           ></Avatar>
           <S.CommentBox>
             <S.NickName>{reviewCommentsMap?.user?.nickname}</S.NickName>
@@ -65,7 +77,6 @@ const ReviewCommentListUi = ({
       {isEditOpen && (
         <>
           <S.EditContainer>
-            {console.log(reviewCommentsMap)}
             <S.EditContents
               onChange={onChangeEditComment}
               id="clear"

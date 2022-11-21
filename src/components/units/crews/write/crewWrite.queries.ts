@@ -27,11 +27,13 @@ export const UPDATE_CREW_BOARD = gql`
     $crewBoardId: String!
     $updateCrewBoardInput: UpdateCrewBoardInput!
     $imgURL: [String!]!
+    $mountainId: String!
   ) {
     updateCrewBoard(
       crewBoardId: $crewBoardId
       updateCrewBoardInput: $updateCrewBoardInput
       imgURL: $imgURL
+      mountainId: $mountainId
     ) {
       id
     }

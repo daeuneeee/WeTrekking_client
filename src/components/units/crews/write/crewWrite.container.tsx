@@ -107,8 +107,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   //   return el.imgUrl;
   // });
 
-  // console.log(imgDatas);
-
   const crewImgMap = crewImg?.fetchBoardImage.map(
     (crewImgMap) => crewImgMap.imgUrl
   );
@@ -131,7 +129,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
   const onChangeDescription = (value: string) => {
     setValue("description", value);
-    console.log(value);
     // void trigger("description");
   };
 
@@ -175,8 +172,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   };
   const onClickRegister = async (data: IFormData) => {
     try {
-      console.log(data);
-      console.log(isMountainId);
       if (files === undefined) return;
       const results = await Promise.all(
         files.map(
@@ -188,6 +183,8 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         el ? el.data?.uploadFilesForCrewBoard : ""
       );
       const resultUrlsFlat = resultUrls.flat();
+
+      console.log(resultUrlsFlat);
 
       data.date = date;
       data.dateTime = time;
@@ -221,8 +218,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
-
-  console.log(dateError);
 
   const onChangeFile =
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -286,7 +281,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         crewBoardId: router.query.crewId,
         updateCrewBoardInput: data,
         imgURL: updateImgUrlsFlat,
-        mountainId: isMountainId,
+        mountainId: isMountainId.split(" ")[0],
       },
       update(cache) {
         cache.modify({

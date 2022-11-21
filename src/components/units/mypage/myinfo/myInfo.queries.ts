@@ -1,48 +1,31 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_DIBS = gql`
-  query fetchDibs {
-    fetchDibs {
+export const FETCH_VISIT_LIST = gql`
+  query fetchVisitList {
+    fetchVisitList {
       id
       user {
         id
-        email
         name
         nickname
         birth
-        phone
         gender
         profile_img
       }
       crewBoard {
         id
         title
-        description
         date
         dateTime
-        address
-        addressDetail
-        gender
-        dues
-        peoples
         thumbnail
-        # mountain {
-        #   mountain
-        # }
-        assignedUsers {
-          id
-          name
-          nickname
-          profile_img
+        mountain {
+          mountain
         }
         createdAt
         user {
-          id
-          email
           name
           nickname
           birth
-          phone
           gender
           profile_img
         }

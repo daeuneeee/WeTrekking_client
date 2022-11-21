@@ -241,6 +241,7 @@ const Header = () => {
 
   const onClickToMypage = () => {
     void router.push("/mypage");
+    setIsActive(false);
   };
 
   const onClickMenuOn = () => {
@@ -249,7 +250,13 @@ const Header = () => {
 
   const logoutUser = async () => {
     try {
-      await logout();
+      await logout({
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
+      });
       setAccessToken("");
       void router.push("/");
       successModal("로그아웃 되었습니다.");

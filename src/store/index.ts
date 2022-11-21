@@ -40,6 +40,10 @@ export const crewBoardIdState = atom({
   key: "crewBoardIdState",
   default: "",
 });
+export const crewUserListIdState = atom({
+  key: "crewUserListId",
+  default: "",
+});
 
 export const isMountainModalOpenState = atom({
   key: "isMountainModalOpenState",
@@ -54,4 +58,9 @@ export const mountainAddressState = atom({
 export const mountainIdState = atom({
   key: "mountainIdState",
   default: "",
+});
+
+export const isRouteModalOpenState = atom({
+  key: "isRouteModalOpenState",
+  default: false,
 });

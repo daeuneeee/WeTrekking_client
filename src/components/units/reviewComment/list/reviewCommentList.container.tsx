@@ -62,10 +62,13 @@ const ReviewCommentList = ({ reviewCommentsMap }: IReviewCommentListProps) => {
 
   const onClickEdit = async () => {
     const myVariables: IMyVariables = {
-      reviewCommentId: commentId,
+      updateReviewCommentInput: {},
     };
     if (editComments) {
-      myVariables.updateComment = editComments;
+      myVariables.updateReviewCommentInput.comment = editComments;
+    }
+    if (commentId) {
+      myVariables.updateReviewCommentInput.reviewCommentId = commentId;
     }
     await updateReviewComment({
       variables: myVariables,

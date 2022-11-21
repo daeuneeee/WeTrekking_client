@@ -2,17 +2,16 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import CrewReviewWriteUi from "./reviewWrite.presenter";
-import {
-  CREATE_REVIEW,
-  FETCH_CREW_BOARD,
-  UPLOAD_FILES_REVIEW,
-} from "./reviewWrite.queries";
+import { CREATE_REVIEW, UPLOAD_FILES_REVIEW } from "./reviewWrite.queries";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IFormData } from "./reviewWrite.types";
-// import { crewBoardIdState } from "../../../../store";
-// import { useRecoilState } from "recoil";
 import { IMutation } from "../../../../commons/types/generated/types";
+import { useRecoilState } from "recoil";
+import { crewBoardIdState, crewUserListIdState } from "../../../../store";
+import { FETCH_CREW_BOARD } from "../../crews/detail/crewDetail.queries";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
+import { useRouter } from "next/router";
 
 const schema = yup.object({
   title: yup.string().required("제목을 입력해주세요"),
@@ -31,7 +30,10 @@ const CrewReviewWrite = () => {
   const [rate, setRate] = useState(5);
   const [imageUrls, setImageUrls] = useState(["", "", "", ""]);
   const [files, setFiles] = useState<File[]>([]);
-  // const [crewBoardId] = useRecoilState(crewBoardIdState);
+  const [crewBoardId] = useRecoilState(crewBoardIdState);
+  const [crewUserListId] = useRecoilState(crewUserListIdState);
+
+  const router = useRouter();
 
   const [createReview] =
     useMutation<Pick<IMutation, "createReviewBoard">>(CREATE_REVIEW);
@@ -45,11 +47,9 @@ const CrewReviewWrite = () => {
 
   const { data: crewBoardInfo } = useQuery(FETCH_CREW_BOARD, {
     variables: {
-      crewBoardId: "b1a1eb74-9930-435b-8b9f-43ef683b1174",
+      crewBoardId,
     },
   });
-
-  console.log(crewBoardInfo);
 
   const onClickRegister = async (data: IFormData) => {
     try {
@@ -69,16 +69,27 @@ const CrewReviewWrite = () => {
 
       await createReview({
         variables: {
-          crewUserListId: "asdasd",
+          crewUserListId,
           createReviewBoardInput: data,
           imgURL: resultUrlsFlat,
         },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
       });
+      successModal("리뷰가 작성되었습니다.");
+      void router.push("/reviews");
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        errorModal(error.message);
       }
     }
+  };
+
+  const onClickToMypage = () => {
+    void router.push("/mypage");
   };
 
   const onChangeFile =
@@ -110,6 +121,8 @@ const CrewReviewWrite = () => {
       onChangeFile={onChangeFile}
       imageUrls={imageUrls}
       errors={errors}
+      crewBoardInfo={crewBoardInfo}
+      onClickToMypage={onClickToMypage}
     />
   );
 };

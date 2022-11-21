@@ -336,6 +336,7 @@ const CrewWriteUi = ({
               onChange={onChangeDescription}
               value={data && String(data?.fetchCrewBoard.description)}
             />
+
             <S.Error>{errors.description?.message}</S.Error>
           </S.InputBox>
         </S.Body>

@@ -45,7 +45,7 @@ export const ListLiNum = styled.li`
   text-align: center;
 `;
 export const ListLiDate = styled.li`
-  width: 10%;
+  width: 12%;
   font-size: 1.6rem;
   font-weight: 400;
   color: #111;

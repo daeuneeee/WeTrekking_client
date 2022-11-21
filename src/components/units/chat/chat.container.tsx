@@ -1,5 +1,6 @@
 import ChatUi from "./chat.presenter";
 import io from "socket.io-client";
+
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IQuery } from "../../../commons/types/generated/types";
@@ -74,13 +75,9 @@ const Chat = () => {
     void crewUserRefetch();
   }, [crewUsers]);
 
-  console.log(crewUsers);
-
   useEffect(() => {
     void refetch();
   }, [data]);
-
-  console.log(data);
 
   const chatInput = useRef<HTMLInputElement>(null);
 

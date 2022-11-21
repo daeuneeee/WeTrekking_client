@@ -26,10 +26,18 @@ const ChatUi = ({
               return (
                 <S.AttendCrewBox key={el.user.id}>
                   <Avatar
-                    alt="Remy Sharp"
-                    src={`https://storage.googleapis.com/${String(
-                      el.user.profile_img
-                    )}`}
+                    alt="유저 프로필 이미지"
+                    src={
+                      el.user.profile_img === null
+                        ? `/images/commons/basic-profile.png`
+                        : `https://storage.googleapis.com/${String(
+                            el.user.profile_img
+                          )}`
+                    }
+                    style={{
+                      border:
+                        el.user.profile_img === null ? "1px solid #999" : "",
+                    }}
                     className="avatar"
                   />
                   <S.AttendCrewInfoContainer>
@@ -53,12 +61,21 @@ const ChatUi = ({
             <S.ChatViewHead>
               <AvatarGroup max={3}>
                 {crewUsers?.fetchChatUsers?.map((el: any) => {
+                  console.log(el);
                   return (
                     <Avatar
                       alt="유저 프로필 이미지"
-                      src={`https://storage.googleapis.com/${String(
-                        el.user.profile_img
-                      )}`}
+                      src={
+                        el.user.profile_img === null
+                          ? `/images/commons/basic-profile.png`
+                          : `https://storage.googleapis.com/${String(
+                              el.user.profile_img
+                            )}`
+                      }
+                      style={{
+                        border:
+                          el.user.profile_img === null ? "1px solid #999" : "",
+                      }}
                       className="groupAvatar"
                       key={el.user.id}
                     />
@@ -82,15 +99,13 @@ const ChatUi = ({
                       <S.ChatGroup>
                         <S.ProfileChatBox>
                           <Avatar
-                            alt="Remy Sharp"
-                            src={`https://storage.googleapis.com/${String(
-                              userDatas?.fetchUser.profile_img
-                            )}`}
+                            alt="유저 프로필 이미지"
                             className="chatAvatar"
+                            src={`/images/commons/basic-profile.png`}
                           />
                           <S.ChatMsgContainer>
                             <S.GroupChatMsgBox>{el.message}</S.GroupChatMsgBox>
-                            <S.ChatMstTime>8:00 PM</S.ChatMstTime>
+                            {/* <S.ChatMstTime>8:00 PM</S.ChatMstTime> */}
                           </S.ChatMsgContainer>
                         </S.ProfileChatBox>
                       </S.ChatGroup>
@@ -98,7 +113,7 @@ const ChatUi = ({
                       <S.ChatMy>
                         <S.MyProfileChatBox>
                           <Avatar
-                            alt="Remy Sharp"
+                            alt="유저 프로필 이미지"
                             src={`https://storage.googleapis.com/${String(
                               userDatas?.fetchUser.profile_img
                             )}`}
@@ -108,7 +123,7 @@ const ChatUi = ({
                             <S.MyGroupChatMsgBox>
                               {el.message}
                             </S.MyGroupChatMsgBox>
-                            <S.ChatMstTime>8:00 PM</S.ChatMstTime>
+                            {/* <S.ChatMstTime>8:00 PM</S.ChatMstTime> */}
                           </S.MyChatMsgContainer>
                         </S.MyProfileChatBox>
                       </S.ChatMy>

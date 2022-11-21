@@ -10,6 +10,7 @@ import {
 const ApplyList = () => {
   const [isActive, setIsActive] = useState(false);
   const [listId, setListId] = useState("");
+  const [pageNum, setPageNum] = useState(0);
 
   const { data } =
     useQuery<Pick<IQuery, "fetchCrewUserList">>(FETCH_CREW_USER_LIST);
@@ -23,6 +24,10 @@ const ApplyList = () => {
 
   const onClickModalOff = () => {
     setIsActive(false);
+  };
+
+  const onChangePage = (page: number) => {
+    setPageNum(page - 1);
   };
 
   const crewCancelBtn = async () => {
@@ -53,6 +58,8 @@ const ApplyList = () => {
       onClickModalOn={onClickModalOn}
       onClickModalOff={onClickModalOff}
       isActive={isActive}
+      onChangePage={onChangePage}
+      pageNum={pageNum}
     />
   );
 };

@@ -24,8 +24,10 @@ export const FETCH_CREW_BOARD = gql`
   query fetchCrewBoard($crewBoardId: String!) {
     fetchCrewBoard(crewBoardId: $crewBoardId) {
       id
-      title
-      mountain
+      mountain {
+        id
+        mountain
+      }
     }
   }
 `;

@@ -5,4 +5,5 @@ export interface IMyInfoUiProps {
   userDatas: Pick<IQuery, "fetchUser">;
   onClickPointModal: () => void;
   onClickToReviewWrite: (event: MouseEvent<HTMLButtonElement>) => void;
+  data?: Pick<IQuery, "fetchVisitList">;
 }

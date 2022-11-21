@@ -12,14 +12,7 @@ export const FETCH_CREW_USER_LIST = gql`
       crewBoard {
         id
         title
-        description
-        date
-        dateTime
-        addressDetail
-        address
-        gender
         mountain {
-          id
           mountain
         }
       }

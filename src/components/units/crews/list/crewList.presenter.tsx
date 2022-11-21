@@ -7,6 +7,7 @@ import { Avatar, AvatarGroup } from "@mui/material";
 import Link from "next/link";
 import { getDate } from "../../../../commons/utils/getDate";
 import PickTrueSvg from "../../../commons/svg/pickTrue";
+import MountainModal from "../../../commons/modals/mountainModal";
 
 const CrewListUi = ({
   onClickToWrite,
@@ -18,12 +19,16 @@ const CrewListUi = ({
   itemsLatest,
   itemsDeadLine,
   loginId,
+  onClickMountainSearch,
+  isMountainModalOpen,
+  mountainAddress,
+  onChangeRegion,
+  onChangeDate,
+  onClickLatestSearch,
+  visible,
+  mountainKing,
 }: ICrewListUiProps) => {
   const { Option } = Select;
-
-  const handleChange = (value: any) => {
-    console.log(value);
-  };
 
   return (
     <>
@@ -31,50 +36,34 @@ const CrewListUi = ({
         <S.RankingBox>
           <S.RankingTitle>TOP 3</S.RankingTitle>
           <S.RankingContainer>
-            <S.Ranking>
-              <Avatar
-                alt="Crew Image"
-                src="/images/commons/profile-img.png"
-                className="avatar"
-              ></Avatar>
-              <S.RankingInform>
-                <S.RankingNickName>춘딩딩</S.RankingNickName>
-                <S.RankingEmail>123@123.com</S.RankingEmail>
-              </S.RankingInform>
-              <S.RankingNumBox>
-                <S.RankingNum>TOP 1</S.RankingNum>
-              </S.RankingNumBox>
-            </S.Ranking>
-            {/* 여기부터 삭제 */}
-            <S.Ranking>
-              <Avatar
-                alt="Crew Image"
-                src="/images/commons/profile-img.png"
-                className="avatar"
-              ></Avatar>
-              <S.RankingInform>
-                <S.RankingNickName>땅오</S.RankingNickName>
-                <S.RankingEmail>456@123.com</S.RankingEmail>
-              </S.RankingInform>
-              <S.RankingNumBox>
-                <S.RankingNum>TOP 2</S.RankingNum>
-              </S.RankingNumBox>
-            </S.Ranking>
-            <S.Ranking>
-              <Avatar
-                alt="Crew Image"
-                src="/images/commons/profile-img.png"
-                className="avatar"
-              ></Avatar>
-              <S.RankingInform>
-                <S.RankingNickName>짱구</S.RankingNickName>
-                <S.RankingEmail>789@123.com</S.RankingEmail>
-              </S.RankingInform>
-              <S.RankingNumBox>
-                <S.RankingNum>TOP 3</S.RankingNum>
-              </S.RankingNumBox>
-            </S.Ranking>
-            {/* 여기까지 삭제 */}
+            {mountainKing?.fetchMountainKing.map((el: any, index: number) => {
+              return (
+                <S.Ranking key={el.id}>
+                  <Avatar
+                    alt="Crew Image"
+                    src={
+                      el.user.profile_img === null
+                        ? `/images/commons/basic-profile.png`
+                        : `https://storage.googleapis.com/${String(
+                            el.user.profile_img
+                          )}`
+                    }
+                    style={{
+                      border:
+                        el.user.profile_img === null ? "1px solid #999" : "",
+                    }}
+                    className="avatar"
+                  ></Avatar>
+                  <S.RankingInform>
+                    <S.RankingNickName>{el.user.nickname}</S.RankingNickName>
+                    <S.RankingEmail>{el.user.email}</S.RankingEmail>
+                  </S.RankingInform>
+                  <S.RankingNumBox>
+                    <S.RankingNum>TOP {index + 1}</S.RankingNum>
+                  </S.RankingNumBox>
+                </S.Ranking>
+              );
+            })}
           </S.RankingContainer>
         </S.RankingBox>
         <S.CrewBox>
@@ -98,24 +87,43 @@ const CrewListUi = ({
             </S.TitleBox>
             <S.SearchBox>
               <S.SelectDateBox>
-                <S.SelectAntD
-                  defaultValue="서울"
-                  // style={{ width: 120 }}
-                  onChange={handleChange}
-                >
-                  <Option value="서울">서울</Option>
+                <S.SelectAntD defaultValue="지역선택" onChange={onChangeRegion}>
+                  <Option value="서울특별시">서울특별시</Option>
                   <Option value="경기도">경기도</Option>
-                  <Option value="인천">인천</Option>
+                  <Option value="인천광역시">인천광역시</Option>
+                  <Option value="대전광역시">대전광역시</Option>
+                  <Option value="부산광역시">부산광역시</Option>
+                  <Option value="대구광역시">대구광역시</Option>
+                  <Option value="광주광역시">광주광역시</Option>
+                  <Option value="강원도">강원도</Option>
+                  <Option value="충청남도">충청남도</Option>
+                  <Option value="충청북도">충청북도</Option>
+                  <Option value="전라남도">전라남도</Option>
+                  <Option value="전라북도">전라북도</Option>
+                  <Option value="경상남도">경상남도</Option>
+                  <Option value="경상북도">경상북도</Option>
+                  <Option value="제주도">제주도</Option>
                 </S.SelectAntD>
                 <S.Partition></S.Partition>
                 <Space direction="vertical">
-                  <S.DateAntD placeholder={["시작 날짜", "끝 날짜"]} />
+                  <S.DateAntD
+                    placeholder={["시작 날짜", "끝 날짜"]}
+                    onChange={onChangeDate}
+                  />
                 </Space>
               </S.SelectDateBox>
               <S.Partition></S.Partition>
-              <S.Search placeholder="검색어를 입력해주세요" />
+              <S.MountainSearchBox>
+                <S.Search
+                  placeholder="산이름"
+                  value={mountainAddress.split("/", 1)[0].slice(0, -1)}
+                />
+                <S.MountainSearchBtn onClick={onClickMountainSearch}>
+                  찾기
+                </S.MountainSearchBtn>
+              </S.MountainSearchBox>
               <S.SearchBtnBox>
-                <S.SearchBtn>검색</S.SearchBtn>
+                <S.SearchBtn onClick={onClickLatestSearch}>검색</S.SearchBtn>
                 <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>
               </S.SearchBtnBox>
             </S.SearchBox>
@@ -128,9 +136,19 @@ const CrewListUi = ({
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src={`https://storage.googleapis.com/${String(
-                            listMap?.user.profile_img
-                          )}`}
+                          src={
+                            listMap?.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  listMap?.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              listMap?.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
                           className="avatar"
                         ></Avatar>
                         <S.ListNickName>
@@ -150,9 +168,9 @@ const CrewListUi = ({
                         <S.ListThumbnail
                           style={{
                             backgroundImage: `url(https://storage.googleapis.com/${String(
-                              listMap?.thumbnail
+                              (listMap?.thumbnail).replaceAll(" ", "%20")
                             )})`,
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
                           }}
@@ -166,17 +184,26 @@ const CrewListUi = ({
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
                             <AvatarGroup max={20}>
-                              {listMap?.assignedUsers?.map((assignMap: any) => (
-                                <>
-                                  <Avatar
-                                    alt="user profile"
-                                    src={`https://storage.googleapis.com/${String(
-                                      assignMap?.profile_img
-                                    )}`}
-                                    sx={{ width: 24, height: 24 }}
-                                  />
-                                </>
-                              ))}
+                              {listMap?.assignedUsers?.map((assignMap: any) => [
+                                <Avatar
+                                  key={assignMap?.id}
+                                  alt="user profile"
+                                  src={
+                                    assignMap?.profile_img === null
+                                      ? `/images/commons/basic-profile.png`
+                                      : `https://storage.googleapis.com/${String(
+                                          assignMap?.profile_img
+                                        )}`
+                                  }
+                                  style={{
+                                    border:
+                                      assignMap?.profile_img === null
+                                        ? "1px solid #999"
+                                        : "",
+                                  }}
+                                  className="avatar"
+                                />,
+                              ])}
                             </AvatarGroup>
                             <S.ListCrewsNum>
                               모집인원 {listMap?.assignedUsers.length}/
@@ -186,7 +213,7 @@ const CrewListUi = ({
                         </S.ListBody>
                         <S.ListFooter>
                           <S.ListLocationBox>
-                            <S.Location>설악산</S.Location>
+                            <S.Location>{listMap.mountain.mountain}</S.Location>
                           </S.ListLocationBox>
                           <S.ListTimeAndDayBox>
                             <S.Day>{listMap?.date}</S.Day>
@@ -208,17 +235,31 @@ const CrewListUi = ({
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src={`https://storage.googleapis.com/${String(
-                            listMap?.user.profile_img
-                          )}`}
+                          src={
+                            listMap?.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  listMap?.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              listMap?.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
                           className="avatar"
                         ></Avatar>
                         <S.ListNickName>
                           {listMap?.user?.nickname}
                         </S.ListNickName>
                       </S.ListInform>
-                      <S.ListPick>
-                        <PickFalseSvg />
+                      <S.ListPick onClick={onClickPick} id={listMap.id}>
+                        {loginId === listMap.dibUsers[0]?.id ? (
+                          <PickTrueSvg />
+                        ) : (
+                          <PickFalseSvg />
+                        )}
                       </S.ListPick>
                     </S.ListHeader>
                     <Link href={`crews/${String(listMap?.id)}`}>
@@ -228,7 +269,7 @@ const CrewListUi = ({
                             backgroundImage: `url(https://storage.googleapis.com/${String(
                               listMap?.thumbnail
                             )})`,
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
                           }}
@@ -242,17 +283,26 @@ const CrewListUi = ({
                           </S.ListTitleBox>
                           <S.ListCrewsBox>
                             <AvatarGroup max={20}>
-                              {listMap?.assignedUsers?.map((assignMap: any) => (
-                                <>
-                                  <Avatar
-                                    alt="user profile"
-                                    src={`https://storage.googleapis.com/${String(
-                                      assignMap?.profile_img
-                                    )}`}
-                                    sx={{ width: 24, height: 24 }}
-                                  />
-                                </>
-                              ))}
+                              {listMap?.assignedUsers?.map((assignMap: any) => [
+                                <Avatar
+                                  key={assignMap?.id}
+                                  alt="user profile"
+                                  src={
+                                    assignMap?.profile_img === null
+                                      ? `/images/commons/basic-profile.png`
+                                      : `https://storage.googleapis.com/${String(
+                                          assignMap?.profile_img
+                                        )}`
+                                  }
+                                  style={{
+                                    border:
+                                      assignMap?.profile_img === null
+                                        ? "1px solid #999"
+                                        : "",
+                                  }}
+                                  className="avatar"
+                                />,
+                              ])}
                             </AvatarGroup>
                             <S.ListCrewsNum>
                               모집인원 {listMap?.assignedUsers.length}/
@@ -262,7 +312,7 @@ const CrewListUi = ({
                         </S.ListBody>
                         <S.ListFooter>
                           <S.ListLocationBox>
-                            <S.Location>설악산</S.Location>
+                            <S.Location>{listMap.mountain.mountain}</S.Location>
                           </S.ListLocationBox>
                           <S.ListTimeAndDayBox>
                             <S.Day>{listMap?.date}</S.Day>
@@ -280,9 +330,14 @@ const CrewListUi = ({
                 ))}
           </S.Body>
           <S.Footer>
-            <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
+            {itemsLatest?.length < visible ? (
+              <></>
+            ) : (
+              <S.MoreBtn onClick={onClickFetchMore}>더보기</S.MoreBtn>
+            )}
           </S.Footer>
         </S.CrewBox>
+        {isMountainModalOpen && <MountainModal />}
       </S.Wrapper>
     </>
   );

@@ -155,9 +155,12 @@ export const PickBox = styled.div`
 `;
 
 export const ChatBox = styled(PickBox)`
-  width: 2.4rem;
-  height: 2.4rem;
-  background: url(/images/detail/chat.png) center center;
+  background: url(/images/detail/chat.png) center;
+  background-size: cover;
+`;
+
+export const RouteBox = styled(PickBox)`
+  background: url(/images/detail/route.png) center;
   background-size: cover;
 `;
 export const ProfileBox = styled.div`
@@ -489,6 +492,7 @@ export const CrewAgeGenderBox = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
+  align-items: center;
 `;
 
 export const CrewAgeGender = styled.span`
@@ -539,4 +543,15 @@ export const CommentContainer = styled.div`
   @media ${tablet} {
     width: 100%;
   }
+`;
+
+export const AttendedBtn = styled.button`
+  margin-right: 1rem;
+  background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
+  color: #fff;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
 `;

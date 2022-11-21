@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface ICrewReviewWriteUiProps {
   register: any;
@@ -10,6 +11,8 @@ export interface ICrewReviewWriteUiProps {
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
   imageUrls: string[];
   errors: any;
+  crewBoardInfo?: Pick<IQuery, "fetchCrewBoard">;
+  onClickToMypage: () => void;
 }
 
 export interface IFormData {

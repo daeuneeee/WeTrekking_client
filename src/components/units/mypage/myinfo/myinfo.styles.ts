@@ -186,6 +186,9 @@ export const MyMListBox = styled.div`
       -webkit-filter: blur(5px);
     }
   }
+  @media ${tablet} {
+    width: 100%;
+  }
 `;
 
 export const MyMListThum = styled.div`
@@ -193,6 +196,8 @@ export const MyMListThum = styled.div`
   height: 309px;
   background-color: gray;
   border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
   @media ${tablet} {
     width: 100%;
     height: auto;
@@ -248,6 +253,7 @@ export const ListWriterT = styled.h5`
 export const ListWriterInfoBox = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   @media ${tablet} {
     flex-direction: row;
     align-items: center;
@@ -287,7 +293,7 @@ export const ListWriterName = styled.p`
   font-size: 1.8rem;
   font-weight: 500;
   color: #111;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0;
 `;
 
 export const ListWriterAgeGender = styled.p`

@@ -7,14 +7,19 @@ import ReviewCommentWrite from "../../reviewComment/write";
 import { IReviewDetailUiProps } from "./reviewDetail.types";
 import InfiniteScroll from "react-infinite-scroller";
 import { getAge } from "../../../../commons/utils/getAge";
+import ConfirmModal from "../../../commons/modals/confirmModal";
 
 const ReviewDetailUi = ({
   data,
   onClickX,
   reviewComments,
   onLoadMore,
+  onClickShowModal,
+  onClickModalConfirm,
+  onClickCancelModal,
+  isModalOpen,
+  userId,
 }: IReviewDetailUiProps) => {
-  console.log(data);
   return (
     <>
       <S.Wrapper>
@@ -32,7 +37,23 @@ const ReviewDetailUi = ({
         <S.UnderLine></S.UnderLine>
         <S.InformBox>
           <S.WriteProfile>
-            <Avatar alt="Crew Image" sx={{ width: 68, height: 68 }}></Avatar>
+            <Avatar
+              alt="Crew Image"
+              sx={{ width: 68, height: 68 }}
+              src={
+                data?.fetchReviewBoard.user.profile_img === null
+                  ? `/images/commons/basic-profile.png`
+                  : `https://storage.googleapis.com/${String(
+                      data?.fetchReviewBoard.user.profile_img
+                    )}`
+              }
+              style={{
+                border:
+                  data?.fetchReviewBoard.user.profile_img === null
+                    ? "1px solid #999"
+                    : "",
+              }}
+            ></Avatar>
             <S.WriterInform>
               <S.NickName>{data?.fetchReviewBoard.user.nickname}</S.NickName>
               <S.AgeGenderBox>
@@ -48,7 +69,9 @@ const ReviewDetailUi = ({
               </S.AgeGenderBox>
             </S.WriterInform>
           </S.WriteProfile>
-          <S.Location>설악산</S.Location>
+          <S.Location>
+            {data?.fetchReviewBoard.crewUserList.crewBoard.mountain.mountain}
+          </S.Location>
           <S.RatingBox>
             <Rate
               allowHalf
@@ -60,6 +83,15 @@ const ReviewDetailUi = ({
         <S.UnderLine></S.UnderLine>
         <S.Review>{data?.fetchReviewBoard.review}</S.Review>
         <S.UnderLine></S.UnderLine>
+        <S.BtnBox>
+          {userId === data?.fetchReviewBoard.user.id ? (
+            <S.Btn onClick={onClickShowModal} id={data?.fetchReviewBoard.id}>
+              삭제
+            </S.Btn>
+          ) : (
+            <></>
+          )}
+        </S.BtnBox>
         <S.CommentContainer>
           <ReviewCommentWrite />
           <S.ScrollBox>
@@ -80,6 +112,12 @@ const ReviewDetailUi = ({
             </InfiniteScroll>
           </S.ScrollBox>
         </S.CommentContainer>
+        <ConfirmModal
+          onOk={onClickModalConfirm}
+          onCancel={onClickCancelModal}
+          contents="게시글을 삭제하시겠습니까?"
+          open={isModalOpen}
+        />
       </S.Wrapper>
     </>
   );

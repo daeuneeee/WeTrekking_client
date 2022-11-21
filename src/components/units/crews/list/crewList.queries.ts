@@ -1,8 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_CREW_BOARDS_LATEST = gql`
-  query fetchCrewBoardsLatestFirst {
-    fetchCrewBoardsLatestFirst {
+  query fetchCrewBoardsLatestFirst(
+    $region: String!
+    $startDate: String!
+    $endDate: String!
+    $search: String!
+  ) {
+    fetchCrewBoardsLatestFirst(
+      region: $region
+      startDate: $startDate
+      endDate: $endDate
+      search: $search
+    ) {
       id
       title
       date
@@ -112,6 +122,19 @@ export const FETCH_USER = gql`
   query {
     fetchUser {
       id
+    }
+  }
+`;
+
+export const FETCH_MOUNTAIN_KING = gql`
+  query fetchMountainKing {
+    fetchMountainKing {
+      id
+      user {
+        nickname
+        profile_img
+        email
+      }
     }
   }
 `;

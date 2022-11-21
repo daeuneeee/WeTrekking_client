@@ -15,6 +15,16 @@ export const FETCH_REVIEW = gql`
         gender
         birth
       }
+      crewUserList {
+        id
+        crewBoard {
+          id
+          mountain {
+            id
+            mountain
+          }
+        }
+      }
     }
   }
 `;
@@ -31,5 +41,11 @@ export const FETCH_REVIEW_COMMENTS = gql`
         profile_img
       }
     }
+  }
+`;
+
+export const DELETE_REVIEW_BOARD = gql`
+  mutation deleteReviewBoard($reviewBoardId: String!) {
+    deleteReviewBoard(reviewBoardId: $reviewBoardId)
   }
 `;

@@ -13,6 +13,7 @@ import * as S from "./crewDetail.styles";
 import { ICrewDetailUiProps } from "./crewDetail.types";
 import { v4 as uuidv4 } from "uuid";
 import { getAge } from "../../../../commons/utils/getAge";
+import RouteModal from "../../../commons/modals/routeModal";
 
 const CrewDetailUi = ({
   data,
@@ -33,12 +34,11 @@ const CrewDetailUi = ({
   onClickToChat,
   onClickApply,
   acceptedList,
+  onClickRoute,
+  isRouteModalOpen,
+  onClickAttended,
 }: ICrewDetailUiProps) => {
   const [accessToken] = useRecoilState(accessTokenState);
-  const year = new Date().getFullYear();
-  const userBirth =
-    year - Number(data?.fetchCrewBoard.user.birth?.slice(0, 4)) + 1;
-
   return (
     <>
       <S.Wrapper>
@@ -103,9 +103,19 @@ const CrewDetailUi = ({
                   <S.Title>{data?.fetchCrewBoard.title}</S.Title>
                 </S.LocationTitleBox>
                 <S.PickChatContainer>
-                  <S.PickChatBox onClick={onClickToChat}>
-                    <S.ChatBox></S.ChatBox>
+                  {acceptedList?.fetchAcceptedList
+                    .map((el) => el.user.id)
+                    .includes(String(userId)) ? (
+                    <S.PickChatBox onClick={onClickToChat}>
+                      <S.ChatBox></S.ChatBox>
+                    </S.PickChatBox>
+                  ) : (
+                    <></>
+                  )}
+                  <S.PickChatBox onClick={onClickRoute}>
+                    <S.RouteBox></S.RouteBox>
                   </S.PickChatBox>
+
                   <S.PickChatBox>
                     <S.PickBox onClick={onClickPick}>
                       {Number(isDib) >= 1 ? <PickTrueSvg /> : <PickFalseSvg />}
@@ -124,10 +134,12 @@ const CrewDetailUi = ({
                 <S.ProfileInform>
                   <S.NickName>{data?.fetchCrewBoard.user.nickname}</S.NickName>
                   <S.AgeGenderBox>
-                    <S.AgeGender>{userBirth}</S.AgeGender>
+                    <S.AgeGender>
+                      {getAge(String(data?.fetchCrewBoard.user.birth))}
+                    </S.AgeGender>
                     <S.AgeGender>·</S.AgeGender>
                     <S.AgeGender>
-                      {data?.fetchCrewBoard.gender
+                      {data?.fetchCrewBoard.user.gender
                         .replace("female", "여성")
                         .replace("male", "남성")}
                     </S.AgeGender>
@@ -165,10 +177,6 @@ const CrewDetailUi = ({
                 <S.DetailTitle>모집 인원</S.DetailTitle>
                 <S.DetailData>{data?.fetchCrewBoard.peoples}명</S.DetailData>
               </S.DetailInform>
-              {/* <S.Line></S.Line>
-              <S.DetailInform>
-                <S.TrailBtn>등산로 보기</S.TrailBtn>
-              </S.DetailInform> */}
             </S.DetailInformBox>
             <S.DueBox>
               <S.DueText>회비</S.DueText>
@@ -209,7 +217,7 @@ const CrewDetailUi = ({
               <S.BodyTitle>참가자 리스트</S.BodyTitle>
               <S.CrewListBox>
                 <S.CrewList>
-                  {acceptedList?.fetchAcceptedList.length}
+                  {acceptedList?.fetchAcceptedList.length ?? 0}
                 </S.CrewList>
                 <S.CrewListAll>/{data?.fetchCrewBoard.peoples}</S.CrewListAll>
                 <S.Img
@@ -222,67 +230,55 @@ const CrewDetailUi = ({
               <S.CrewBox
                 style={{ filter: !accessToken ? "blur(10px)" : "none" }}
               >
-                <S.CrewInformBox>
-                  <S.CrewInform>
-                    <Avatar
-                      alt="Crew Image"
-                      src={`https://storage.googleapis.com/${String(
-                        data?.fetchCrewBoard.user.profile_img
-                      )}`}
-                      className="avatar"
-                    ></Avatar>
-                    <S.CrewPositionNickName>
-                      <S.CrewPosition>방장</S.CrewPosition>
-                      <S.CrewNickName>
-                        {data?.fetchCrewBoard.user.nickname}
-                      </S.CrewNickName>
-                    </S.CrewPositionNickName>
-                  </S.CrewInform>
-                  <S.CrewAgeGenderBox>
-                    <S.CrewAgeGender>
-                      {getAge(String(data?.fetchCrewBoard.user.birth))}
-                    </S.CrewAgeGender>
-                    <S.CrewAgeGender>·</S.CrewAgeGender>
-                    <S.CrewAgeGender>
-                      {data?.fetchCrewBoard.user.gender
-                        .replace("male", "남성")
-                        .replace("female", "여성")}
-                    </S.CrewAgeGender>
-                  </S.CrewAgeGenderBox>
-                </S.CrewInformBox>
-                {acceptedList?.fetchAcceptedList.map((acceptMap) =>
-                  boardId !== acceptMap.user.id ? (
-                    <S.CrewInformBox key={acceptMap.id}>
-                      <S.CrewInform>
-                        <Avatar
-                          alt="Crew Image"
-                          src={`https://storage.googleapis.com/${String(
-                            acceptMap.user.profile_img
-                          )}`}
-                          className="avatar"
-                        ></Avatar>
-                        <S.CrewPositionNickName>
-                          <S.CrewNickName>
-                            {acceptMap.user.nickname}
-                          </S.CrewNickName>
-                        </S.CrewPositionNickName>
-                      </S.CrewInform>
-                      <S.CrewAgeGenderBox>
-                        <S.CrewAgeGender>
-                          {getAge(acceptMap.user.birth)}
-                        </S.CrewAgeGender>
-                        <S.CrewAgeGender>·</S.CrewAgeGender>
-                        <S.CrewAgeGender>
-                          {acceptMap.user.gender
-                            .replace("male", "남성")
-                            .replace("female", "여성")}
-                        </S.CrewAgeGender>
-                      </S.CrewAgeGenderBox>
-                    </S.CrewInformBox>
-                  ) : (
-                    <></>
-                  )
-                )}
+                {acceptedList?.fetchAcceptedList.map((acceptMap) => (
+                  <S.CrewInformBox key={acceptMap.id}>
+                    <S.CrewInform>
+                      <Avatar
+                        alt="Crew Image"
+                        src={
+                          acceptMap.user.profile_img === null
+                            ? `/images/commons/basic-profile.png`
+                            : `https://storage.googleapis.com/${String(
+                                acceptMap.user.profile_img
+                              )}`
+                        }
+                        style={{
+                          border:
+                            acceptMap.user.profile_img === null
+                              ? "1px solid #999"
+                              : "",
+                        }}
+                        className="avatar"
+                      ></Avatar>
+                      <S.CrewPositionNickName>
+                        {boardId === acceptMap.user.id ? (
+                          <S.CrewPosition>방장</S.CrewPosition>
+                        ) : null}
+                        <S.CrewNickName>
+                          {acceptMap.user.nickname}
+                        </S.CrewNickName>
+                      </S.CrewPositionNickName>
+                    </S.CrewInform>
+                    <S.CrewAgeGenderBox>
+                      {userId === data?.fetchCrewBoard.user.id && (
+                        <S.AttendedBtn
+                          onClick={onClickAttended}
+                          id={acceptMap.id}
+                        >
+                          출석
+                        </S.AttendedBtn>
+                      )}
+
+                      <S.CrewAgeGender>
+                        {getAge(acceptMap.user.birth)}
+                      </S.CrewAgeGender>
+                      <S.CrewAgeGender>·</S.CrewAgeGender>
+                      <S.CrewAgeGender>
+                        {acceptMap.user.gender === "male" ? "남성" : "여성"}
+                      </S.CrewAgeGender>
+                    </S.CrewAgeGenderBox>
+                  </S.CrewInformBox>
+                ))}
               </S.CrewBox>
               {!accessToken && (
                 <S.CrewLoginCheckBox>
@@ -328,6 +324,12 @@ const CrewDetailUi = ({
           contents="게시글을 삭제하시겠습니까?"
           open={isModalOpen}
         />
+        {isRouteModalOpen && (
+          <RouteModal
+            mountain={String(data?.fetchCrewBoard.mountain.mountain)}
+            address={String(data?.fetchCrewBoard.mountain.address)}
+          />
+        )}
       </S.Wrapper>
     </>
   );

@@ -5,31 +5,31 @@ export const FETCH_HOST_CREW_LIST = gql`
     fetchHostCrewList {
       id
       title
-      description
-      date
-      dateTime
-      address
-      addressDetail
-      gender
-      dues
-      peoples
-      thumbnail
-      createdAt
+      # description
+      # date
+      # dateTime
+      # address
+      # addressDetail
+      # gender
+      # dues
+      # peoples
+      # thumbnail
+      # createdAt
       mountain {
         id
         mountain
         address
       }
-      user {
-        id
-        email
-        name
-        nickname
-        birth
-        phone
-        gender
-        profile_img
-      }
+      # user {
+      #   id
+      #   email
+      #   name
+      #   nickname
+      #   birth
+      #   phone
+      #   gender
+      #   profile_img
+      # }
     }
   }
 `;

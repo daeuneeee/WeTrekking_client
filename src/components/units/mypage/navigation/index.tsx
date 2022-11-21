@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import { mainColor } from "../../../../commons/styles/color";
-import { mobile } from "../../../../commons/styles/media";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 const mypageMenu = [
   { name: "내 정보", router: "/mypage" },
@@ -11,7 +11,7 @@ const mypageMenu = [
   { name: "신청 리스트", router: "/mypage/applylist" },
   { name: "올린내역", router: "/mypage/uploadlist" },
   { name: "충전내역", router: "/mypage/chargelist" },
-  { name: "사용내역", router: "/mypage/uselist" },
+  { name: "이용내역", router: "/mypage/uselist" },
 ];
 
 const Wrapper = styled.div`
@@ -43,6 +43,9 @@ const MyPageLi = styled.li`
   padding: 3rem 0;
   box-sizing: content-box;
   cursor: pointer;
+  ${tablet} {
+    font-size: 12px;
+  }
 `;
 
 interface IPageProps {

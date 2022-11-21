@@ -65,6 +65,10 @@ export const ListLiTitle = styled.li`
   a {
     color: #111;
   }
+  a:hover {
+    color: ${mainColor};
+    text-decoration: underline;
+  }
   @media ${mobile} {
     width: 50%;
   }
@@ -112,7 +116,7 @@ export const SignBtn = styled.div`
 
 export const CancelBtn = styled.button`
   width: 100%;
-  padding: 0.9rem 0;
+  padding: 0.8rem 0;
   border: none;
   background-color: #bf0e0e;
   border-radius: 4px;
@@ -130,7 +134,8 @@ export const CancelMent = styled.span`
     font-size: 1.2rem;
   }
   @media ${mobile} {
-    background-size: 10px;
+    background: none;
+    padding-left: 0;
   }
 `;
 

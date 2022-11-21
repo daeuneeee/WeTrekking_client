@@ -260,6 +260,7 @@ const CrewDetailUi = ({
                       </S.CrewPositionNickName>
                     </S.CrewInform>
                     <S.CrewAgeGenderBox>
+                      {/* {acceptMap.status === "완료" ? <S. } */}
                       {userId === data?.fetchCrewBoard.user.id && (
                         <S.AttendedBtn
                           onClick={onClickAttended}

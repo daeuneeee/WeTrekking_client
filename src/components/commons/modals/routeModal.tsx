@@ -62,6 +62,7 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
     return coords;
   };
 
+  // @ts-expect-error
   useEffect(async () => {
     if (!fetchData) return;
     const coordData = await getCoordinates(fetchData);
@@ -112,6 +113,7 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
           );
 
           // 마커를 생성합니다
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const marker = new window.kakao.maps.Marker({
             map, // 마커를 표시할 지도
             position: positions[i].latlng, // 마커를 표시할 위치

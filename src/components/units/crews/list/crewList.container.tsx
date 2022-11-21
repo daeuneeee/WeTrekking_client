@@ -52,8 +52,6 @@ const CrewList = () => {
 
   const { data: mountainKing } = useQuery(FETCH_MOUNTAIN_KING);
 
-  console.log(mountainKing);
-
   useEffect(() => {
     setLoginId(String(loggedUser?.fetchUser.id));
   }, [loggedUser]);
@@ -106,7 +104,6 @@ const CrewList = () => {
   const onChangeRegion = (value: any) => {
     setRegion(value);
   };
-  // setSearch(mountainAddress.split("/", 1)[0].slice(0, -1));
 
   const search = mountainAddress.split("/", 1)[0].slice(0, -1);
 

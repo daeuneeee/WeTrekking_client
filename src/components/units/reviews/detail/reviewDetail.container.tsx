@@ -76,7 +76,6 @@ const ReviewDetail = () => {
     setIsModalOpen(true);
     setCrewId(event.currentTarget.id);
   };
-  console.log(crewId);
 
   const onClickCancelModal = () => {
     setIsModalOpen(false);

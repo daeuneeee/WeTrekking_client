@@ -22,8 +22,6 @@ const GLOBAL_STATE = new InMemoryCache();
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
-  console.log(accessToken);
-
   useEffect(() => {
     void getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);

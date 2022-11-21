@@ -8,6 +8,7 @@ import { GraphQLClient } from "graphql-request";
 import { accessTokenState } from "../../../../store";
 import { useRecoilState } from "recoil";
 import { errorModal, successModal } from "../../../commons/modals/alertModals";
+import Link from "next/link";
 
 const FETCH_APPLY_LIST = gql`
   query fetchApplyList($crewBoardId: String!) {
@@ -152,7 +153,9 @@ const UList = ({
       <S.ListLiNum className="mobile">{index + 1}</S.ListLiNum>
       <S.ListLiMountain>{el.mountain.mountain}</S.ListLiMountain>
       <S.ListLiTitle>
-        <a>{el.title}</a>
+        <Link href={`/crews/${String(el.id)}`}>
+          <a>{el.title}</a>
+        </Link>
       </S.ListLiTitle>
       <S.ListLiSign>
         <A.UserViewBtn id={el.id} onClick={onClickUserActive}>
@@ -171,13 +174,15 @@ const UList = ({
                       <A.UserProfileInfoBox>
                         <Avatar
                           alt="Remy Sharp"
-                          src="/static/images/avatar/1.jpg"
+                          src={`https://storage.googleapis.com/${String(
+                            el.user.profile_img
+                          )}`}
                           sx={{ width: 50, height: 50 }}
                         />
                         <A.UserProfileInfo>
                           <A.UserName>{el.user.nickname}</A.UserName>
                           <A.UserAgeGender>
-                            26 · {el.user.gender}
+                            26 · {el.user.gender === "male" ? "남성" : "여성"}
                           </A.UserAgeGender>
                         </A.UserProfileInfo>
                       </A.UserProfileInfoBox>

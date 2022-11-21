@@ -66,8 +66,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [isMountainId] = useRecoilState(mountainIdState);
   const [mountainAddress] = useRecoilState(mountainAddressState);
 
-  console.log(isMountainId);
-
   const router = useRouter();
 
   const {
@@ -107,8 +105,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   //   return el.imgUrl;
   // });
 
-  // console.log(imgDatas);
-
   const crewImgMap = crewImg?.fetchBoardImage.map(
     (crewImgMap) => crewImgMap.imgUrl
   );
@@ -131,7 +127,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
 
   const onChangeDescription = (value: string) => {
     setValue("description", value);
-    console.log(value);
     // void trigger("description");
   };
 
@@ -175,8 +170,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   };
   const onClickRegister = async (data: IFormData) => {
     try {
-      console.log(data);
-      console.log(isMountainId);
       if (files === undefined) return;
       const results = await Promise.all(
         files.map(
@@ -221,8 +214,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
-
-  console.log(dateError);
 
   const onChangeFile =
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {

@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { isRouteModalOpenState } from "../../../store";
-import { errorModal } from "./alertModals";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -24,14 +23,11 @@ const TREKKING_DATA = gql`
 `;
 
 const RouteModal = ({ mountain, address }: IRouteModalProps) => {
-  console.log(mountain, address);
   const [, setIsRouteModalOpen] = useRecoilState(isRouteModalOpenState);
 
   const { data: fetchData } = useQuery(TREKKING_DATA, {
     variables: { mountainName: mountain },
   });
-
-  console.log(fetchData);
 
   const onClickWrapper = () => {
     setIsRouteModalOpen((prev) => !prev);
@@ -53,7 +49,6 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
             (result: any, status: any) => {
               //   const arr = result[0].address.address_name.split(" ");
               //   const temp = `${String(arr[0])} ${String(arr[1])}`;
-              // console.log(result);
               //   if (address.includes(temp)) {
               //     coordData.push(el.coordinate);
               //   }
@@ -70,7 +65,6 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
   useEffect(async () => {
     if (!fetchData) return;
     const coordData = await getCoordinates(fetchData);
-    console.log(coordData);
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=abcd05d0eb39667951498f33e9ade254";
@@ -127,7 +121,6 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
       });
     };
 
-    // console.log(coordData);
     // const script = document.createElement("script");
     // script.src =
     //   "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=abcd05d0eb39667951498f33e9ade254";

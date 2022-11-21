@@ -240,8 +240,6 @@ const MainHeader = () => {
 
   const { data } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
-  console.log(data);
-
   useEffect(() => {
     if (data === undefined) return;
     setUserDatas(data);
@@ -282,7 +280,13 @@ const MainHeader = () => {
   const logoutUser = async () => {
     try {
       setAccessToken("");
-      await logout();
+      await logout({
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
+      });
       void router.push("/");
       successModal("로그아웃 되었습니다.");
     } catch (error) {

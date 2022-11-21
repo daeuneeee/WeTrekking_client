@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export const FETCH_HOST_CREW_LIST = gql`
   query fetchHostCrewList {
     fetchHostCrewList {
-      # id
+      id
       title
       # description
       # date
@@ -15,11 +15,11 @@ export const FETCH_HOST_CREW_LIST = gql`
       # peoples
       # thumbnail
       # createdAt
-      # mountain {
-      #   id
-      #   mountain
-      #   address
-      # }
+      mountain {
+        id
+        mountain
+        address
+      }
       # user {
       #   id
       #   email

@@ -5,24 +5,16 @@ export const FETCH_CREW_USER_LIST = gql`
     fetchCrewUserList {
       id
       status
-      user {
-        id
-        name
-      }
-      crewBoard {
-        id
-        title
-        description
-        date
-        dateTime
-        addressDetail
-        address
-        gender
-        mountain {
-          id
-          mountain
-        }
-      }
+      # user {
+      #   id
+      #   name
+      # }
+      # crewBoard {
+      #   title
+      #   mountain {
+      #     mountain
+      #   }
+      # }
     }
   }
 `;

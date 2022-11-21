@@ -19,6 +19,7 @@ const ReviewDetailUi = ({
   onClickCancelModal,
   isModalOpen,
   userId,
+  reviewImg,
 }: IReviewDetailUiProps) => {
   return (
     <>
@@ -27,11 +28,47 @@ const ReviewDetailUi = ({
           <S.XBtn onClick={onClickX}></S.XBtn>
         </S.XBox>
         <S.ImgBox>
-          <S.MainImg></S.MainImg>
+          <S.MainImg
+            style={{
+              backgroundImage: `url(https://storage.googleapis.com/${String(
+                reviewImg?.fetchReviewBoardImage[0]?.imgUrl
+              ).replace(" ", "20%")})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></S.MainImg>
           <S.SubImgBox>
-            <S.SubImg></S.SubImg>
-            <S.SubImg></S.SubImg>
-            <S.SubImg></S.SubImg>
+            <S.SubImg
+              style={{
+                backgroundImage: `url(https://storage.googleapis.com/${String(
+                  reviewImg?.fetchReviewBoardImage[1]?.imgUrl
+                ).replace(" ", "20%")})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></S.SubImg>
+            <S.SubImg
+              style={{
+                backgroundImage: `url(https://storage.googleapis.com/${String(
+                  reviewImg?.fetchReviewBoardImage[2]?.imgUrl
+                ).replace(" ", "20%")})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></S.SubImg>
+            <S.SubImg
+              style={{
+                backgroundImage: `url(https://storage.googleapis.com/${String(
+                  reviewImg?.fetchReviewBoardImage[3]?.imgUrl
+                ).replace(" ", "20%")})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></S.SubImg>
           </S.SubImgBox>
         </S.ImgBox>
         <S.UnderLine></S.UnderLine>

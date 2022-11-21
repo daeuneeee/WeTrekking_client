@@ -11,4 +11,5 @@ export interface IReviewDetailUiProps {
   onClickCancelModal: () => void;
   isModalOpen: boolean;
   userId?: string;
+  reviewImg?: Pick<IQuery, "fetchReviewBoardImage">;
 }

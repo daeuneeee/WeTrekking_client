@@ -84,6 +84,10 @@ export const UserProfileInfoBox = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  .avatar {
+    width: 5rem;
+    height: 5rem;
+  }
 `;
 
 export const UserProfileInfo = styled.div``;

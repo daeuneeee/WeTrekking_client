@@ -203,7 +203,9 @@ const CrewDetail = () => {
         },
       });
       successModal("출석되었습니다.");
-    } catch (error) {}
+    } catch (error) {
+      errorModal("이미 출석 처리 되었습니다.");
+    }
   };
 
   return (

@@ -20,6 +20,8 @@ export interface IReviewCommentListUiProps {
 }
 
 export interface IMyVariables {
-  reviewCommentId: string;
-  updateComment?: string;
+  updateReviewCommentInput: {
+    comment?: string;
+    reviewCommentId?: string;
+  };
 }

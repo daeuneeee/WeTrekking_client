@@ -76,10 +76,10 @@ const ReviewDetail = () => {
     setIsModalOpen(true);
     setCrewId(event.currentTarget.id);
   };
-
   const onClickCancelModal = () => {
     setIsModalOpen(false);
   };
+
   const onClickModalConfirm = async () => {
     try {
       await deleteReviewBoard({

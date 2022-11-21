@@ -385,6 +385,10 @@ export const ListCrewsBox = styled.div`
     width: 24px;
     height: 24px;
   }
+  .avatar {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
 `;
 
 export const ListCrewsNum = styled.span`

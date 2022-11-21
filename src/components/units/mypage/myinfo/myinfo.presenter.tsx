@@ -18,10 +18,20 @@ const MyInfoUi = ({
         <S.ProfileBox>
           <S.ProfileBody>
             <Avatar
-              alt="Remy Sharp"
-              src={`https://storage.googleapis.com/${String(
-                userDatas?.fetchUser.profile_img
-              )}`}
+              alt="유저 이미지"
+              src={
+                userDatas?.fetchUser.profile_img === null
+                  ? `/images/commons/basic-profile.png`
+                  : `https://storage.googleapis.com/${String(
+                      userDatas?.fetchUser.profile_img
+                    )}`
+              }
+              style={{
+                border:
+                  userDatas?.fetchUser.profile_img === null
+                    ? "1px solid #999"
+                    : "",
+              }}
               className="AvatarImg"
             />
             <S.ProfileName>{userDatas?.fetchUser.name}</S.ProfileName>
@@ -95,9 +105,19 @@ const MyInfoUi = ({
                       <S.ListWriterInfoContainer>
                         <Avatar
                           alt="프로필 이미지"
-                          src={`https://storage.googleapis.com/${String(
-                            el.crewBoard.user.profile_img
-                          )}`}
+                          src={
+                            el.crewBoard.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  el.crewBoard.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              el.crewBoard.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
                         />
                         <S.ListWriterInfo>
                           <S.ListWriterName>
@@ -111,17 +131,6 @@ const MyInfoUi = ({
                           </S.ListWriterAgeGender>
                         </S.ListWriterInfo>
                       </S.ListWriterInfoContainer>
-                      {/* <AvatarGroup max={6} spacing={"small"}>
-                        {data?.fetchVisitList.map((el) => {
-                          return (
-                            <Avatar
-                              alt="Remy Sharp"
-                              src={`https://storage.googleapis.com/$`}
-                              key={el.user.id}
-                            />
-                          );
-                        })}
-                      </AvatarGroup> */}
                     </S.ListWriterInfoBox>
                   </S.MyMListInfoBox>
                 </S.ReviewBg>

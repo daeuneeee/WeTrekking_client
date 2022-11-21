@@ -41,9 +41,17 @@ const CrewListUi = ({
                 <S.Ranking key={el.id}>
                   <Avatar
                     alt="Crew Image"
-                    src={`https://storage.googleapis.com/${String(
-                      el.user.profile_img
-                    )}`}
+                    src={
+                      el.user.profile_img === null
+                        ? `/images/commons/basic-profile.png`
+                        : `https://storage.googleapis.com/${String(
+                            el.user.profile_img
+                          )}`
+                    }
+                    style={{
+                      border:
+                        el.user.profile_img === null ? "1px solid #999" : "",
+                    }}
                     className="avatar"
                   ></Avatar>
                   <S.RankingInform>
@@ -128,9 +136,19 @@ const CrewListUi = ({
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src={`https://storage.googleapis.com/${String(
-                            listMap?.user.profile_img
-                          )}`}
+                          src={
+                            listMap?.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  listMap?.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              listMap?.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
                           className="avatar"
                         ></Avatar>
                         <S.ListNickName>
@@ -170,10 +188,20 @@ const CrewListUi = ({
                                 <Avatar
                                   key={assignMap?.id}
                                   alt="user profile"
-                                  src={`https://storage.googleapis.com/${String(
-                                    assignMap?.profile_img
-                                  )}`}
-                                  sx={{ width: 24, height: 24 }}
+                                  src={
+                                    assignMap?.profile_img === null
+                                      ? `/images/commons/basic-profile.png`
+                                      : `https://storage.googleapis.com/${String(
+                                          assignMap?.profile_img
+                                        )}`
+                                  }
+                                  style={{
+                                    border:
+                                      assignMap?.profile_img === null
+                                        ? "1px solid #999"
+                                        : "",
+                                  }}
+                                  className="avatar"
                                 />,
                               ])}
                             </AvatarGroup>
@@ -207,9 +235,19 @@ const CrewListUi = ({
                       <S.ListInform>
                         <Avatar
                           alt="Crew Image"
-                          src={`https://storage.googleapis.com/${String(
-                            listMap?.user.profile_img
-                          )}`}
+                          src={
+                            listMap?.user.profile_img === null
+                              ? `/images/commons/basic-profile.png`
+                              : `https://storage.googleapis.com/${String(
+                                  listMap?.user.profile_img
+                                )}`
+                          }
+                          style={{
+                            border:
+                              listMap?.user.profile_img === null
+                                ? "1px solid #999"
+                                : "",
+                          }}
                           className="avatar"
                         ></Avatar>
                         <S.ListNickName>
@@ -249,10 +287,20 @@ const CrewListUi = ({
                                 <Avatar
                                   key={assignMap?.id}
                                   alt="user profile"
-                                  src={`https://storage.googleapis.com/${String(
-                                    assignMap?.profile_img
-                                  )}`}
-                                  sx={{ width: 24, height: 24 }}
+                                  src={
+                                    assignMap?.profile_img === null
+                                      ? `/images/commons/basic-profile.png`
+                                      : `https://storage.googleapis.com/${String(
+                                          assignMap?.profile_img
+                                        )}`
+                                  }
+                                  style={{
+                                    border:
+                                      assignMap?.profile_img === null
+                                        ? "1px solid #999"
+                                        : "",
+                                  }}
+                                  className="avatar"
                                 />,
                               ])}
                             </AvatarGroup>

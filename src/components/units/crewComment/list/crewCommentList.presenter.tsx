@@ -30,9 +30,17 @@ const CrewCommentListUi = ({
         <S.Container>
           <Avatar
             alt="Crew Image"
-            src={`https://storage.googleapis.com/${String(
-              commentsMap?.user.profile_img
-            )}`}
+            src={
+              commentsMap?.user.profile_img === null
+                ? `/images/commons/basic-profile.png`
+                : `https://storage.googleapis.com/${String(
+                    commentsMap?.user.profile_img
+                  )}`
+            }
+            style={{
+              border:
+                commentsMap?.user.profile_img === null ? "1px solid #999" : "",
+            }}
             className="avatar"
           ></Avatar>
           <S.CommentBox>

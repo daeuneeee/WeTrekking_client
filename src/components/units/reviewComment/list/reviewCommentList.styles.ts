@@ -25,7 +25,7 @@ export const NickName = styled.p`
   font-weight: 500;
   font-size: 1.3rem;
   padding-top: 0.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 `;
 
 export const Comment = styled.div`

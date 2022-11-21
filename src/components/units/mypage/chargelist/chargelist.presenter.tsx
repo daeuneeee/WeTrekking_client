@@ -46,7 +46,7 @@ const ChargeListUi = ({
         <A.PaginationContainer>
           <Pagination
             defaultCurrent={1}
-            total={Number(data?.fetchPointPayments.length) * 10}
+            total={data ? Number(data?.fetchPointPayments.length) * 10 : 0}
             onChange={onChangePage}
           />
         </A.PaginationContainer>

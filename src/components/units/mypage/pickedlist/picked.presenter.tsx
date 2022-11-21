@@ -52,35 +52,24 @@ const PickedListUi = ({
                       </A.ListTitleBox>
                       <A.ListCrewsBox>
                         {/* <A.ListCrewsImg></A.ListCrewsImg> */}
+
                         <AvatarGroup max={4}>
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                            sx={{ width: 24, height: 24 }}
-                          />
+                          {el.crewBoard.assignedUsers.map((el: any) => {
+                            return (
+                              <Avatar
+                                alt="Remy Sharp"
+                                src={`https://storage.googleapis.com/${String(
+                                  el.profile_img
+                                )}`}
+                                sx={{ width: 24, height: 24 }}
+                                key={el.id}
+                              />
+                            );
+                          })}
                         </AvatarGroup>
                         <A.ListCrewsNum>
-                          모집인원 0/{el.crewBoard.peoples}
+                          모집인원 {el.crewBoard.assignedUsers.length}/
+                          {el.crewBoard.peoples}
                         </A.ListCrewsNum>
                       </A.ListCrewsBox>
                     </A.ListBody>

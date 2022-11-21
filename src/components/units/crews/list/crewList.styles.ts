@@ -345,7 +345,7 @@ export const ListBox = styled.div`
 export const ListThumbnail = styled.div`
   width: 100%;
   padding-bottom: 63%;
-  background: #cccccc;
+  background: #ccc;
   border-radius: 8px;
   margin-bottom: 1.6rem;
   background-size: cover;

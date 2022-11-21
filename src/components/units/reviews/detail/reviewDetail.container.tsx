@@ -98,7 +98,7 @@ const ReviewDetail = () => {
       setIsOpenSideBar(false);
       setIsModalOpen(false);
     } catch (error) {
-      errorModal(error.message);
+      if (error instanceof Error) errorModal(error.message);
     }
   };
 

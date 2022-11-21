@@ -47,12 +47,12 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
             coord.getLng(),
             coord.getLat(),
             (result: any, status: any) => {
-              //   const arr = result[0].address.address_name.split(" ");
-              //   const temp = `${String(arr[0])} ${String(arr[1])}`;
-              //   if (address.includes(temp)) {
-              //     coordData.push(el.coordinate);
-              //   }
-              coords.push(el.coordinate);
+              const arr = result[0].address.address_name.split(" ");
+              const temp = `${String(arr[0])} ${String(arr[1])}`;
+              if (address.includes(temp)) {
+                coords.push(el.coordinate);
+              }
+              // coords.push(el.coordinate);
               resolve("");
             }
           );

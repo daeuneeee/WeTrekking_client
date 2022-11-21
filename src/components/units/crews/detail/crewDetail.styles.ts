@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { margin } from "@mui/system";
 import { mainColor } from "../../../../commons/styles/color";
 import { mobile, tablet } from "../../../../commons/styles/media";
 
@@ -492,6 +493,7 @@ export const CrewAgeGenderBox = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
+  align-items: center;
 `;
 
 export const CrewAgeGender = styled.span`
@@ -542,4 +544,15 @@ export const CommentContainer = styled.div`
   @media ${tablet} {
     width: 100%;
   }
+`;
+
+export const AttendedBtn = styled.button`
+  margin-right: 1rem;
+  background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);
+  color: #fff;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
 `;

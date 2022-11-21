@@ -535,6 +535,7 @@ export const MountainSearchBtn = styled.span`
   position: absolute;
   top: 0.5rem;
   right: 1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   color: ${mainColor};
 `;

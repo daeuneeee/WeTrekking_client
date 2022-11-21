@@ -4,6 +4,7 @@ import { MouseEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import {
   IMutation,
+  IMutationFinishCrewArgs,
   IQuery,
   IQueryFetchAcceptedListArgs,
   IQueryFetchBoardImageArgs,
@@ -27,6 +28,7 @@ import {
   FETCH_USER,
   CREATE_CREW_USER_LIST,
   FETCH_ACCEPTED_LIST,
+  CREW_ATTENDED,
 } from "./crewDetail.queries";
 
 const CrewDetail = () => {
@@ -46,6 +48,11 @@ const CrewDetail = () => {
 
   const [deleteCrewBoard] =
     useMutation<Pick<IMutation, "deleteCrewBoard">>(DELETE_CREW_BOARD);
+
+  const [attendedCrew] = useMutation<
+    Pick<IMutation, "finishCrew">,
+    IMutationFinishCrewArgs
+  >(CREW_ATTENDED);
 
   const { data: dib } = useQuery<Pick<IQuery, "fetchDibs">>(FETCH_DIBS);
 
@@ -85,9 +92,6 @@ const CrewDetail = () => {
 
   const userId = userInform?.fetchUser.id;
   const boardId = data?.fetchCrewBoard.user.id;
-
-  console.log(userId);
-  console.log(acceptedList?.fetchAcceptedList.map((el) => el.user.id));
 
   const onClickRoute = () => {
     setIsRouteModalOpen(true);
@@ -181,6 +185,13 @@ const CrewDetail = () => {
     } catch (error) {}
   };
 
+  const onClickAttended = async (event: MouseEvent<HTMLButtonElement>) => {
+    try {
+      await attendedCrew({ variables: { id: event?.currentTarget.id } });
+      successModal("출석되었습니다.");
+    } catch (error) {}
+  };
+
   return (
     <CrewDetailUi
       data={data}
@@ -203,6 +214,7 @@ const CrewDetail = () => {
       acceptedList={acceptedList}
       onClickRoute={onClickRoute}
       isRouteModalOpen={isRouteModalOpen}
+      onClickAttended={onClickAttended}
     />
   );
 };

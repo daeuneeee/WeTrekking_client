@@ -73,6 +73,11 @@ const CrewReviewWrite = () => {
           createReviewBoardInput: data,
           imgURL: resultUrlsFlat,
         },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
       });
       successModal("리뷰가 작성되었습니다.");
       void router.push("/reviews");

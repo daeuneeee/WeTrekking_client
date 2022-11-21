@@ -155,7 +155,6 @@ const Find = ({ findId }: IFindProps) => {
             phoneToken,
           },
         });
-        console.log(result);
         successModal(
           `${data.email}의 임시 비밀번호는 ${String(
             result.data?.findUserPassword

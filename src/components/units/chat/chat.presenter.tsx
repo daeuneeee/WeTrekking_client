@@ -53,6 +53,7 @@ const ChatUi = ({
             <S.ChatViewHead>
               <AvatarGroup max={3}>
                 {crewUsers?.fetchChatUsers?.map((el: any) => {
+                  console.log(el);
                   return (
                     <Avatar
                       alt="유저 프로필 이미지"
@@ -81,13 +82,7 @@ const ChatUi = ({
                     {el.name !== userDatas?.fetchUser.name ? (
                       <S.ChatGroup>
                         <S.ProfileChatBox>
-                          <Avatar
-                            alt="Remy Sharp"
-                            src={`https://storage.googleapis.com/${String(
-                              userDatas?.fetchUser.profile_img
-                            )}`}
-                            className="chatAvatar"
-                          />
+                          <Avatar alt="Remy Sharp" className="chatAvatar" />
                           <S.ChatMsgContainer>
                             <S.GroupChatMsgBox>{el.message}</S.GroupChatMsgBox>
                             <S.ChatMstTime>8:00 PM</S.ChatMstTime>

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../../commons/styles/color";
-import { tablet } from "../../../../commons/styles/media";
+import { mobile, tablet } from "../../../../commons/styles/media";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -23,6 +23,9 @@ export const UserViewBtn = styled.button`
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
+  @media ${mobile} {
+    font-size: 10px;
+  }
 `;
 
 export const UserModal = styled.div`
@@ -130,6 +133,7 @@ export const ModalCancelBtn = styled.button`
   font-size: 1.4rem;
   font-weight: 400;
   color: #fff;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
 `;

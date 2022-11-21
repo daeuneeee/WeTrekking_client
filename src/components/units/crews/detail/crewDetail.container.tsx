@@ -139,6 +139,11 @@ const CrewDetail = () => {
     try {
       await createCrewUserList({
         variables: { crewBoardId: router.query.crewId },
+        update(cache) {
+          cache.modify({
+            fields: () => {},
+          });
+        },
       });
       successModal("참가신청이 완료되었습니다!");
     } catch (error) {

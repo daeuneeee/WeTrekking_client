@@ -20,7 +20,6 @@ const ReviewDetailUi = ({
   isModalOpen,
   userId,
 }: IReviewDetailUiProps) => {
-  console.log(data);
   return (
     <>
       <S.Wrapper>

@@ -24,8 +24,6 @@ const ChargeList = () => {
   const { data } =
     useQuery<Pick<IQuery, "fetchPointPayments">>(FETCH_POINT_PAYMENTS);
 
-  console.log(data);
-
   const [cancelPointPayment] = useMutation(CANCLE_POINT_PAYMENT);
 
   const onChangePage = (page: number) => {

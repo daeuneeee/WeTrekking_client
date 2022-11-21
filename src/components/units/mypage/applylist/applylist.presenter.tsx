@@ -34,19 +34,19 @@ const ApplyListUi = ({
                   {String(index + 1)}
                 </S.ListLiNum>
                 <S.ListLiMountain>
-                  {el.crewBoard.mountain.mountain}
+                  {/* {el.crewBoard.mountain.mountain} */}
                 </S.ListLiMountain>
                 <S.ListLiTitle>
-                  <a>{el.crewBoard.title}</a>
+                  {/* <a>{el.crewBoard.title}</a> */}
                 </S.ListLiTitle>
                 <S.ListLiSign>
                   <S.SignBtn>{el.status}</S.SignBtn>
                 </S.ListLiSign>
                 <S.ListLiCancel>
                   <S.CancelBtn>
-                    <S.CancelMent id={el.crewBoard.id} onClick={onClickModalOn}>
+                    {/* <S.CancelMent id={el.crewBoard.id} onClick={onClickModalOn}>
                       취소하기
-                    </S.CancelMent>
+                    </S.CancelMent> */}
                   </S.CancelBtn>
                 </S.ListLiCancel>
               </S.ContentUl>

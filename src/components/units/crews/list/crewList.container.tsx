@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { IMutation, IQuery } from "../../../../commons/types/generated/types";
 import {
@@ -102,7 +102,6 @@ const CrewList = () => {
     setRegion(value);
   };
   // setSearch(mountainAddress.split("/", 1)[0].slice(0, -1));
-  // console.log(mountainAddress);
 
   const search = mountainAddress.split("/", 1)[0].slice(0, -1);
 

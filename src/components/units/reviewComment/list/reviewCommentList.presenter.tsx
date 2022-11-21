@@ -65,7 +65,6 @@ const ReviewCommentListUi = ({
       {isEditOpen && (
         <>
           <S.EditContainer>
-            {console.log(reviewCommentsMap)}
             <S.EditContents
               onChange={onChangeEditComment}
               id="clear"

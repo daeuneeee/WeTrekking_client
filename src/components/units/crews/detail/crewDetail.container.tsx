@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { MouseEvent, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -149,7 +150,7 @@ const CrewDetail = () => {
       });
       successModal("참가신청이 완료되었습니다!");
     } catch (error) {
-      errorModal("이미 신청하셨습니다.");
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 

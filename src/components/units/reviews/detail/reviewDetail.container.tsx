@@ -9,13 +9,14 @@ import {
   IQueryFetchReviewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSideBarState, reviewIdState } from "../../../../store";
-import { successModal } from "../../../commons/modals/alertModals";
-import {
-  DELETE_CREW_BOARD,
-  FETCH_USER,
-} from "../../crews/detail/crewDetail.queries";
+import { errorModal, successModal } from "../../../commons/modals/alertModals";
+import { FETCH_USER } from "../../crews/detail/crewDetail.queries";
 import ReviewDetailUi from "./reviewDetail.presenter";
-import { FETCH_REVIEW, FETCH_REVIEW_COMMENTS } from "./reviewDetail.queries";
+import {
+  DELETE_REVIEW_BOARD,
+  FETCH_REVIEW,
+  FETCH_REVIEW_COMMENTS,
+} from "./reviewDetail.queries";
 
 const ReviewDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,7 +44,7 @@ const ReviewDetail = () => {
   const [deleteReviewBoard] = useMutation<
     Pick<IMutation, "deleteReviewBoard">,
     IMutationDeleteReviewBoardArgs
-  >(DELETE_CREW_BOARD);
+  >(DELETE_REVIEW_BOARD);
 
   const userId = userInform?.fetchUser.id;
 
@@ -76,6 +77,9 @@ const ReviewDetail = () => {
     setIsModalOpen(true);
     setCrewId(event.currentTarget.id);
   };
+
+  console.log(crewId);
+
   const onClickCancelModal = () => {
     setIsModalOpen(false);
   };
@@ -93,7 +97,9 @@ const ReviewDetail = () => {
       successModal("정상적으로 삭제되었습니다.");
       setIsOpenSideBar(false);
       setIsModalOpen(false);
-    } catch (error) {}
+    } catch (error) {
+      errorModal(error.message);
+    }
   };
 
   return (

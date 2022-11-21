@@ -555,3 +555,8 @@ export const AttendedBtn = styled.button`
   font-size: 1.2rem;
   cursor: pointer;
 `;
+
+export const AttendedCheckBtn = styled(AttendedBtn)`
+  background-color: #ddd;
+  color: #444;
+`;

@@ -13,6 +13,8 @@ const UploadList = () => {
   const { data } =
     useQuery<Pick<IQuery, "fetchHostCrewList">>(FETCH_HOST_CREW_LIST);
 
+  console.log(data);
+
   const [deleteCrewBoard] = useMutation(DELETE_CREW_BOARD);
 
   const onClickModalToggle = (event: MouseEvent<HTMLButtonElement>) => {

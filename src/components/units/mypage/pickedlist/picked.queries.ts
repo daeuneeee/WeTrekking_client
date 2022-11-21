@@ -26,7 +26,15 @@ export const FETCH_DIBS = gql`
         dues
         peoples
         thumbnail
-        # mountain
+        # mountain {
+        #   mountain
+        # }
+        assignedUsers {
+          id
+          name
+          nickname
+          profile_img
+        }
         createdAt
         user {
           id

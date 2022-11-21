@@ -47,12 +47,12 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
             coord.getLng(),
             coord.getLat(),
             (result: any, status: any) => {
-              const arr = result[0].address.address_name.split(" ");
-              const temp = `${String(arr[0])} ${String(arr[1])}`;
-              if (address.includes(temp)) {
-                coords.push(el.coordinate);
-              }
-              // coords.push(el.coordinate);
+              // const arr = result[0].address.address_name.split(" ");
+              // const temp = `${String(arr[0])} ${String(arr[1])}`;
+              // if (address.includes(temp)) {
+              //   coords.push(el.coordinate);
+              // }
+              coords.push(el.coordinate);
               resolve("");
             }
           );
@@ -122,62 +122,6 @@ const RouteModal = ({ mountain, address }: IRouteModalProps) => {
         }
       });
     };
-
-    // const script = document.createElement("script");
-    // script.src =
-    //   "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=abcd05d0eb39667951498f33e9ade254";
-    // document.head.appendChild(script);
-
-    // script.onload = async () => {
-    //   const positions: any[] = [];
-    //   await Promise.all(
-    //     await coordData.map(async (el: any) => {
-    //       return await new Promise((resolve, reject) => {
-    //         const result = el.map((el2: any) => {
-    //           const data = {
-    //             latlng: new window.kakao.maps.LatLng(el2[0], el2[1]),
-    //           };
-    //           positions.push(data);
-    //           return data;
-    //         });
-    //         resolve(result);
-    //       });
-    //     })
-    //   );
-    //   window.kakao.maps.load(() => {
-    //     const mapContainer = document.getElementById("map"); // 지도를 표시할 div
-    //     const mapOption = {
-    //       center: new window.kakao.maps.LatLng(
-    //         positions[0]?.latlng.Ma,
-    //         positions[0]?.latlng.La
-    //       ), // 지도의 중심좌표
-    //       level: 8, // 지도의 확대 레벨
-    //     };
-
-    //     const map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-    //     // 마커 이미지의 이미지 주소입니다
-    //     const imageSrc = "/images/detail/orange-dot.png";
-
-    //     for (let i = 0; i < positions?.length; i++) {
-    //       // 마커 이미지의 이미지 크기 입니다
-    //       const imageSize = new window.kakao.maps.Size(10, 10);
-
-    //       // 마커 이미지를 생성합니다
-    //       const markerImage = new window.kakao.maps.MarkerImage(
-    //         imageSrc,
-    //         imageSize
-    //       );
-
-    //       // 마커를 생성합니다
-    //       const marker = new window.kakao.maps.Marker({
-    //         map, // 마커를 표시할 지도
-    //         position: positions[i].latlng, // 마커를 표시할 위치
-    //         image: markerImage, // 마커 이미지
-    //       });
-    //     }
-    //   });
-    // };
   }, [fetchData]);
 
   return (

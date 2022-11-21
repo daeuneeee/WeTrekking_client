@@ -125,3 +125,16 @@ export const FETCH_USER = gql`
     }
   }
 `;
+
+export const FETCH_MOUNTAIN_KING = gql`
+  query fetchMountainKing {
+    fetchMountainKing {
+      id
+      user {
+        nickname
+        profile_img
+        email
+      }
+    }
+  }
+`;

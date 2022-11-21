@@ -300,9 +300,7 @@ const CrewDetailUi = ({
                       </S.CrewAgeGender>
                       <S.CrewAgeGender>·</S.CrewAgeGender>
                       <S.CrewAgeGender>
-                        {acceptMap.user.gender
-                          .replace("male", "남성")
-                          .replace("female", "여성")}
+                        {acceptMap.user.gender === "male" ? "남성" : "여성"}
                       </S.CrewAgeGender>
                     </S.CrewAgeGenderBox>
                   </S.CrewInformBox>

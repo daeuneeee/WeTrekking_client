@@ -66,6 +66,8 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [isMountainId] = useRecoilState(mountainIdState);
   const [mountainAddress] = useRecoilState(mountainAddressState);
 
+  console.log(isMountainId);
+
   const router = useRouter();
 
   const {
@@ -277,7 +279,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         crewBoardId: router.query.crewId,
         updateCrewBoardInput: data,
         imgURL: updateImgUrlsFlat,
-        mountainId: isMountainId,
+        mountainId: isMountainId.split(" ")[0],
       },
       update(cache) {
         cache.modify({

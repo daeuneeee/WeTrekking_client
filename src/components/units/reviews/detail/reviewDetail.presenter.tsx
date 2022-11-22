@@ -100,8 +100,8 @@ const ReviewDetailUi = ({
                 <S.AgeGender>·</S.AgeGender>
                 <S.AgeGender>
                   {data?.fetchReviewBoard.user.gender
-                    .replace("male", "남성")
-                    .replace("female", "여성")}
+                    .replace("female", "여성")
+                    .replace("male", "님성")}
                 </S.AgeGender>
               </S.AgeGenderBox>
             </S.WriterInform>

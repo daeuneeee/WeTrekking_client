@@ -261,7 +261,7 @@ const Join = ({ isUpdate }: IJoinProps) => {
           },
         });
         successModal("회원가입 성공");
-        void router.push("/crews");
+        void router.push("/login");
       }
     } catch (error) {
       if (error instanceof Error) {

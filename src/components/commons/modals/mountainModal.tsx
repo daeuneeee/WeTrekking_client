@@ -230,25 +230,3 @@ const ListBox = styled.div`
   height: 400px;
   overflow-y: auto;
 `;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;
-
-// const MountainInput = styled.div``;

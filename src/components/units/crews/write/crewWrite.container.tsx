@@ -184,8 +184,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       );
       const resultUrlsFlat = resultUrls.flat();
 
-      console.log(resultUrlsFlat);
-
       data.date = date;
       data.dateTime = time;
       data.dues = Number(data.dues);
@@ -273,8 +271,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       data.peoples = Number(boardData?.fetchCrewBoard.peoples);
     }
     if (gender) data.gender = gender;
-    // const boardImgData = crewImg?.fetchBoardImage;
-    // const updateImg = [...boardImgData];
 
     await updateCrewBoard({
       variables: {

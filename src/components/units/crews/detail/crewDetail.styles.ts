@@ -473,7 +473,6 @@ export const CrewInform = styled.div`
 export const CrewPositionNickName = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
 `;
 
 export const CrewPosition = styled.span`
@@ -557,6 +556,7 @@ export const AttendedBtn = styled.button`
 `;
 
 export const AttendedCheckBtn = styled(AttendedBtn)`
-  background-color: #ddd;
+  background: #ddd;
   color: #444;
+  cursor: default;
 `;

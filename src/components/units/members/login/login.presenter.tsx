@@ -47,7 +47,7 @@ const LoginUi = ({
               />
 
               <S.RememberId htmlFor="rememberId">
-                <S.RememberIdCheckBox>
+                {/* <S.RememberIdCheckBox>
                   {isCheck && (
                     <img
                       src="/images/login/id-check.png"
@@ -55,7 +55,7 @@ const LoginUi = ({
                     />
                   )}
                 </S.RememberIdCheckBox>
-                <span>아이디 기억하기</span>
+                <span>아이디 기억하기</span> */}
               </S.RememberId>
             </S.RememberIdBox>
             <S.FindIdAndPw type="button" onClick={onClickToFindId}>

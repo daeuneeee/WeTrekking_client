@@ -445,6 +445,14 @@ export enum IPoint_Payment_Status_Enum {
   Payment = 'PAYMENT'
 }
 
+export type IPointHistory = {
+  __typename?: 'PointHistory';
+  amount: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  user: IUser;
+};
+
 export type IPointPayment = {
   __typename?: 'PointPayment';
   amount: Scalars['Int'];
@@ -481,7 +489,10 @@ export type IQuery = {
   fetchHostCrewList: Array<Array<ICrewBoard>>;
   fetchLogs: Array<IChat>;
   fetchMountain: IMountain;
+  fetchMountainKing: IReviewCount;
   fetchMountainsWithSearch: Array<IMountain>;
+  /** 로그인한 유저의 이용내역 전체 조회 */
+  fetchPointHistory: Array<IPointHistory>;
   fetchPointPayment: IPointPayment;
   fetchPointPayments: Array<Array<IPointPayment>>;
   fetchReviewBoard: IReviewBoard;
@@ -533,6 +544,22 @@ export type IQueryFetchCrewBoardsBySearchArgs = {
 };
 
 
+export type IQueryFetchCrewBoardsDeadlineFirstArgs = {
+  endDate: Scalars['String'];
+  region: Scalars['String'];
+  search: Scalars['String'];
+  startDate: Scalars['String'];
+};
+
+
+export type IQueryFetchCrewBoardsLatestFirstArgs = {
+  endDate: Scalars['String'];
+  region: Scalars['String'];
+  search: Scalars['String'];
+  startDate: Scalars['String'];
+};
+
+
 export type IQueryFetchCrewCommentsArgs = {
   boardId: Scalars['String'];
   page?: InputMaybe<Scalars['Int']>;
@@ -557,6 +584,11 @@ export type IQueryFetchMountainArgs = {
 
 export type IQueryFetchMountainsWithSearchArgs = {
   search: Scalars['String'];
+};
+
+
+export type IQueryFetchPointHistoryArgs = {
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -613,9 +645,9 @@ export type IReviewBoard = {
 export type IReviewBoardImage = {
   __typename?: 'ReviewBoardImage';
   id: Scalars['String'];
+  imgUrl: Scalars['String'];
   isMain: Scalars['Boolean'];
   reviewBoard: IReviewBoard;
-  url: Scalars['String'];
 };
 
 export type IReviewComment = {
@@ -625,6 +657,13 @@ export type IReviewComment = {
   id: Scalars['String'];
   reviewBoard: IReviewBoard;
   reviewComment?: Maybe<Scalars['String']>;
+  user: IUser;
+};
+
+export type IReviewCount = {
+  __typename?: 'ReviewCount';
+  id: Scalars['String'];
+  reviewCount: Scalars['Int'];
   user: IUser;
 };
 

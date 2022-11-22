@@ -6,6 +6,7 @@ import {
   IMutationDeleteReviewBoardArgs,
   IQuery,
   IQueryFetchReviewBoardArgs,
+  IQueryFetchReviewBoardImageArgs,
   IQueryFetchReviewCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import { isOpenSideBarState, reviewIdState } from "../../../../store";
@@ -16,6 +17,7 @@ import {
   DELETE_REVIEW_BOARD,
   FETCH_REVIEW,
   FETCH_REVIEW_COMMENTS,
+  FETCH_REVIEW_IMAGE,
 } from "./reviewDetail.queries";
 
 const ReviewDetail = () => {
@@ -41,6 +43,12 @@ const ReviewDetail = () => {
     variables: { reviewBoardId: reviewId },
   });
 
+  const { data: reviewImg } = useQuery<
+    Pick<IQuery, "fetchReviewBoardImage">,
+    IQueryFetchReviewBoardImageArgs
+  >(FETCH_REVIEW_IMAGE, { variables: { reviewBoardId: reviewId } });
+
+  console.log(reviewImg);
   const [deleteReviewBoard] = useMutation<
     Pick<IMutation, "deleteReviewBoard">,
     IMutationDeleteReviewBoardArgs
@@ -78,8 +86,6 @@ const ReviewDetail = () => {
     setCrewId(event.currentTarget.id);
   };
 
-  console.log(crewId);
-
   const onClickCancelModal = () => {
     setIsModalOpen(false);
   };
@@ -113,6 +119,7 @@ const ReviewDetail = () => {
       onClickCancelModal={onClickCancelModal}
       isModalOpen={isModalOpen}
       userId={userId}
+      reviewImg={reviewImg}
     />
   );
 };

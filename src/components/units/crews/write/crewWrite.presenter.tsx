@@ -194,10 +194,8 @@ const CrewWriteUi = ({
               <S.DateTimeBox>
                 <S.Date direction="vertical">
                   <DatePicker
-                    // inputReadOnly
                     disabledDate={disabledDate}
                     onChange={onChangeDate}
-                    // {...register("date")}
                     placeholder={
                       data
                         ? data?.fetchCrewBoard.date
@@ -209,7 +207,6 @@ const CrewWriteUi = ({
               </S.DateTimeBox>
               <S.DateTimeBox>
                 <S.Time
-                  // inputReadOnly
                   use12Hours
                   format="h:mm a"
                   onChange={onChangeTime}

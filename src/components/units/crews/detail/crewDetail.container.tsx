@@ -87,8 +87,6 @@ const CrewDetail = () => {
     variables: { crewBoardId: String(router.query.crewId) },
   });
 
-  console.log(acceptedList);
-
   const isDib = dib?.fetchDibs
     .map((el) => el.crewBoard.id)
     .filter((el) => el.includes(String(data?.fetchCrewBoard.id))).length;

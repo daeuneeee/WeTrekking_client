@@ -49,3 +49,12 @@ export const DELETE_REVIEW_BOARD = gql`
     deleteReviewBoard(reviewBoardId: $reviewBoardId)
   }
 `;
+
+export const FETCH_REVIEW_IMAGE = gql`
+  query fetchReviewBoardImage($reviewBoardId: String!) {
+    fetchReviewBoardImage(reviewBoardId: $reviewBoardId) {
+      id
+      imgUrl
+    }
+  }
+`;

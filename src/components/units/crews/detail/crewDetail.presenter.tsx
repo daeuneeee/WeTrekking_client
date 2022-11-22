@@ -260,14 +260,19 @@ const CrewDetailUi = ({
                       </S.CrewPositionNickName>
                     </S.CrewInform>
                     <S.CrewAgeGenderBox>
-                      {/* {acceptMap.status === "완료" ? <S. } */}
-                      {userId === data?.fetchCrewBoard.user.id && (
-                        <S.AttendedBtn
-                          onClick={onClickAttended}
-                          id={acceptMap.id}
-                        >
-                          출석
-                        </S.AttendedBtn>
+                      {acceptMap.status === "완료" ? (
+                        <S.AttendedCheckBtn disabled>
+                          출석완료
+                        </S.AttendedCheckBtn>
+                      ) : (
+                        userId === data?.fetchCrewBoard.user.id && (
+                          <S.AttendedBtn
+                            onClick={onClickAttended}
+                            id={acceptMap.id}
+                          >
+                            출석
+                          </S.AttendedBtn>
+                        )
                       )}
 
                       <S.CrewAgeGender>

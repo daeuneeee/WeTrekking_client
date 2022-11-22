@@ -221,6 +221,7 @@ export const BtnInputBox = styled.div`
   flex-direction: row;
   margin-top: 1rem;
   gap: 0.8rem;
+  width: 100%;
 `;
 
 export const AddressBox = styled.div`
@@ -369,9 +370,7 @@ export const People = styled.span`
 
 export const TextArea = styled(ReactQuill)`
   width: 100%;
-  /* height: 160px; */
   padding: 1.2rem 1.2rem 2rem;
-  /* min-height: 160px; */
   color: #111;
   font-weight: 400;
   font-size: 1.6rem;
@@ -451,6 +450,3 @@ export const DateTimeBox = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-
-// export const ImgBox = styled.div`
-// `

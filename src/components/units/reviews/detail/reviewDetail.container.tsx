@@ -48,6 +48,7 @@ const ReviewDetail = () => {
     IQueryFetchReviewBoardImageArgs
   >(FETCH_REVIEW_IMAGE, { variables: { reviewBoardId: reviewId } });
 
+  console.log(reviewImg);
   const [deleteReviewBoard] = useMutation<
     Pick<IMutation, "deleteReviewBoard">,
     IMutationDeleteReviewBoardArgs
@@ -84,8 +85,6 @@ const ReviewDetail = () => {
     setIsModalOpen(true);
     setCrewId(event.currentTarget.id);
   };
-
-  console.log(crewId);
 
   const onClickCancelModal = () => {
     setIsModalOpen(false);

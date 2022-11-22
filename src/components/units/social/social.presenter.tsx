@@ -13,11 +13,22 @@ const SocialJoinUi = ({
   onChangeGenderCheck,
   isGenderCheck,
   register,
+  onChangeNickname,
+  onClickSendToPhone,
+  onClickCheckTokenToPhone,
+  onChangePhoneToken,
+  onClickCheckNickname,
+  handleSubmit,
+  formState,
+  isCheckNumActive,
+  isNicknameCheck,
+  isPhoneNumCheck,
+  onClickSocialUpdate,
 }: ISocialJoinProps) => {
   return (
     <A.Wrapper>
       <A.Container>
-        <S.JoinForm>
+        <S.JoinForm onSubmit={handleSubmit(onClickSocialUpdate)}>
           <A.LoginTitle>
             We Trekking<span>추가정보 입력</span>
           </A.LoginTitle>
@@ -32,7 +43,7 @@ const SocialJoinUi = ({
               name="name"
               {...register("name")}
             />
-            {/* <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg> */}
+            <S.ErrorMsg>{formState.errors.name?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -43,11 +54,17 @@ const SocialJoinUi = ({
               placeholder="닉네임을 입력해 주세요."
               maxLength={51}
               name="nickname"
-              {...register("nickname")}
+              onChange={onChangeNickname}
             />
             <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.CheckBtn type="button">중복확인</S.CheckBtn>
+          <S.CheckBtn
+            type="button"
+            onClick={onClickCheckNickname}
+            disabled={isNicknameCheck || false}
+          >
+            중복확인
+          </S.CheckBtn>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               생년월일<span>*</span>
@@ -55,11 +72,11 @@ const SocialJoinUi = ({
             <S.DefaultInput
               type="text"
               placeholder="생년월일을 입력해 주세요. (ex: 970101)"
-              maxLength={6}
+              maxLength={8}
               name="birth"
               {...register("birth")}
             />
-            {/* <S.ErrorMsg>{formState.errors.birth?.message}</S.ErrorMsg> */}
+            <S.ErrorMsg>{formState.errors.birth?.message}</S.ErrorMsg>
           </A.LoginInputContainer>
           <A.LoginInputContainer>
             <A.LoginInputTitle>
@@ -98,8 +115,31 @@ const SocialJoinUi = ({
                 />
               </S.PhoneInputBox>
             </S.JoinPhoneBox>
-            <S.PhoneAuthBtn type="button">인증번호 받기</S.PhoneAuthBtn>
+            <S.PhoneAuthBtn type="button" onClick={onClickSendToPhone}>
+              인증번호 받기
+            </S.PhoneAuthBtn>
           </A.LoginInputContainer>
+          {isCheckNumActive && (
+            <A.LoginInputContainer>
+              <A.LoginInputTitle>
+                인증번호 확인 <span>*</span>
+              </A.LoginInputTitle>
+              <S.DefaultInput
+                type="text"
+                placeholder="인증번호를 입력해 주세요."
+                maxLength={6}
+                onChange={onChangePhoneToken}
+              />
+              <S.ErrorMsg>{formState.errors.checkNum?.message}</S.ErrorMsg>
+              <S.CheckNumBtn
+                type="button"
+                onClick={onClickCheckTokenToPhone}
+                disabled={isPhoneNumCheck || false}
+              >
+                인증번호 확인
+              </S.CheckNumBtn>
+            </A.LoginInputContainer>
+          )}
           <A.LoginInputContainer>
             <A.LoginInputTitle>
               성별<span>*</span>
@@ -144,7 +184,7 @@ const SocialJoinUi = ({
             </S.GenderSelectBox>
             <S.ErrorMsg></S.ErrorMsg>
           </A.LoginInputContainer>
-          <S.SubmitJoinBtn>확인</S.SubmitJoinBtn>
+          <S.SubmitJoinBtn type="submit">확인</S.SubmitJoinBtn>
         </S.JoinForm>
       </A.Container>
     </A.Wrapper>

@@ -23,7 +23,7 @@ const UploadListUi = ({
             <S.ListLiSign>신청자</S.ListLiSign>
             <S.ListLiCancel>취소</S.ListLiCancel>
           </S.TitleUl>
-          {data?.fetchHostCrewList[0].map((el, index) => {
+          {data?.fetchHostCrewList[0]?.map((el, index) => {
             return (
               <UList
                 el={el}

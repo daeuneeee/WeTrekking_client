@@ -7,3 +7,5 @@ export const SOCIAL_UPDATE_USER = gql`
     }
   }
 `;
+
+// 수정

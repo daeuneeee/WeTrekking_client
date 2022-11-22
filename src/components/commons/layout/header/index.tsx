@@ -260,11 +260,7 @@ const Header = () => {
       setAccessToken("");
       void router.push("/");
       successModal("로그아웃 되었습니다.");
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error);
-      }
-    }
+    } catch (error) {}
   };
 
   return (

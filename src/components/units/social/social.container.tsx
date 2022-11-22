@@ -85,12 +85,11 @@ const SocialJoin = () => {
 
   const onClickSendToPhone = async () => {
     try {
-      const phoneData = await sendTokenToPhone({
+      await sendTokenToPhone({
         variables: {
           phone: `${phone01}${phone02}${phone03}`,
         },
       });
-      console.log(phoneData);
       successModal("인증번호가 전송되었습니다.");
       setIsCheckNumActive(true);
     } catch (error) {

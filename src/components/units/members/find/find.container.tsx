@@ -76,14 +76,13 @@ const Find = ({ findId }: IFindProps) => {
   const onClickSendToPhone = async () => {
     try {
       if (phone01 && phone02 && phone03) {
-        const result = await sendTokenToPhone({
+        await sendTokenToPhone({
           variables: {
             phone: `${phone01}${phone02}${phone03}`,
           },
         });
         successModal("인증번호가 전송되었습니다.");
         setIsCheckNumActive(true);
-        console.log(result);
       } else {
         errorModal("핸드폰 번호를 입력해주세요.");
       }

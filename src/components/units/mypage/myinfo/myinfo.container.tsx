@@ -20,8 +20,6 @@ const MyInfo = () => {
 
   const { data } = useQuery<Pick<IQuery, "fetchVisitList">>(FETCH_VISIT_LIST);
 
-  console.log(data);
-
   const router = useRouter();
 
   const onClickPointModal = () => {

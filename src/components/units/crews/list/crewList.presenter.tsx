@@ -27,6 +27,7 @@ const CrewListUi = ({
   onClickLatestSearch,
   visible,
   mountainKing,
+  onClickDeadLineSearch,
 }: ICrewListUiProps) => {
   const { Option } = Select;
 
@@ -124,7 +125,11 @@ const CrewListUi = ({
                 </S.MountainSearchBtn>
               </S.MountainSearchBox>
               <S.SearchBtnBox>
-                <S.SearchBtn onClick={onClickLatestSearch}>검색</S.SearchBtn>
+                <S.SearchBtn
+                  onClick={sort ? onClickLatestSearch : onClickDeadLineSearch}
+                >
+                  검색
+                </S.SearchBtn>
                 <S.RegisterBtn onClick={onClickToWrite}>글쓰기</S.RegisterBtn>
               </S.SearchBtnBox>
             </S.SearchBox>

@@ -18,4 +18,5 @@ export interface ICrewListUiProps {
   onClickLatestSearch: () => void;
   visible: number;
   mountainKing: any;
+  onClickDeadLineSearch: () => void;
 }

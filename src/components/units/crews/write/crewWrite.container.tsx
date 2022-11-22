@@ -64,7 +64,8 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
     isMountainModalOpenState
   );
   const [isMountainId] = useRecoilState(mountainIdState);
-  const [mountainAddress] = useRecoilState(mountainAddressState);
+  const [mountainAddress, setMountainAddress] =
+    useRecoilState(mountainAddressState);
 
   const router = useRouter();
 
@@ -210,6 +211,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
       if (data.address === "") {
         setAddressError("주소를 입력해주세요");
       }
+      setMountainAddress("");
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
@@ -283,6 +285,7 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
         });
       },
     });
+    setMountainAddress("");
     void router.push(`/crews/${String(router.query.crewId)}`);
   };
 

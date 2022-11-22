@@ -44,13 +44,15 @@ const CrewList = () => {
     variables: { region: "", startDate: "", endDate: "", search: "" },
   });
 
-  const { data: deadLine } = useQuery<
+  const { data: deadLine, refetch: deadLineRefetch } = useQuery<
     Pick<IQuery, "fetchCrewBoardsDeadlineFirst">
-  >(FETCH_CREW_BOARDS_DEADLINE);
-
+  >(FETCH_CREW_BOARDS_DEADLINE, {
+    variables: { region: "", startDate: "", endDate: "", search: "" },
+  });
   const { data: loggedUser } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
-  const { data: mountainKing } = useQuery(FETCH_MOUNTAIN_KING);
+  const { data: mountainKing } =
+    useQuery<Pick<IQuery, "fetchMountainKing">>(FETCH_MOUNTAIN_KING);
 
   useEffect(() => {
     setLoginId(String(loggedUser?.fetchUser.id));
@@ -116,6 +118,10 @@ const CrewList = () => {
     await refetch({ region, startDate, endDate, search });
   };
 
+  const onClickDeadLineSearch = async () => {
+    await deadLineRefetch({ region, startDate, endDate, search });
+  };
+
   return (
     <CrewListUi
       onClickToWrite={onClickToWrite}
@@ -135,6 +141,7 @@ const CrewList = () => {
       onClickLatestSearch={onClickLatestSearch}
       visible={visible}
       mountainKing={mountainKing}
+      onClickDeadLineSearch={onClickDeadLineSearch}
     />
   );
 };

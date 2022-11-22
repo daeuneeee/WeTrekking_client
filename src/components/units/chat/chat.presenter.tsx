@@ -61,7 +61,6 @@ const ChatUi = ({
             <S.ChatViewHead>
               <AvatarGroup max={3}>
                 {crewUsers?.fetchChatUsers?.map((el: any) => {
-                  console.log(el);
                   return (
                     <Avatar
                       alt="유저 프로필 이미지"

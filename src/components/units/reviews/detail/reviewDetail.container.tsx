@@ -48,7 +48,6 @@ const ReviewDetail = () => {
     IQueryFetchReviewBoardImageArgs
   >(FETCH_REVIEW_IMAGE, { variables: { reviewBoardId: reviewId } });
 
-  console.log(reviewImg);
   const [deleteReviewBoard] = useMutation<
     Pick<IMutation, "deleteReviewBoard">,
     IMutationDeleteReviewBoardArgs

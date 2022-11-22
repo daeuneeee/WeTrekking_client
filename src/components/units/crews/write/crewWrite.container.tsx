@@ -66,8 +66,6 @@ const CrewWrite = ({ isEdit }: ICrewWriteProps) => {
   const [isMountainId] = useRecoilState(mountainIdState);
   const [mountainAddress] = useRecoilState(mountainAddressState);
 
-  console.log(isMountainId);
-
   const router = useRouter();
 
   const {

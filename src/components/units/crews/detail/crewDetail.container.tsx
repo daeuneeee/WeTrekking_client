@@ -103,7 +103,15 @@ const CrewDetail = () => {
   };
 
   const onClickToChat = () => {
-    void router.push(`/crews/${String(router.query.crewId)}/chat`);
+    if (
+      acceptedList?.fetchAcceptedList
+        .map((el) => el.user.id)
+        .includes(String(userId))
+    ) {
+      void router.push(`/crews/${String(router.query.crewId)}/chat`);
+    } else {
+      errorModal("참여자만 입장할 수 있습니다.");
+    }
   };
 
   const onLoadMore = async () => {

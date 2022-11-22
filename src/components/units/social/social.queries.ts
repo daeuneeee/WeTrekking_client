@@ -5,9 +5,11 @@ export const SOCIAL_UPDATE_USER = gql`
     $phoneToken: String!
     $updateUserInput: UpdateUserInput!
   ) {
-    socialUpdateUser(phoneToken: $phoneToken, updateUserInput: $updateUserInput)
-  }
-  {
-    id
+    socialUpdateUser(
+      phoneToken: $phoneToken
+      updateUserInput: $updateUserInput
+    ) {
+      id
+    }
   }
 `;

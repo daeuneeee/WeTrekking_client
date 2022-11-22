@@ -55,6 +55,12 @@ const Login = () => {
     }
   };
 
+  // const onClickMsg = () => {
+  //   successModal(
+  //     "간편로그인은 회원가입 이후 이용이 가능합니다. 회원가입을 진행해주세요"
+  //   );
+  // };
+
   return (
     <LoginUi
       onChangeCheckBox={onChangeCheckBox}

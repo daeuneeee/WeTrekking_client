@@ -115,6 +115,7 @@ const CrewListUi = ({
               <S.Partition></S.Partition>
               <S.MountainSearchBox>
                 <S.Search
+                  readOnly
                   placeholder="산이름"
                   value={mountainAddress.split("/", 1)[0].slice(0, -1)}
                 />

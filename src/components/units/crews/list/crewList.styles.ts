@@ -243,13 +243,13 @@ export const Partition = styled.span`
 
 export const Search = styled.input`
   padding: 0.5rem 1.2rem;
-  width: 100%;
-  height: 30px;
+  width: 90%;
   background-color: #fff;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 1.3rem;
-  outline-color: ${subColor};
+  outline-color: transparent;
+  margin-left: 5px;
   ::placeholder {
     font-weight: 400;
     font-size: 1.3rem;
@@ -527,6 +527,7 @@ export const DateAntD = styled(RangePicker)`
 `;
 
 export const MountainSearchBox = styled.div`
+  height: 32px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -534,11 +535,14 @@ export const MountainSearchBox = styled.div`
   width: 216px;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
+  outline-color: ${subColor};
   @media ${mobile} {
     width: 100%;
+    height: 32px;
   }
   @media ${tablet} {
     width: 100%;
+    height: 32px;
   }
 `;
 export const MountainSearchBtn = styled.span`

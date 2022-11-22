@@ -157,7 +157,6 @@ const SocialJoin = () => {
         data.phone = `${phone01}${phone02}${phone03}`;
         await socialUpdateUser({
           variables: {
-            phoneToken,
             updateUserInput: data,
           },
         });

@@ -6,11 +6,17 @@ import { mobile, tablet } from "../../../../commons/styles/media";
 export const Wrapper = styled.div`
   width: 588px;
   margin: 0 auto;
+  @media ${tablet} {
+    width: 90%;
+  }
 `;
 
 export const Container = styled.div`
   width: 65.31%;
   margin: 0 auto;
+  @media ${tablet} {
+    width: 80%;
+  }
 `;
 
 export const Title = styled.p`
@@ -176,6 +182,9 @@ export const CancelBtn = styled.button`
   font-size: 1.8rem;
   color: #fff;
   cursor: pointer;
+  ${tablet} {
+    width: 90%;
+  }
 `;
 export const RegisterBtn = styled(CancelBtn)`
   background: linear-gradient(90.25deg, #426a3a 0.19%, #2f4b2a 99.78%);

@@ -51,7 +51,8 @@ const CrewList = () => {
   });
   const { data: loggedUser } = useQuery<Pick<IQuery, "fetchUser">>(FETCH_USER);
 
-  const { data: mountainKing } = useQuery(FETCH_MOUNTAIN_KING);
+  const { data: mountainKing } =
+    useQuery<Pick<IQuery, "fetchMountainKing">>(FETCH_MOUNTAIN_KING);
 
   useEffect(() => {
     setLoginId(String(loggedUser?.fetchUser.id));

@@ -291,7 +291,7 @@ const Header = () => {
                 <UserPoint>
                   포인트{" "}
                   <span>
-                    {String(userDatas?.fetchUser.point).replaceAll(
+                    {String(userDatas?.fetchUser.point).replace(
                       /(\d)(?=(?:\d{3})+(?!\d))/g,
                       "$1,"
                     )}

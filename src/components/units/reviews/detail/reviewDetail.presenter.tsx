@@ -32,7 +32,7 @@ const ReviewDetailUi = ({
             style={{
               backgroundImage: `url(https://storage.googleapis.com/${String(
                 reviewImg?.fetchReviewBoardImage[0]?.imgUrl
-              ).replaceAll(" ", "20%")})`,
+              ).replace(/ /g, "20%")})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -43,7 +43,7 @@ const ReviewDetailUi = ({
               style={{
                 backgroundImage: `url(https://storage.googleapis.com/${String(
                   reviewImg?.fetchReviewBoardImage[1]?.imgUrl
-                ).replaceAll(" ", "20%")})`,
+                ).replace(/ /g, "20%")})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -53,7 +53,7 @@ const ReviewDetailUi = ({
               style={{
                 backgroundImage: `url(https://storage.googleapis.com/${String(
                   reviewImg?.fetchReviewBoardImage[2]?.imgUrl
-                ).replaceAll(" ", "20%")})`,
+                ).replace(/ /g, "20%")})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -63,7 +63,7 @@ const ReviewDetailUi = ({
               style={{
                 backgroundImage: `url(https://storage.googleapis.com/${String(
                   reviewImg?.fetchReviewBoardImage[3]?.imgUrl
-                ).replaceAll(" ", "20%")})`,
+                ).replace(/ /g, "20%")})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",

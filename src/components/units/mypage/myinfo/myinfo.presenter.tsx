@@ -58,7 +58,7 @@ const MyInfoUi = ({
           <S.ProfilePointBox>
             <S.ProfilePointTitle>Point</S.ProfilePointTitle>
             <S.ProfilePoint>
-              {String(userDatas?.fetchUser.point).replaceAll(
+              {String(userDatas?.fetchUser.point).replace(
                 /(\d)(?=(?:\d{3})+(?!\d))/g,
                 "$1,"
               )}

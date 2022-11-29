@@ -174,7 +174,7 @@ const CrewListUi = ({
                         <S.ListThumbnail
                           style={{
                             backgroundImage: `url(https://storage.googleapis.com/${String(
-                              (listMap?.thumbnail).replaceAll(" ", "%20")
+                              (listMap?.thumbnail).replace(/ /g, "%20")
                             )})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",

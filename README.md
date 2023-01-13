@@ -1,4 +1,4 @@
-# 📖 We-Trekking
+# 📖 We-Trekking 프로젝트
 > 2022.10.29~ 2022.11.24
 
 - https://wetrekking.kr/

@@ -102,7 +102,7 @@ npm install
 npm run start
 ```
 
-## 시연
+## 서비스 시연
 
 ### 랜딩페이지
 

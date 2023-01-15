@@ -119,6 +119,12 @@ npm run start
 <img width="1192" alt="상세페이지" src="https://user-images.githubusercontent.com/92679073/212232896-8e10636c-09ad-4195-a849-2b9453a85a66.png">
 <br/>
 
+### 상세페이지 - 등산로
+
+<img width="1192" alt="등산로" src="https://user-images.githubusercontent.com/92679073/212533379-05313601-2002-4e90-977a-0c772c82e515.png">
+
+<br/>
+
 ### 회원가입
 
 ![회원가입](https://user-images.githubusercontent.com/92679073/212232956-34f32911-011c-4445-bd47-4dcb8a1b149c.gif)

@@ -36,6 +36,27 @@
 
 <br>
 
+🛠 기술 스택
+<br />
+<br />
+<span style='background-color: #dcffe4'>JavaScript</span>,
+<span style='background-color: #dcffe4'>TypeScript</span>,
+<span style='background-color: #dcffe4'>Next.js</span>,
+<span style='background-color: #dcffe4'>React Hooks</span>,
+<span style='background-color: #dcffe4'>Emotion</span>,
+<span style='background-color: #dcffe4'>Apollo-Client</span>,
+<span style='background-color: #dcffe4'>GraphQL</span>,
+<span style='background-color: #dcffe4'>Socket.io</span>,
+<span style='background-color: #dcffe4'>Git</span>,
+<span style='background-color: #dcffe4'>GCP</span>
+
+<br>
+
+## 🛠 Flow Chart
+
+![My First Board](https://user-images.githubusercontent.com/92679073/212528241-d0d5238d-15cc-461f-be3e-8daad3e0b21d.jpg)
+<br>
+
 ## **📢 프로젝트 실행**
 
 ```shell
